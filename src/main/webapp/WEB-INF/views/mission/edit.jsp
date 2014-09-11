@@ -91,7 +91,7 @@
 					</td> --%>
 					<td><label class="control-label col-xs-2">当前状态</label></td>
 					<td>
-						<ui:select name="mission.status" path="${obj.status}" items="${status}"></ui:select>
+						<ui:select name="mission.status" path="${obj.status}" items="${status}" css="required"></ui:select>
 					</td>
 					
 				</tr>
@@ -120,14 +120,14 @@
 				</tr>
 				<tr>
 					<td><label class="control-label col-xs-2">基线版本</label></td>
-					<td><input type="text" id="prj_version" name="mission.productBaseVersion" value="${obj.productBaseVersion}"></td>
+					<td><input type="text" id="prj_version" name="mission.productBaseVersion" value="${obj.productBaseVersion}" class="required"></td>
 					<td><label class="control-label col-xs-2">负责团队</label></td>
 					<td><input type="text" id="mission_name" name="mission.teamID" value="${obj.teamID}" class="required"></td>
 				</tr>
 				<!-- publish version,industry -->
 				<tr>
 					<td><label class="control-label col-xs-2">计划发布版本</label></td>
-					<td><input type="text" id="p_version" name="mission.publishVersion"></td>
+					<td><input type="text" id="p_version" name="mission.publishVersion" class="required"></td>
 					<td><label class="control-label col-xs-2">发起行业</label></td>
 					<td>
 					<ui:select name="mission.industryName" path="${obj.industryName}" items="${industry}" css="required"></ui:select>
@@ -137,7 +137,7 @@
 				<tr>
 					<td><label class="control-label col-xs-2">计划开始时间</label></td>
 					<td><input type="text" id="mission_name" name="mission.planStart"
-					value="<f:formatDate value="${obj.planStart}" pattern="yyyy-MM-dd" />" class="datetime"></td>
+					value="<f:formatDate value="${obj.planStart}" pattern="yyyy-MM-dd" />" class="datetime required"></td>
 					<td><label class="control-label col-xs-2">开始时间</label></td>
 					<td><input type="text" id="mission_name" name="mission.startDate" 
 					value="<f:formatDate value="${obj.startDate}" pattern="yyyy-MM-dd" />" class="datetime"></td>
@@ -145,7 +145,7 @@
 				<tr>
 					<td><label class="control-label col-xs-2">计划结束时间</label></td>
 					<td><input type="text" id="mission_name" name="mission.planEnd" 
-					value="<f:formatDate value="${obj.planEnd}" pattern="yyyy-MM-dd" />" class="datetime"></td>
+					value="<f:formatDate value="${obj.planEnd}" pattern="yyyy-MM-dd" />" class="datetime required"></td>
 					<td><label class="control-label col-xs-2">结束时间</label></td>
 					<td><input type="text" id="mission_name" name="mission.endDate" 
 					value="<f:formatDate value="${obj.endDate}" pattern="yyyy-MM-dd" />" class="datetime"></td>
@@ -160,7 +160,7 @@
 				</tr>
 				<tr>
 					<td><label class="control-label col-xs-2">完成百分比</label></td>
-					<td><input type="text" id="prj_name" name="mission.progress" value="${obj.progress}" class="required">%</td>
+					<td><input type="text" id="prj_name" name="mission.progress" value="${obj.progress}" class="number">%</td>
 					<td><label class="control-label col-xs-2">已投入人力(小时)</label></td>
 					<td><input type="text" id="mission_totalHours" value="${obj.totalHours}" class="number" readonly="readonly"/></td>
 				</tr>
