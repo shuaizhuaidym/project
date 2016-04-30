@@ -1,0 +1,26 @@
+body {
+	padding-top: 60px;
+	padding-bottom: 40px;
+}
+
+td:nth-child(even) {
+	text-align: left;
+}
+
+td:nth-child(odd) {
+	text-align: right;
+}
+
+input {
+	margin: 0
+}
+
+.full-row {
+	width: 100%
+}
+.x-text{width:87%}
+.footer{
+	width:75%;
+	margin:0 auto;
+	text-align: center;
+}
