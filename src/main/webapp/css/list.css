@@ -9,14 +9,13 @@ body {
 
 #queryForm td:nth-child(odd) {
 	text-align: right;
-	width: 7%;
 }
 
 #tdBtn {
 	width: 15%;
 	text-align: center;
 }
-.w5{width: 5%}
+.w2{width: 2%}
 .w12 {
 	width: 12%
 }

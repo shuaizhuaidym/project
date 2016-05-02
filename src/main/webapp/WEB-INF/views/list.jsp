@@ -88,7 +88,7 @@
 				<table class="table table-bordered table-striped">
 					<thead>
 						<tr>
-							<th>序号</th>
+							<th class="w2">序号</th>
 							<th>项目名称</th>
 							<th>问题类型</th>
 							<th class="w36">详细描述</th>
@@ -100,7 +100,7 @@
 					<tbody>
 						<c:forEach var="prj" items="<%=rst.getList()%>" varStatus="index">
 							<tr>
-								<td class="w5">${index.count}</td>
+								<td>${index.count}</td>
 								<td>${prj.prjName}</td>
 								<td>${prj.issueType}</td>
 								<td><a href="/project/edit?prjid=${prj.prjID}">${prj.describtion}</a></td>
