@@ -13,9 +13,8 @@
 <script type="text/javascript" src="js/jquery/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="js/bootstrap-datetimepicker.js"></script>
 <script type="text/javascript" src="js/bootstrap-dropdown.js"></script>
-<script type="text/javascript" src="js/jquery.metadata.js"></script>
 
-<script type="text/javascript" src="js/jquery/jquery.validate.js"></script>
+<script type="text/javascript" src="js/jquery-validation-1.9.0/jquery.validate.js"></script>
 
 <script type="text/javascript">
 	$(function() {
@@ -26,7 +25,8 @@
 			todayHighlight : 1,
 			startView : 2,
 			minView : 2,
-			forceParse : 0
+			forceParse : 0,
+			format:"yyyy-mm-dd"
 		});
 	});
 </script>
@@ -45,7 +45,8 @@
 					<td><label class="control-label col-xs-2">项目名称</label></td>
 					<td><input type="text" id="prj_name" name="project.prjName" class="required"></td>
 					<td><label class="control-label col-xs-2">所属行业</label></td>
-					<td><select name="project.industry">
+					<td><select name="project.industry" class="required">
+							<option></option>
 							<option>军工</option>
 							<option>能源</option>
 					</select></td>
@@ -53,17 +54,19 @@
 				<tr>
 					<td><label class="control-label col-xs-2">问题类型</label></td>
 					<td><select id="issueType" name="project.issueType" class="required">
+							<option></option>
 							<option>网关服务器</option>
 							<option>客户端</option>
 					</select></td>
 					<td><label class="control-label col-xs-2">产品版本</label></td>
-					<td><input type="text" id="prj_version" name="project.prudectVersion" class="required"></td>
+					<td><input type="text" id="prj_version" name="project.prudectVersion" class="required number"></td>
 				</tr>
 				<tr>
 					<td><label class="control-label col-xs-2">提交日期</label></td>
 					<td><input type="text" id="submitDate" name="project.submitDate" class="required datetime"></td>
 					<td><label class="control-label col-xs-2">当前状态</label></td>
 					<td><select name="project.status" class="form-control">
+							<option></option>
 							<option>未开始</option>
 							<option>进行中</option>
 							<option>暂停</option>
@@ -76,12 +79,15 @@
 				</tr>
 				<tr>
 					<td><label class="control-label col-xs-2">报告人</label></td>
-					<td><select id="disabledSelect" name="project.reporter" class="form-control">
+					<td>
+						<input type="text" name="project.reporter" class="required"/>
+					<!-- <select id="disabledSelect" name="project.reporter" class="form-control">
 							<option>魏孝宇</option>
 							<option>李云龙</option>
 							<option>郭靖</option>
 							<option>李白</option>
-					</select></td>
+					</select> -->
+					</td>
 					<td><label class="control-label col-xs-2">联系方式</label></td>
 					<td><input type="text" name="project.contact" class="required"></td>
 				</tr>
@@ -126,6 +132,7 @@
 <script type="text/javascript">
 $(function() {
 	$( "#frm_project" ).validate( {
+		debug:true,
 		rules: {
 			prj_name: "required",
 			prj_version: "required",

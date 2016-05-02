@@ -34,7 +34,20 @@
 
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap-dropdown.js"></script>
-
+<script type="text/javascript" src="js/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#sub_date").datetimepicker({
+			weekStart : 1,
+			todayBtn : 1,
+			autoclose : 1,
+			todayHighlight : 1,
+			startView : 2,
+			minView : 2,
+			forceParse : 0
+		});
+	});
+</script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
@@ -64,7 +77,7 @@
 								<option>王艳</option>
 						</select></td>
 						<td class="w15">提交日期|</td>
-						<td><input type="text" name="query.submitDate" class="wp98" /></td>
+						<td><input type="text" id="sub_date" name="query.submitDate" class="wp98" /></td>
 						<td style="width: 15%; text-align: center">
 							<button type="submit" value="查询" class="btn btn-success">查询</button>
 							<button type="submit" value="查询" class="btn btn-success">导出EXCEL</button>
@@ -72,7 +85,7 @@
 					</tr>
 				</table>
 
-				<table class="table table-striped">
+				<table class="table table-bordered table-striped">
 					<thead>
 						<tr>
 							<th>序号</th>
@@ -102,24 +115,11 @@
 			<pg:page pageNo="<%=pageNo%>" currentClass="active" pageSize="<%=pageSize%>" totalCount="<%=totalCount%>">
 			</pg:page>
 		</form>
-		<!-- <div class="pagination pagination-right">
-			<ul>
-				<li class="disabled"><a href="#">上一页</a></li>
-				<li><a href="#">1</a></li>
-				<li><a href="#">...</a></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">...</a></li>
-				<li><a href="#">100</a></li>
-				<li><a href="#">下一页</a></li>
-				<li class="disabled"><a href="#">共7条记录|每页5条|当前1/2页|到第</a><input type="text" style="width: 30px; float: left" /><a>页</a>
-				<button>跳转</button></li>
-			</ul>
-		</div> -->
 
 	</div>
+
 	<!-- /container -->
 	<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
+
 </body>
 </html>

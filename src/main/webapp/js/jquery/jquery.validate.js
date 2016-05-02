@@ -5,6 +5,7 @@
  *
  * Copyright (c) 2016 J枚rn Zaefferer
  * Released under the MIT license
+ * http://jqueryvalidation.org/validate/
  */
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
@@ -17,10 +18,7 @@
 }(function( $ ) {
 
 $.extend( $.fn, {
-
-	// http://jqueryvalidation.org/validate/
 	validate: function( options ) {
-
 		// If nothing is selected, return nothing; can't chain anyway
 		if ( !this.length ) {
 			if ( options && options.debug && window.console ) {
@@ -28,14 +26,12 @@ $.extend( $.fn, {
 			}
 			return;
 		}
-
-		// Check if a validator for this form was already created
+		// oCheck if a validator for this form was already created
 		var validator = $.data( this[ 0 ], "validator" );
 		if ( validator ) {
 			return validator;
 		}
-
-		// Add novalidate tag if HTML5.
+		// Add no validate tag if HTML5.
 		this.attr( "novalidate", "novalidate" );
 
 		validator = new $.validator( options, this[ 0 ] );
