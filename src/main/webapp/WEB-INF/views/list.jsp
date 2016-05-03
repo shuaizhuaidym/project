@@ -88,13 +88,13 @@
 				<table class="table table-bordered table-striped">
 					<thead>
 						<tr>
-							<th class="w2">序号</th>
+							<th class="w4">序号</th>
 							<th>项目名称</th>
 							<th>问题类型</th>
 							<th class="w36">详细描述</th>
-							<th>提交日期</th>
-							<th>负责人</th>
-							<th>当前状态</th>
+							<th class="w8">提交日期</th>
+							<th class="w6">负责人</th>
+							<th class="w6">当前状态</th>
 						</tr>
 					</thead>
 					<tbody>

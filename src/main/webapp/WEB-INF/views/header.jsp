@@ -12,12 +12,11 @@
 					<li class="active"><a href="${path}/project/">首页</a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">项目管理 <b class="caret"></b></a>
 						<ul class="dropdown-menu">
-							<li><a href="#">Another action</a></li>
+							<li><a href="#">新建项目</a></li>
 							<li class="divider"></li>
-							<li class="nav-header">Nav header</li>
-							<li><a href="#">Separated link</a></li>
+							<li><a href="#">检索项目</a></li>
 						</ul></li>
-					<li><a href="#about">报表分析</a></li>
+					<li><a href="<%=path %>/data/analyse">报表分析</a></li>
 					<li><a href="<%=path %>/dic/list">字典设置</a></li>
 					<li><a href="#about">更多</a></li>
 				</ul>

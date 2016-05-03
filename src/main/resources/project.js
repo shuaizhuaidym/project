@@ -54,5 +54,13 @@ var ioc = {
 				refer : 'dicService'
 			}
 		}
+	},
+	reportAction:{
+		type : "com.jit.project.web.ReportAction",
+		fields : {
+			prjService : {
+				refer : 'prjService'
+			}
+		}
 	}
 };

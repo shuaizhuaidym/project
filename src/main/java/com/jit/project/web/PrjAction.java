@@ -16,7 +16,7 @@ import com.jit.project.bean.Project;
 import com.jit.project.bean.Query;
 import com.jit.project.service.PrjService;
 
-//TODO jquery validate/Excel export
+//TODO Excel export
 @InjectName("prjAction")
 public class PrjAction {
 	@Inject("prjService")

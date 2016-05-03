@@ -5,10 +5,9 @@ import org.nutz.mvc.annotation.Modules;
 import org.nutz.mvc.annotation.SetupBy;
 import org.nutz.mvc.ioc.provider.JsonIocProvider;
 
-
-@Modules({ PrjAction.class,DicAction.class })
+@Modules({ PrjAction.class, DicAction.class, ReportAction.class })
 @IocBy(type = JsonIocProvider.class, args = { "project.js" })
 @SetupBy(MvcSetup.class)
 public class Entry {
-	
+
 }
