@@ -16,7 +16,7 @@ import com.jit.project.bean.Project;
 import com.jit.project.bean.Query;
 import com.jit.project.service.PrjService;
 
-//TODO Excel export
+//TODO Excel export/dictionary/select tag liberation
 @InjectName("prjAction")
 public class PrjAction {
 	@Inject("prjService")

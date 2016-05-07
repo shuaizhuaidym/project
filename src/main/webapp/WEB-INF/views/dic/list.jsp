@@ -12,7 +12,7 @@
 <title>字典管理</title>
 </head>
 <body>
-	<jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 	字典管理<%=request.getContextPath() %>
 </body>
 </html>

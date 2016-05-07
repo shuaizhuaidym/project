@@ -1005,7 +1005,7 @@ select,textarea,input[type="text"],input[type="password"],input[type="datetime"]
 }
 
 input,textarea,.uneditable-input {
-	width: 220px
+	width: 248px
 }
 
 textarea {
@@ -1057,7 +1057,7 @@ select,input[type="file"] {
 }
 
 select {
-	width: 220px;
+	width: 248px;
 	background-color: #fff;
 	border: 1px solid #ccc
 }
@@ -3656,7 +3656,11 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini {
 	border: 1px solid transparent;
 	-webkit-border-radius: 4px 4px 0 0;
 	-moz-border-radius: 4px 4px 0 0;
-	border-radius: 4px 4px 0 0
+	border-radius: 4px 4px 0 0;
+	background-color: #a4c9f6;
+	border-width: 1 1 0 1;
+	border-style: solid;
+	border-color: #ddd
 }
 
 .nav-tabs>li>a:hover,.nav-tabs>li>a:focus {
@@ -3665,9 +3669,9 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini {
 
 .nav-tabs>.active>a,.nav-tabs>.active>a:hover,.nav-tabs>.active>a:focus
 	{
-	color: #555;
+	color: #ddd;
 	cursor: default;
-	background-color: #fff;
+	background-color: #006dcc;
 	border: 1px solid #ddd;
 	border-bottom-color: transparent
 }

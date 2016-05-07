@@ -67,10 +67,37 @@ public class Project {
 	//备注
 	@Column("comments")
 	private String comments;
-	//最后相应日期
+	//最后响应日期
 	@Column("last_response")
 	private Date lastResponse=new Date();
+	//操作人，记录当前操作者IP，然后根据对应关系可以找到人
+	@Column("operator_ip")
+	private String operatorIP;
 	
+	public Project() {
+		super();
+	}
+
+	public Project(String prjName, String industry, String prudectVersion, String issueType, String describtion,
+			Date submitDate, String status, String engineer, Date finishDate, float laborCosts, String reporter,
+			String contact, String process) {
+		super();
+		this.prjName = prjName;
+		this.industry = industry;
+		this.prudectVersion = prudectVersion;
+		this.issueType = issueType;
+		this.describtion = describtion;
+		this.submitDate = submitDate;
+		this.status = status;
+		this.engineer = engineer;
+		this.finishDate = finishDate;
+		this.laborCosts = laborCosts;
+		this.reporter = reporter;
+		this.contact = contact;
+		this.process = process;
+	}
+
+
 	public Integer getPrjID() {
 		return prjID;
 	}
@@ -225,5 +252,13 @@ public class Project {
 	public String getLocalSubmitDate(){
 		SimpleDateFormat ft=new SimpleDateFormat("yyyy-MM-dd");
 		return ft.format(submitDate);
+	}
+
+	protected String getOperatorIP() {
+		return operatorIP;
+	}
+
+	protected void setOperatorIP(String operatorIP) {
+		this.operatorIP = operatorIP;
 	}
 }

@@ -19,6 +19,7 @@
 	int pageNo = pager.getPageNumber();
 	int pageSize = pager.getPageSize();
 	int totalCount = pager.getRecordCount();
+	String path=request.getContextPath();
 %>
 <!DOCTYPE html>
 <html>
@@ -31,6 +32,7 @@
 <link href="css/bootstrap.min.css" rel="stylesheet" />
 <link href="css/bootstrap-responsive.min.css" rel="stylesheet" />
 <link href="css/list.css" rel="stylesheet" />
+<link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap-dropdown.js"></script>
@@ -44,29 +46,32 @@
 			todayHighlight : 1,
 			startView : 2,
 			minView : 2,
-			forceParse : 0
+			forceParse : 0,
+			format:"yyyy-mm-dd"
 		});
 	});
 </script>
 </head>
 <body>
-	<jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 	<div class="container-fluid">
 		<fieldset>
 			<legend>
-				项目列表<a href="form" style="margin-left: 50px">&gt;&gt;新建项目</a>
+				项目列表<a href="<%=path%>/form" style="margin-left: 50px">&gt;&gt;新建项目</a>
 			</legend>
 		</fieldset>
-		<form id="queryForm" action="query" method="post">
+		<form id="queryForm" action="<%=path%>/query" method="post">
 			<div class="table-responsive">
-				<table class="table table-striped">
+				<table class="table table-bordered table-striped">
 					<tr>
 						<td>项目名称|</td>
 						<td class="w12"><input type="text" name="query.prjName" class="qt" value="<%=query.getPrjName()%>" /></td>
-						<td>当前状态|</td>
-						<td class="w24 ibox"><span> <input type="checkbox" name="query.status" value="未开始" />未开始 <input
-								type="checkbox" name="query.status" value="进行中" />进行中 <input type="checkbox" name="query.status" value="暂停" />暂停 <input
-								type="checkbox" name="query.status" value="已完成" />已完成
+						<td>状态|</td>
+						<td class="w24 ibox"><span>
+								<input type="checkbox" name="query.status" value="未开始" />未开始
+								<input type="checkbox" name="query.status" value="进行中" />进行中 
+								<input type="checkbox" name="query.status" value="暂停" />暂停 
+								<input type="checkbox" name="query.status" value="已完成" />已完成
 						</span></td>
 						<td>负责人|</td>
 						<td class="w12"><select name="query.engineer" class="wp80">
@@ -76,7 +81,7 @@
 								<option>李开爽</option>
 								<option>王艳</option>
 						</select></td>
-						<td class="w15">提交日期|</td>
+						<td class="w6">提交日期|</td>
 						<td><input type="text" id="sub_date" name="query.submitDate" class="wp98" /></td>
 						<td style="width: 15%; text-align: center">
 							<button type="submit" value="查询" class="btn btn-success">查询</button>
@@ -119,7 +124,7 @@
 	</div>
 
 	<!-- /container -->
-	<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 
 </body>
 </html>

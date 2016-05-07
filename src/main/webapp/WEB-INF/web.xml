@@ -15,20 +15,27 @@
 			<param-value>com.jit.project.web.Entry</param-value>
 		</init-param>
 	</filter>
+	<filter>
+		<description>
+		</description>
+		<display-name>TagFilter</display-name>
+		<filter-name>TagFilter</filter-name>
+		<filter-class>com.jit.project.auth.TagFilter</filter-class>
+	</filter>
 
 	<filter-mapping>
 		<filter-name>nutz</filter-name>
 		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>TagFilter</filter-name>
+		<url-pattern>/TagFilter</url-pattern>
 	</filter-mapping>
 
 	<jsp-config>
 		<taglib>
 			<taglib-uri>/WEB-INF/tags</taglib-uri>
 			<taglib-location>tags/page-tag.tld</taglib-location>
-		</taglib>
-		<taglib>
-			<taglib-uri>/struts-tags</taglib-uri>
-			<taglib-location>tags/struts-tags.tld</taglib-location>
 		</taglib>
 	</jsp-config>
 </web-app>

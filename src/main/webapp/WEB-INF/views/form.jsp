@@ -9,6 +9,8 @@
 
 <link href="css/commom.css" rel="stylesheet">
 <link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+
 
 <script type="text/javascript" src="js/jquery/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="js/bootstrap-datetimepicker.js"></script>
@@ -32,7 +34,7 @@
 </script>
 </head>
 <body>
-	<jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 
 	<div class="container" style="width: 65%; margin: 0 auto">
 		<form id="frm_project" action="create" method="post">
@@ -40,7 +42,7 @@
 				<legend>新建项目</legend>
 			</fieldset>
 
-			<table class="table table-striped table-bordered control-group">
+			<table class="table table-bordered table-striped">
 				<tr>
 					<td><label class="control-label col-xs-2">项目名称</label></td>
 					<td><input type="text" id="prj_name" name="project.prjName" class="required"></td>
@@ -59,7 +61,7 @@
 							<option>客户端</option>
 					</select></td>
 					<td><label class="control-label col-xs-2">产品版本</label></td>
-					<td><input type="text" id="prj_version" name="project.prudectVersion" class="required number"></td>
+					<td><input type="text" id="prj_version" name="project.prudectVersion" class="number"></td>
 				</tr>
 				<tr>
 					<td><label class="control-label col-xs-2">提交日期</label></td>
@@ -116,7 +118,7 @@
 				</tr>
 				<tr>
 					<td><label class="control-label col-xs-2">人力成本(人*周)</label></td>
-					<td colspan="3"><input type="text" name="project.laborCosts" class="x-text" /></td>
+					<td colspan="3"><input type="text" name="project.laborCosts" class="x-text number" /></td>
 				</tr>
 			</table>
 			<div style="text-align: left; margin-right: 80px">
@@ -127,29 +129,11 @@
 
 	</div>
 	<!-- /container -->
-	<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 </body>
 <script type="text/javascript">
 $(function() {
 	$( "#frm_project" ).validate( {
-		debug:true,
-		rules: {
-			prj_name: "required",
-			prj_version: "required",
-				prj_desc : {
-					required : true,
-					minlength : 5
-				},
-				prj_impr : {
-					required : true,
-					minlength : 5
-				},
-				prj_comm : {
-					required : true,
-					minlength : 5,
-					equalTo : "#prj_impr"
-				}
-			},
 			errorPlacement : function(error, element) {
 				//error.addClass( "ui red pointing label transition" );
 				//error.insertAfter( element.parent() );
