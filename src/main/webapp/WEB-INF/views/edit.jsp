@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.jit.project.bean.Project"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="ui" uri="/WEB-INF/tags/select"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,18 +37,7 @@
 					<td><input type="text" name="project.prjName" class="form-control" value="${prj.prjName}" readonly="readonly"></td>
 					<td><label class="control-label col-xs-2">所属行业</label></td>
 					<td>
-					<select name="project.industry" class="required">
-						<c:forEach var="dstr" items="${ mpIndustry}">
-							<c:choose>
-								<c:when test="${prj.industry eq dstr.value}">
-									<option selected="selected">${dstr.value}</option>
-								</c:when>
-								<c:otherwise>
-									<option>${dstr.value}</option>
-								</c:otherwise>
-							</c:choose>
-						</c:forEach>
-					</select>
+						<ui:select name="project.industry" path="${prj.industry}" items="${mpIndustry}" css="required"></ui:select>
 					</td>
 				</tr>
 				<tr>
