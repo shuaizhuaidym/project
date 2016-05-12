@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="pg" uri="/WEB-INF/tags"%>
+<%@ taglib prefix="ui" uri="/WEB-INF/tags/select"%>
 <%@page import="org.nutz.dao.pager.Pager"%>
 <%@page import="org.nutz.dao.QueryResult"%>
 <%@page import="com.jit.project.bean.Query"%>
@@ -67,20 +68,18 @@
 						<td>项目名称|</td>
 						<td class="w12"><input type="text" name="query.prjName" class="qt" value="<%=query.getPrjName()%>" /></td>
 						<td>状态|</td>
-						<td class="w24 ibox"><span>
+						<td class="w24 ibox">
+						<span>
 								<input type="checkbox" name="query.status" value="未开始" />未开始
 								<input type="checkbox" name="query.status" value="进行中" />进行中 
 								<input type="checkbox" name="query.status" value="暂停" />暂停 
-								<input type="checkbox" name="query.status" value="已完成" />已完成
+								<input type="checkbox" name="query.status" value="完成" />完成
+								<input type="checkbox" name="query.status" value="未反馈" />未反馈
 						</span></td>
 						<td>负责人|</td>
-						<td class="w12"><select name="query.engineer" class="wp80">
-								<option></option>
-								<option>李闯</option>
-								<option>李林峰</option>
-								<option>李开爽</option>
-								<option>王艳</option>
-						</select></td>
+						<td class="w12">
+							<ui:select name="query.engineer" path="${query.engineer}" items="${mpEngineer}"></ui:select>
+						</td>
 						<td class="w6">提交日期|</td>
 						<td><input type="text" id="sub_date" name="query.submitDate" class="wp98" /></td>
 						<td style="width: 15%; text-align: center">

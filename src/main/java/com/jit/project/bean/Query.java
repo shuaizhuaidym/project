@@ -56,6 +56,7 @@ public class Query implements Condition {
 		if (submitDate != null) {
 			sqlBuilder.append(" and DATE_FORMAT(submit_date,'%Y-m-%d') = '").append(format.format(submitDate)).append("'");
 		}
+		sqlBuilder.append(" order by submit_date desc");
 		return sqlBuilder.toString();
 	}
 
@@ -131,7 +132,7 @@ public class Query implements Condition {
 		this.status = status;
 	}
 
-	public String getEnginner() {
+	public String getEngineer() {
 		return engineer;
 	}
 

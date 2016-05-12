@@ -1,14 +1,19 @@
 package util;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -24,15 +29,9 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.HSSFColor;
 
+import com.jit.project.bean.Project;
+
 public class ExcelUtil<T> {
-
-	public void exportExcel(Collection<T> dataset, OutputStream out) {
-		exportExcel("测试POI导出EXCEL文档", null, dataset, out, "yyyy-MM-dd");
-	}
-
-	public void exportExcel(String[] headers, Collection<T> dataset, OutputStream out) {
-		exportExcel("测试POI导出EXCEL文档", headers, dataset, out, "yyyy-MM-dd");
-	}
 
 	public void exportExcel(String[] headers, Collection<T> dataset, OutputStream out, String pattern) {
 		exportExcel("测试POI导出EXCEL文档", headers, dataset, out, pattern);
@@ -98,8 +97,8 @@ public class ExcelUtil<T> {
 					// 判断值的类型后进行强制类型转换
 					String textValue = null;
 
-//					 cellStyle.setDataFormat(
-//						        createHelper.createDataFormat().getFormat("m/d/yy h:mm"));
+					// cellStyle.setDataFormat(
+					// createHelper.createDataFormat().getFormat("m/d/yy h:mm"));
 					if (value instanceof Date) {
 						Date date = (Date) value;
 						SimpleDateFormat sdf = new SimpleDateFormat(pattern);
@@ -155,8 +154,8 @@ public class ExcelUtil<T> {
 			e.printStackTrace();
 		}
 	}
-	
-	//create cell style
+
+	// create cell style
 	private HSSFCellStyle createStyle(HSSFWorkbook workbook, short foreColor, short fontWeight) {
 		HSSFCellStyle style = workbook.createCellStyle();
 		// 设置这些样式
@@ -177,5 +176,79 @@ public class ExcelUtil<T> {
 		// 把字体应用到当前的样式
 		style.setFont(font);
 		return style;
+	}
+
+	/**
+	 * 读取Excel2003-2007文件
+	 * 
+	 * @param file
+	 * @return
+	 */
+	public List<Project> readExcelXls(String file) {
+		List<Project> list = new ArrayList<Project>();
+		InputStream is;
+		try {
+			is = new FileInputStream(file);
+			HSSFWorkbook hssfWorkbook = new HSSFWorkbook(is);
+			for (int numSheet = 0; numSheet < hssfWorkbook.getNumberOfSheets(); numSheet++) {
+				HSSFSheet hssfSheet = hssfWorkbook.getSheetAt(numSheet);
+				if (hssfSheet == null) {
+					continue;
+				}
+				// Read the Row
+				for (int rowNum = 1; rowNum <= hssfSheet.getLastRowNum(); rowNum++) {
+					HSSFRow hssfRow = hssfSheet.getRow(rowNum);
+					if (hssfRow != null) {
+						HSSFCell no = hssfRow.getCell(0);
+						HSSFCell name = hssfRow.getCell(1);
+						HSSFCell age = hssfRow.getCell(2);
+						HSSFCell score = hssfRow.getCell(3);
+					}
+				}
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	/**
+	 * Read the Excel 2010
+	 * 
+	 * @param path the path of the excel file
+	 * @return
+	 * @throws IOException
+	 */
+	public List<Project> readXlsx(String path) throws IOException {
+		InputStream is = new FileInputStream(path);
+		XSSFWorkbook xssfWorkbook = new XSSFWorkbook(is);
+		Project student = null;
+		List<Project> list = new ArrayList<Project>();
+		// Read the Sheet
+		for (int numSheet = 0; numSheet < xssfWorkbook.getNumberOfSheets(); numSheet++) {
+			XSSFSheet xssfSheet = xssfWorkbook.getSheetAt(numSheet);
+			if (xssfSheet == null) {
+				continue;
+			}
+			// Read the Row
+			for (int rowNum = 1; rowNum <= xssfSheet.getLastRowNum(); rowNum++) {
+				XSSFRow xssfRow = xssfSheet.getRow(rowNum);
+				if (xssfRow != null) {
+					student = new Student();
+					XSSFCell no = xssfRow.getCell(0);
+					XSSFCell name = xssfRow.getCell(1);
+					XSSFCell age = xssfRow.getCell(2);
+					XSSFCell score = xssfRow.getCell(3);
+					student.setNo(getValue(no));
+					student.setName(getValue(name));
+					student.setAge(getValue(age));
+					student.setScore(Float.valueOf(getValue(score)));
+					list.add(student);
+				}
+			}
+		}
+		return list;
 	}
 }

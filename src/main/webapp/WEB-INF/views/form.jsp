@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="ui" uri="/WEB-INF/tags/select"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,33 +48,25 @@
 					<td><label class="control-label col-xs-2">项目名称</label></td>
 					<td><input type="text" id="prj_name" name="project.prjName" class="required"></td>
 					<td><label class="control-label col-xs-2">所属行业</label></td>
-					<td><select name="project.industry" class="required">
-							<option></option>
-							<option>军工</option>
-							<option>能源</option>
-					</select></td>
+					<td>
+						<ui:select name="project.industry" path="${prj.industry}" items="${mpIndustry}" css="required"></ui:select>
+					</td>
 				</tr>
 				<tr>
 					<td><label class="control-label col-xs-2">问题类型</label></td>
-					<td><select id="issueType" name="project.issueType" class="required">
-							<option></option>
-							<option>网关服务器</option>
-							<option>客户端</option>
-					</select></td>
+					<td>
+						<ui:select name="project.issueType" path="${prj.issueType}" items="${mpIssueType}" css="required"></ui:select>
+					</td>
 					<td><label class="control-label col-xs-2">产品版本</label></td>
-					<td><input type="text" id="prj_version" name="project.prudectVersion" class="number"></td>
+					<td><input type="text" id="prj_version" name="project.prudectVersion"></td>
 				</tr>
 				<tr>
 					<td><label class="control-label col-xs-2">提交日期</label></td>
 					<td><input type="text" id="submitDate" name="project.submitDate" class="required datetime"></td>
 					<td><label class="control-label col-xs-2">当前状态</label></td>
-					<td><select name="project.status" class="form-control">
-							<option></option>
-							<option>未开始</option>
-							<option>进行中</option>
-							<option>暂停</option>
-							<option>完成</option>
-					</select></td>
+					<td>
+						<ui:select name="project.status" path="${prj.status}" items="${mpStatus}" css="required"></ui:select>
+					</td>
 				</tr>
 				<tr>
 					<td><label class="control-label col-xs-2">详细描述</label></td>
@@ -95,12 +88,9 @@
 				</tr>
 				<tr>
 					<td><label class="control-label col-xs-2">负责人</label></td>
-					<td><select name="project.engineer">
-							<option>李闯</option>
-							<option>李颜红</option>
-							<option>李开富</option>
-							<option>王艳</option>
-					</select></td>
+					<td>
+						<ui:select name="project.engineer" path="${prj.engineer}" items="${mpEngineer}" css="required"></ui:select>
+					</td>
 					<td><label class="control-label col-xs-2">联系方式</label></td>
 					<td><input type="text" name="project.engineerTel" class="required"></td>
 				</tr>

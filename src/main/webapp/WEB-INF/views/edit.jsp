@@ -42,26 +42,19 @@
 				</tr>
 				<tr>
 					<td><label class="control-label col-xs-2">问题类型</label></td>
-					<td><select id="disabledSelect" name="project.issueType" class="required">
-							<option>网关服务器</option>
-							<option>客户端</option>
-							<option>旁路Agent</option>
-							<option>旁路报文</option>
-							<option>移动中间件</option>
-					</select></td>
+					<td>
+						<ui:select name="project.issueType" path="${prj.issueType}" items="${mpIssueType}" css="required"></ui:select>
+					</td>
 					<td><label class="control-label col-xs-2">产品版本</label></td>
-					<td><input type="text" name="project.prudectVersion" value="${prj.prudectVersion}" class="number"></td>
+					<td><input type="text" name="project.prudectVersion" value="${prj.prudectVersion}"></td>
 				</tr>
 				<tr>
 					<td><label class="control-label col-xs-2">提交日期</label></td>
 					<td><input type="text" name="project.submitDate" value="${prj.localSubmitDate}" class="required datetime" readonly="readonly"></td>
 					<td><label class="control-label col-xs-2">当前状态</label></td>
-					<td><select name="project.status" class="required">
-							<option>未开始</option>
-							<option>进行中</option>
-							<option>暂停</option>
-							<option>完成</option>
-					</select></td>
+					<td>
+						<ui:select name="project.status" path="${prj.status}" items="${mpStatus}" css="required"></ui:select>
+					</td>
 				</tr>
 				<tr>
 					<td><label class="control-label col-xs-2">详细描述</label></td>
@@ -77,12 +70,9 @@
 				</tr>
 				<tr>
 					<td><label class="control-label col-xs-2">负责人</label></td>
-					<td><select name="project.engineer" class="form-control">
-							<option>李闯</option>
-							<option>李颜红</option>
-							<option>李开富</option>
-							<option>王艳</option>
-					</select></td>
+					<td>
+						<ui:select name="project.engineer" path="${prj.engineer}" items="${mpEngineer}" css="required"></ui:select>
+					</td>
 					<td><label class="control-label col-xs-2">联系方式</label></td>
 					<td><input type="text" name="project.engineerTel" value="${prj.engineerTel}" class="form-control"></td>
 				</tr>

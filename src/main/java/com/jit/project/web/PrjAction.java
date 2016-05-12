@@ -43,11 +43,16 @@ public class PrjAction {
 		QueryResult qResult = new QueryResult(new ArrayList<Project>(), new Pager());
 		request.setAttribute("query", new Query());
 		request.setAttribute("result", qResult);
+		request.setAttribute("mpEngineer", mpEngineer);
 	}
 
 	@At("/form")
 	@Ok("jsp:views.form")
-	public void form() {
+	public void form(HttpServletRequest request) {
+		request.setAttribute("mpIndustry", mpIndustry);
+		request.setAttribute("mpIssueType", mpIssueType);
+		request.setAttribute("mpStatus", mpStatus);
+		request.setAttribute("mpEngineer", mpEngineer);
 	}
 
 	/** 新建 */
@@ -72,6 +77,7 @@ public class PrjAction {
 		QueryResult qResult = prjService.query(query);
 		request.setAttribute("query", query);
 		request.setAttribute("result", qResult);
+		request.setAttribute("mpEngineer", mpEngineer);
 		return qResult;
 	}
 
@@ -84,6 +90,9 @@ public class PrjAction {
 		Project prj = prjService.fetch(id);
 		request.setAttribute("prj", prj);
 		request.setAttribute("mpIndustry", mpIndustry);
+		request.setAttribute("mpIssueType", mpIssueType);
+		request.setAttribute("mpStatus", mpStatus);
+		request.setAttribute("mpEngineer", mpEngineer);
 		
 		return "EDIT";
 	}
@@ -109,17 +118,19 @@ public class PrjAction {
 	protected void initIndustry() {
 		if (mpIndustry.isEmpty()) {
 			mpIndustry.put("", "");
-			mpIndustry.put("军工", "军工");
 			mpIndustry.put("能源", "能源");
+			mpIndustry.put("军工", "军工");
 			mpIndustry.put("公安", "公安");
 			mpIndustry.put("政府/综合", "政府/综合");
+			mpIndustry.put("财政", "财政");
 		}
 		if (mpIssueType.isEmpty()) {
 			mpIssueType.put("网关客户端", "网关客户端");
-			mpIssueType.put("网关服务端", "网关服务端");
+			mpIssueType.put("网关服务器", "网关服务器");
 			mpIssueType.put("旁路报文", "旁路报文");
 			mpIssueType.put("旁路Agent", "旁路Agent");
 			mpIssueType.put("移动中间件", "移动中间件");
+			mpIssueType.put("其他", "其他");
 		}
 		if (mpStatus.isEmpty()) {
 			mpStatus.put("未开始", "未开始");
@@ -129,6 +140,7 @@ public class PrjAction {
 			mpStatus.put("完成", "完成");
 		}
 		if (mpEngineer.isEmpty()) {
+			mpEngineer.put("", "");
 			mpEngineer.put("索瑞军", "索瑞军");
 			mpEngineer.put("代艳明", "代艳明");
 			mpEngineer.put("刘志刚", "刘志刚");
