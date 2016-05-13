@@ -28,6 +28,10 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.HSSFColor;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import com.jit.project.bean.Project;
 
@@ -218,16 +222,16 @@ public class ExcelUtil<T> {
 	 * Read the Excel 2010
 	 * 
 	 * @param path the path of the excel file
-	 * @return
+	 * @return xssfWorkbook.getNumberOfSheets()
 	 * @throws IOException
 	 */
 	public List<Project> readXlsx(String path) throws IOException {
 		InputStream is = new FileInputStream(path);
 		XSSFWorkbook xssfWorkbook = new XSSFWorkbook(is);
-		Project student = null;
+		Project prj = null;
 		List<Project> list = new ArrayList<Project>();
 		// Read the Sheet
-		for (int numSheet = 0; numSheet < xssfWorkbook.getNumberOfSheets(); numSheet++) {
+		for (int numSheet = 0; numSheet < 1; numSheet++) {
 			XSSFSheet xssfSheet = xssfWorkbook.getSheetAt(numSheet);
 			if (xssfSheet == null) {
 				continue;
@@ -236,19 +240,78 @@ public class ExcelUtil<T> {
 			for (int rowNum = 1; rowNum <= xssfSheet.getLastRowNum(); rowNum++) {
 				XSSFRow xssfRow = xssfSheet.getRow(rowNum);
 				if (xssfRow != null) {
-					student = new Student();
-					XSSFCell no = xssfRow.getCell(0);
-					XSSFCell name = xssfRow.getCell(1);
-					XSSFCell age = xssfRow.getCell(2);
-					XSSFCell score = xssfRow.getCell(3);
-					student.setNo(getValue(no));
-					student.setName(getValue(name));
-					student.setAge(getValue(age));
-					student.setScore(Float.valueOf(getValue(score)));
-					list.add(student);
+					prj = new Project();
+					XSSFCell name = xssfRow.getCell(0);
+					XSSFCell indr = xssfRow.getCell(1);
+					XSSFCell ver = xssfRow.getCell(2);
+					XSSFCell type = xssfRow.getCell(3);
+					XSSFCell desc = xssfRow.getCell(4);
+					
+//					prj.setPrjName(getValue(name));
+//					prj.setIndustry(getValue(indr));
+//					prj.setPrudectVersion(getValue(ver));
+//					prj.setIssueType(getValue(type));
+//					prj.setDescribtion(getValue(desc));
+					
+					XSSFCell subDate = xssfRow.getCell(5);
+					XSSFCell finDate = xssfRow.getCell(6);
+					XSSFCell state = xssfRow.getCell(7);
+					XSSFCell engineer = xssfRow.getCell(8);
+					XSSFCell cost = xssfRow.getCell(9);
+
+					XSSFCell contact = xssfRow.getCell(10);
+					XSSFCell tel = xssfRow.getCell(11);
+					XSSFCell proc = xssfRow.getCell(12);
+					XSSFCell comm = xssfRow.getCell(13);
+					XSSFCell impr = xssfRow.getCell(14);
+
+					String str = getValue(name);
+					System.out.println(rowNum + "/" + name + "/" + getValue(indr) + "/" + getValue(ver) + "/type:" + type + "/desc:" + desc + "/subDate:"
+							+ subDate + "/finDate:" + finDate + "/state:" + state + "/" + engineer + "/cost:" + cost + "/contact:" + contact + "/tel:"
+							+ tel + "/proc:" + proc + "/" + comm + "/" + impr);
+					list.add(prj);
 				}
 			}
+			System.out.println("-------------------------------sheet------------------------------------");
+
 		}
 		return list;
+	}
+
+	@SuppressWarnings("static-access")
+	private String getValue(XSSFCell xssfCell) {
+		if(xssfCell==null){
+			return "N";
+		}else if (xssfCell.getCellType() == xssfCell.CELL_TYPE_BOOLEAN) {
+			return String.valueOf(xssfCell.getBooleanCellValue());
+		} else if (xssfCell.getCellType() == xssfCell.CELL_TYPE_NUMERIC) {
+			return String.valueOf(xssfCell.getNumericCellValue());
+		} else if(xssfCell.getCellType()==xssfCell.CELL_TYPE_BLANK){
+			return "--";
+		}else{
+			String str=String.valueOf(xssfCell.getStringCellValue());
+			return str.length()>10?str.substring(0, 10):str;
+		}
+	}
+
+	@SuppressWarnings({ "static-access", "unused" })
+	private String getValue(HSSFCell hssfCell) {
+		if (hssfCell.getCellType() == hssfCell.CELL_TYPE_BOOLEAN) {
+			return String.valueOf(hssfCell.getBooleanCellValue());
+		} else if (hssfCell.getCellType() == hssfCell.CELL_TYPE_NUMERIC) {
+			return String.valueOf(hssfCell.getNumericCellValue());
+		} else {
+			String str=String.valueOf(hssfCell.getStringCellValue());
+			return str.length()>10?str.substring(0, 10):str;
+		}
+	}
+
+	public static void main(String[] args) {
+		ExcelUtil<Project> u = new ExcelUtil<Project>();
+		try {
+			u.readXlsx("C:/Users/daiyma/Desktop/项目支持跟踪表.xlsx");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }
