@@ -65,9 +65,9 @@
 			<div class="table-responsive">
 				<table class="table table-bordered table-striped">
 					<tr>
-						<td>项目名称|</td>
+						<td>项目名称</td>
 						<td class="w12"><input type="text" name="query.prjName" class="qt" value="<%=query.getPrjName()%>" /></td>
-						<td>状态|</td>
+						<td>状态</td>
 						<td class="w24 ibox">
 						<span>
 								<input type="checkbox" name="query.status" value="未开始" />未开始
@@ -76,11 +76,11 @@
 								<input type="checkbox" name="query.status" value="完成" />完成
 								<input type="checkbox" name="query.status" value="未反馈" />未反馈
 						</span></td>
-						<td>负责人|</td>
+						<td>负责人</td>
 						<td class="w12">
-							<ui:select name="query.engineer" path="${query.engineer}" items="${mpEngineer}"></ui:select>
+							<ui:select name="query.engineer" path="${query.engineer}" items="${mpEngineer}" style="width:128px"></ui:select>
 						</td>
-						<td class="w6">提交日期|</td>
+						<td class="w6">提交日期</td>
 						<td><input type="text" id="sub_date" name="query.submitDate" class="wp98" /></td>
 						<td style="width: 15%; text-align: center">
 							<button type="submit" value="查询" class="btn btn-success">查询</button>

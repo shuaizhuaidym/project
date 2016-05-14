@@ -147,11 +147,16 @@ public class PrjAction {
 			mpEngineer.put("何金龙", "何金龙");
 			mpEngineer.put("史志伟", "史志伟");
 			mpEngineer.put("丁为厂", "丁为厂");
+			mpEngineer.put("朱虹宇", "朱虹宇");
 			mpEngineer.put("王毅", "王毅");
 			mpEngineer.put("邢世宇", "邢世宇");
 			mpEngineer.put("祝连海", "祝连海");
 			mpEngineer.put("胡闯闯", "胡闯闯");
 			mpEngineer.put("梁杰", "梁杰");
+			mpEngineer.put("刘莎", "刘莎");
+			mpEngineer.put("袁春旭", "袁春旭");
+			mpEngineer.put("王建平", "王建平");
+			mpEngineer.put("刘宗凯", "刘宗凯");
 		}
 	}
 

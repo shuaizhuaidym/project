@@ -1,7 +1,7 @@
 package com.jit.project.bean;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.sql.Date;
 
 import org.nutz.dao.entity.annotation.Column;
 import org.nutz.dao.entity.annotation.Id;
@@ -48,7 +48,7 @@ public class Project {
 	private String engineerTel;
 	//结束日期
 	@Column("finish_date")
-	private Date finishDate = new Date();
+	private Date finishDate = new Date(System.currentTimeMillis());
 	//人力成本 人*周
 	@Column("labor_costs")
 	private float laborCosts;
@@ -69,7 +69,7 @@ public class Project {
 	private String comments;
 	//最后响应日期
 	@Column("last_response")
-	private Date lastResponse=new Date();
+	private Date lastResponse=new Date(System.currentTimeMillis());
 	//操作人，记录当前操作者IP，然后根据对应关系可以找到人
 	@Column("operator_ip")
 	private String operatorIP;
@@ -254,11 +254,11 @@ public class Project {
 		return ft.format(submitDate);
 	}
 
-	protected String getOperatorIP() {
+	public String getOperatorIP() {
 		return operatorIP;
 	}
 
-	protected void setOperatorIP(String operatorIP) {
+	public void setOperatorIP(String operatorIP) {
 		this.operatorIP = operatorIP;
 	}
 }

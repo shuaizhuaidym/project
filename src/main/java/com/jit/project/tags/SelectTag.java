@@ -19,6 +19,8 @@ public class SelectTag extends TagSupport {
 	private String path;
 	
 	private String css;
+	
+	private String style;
 
 	@Override
 	public int doStartTag() throws JspException {
@@ -37,7 +39,14 @@ public class SelectTag extends TagSupport {
 	
 	private String createOptions(){
 		StringBuilder builder=new StringBuilder("<select name=\"").append(name).append("\"");
-		builder.append(" class=\"").append(css).append("\">");
+		if(css!=null){
+			builder.append(" class=\"").append(css).append("\"");
+		}
+		if(style!=null){
+			builder.append(" style=\"").append(style).append("\"");
+		}
+		builder.append(">");
+		
 		for(Entry<String, String>nt:items.entrySet()){
 			String key=nt.getKey();
 			String val=nt.getValue();
@@ -83,4 +92,13 @@ public class SelectTag extends TagSupport {
 	public void setCss(String css) {
 		this.css = css;
 	}
+
+	public String getStyle() {
+		return style;
+	}
+
+	public void setStyle(String style) {
+		this.style = style;
+	}
+	
 }

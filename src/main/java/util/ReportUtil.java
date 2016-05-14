@@ -124,7 +124,7 @@ public class ReportUtil {
 	}
 
 	public static void main(String[] args) {
-		Project p = new Project("水利部安全平台", "政府/综合", "2.0", "网关服务器", "升级后打不开网页", new Date(), "进行中", "朱元璋", new Date(),
+		Project p = new Project("水利部安全平台", "政府/综合", "2.0", "网关服务器", "升级后打不开网页", new java.sql.Date(0), "进行中", "朱元璋", new java.sql.Date(0),
 				0.6F, "李林洋", "13593284098", "一看二摸三诊脉");
 		List<Project> rs = new ArrayList<Project>();
 		rs.add(p);

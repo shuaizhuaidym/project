@@ -1,19 +1,14 @@
 package util;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -28,15 +23,9 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.HSSFColor;
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.ss.formula.functions.T;
 
-import com.jit.project.bean.Project;
-
-public class ExcelUtil<T> {
-
+public class ExcelWriter {
 	public void exportExcel(String[] headers, Collection<T> dataset, OutputStream out, String pattern) {
 		exportExcel("测试POI导出EXCEL文档", headers, dataset, out, pattern);
 	}
@@ -50,7 +39,6 @@ public class ExcelUtil<T> {
 	 * @param out 与输出设备关联的流对象，可以将EXCEL文档导出到本地文件或者网络中
 	 * @param pattern 如果有时间数据，设定输出格式。默认为"yyyy-MM-dd"
 	 */
-	@SuppressWarnings("unchecked")
 	public void exportExcel(String title, String[] headers, Collection<T> dataset, OutputStream out, String pattern) {
 		// 声明一个工作薄
 		HSSFWorkbook workbook = new HSSFWorkbook();
@@ -95,7 +83,7 @@ public class ExcelUtil<T> {
 				String fieldName = field.getName();
 				String getMethodName = "get" + fieldName.substring(0, 1).toUpperCase() + fieldName.substring(1);
 				try {
-					Class tCls = t.getClass();
+					Class<? extends Object> tCls = t.getClass();
 					Method getMethod = tCls.getMethod(getMethodName, new Class[] {});
 					Object value = getMethod.invoke(t, new Object[] {});
 					// 判断值的类型后进行强制类型转换
@@ -180,138 +168,5 @@ public class ExcelUtil<T> {
 		// 把字体应用到当前的样式
 		style.setFont(font);
 		return style;
-	}
-
-	/**
-	 * 读取Excel2003-2007文件
-	 * 
-	 * @param file
-	 * @return
-	 */
-	public List<Project> readExcelXls(String file) {
-		List<Project> list = new ArrayList<Project>();
-		InputStream is;
-		try {
-			is = new FileInputStream(file);
-			HSSFWorkbook hssfWorkbook = new HSSFWorkbook(is);
-			for (int numSheet = 0; numSheet < hssfWorkbook.getNumberOfSheets(); numSheet++) {
-				HSSFSheet hssfSheet = hssfWorkbook.getSheetAt(numSheet);
-				if (hssfSheet == null) {
-					continue;
-				}
-				// Read the Row
-				for (int rowNum = 1; rowNum <= hssfSheet.getLastRowNum(); rowNum++) {
-					HSSFRow hssfRow = hssfSheet.getRow(rowNum);
-					if (hssfRow != null) {
-						HSSFCell no = hssfRow.getCell(0);
-						HSSFCell name = hssfRow.getCell(1);
-						HSSFCell age = hssfRow.getCell(2);
-						HSSFCell score = hssfRow.getCell(3);
-					}
-				}
-			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return list;
-	}
-
-	/**
-	 * Read the Excel 2010
-	 * 
-	 * @param path the path of the excel file
-	 * @return xssfWorkbook.getNumberOfSheets()
-	 * @throws IOException
-	 */
-	public List<Project> readXlsx(String path) throws IOException {
-		InputStream is = new FileInputStream(path);
-		XSSFWorkbook xssfWorkbook = new XSSFWorkbook(is);
-		Project prj = null;
-		List<Project> list = new ArrayList<Project>();
-		// Read the Sheet
-		for (int numSheet = 0; numSheet < 1; numSheet++) {
-			XSSFSheet xssfSheet = xssfWorkbook.getSheetAt(numSheet);
-			if (xssfSheet == null) {
-				continue;
-			}
-			// Read the Row
-			for (int rowNum = 1; rowNum <= xssfSheet.getLastRowNum(); rowNum++) {
-				XSSFRow xssfRow = xssfSheet.getRow(rowNum);
-				if (xssfRow != null) {
-					prj = new Project();
-					XSSFCell name = xssfRow.getCell(0);
-					XSSFCell indr = xssfRow.getCell(1);
-					XSSFCell ver = xssfRow.getCell(2);
-					XSSFCell type = xssfRow.getCell(3);
-					XSSFCell desc = xssfRow.getCell(4);
-					
-//					prj.setPrjName(getValue(name));
-//					prj.setIndustry(getValue(indr));
-//					prj.setPrudectVersion(getValue(ver));
-//					prj.setIssueType(getValue(type));
-//					prj.setDescribtion(getValue(desc));
-					
-					XSSFCell subDate = xssfRow.getCell(5);
-					XSSFCell finDate = xssfRow.getCell(6);
-					XSSFCell state = xssfRow.getCell(7);
-					XSSFCell engineer = xssfRow.getCell(8);
-					XSSFCell cost = xssfRow.getCell(9);
-
-					XSSFCell contact = xssfRow.getCell(10);
-					XSSFCell tel = xssfRow.getCell(11);
-					XSSFCell proc = xssfRow.getCell(12);
-					XSSFCell comm = xssfRow.getCell(13);
-					XSSFCell impr = xssfRow.getCell(14);
-
-					String str = getValue(name);
-					System.out.println(rowNum + "/" + name + "/" + getValue(indr) + "/" + getValue(ver) + "/type:" + type + "/desc:" + desc + "/subDate:"
-							+ subDate + "/finDate:" + finDate + "/state:" + state + "/" + engineer + "/cost:" + cost + "/contact:" + contact + "/tel:"
-							+ tel + "/proc:" + proc + "/" + comm + "/" + impr);
-					list.add(prj);
-				}
-			}
-			System.out.println("-------------------------------sheet------------------------------------");
-
-		}
-		return list;
-	}
-
-	@SuppressWarnings("static-access")
-	private String getValue(XSSFCell xssfCell) {
-		if(xssfCell==null){
-			return "N";
-		}else if (xssfCell.getCellType() == xssfCell.CELL_TYPE_BOOLEAN) {
-			return String.valueOf(xssfCell.getBooleanCellValue());
-		} else if (xssfCell.getCellType() == xssfCell.CELL_TYPE_NUMERIC) {
-			return String.valueOf(xssfCell.getNumericCellValue());
-		} else if(xssfCell.getCellType()==xssfCell.CELL_TYPE_BLANK){
-			return "--";
-		}else{
-			String str=String.valueOf(xssfCell.getStringCellValue());
-			return str.length()>10?str.substring(0, 10):str;
-		}
-	}
-
-	@SuppressWarnings({ "static-access", "unused" })
-	private String getValue(HSSFCell hssfCell) {
-		if (hssfCell.getCellType() == hssfCell.CELL_TYPE_BOOLEAN) {
-			return String.valueOf(hssfCell.getBooleanCellValue());
-		} else if (hssfCell.getCellType() == hssfCell.CELL_TYPE_NUMERIC) {
-			return String.valueOf(hssfCell.getNumericCellValue());
-		} else {
-			String str=String.valueOf(hssfCell.getStringCellValue());
-			return str.length()>10?str.substring(0, 10):str;
-		}
-	}
-
-	public static void main(String[] args) {
-		ExcelUtil<Project> u = new ExcelUtil<Project>();
-		try {
-			u.readXlsx("C:/Users/daiyma/Desktop/项目支持跟踪表.xlsx");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 }

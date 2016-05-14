@@ -41,5 +41,11 @@
 			<rtexprvalue>true</rtexprvalue>
 			<description>集合</description>
 		</attribute>
+		<attribute>
+			<name>style</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>standard html style</description>
+		</attribute>		
 	</tag>
 </taglib>
