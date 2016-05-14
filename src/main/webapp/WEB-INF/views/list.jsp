@@ -68,7 +68,7 @@
 						<td>项目名称</td>
 						<td class="w12"><input type="text" name="query.prjName" class="qt" value="<%=query.getPrjName()%>" /></td>
 						<td>状态</td>
-						<td class="w24 ibox">
+						<td class="w28 ibox">
 						<span>
 								<input type="checkbox" name="query.status" value="未开始" />未开始
 								<input type="checkbox" name="query.status" value="进行中" />进行中 
@@ -81,7 +81,7 @@
 							<ui:select name="query.engineer" path="${query.engineer}" items="${mpEngineer}" style="width:128px"></ui:select>
 						</td>
 						<td class="w6">提交日期</td>
-						<td><input type="text" id="sub_date" name="query.submitDate" class="wp98" /></td>
+						<td class="w8"><input type="text" id="sub_date" name="query.submitDate" class="wp98" /></td>
 						<td style="width: 15%; text-align: center">
 							<button type="submit" value="查询" class="btn btn-success">查询</button>
 							<button type="submit" value="查询" class="btn btn-success">导出EXCEL</button>

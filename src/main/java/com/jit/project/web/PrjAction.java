@@ -145,7 +145,7 @@ public class PrjAction {
 			mpEngineer.put("", "");
 			mpEngineer.put("索瑞军", "索瑞军");
 			mpEngineer.put("代艳明", "代艳明");
-			mpEngineer.put("刘志刚", "刘志刚");
+			mpEngineer.put("刘志钢", "刘志钢");
 			mpEngineer.put("何金龙", "何金龙");
 			mpEngineer.put("史志伟", "史志伟");
 			mpEngineer.put("丁为厂", "丁为厂");
