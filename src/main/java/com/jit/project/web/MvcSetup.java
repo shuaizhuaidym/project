@@ -9,7 +9,7 @@ import com.jit.project.bean.Project;
 public class MvcSetup implements Setup {
 
 	public void init(NutConfig config) {
-		System.out.println("I start!!");
+		System.out.println("nutz MvcSetup start!!");
 		Dao dao = config.getIoc().get(Dao.class, "dao");
 		if (!dao.exists(Project.class)) {
 			dao.create(Project.class, false);
@@ -17,6 +17,6 @@ public class MvcSetup implements Setup {
 	}
 
 	public void destroy(NutConfig config) {
-		System.out.println("I stop!!");
+		System.out.println("nutz MvcSetup stop!!");
 	}
 }

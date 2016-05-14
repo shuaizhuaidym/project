@@ -9,11 +9,7 @@
 
 <%
 	Query query = (Query) request.getAttribute("query");
-%>
-<%
 	QueryResult rst = (QueryResult) request.getAttribute("result");
-%>
-<%
 	Pager pager = rst.getPager();
 %>
 <%
@@ -50,6 +46,15 @@
 			forceParse : 0,
 			format:"yyyy-mm-dd"
 		});
+		$("#btnExport").click(function(){
+			$("#queryForm").attr("action","<%=path%>/prj_export");
+			$("#queryForm").submit();
+		});
+		$("#btnQuery").click(function(){
+			$("#queryForm").attr("action","<%=path%>/query");
+			$("#queryForm").submit();
+		});		
+		
 	});
 </script>
 </head>
@@ -83,8 +88,8 @@
 						<td class="w6">提交日期</td>
 						<td class="w8"><input type="text" id="sub_date" name="query.submitDate" class="wp98" /></td>
 						<td style="width: 15%; text-align: center">
-							<button type="submit" value="查询" class="btn btn-success">查询</button>
-							<button type="submit" value="查询" class="btn btn-success">导出EXCEL</button>
+							<button type="button" id="btnQuery" value="查询" class="btn btn-primary">查询</button>
+							<button type="button" id="btnExport" name="_export" value="true" class="btn btn-success">导出EXCEL</button>
 						</td>
 					</tr>
 				</table>

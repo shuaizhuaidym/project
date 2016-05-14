@@ -18,7 +18,7 @@ import com.jit.project.bean.Project;
 import com.jit.project.bean.Query;
 import com.jit.project.service.PrjService;
 
-//TODO Excel export/dictionary
+//TODO dictionary/check box group tag
 @InjectName("prjAction")
 public class PrjAction {
 	
@@ -77,9 +77,10 @@ public class PrjAction {
 		if (query == null) {
 			query = new Query();
 		}
+		// query data
 		QueryResult qResult = prjService.query(query);
-		request.setAttribute("query", query);//查询条件
 		request.setAttribute("result", qResult);
+		request.setAttribute("query", query);// 查询条件
 		request.setAttribute("mpEngineer", mpEngineer);
 		return qResult;
 	}
@@ -108,12 +109,6 @@ public class PrjAction {
 		return "SUCCESS";
 	}
 
-	// 导出Excel报表
-	public String export() {
-		// TODO
-		return "Excel";
-	}
-	
 	/**
 	 * 初始化行业类型字典
 	 */

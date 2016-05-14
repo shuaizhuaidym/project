@@ -31,6 +31,9 @@ var ioc = {
 			}
 		}
 	},
+	reportUtil : {
+		type : "util.ReportUtil"
+	},
 	prjAction : {
 		type : "com.jit.project.web.PrjAction",
 		fields : {
@@ -60,6 +63,9 @@ var ioc = {
 		fields : {
 			prjService : {
 				refer : 'prjService'
+			},
+			reportUtil : {
+				refer : 'reportUtil'
 			}
 		}
 	}
