@@ -52,7 +52,7 @@ public class PrjService extends NameEntityService<Project> implements IPrjServic
 	public QueryResult query(Query vo) {
 		Pager pager = this.dao().createPager(vo.getPageNumber(), vo.getPageSize());
 		List<Project> list = dao().query(Project.class, vo, pager);
-		pager.setRecordCount(dao().count(Project.class));
+		pager.setRecordCount(dao().count(Project.class,vo));
 		return new QueryResult(list, pager);
 	}
 }

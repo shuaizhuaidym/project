@@ -36,7 +36,10 @@ public class PrjAction {
 		super();
 		initIndustry();
 	}
-
+	/**
+	 * 首页
+	 * @param request
+	 */
 	@At("/")
 	@Ok("jsp:views.list")
 	public void home(HttpServletRequest request) {
@@ -75,7 +78,7 @@ public class PrjAction {
 			query = new Query();
 		}
 		QueryResult qResult = prjService.query(query);
-		request.setAttribute("query", query);
+		request.setAttribute("query", query);//查询条件
 		request.setAttribute("result", qResult);
 		request.setAttribute("mpEngineer", mpEngineer);
 		return qResult;
@@ -101,7 +104,6 @@ public class PrjAction {
 	@At("/update")
 	@Ok("redirect:/query")
 	public String updateProject(@Param("::project.") Project project) {
-		// TODO
 		prjService.update(project);
 		return "SUCCESS";
 	}
