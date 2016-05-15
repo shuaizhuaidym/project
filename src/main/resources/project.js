@@ -31,14 +31,36 @@ var ioc = {
 			}
 		}
 	},
-	reportUtil : {
-		type : "util.ReportUtil"
-	},
 	prjAction : {
 		type : "com.jit.project.web.PrjAction",
 		fields : {
 			prjService : {
 				refer : 'prjService'
+			}
+		}
+	},
+	chartService : {
+		type : "com.jit.project.service.ChartService",
+		fields : {
+			dao : {
+				refer : 'dao'
+			}
+		}
+	},
+	reportUtil : {
+		type : "util.ReportUtil"
+	},
+	chartAction : {
+		type : "com.jit.project.web.ChartAction",
+		fields : {
+			prjService : {
+				refer : 'prjService'
+			},
+			chartService : {
+				refer : "chartService"
+			},
+			reportUtil : {
+				refer : 'reportUtil'
 			}
 		}
 	},
@@ -55,17 +77,6 @@ var ioc = {
 		fields : {
 			dicService : {
 				refer : 'dicService'
-			}
-		}
-	},
-	reportAction:{
-		type : "com.jit.project.web.ReportAction",
-		fields : {
-			prjService : {
-				refer : 'prjService'
-			},
-			reportUtil : {
-				refer : 'reportUtil'
 			}
 		}
 	}

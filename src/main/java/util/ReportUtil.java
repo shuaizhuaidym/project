@@ -1,9 +1,7 @@
 package util;
 
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -77,64 +75,6 @@ public class ReportUtil {
 		} 
 	}
 
-	public void exportExcel(String title, String[] headers, List<Project> dataset, String file) {
-		// 声明一个工作薄
-		HSSFWorkbook workbook = new HSSFWorkbook();
-		// 生成一个表格
-		HSSFSheet sheet = workbook.createSheet(title);
-		// 设置表格默认列宽度为15个字节
-		sheet.setDefaultColumnWidth(15);
-		// 生成一个样式
-		HSSFCellStyle style = createStyle(workbook, HSSFColor.LIGHT_ORANGE.index, HSSFFont.BOLDWEIGHT_BOLD);
-		// 生成并设置另一个样式
-		HSSFCellStyle style2 = createStyle(workbook, HSSFColor.WHITE.index, HSSFFont.BOLDWEIGHT_NORMAL);
-		HSSFCellStyle style3 = createStyle(workbook, HSSFColor.LIGHT_YELLOW.index, HSSFFont.BOLDWEIGHT_NORMAL);
-
-		CreationHelper helper = workbook.getCreationHelper();
-		style3.setDataFormat(helper.createDataFormat().getFormat("yyyy-mm-dd"));
-		// 产生表格标题行
-		int rdex = 0;
-		HSSFRow rowHeader = sheet.createRow(rdex++);
-		for (int i = 0; i < headers.length; i++) {
-			HSSFCell cell = rowHeader.createCell(i);
-			cell.setCellStyle(style);
-			HSSFRichTextString text = new HSSFRichTextString(headers[i]);
-			cell.setCellValue(text);
-		}
-		// 遍历集合数据，产生数据行
-		int cdex = 0;
-		for (Project prj : dataset) {
-			HSSFRow row = sheet.createRow(rdex++);
-			System.out.println(rdex);
-			createCell(row, style2, cdex++, prj.getPrjName());
-			createCell(row, style2, cdex++, prj.getIndustry());
-			createCell(row, style2, cdex++, prj.getIssueType());
-			createCell(row, style2, cdex++, prj.getPrudectVersion());
-			createCell(row, style2, cdex++, prj.getDescribtion());
-			createCell(row, style3, cdex++, prj.getSubmitDate());
-			createCell(row, style2, cdex++, prj.getStatus());
-			createCell(row, style2, cdex++, prj.getEngineer());
-			createCell(row, style2, cdex++, prj.getReporter());
-			createCell(row, style2, cdex++, prj.getContact());
-			createCell(row, style3, cdex++, prj.getFinishDate());
-			createCell(row, style2, cdex++, prj.getProcess());
-			createCell(row, style2, cdex++, prj.getLaborCosts());
-		}
-		FileOutputStream fileOut = null;
-		try {
-			fileOut = new FileOutputStream(file);
-			workbook.write(fileOut);
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				fileOut.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-	}
-
 	// 字符串类型
 	private void createCell(HSSFRow row, HSSFCellStyle cstyle, int index, String value) {
 		HSSFCell cell = row.createCell(index);
@@ -178,16 +118,5 @@ public class ReportUtil {
 		// 把字体应用到当前的样式
 		style.setFont(font);
 		return style;
-	}
-
-	public static void main(String[] args) {
-		Project p = new Project("水利部安全平台", "政府/综合", "2.0", "网关服务器", "升级后打不开网页", new java.sql.Date(0), "进行中", "朱元璋", new java.sql.Date(0),
-				0.6F, "李林洋", "13593284098", "一看二摸三诊脉");
-		List<Project> rs = new ArrayList<Project>();
-		rs.add(p);
-		String[] hdr = new String[] { "项目名称", "行业", "问题类型", "产品版本", "问题描述", "提交日期", "状态", "工程师", "工程", "联系方式", "结束日期",
-				"处理过程", "人力成本" };
-		ReportUtil u = new ReportUtil();
-		u.exportExcel("工程报表", hdr, rs, "D:/ppsfile/workbook.xls");
 	}
 }
