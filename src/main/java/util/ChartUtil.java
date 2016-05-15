@@ -11,10 +11,14 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.CategoryAxis;
 import org.jfree.chart.axis.CategoryLabelPositions;
 import org.jfree.chart.axis.NumberAxis;
+import org.jfree.chart.labels.StandardPieSectionLabelGenerator;
 import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PiePlot3D;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.title.TextTitle;
 import org.jfree.data.category.CategoryDataset;
+import org.jfree.data.general.DefaultPieDataset;
+import org.jfree.util.Rotation;
 
 public class ChartUtil {
 	/**
@@ -40,6 +44,7 @@ public class ChartUtil {
 				);
 		// 中文乱码
 		CategoryPlot categoryplot = (CategoryPlot) chart.getPlot();
+		categoryplot.setForegroundAlpha(0.8f);
 		NumberAxis numberaxis = (NumberAxis) categoryplot.getRangeAxis();
 		CategoryAxis domainAxis = categoryplot.getDomainAxis();
 		TextTitle textTitle = chart.getTitle();
@@ -58,10 +63,45 @@ public class ChartUtil {
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
-//			try {
-//				stream.close();
-//			} catch (Exception e) {
-//			}
+			// try {
+			// stream.close();
+			// } catch (Exception e) {
+			// }
+		}
+		return chart;
+	}
+
+	/**
+	 * 饼图，按问题分类统计
+	 * 
+	 * @param title
+	 * @param dataset
+	 * @param stream
+	 * @return
+	 */
+	public static JFreeChart drawIssueType(String title, DefaultPieDataset dataset, OutputStream stream) {
+		JFreeChart chart = ChartFactory.createPieChart3D("Pie Chart 3D Demo 1", dataset, true, true, false);
+		PiePlot3D piePlot3D = (PiePlot3D) chart.getPlot();
+		piePlot3D.setDarkerSides(true);
+		piePlot3D.setStartAngle(290.0D);
+		piePlot3D.setDirection(Rotation.CLOCKWISE);
+		piePlot3D.setForegroundAlpha(0.8F);
+		piePlot3D.setNoDataMessage("No data to display");
+		// 中文乱码
+		StandardPieSectionLabelGenerator gr=(StandardPieSectionLabelGenerator)piePlot3D.getLegendLabelGenerator();
+//		piePlot3D.getLegendLabelGenerator().generateSectionLabel(arg0, arg1)grzh_CN
+		piePlot3D.setLabelFont(new Font("宋体", Font.PLAIN, 16));
+		try {
+			ChartUtilities.writeChartAsJPEG(stream, 1.0f, chart, 1366, 480, null);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			// try {
+			// stream.close();
+			// } catch (Exception e) {
+			// }
 		}
 		return chart;
 	}

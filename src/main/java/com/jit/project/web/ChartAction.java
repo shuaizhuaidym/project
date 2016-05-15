@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.jfree.data.category.CategoryDataset;
+import org.jfree.data.general.DefaultPieDataset;
 import org.nutz.dao.QueryResult;
 import org.nutz.ioc.annotation.InjectName;
 import org.nutz.ioc.loader.annotation.Inject;
@@ -104,6 +105,25 @@ public class ChartAction {
 			e.printStackTrace();
 		}
 		ChartUtil.drawEngineer("个人工作统计量图", "负责人", "项目数量", dataset, stream);
+		return stream;
+	}
+	
+	/**
+	 * 统计问题类型
+	 */
+	@At("/issue_type_pie")
+	@Ok("raw:stream")
+	public OutputStream drawIssueTypeBar(HttpServletResponse response, @Param("begin") String begin,
+			@Param("end") String end) {
+		response.setContentType("image/jpeg");
+		DefaultPieDataset dataset = chartService.getIssueTypeDataset("2014-03-24", "2016-05-01");
+		OutputStream stream = null;
+		try {
+			stream = response.getOutputStream();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		ChartUtil.drawIssueType("问题分类统计图", dataset, stream);
 		return stream;
 	}
 
