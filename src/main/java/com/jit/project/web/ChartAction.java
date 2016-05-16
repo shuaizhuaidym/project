@@ -56,8 +56,9 @@ public class ChartAction {
 	@Ok("raw:stream")
 	public OutputStream export(HttpServletRequest request, HttpServletResponse response, @Param("::query.") Query query) {
 		if (query == null) {
-			query = new Query();
+			query = new Query(1024);
 		}
+		query.setPageSize(1024);
 		// query data
 		QueryResult qResult = prjService.query(query);
 
