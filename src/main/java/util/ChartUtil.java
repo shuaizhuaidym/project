@@ -4,6 +4,7 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Paint;
+import java.awt.geom.Ellipse2D;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -25,9 +26,13 @@ import org.jfree.chart.plot.PiePlot3D;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.ValueMarker;
 import org.jfree.chart.renderer.category.BarRenderer3D;
+import org.jfree.chart.renderer.category.LineAndShapeRenderer;
+import org.jfree.chart.title.TextTitle;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
+import org.jfree.ui.HorizontalAlignment;
 import org.jfree.ui.Layer;
+import org.jfree.ui.RectangleEdge;
 import org.jfree.ui.TextAnchor;
 import org.jfree.util.Rotation;
 
@@ -117,8 +122,8 @@ public class ChartUtil {
 		piePlot3D.setNoDataMessage("No data to display");
 
 		// 设定百分比显示格式
-		piePlot3D.setLabelGenerator(new StandardPieSectionLabelGenerator("{0}={1}({2})", NumberFormat.getNumberInstance(),
-				new DecimalFormat("0.00%")));
+		piePlot3D.setLabelGenerator(new StandardPieSectionLabelGenerator("{0}={1}({2})", NumberFormat
+				.getNumberInstance(), new DecimalFormat("0.00%")));
 		// 指定 section 轮廓线的颜色
 		piePlot3D.setBaseSectionOutlinePaint(new Color(0xF7, 0x79, 0xED));
 		// 中文乱码,饼图标签字体
@@ -165,6 +170,42 @@ public class ChartUtil {
 			e.printStackTrace();
 		} finally {
 		}
+		return chart;
+	}
+
+	/**
+	 * 时间段分布，折线图
+	 * 
+	 * @param title
+	 * @param ylabel
+	 * @param dataset
+	 * @param stream
+	 * @return
+	 */
+	public JFreeChart drawRangeLine(String title, String ylabel, CategoryDataset dataset, OutputStream stream) {
+		JFreeChart chart = ChartFactory.createLineChart(title, null, ylabel, dataset, PlotOrientation.VERTICAL, false,
+				false, false);
+		TextTitle textTitle = new TextTitle("时间段分布图", new Font("黑体", 0, 10));
+		textTitle.setPosition(RectangleEdge.BOTTOM);
+		textTitle.setHorizontalAlignment(HorizontalAlignment.CENTER);
+		chart.addSubtitle(textTitle);
+
+		CategoryPlot categoryPlot = (CategoryPlot) chart.getPlot();
+		categoryPlot.setRangePannable(true);
+		categoryPlot.setRangeGridlinesVisible(false);
+
+		NumberAxis numberAxis = (NumberAxis) categoryPlot.getRangeAxis();
+		((NumberAxis) numberAxis).setStandardTickUnits(NumberAxis.createIntegerTickUnits());
+		ChartUtilities.applyCurrentTheme(chart);
+
+		LineAndShapeRenderer localLineAndShapeRenderer = (LineAndShapeRenderer) categoryPlot.getRenderer();
+		localLineAndShapeRenderer.setBaseShapesVisible(true);
+		localLineAndShapeRenderer.setDrawOutlines(true);
+		localLineAndShapeRenderer.setUseFillPaint(true);
+		localLineAndShapeRenderer.setBaseFillPaint(Color.white);
+		localLineAndShapeRenderer.setSeriesStroke(0, new BasicStroke(3.0F));
+		localLineAndShapeRenderer.setSeriesOutlineStroke(0, new BasicStroke(2.0F));
+		localLineAndShapeRenderer.setSeriesShape(0, new Ellipse2D.Double(-5.0D, -5.0D, 10.0D, 10.0D));
 		return chart;
 	}
 
