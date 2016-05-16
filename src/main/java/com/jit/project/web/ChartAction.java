@@ -105,7 +105,7 @@ public class ChartAction {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		ChartUtil.drawEngineer("个人工作统计量图", "负责人", "项目数量", dataset, stream);
+		ChartUtil.drawEngineer("负责人统计图", "负责人", "项目数量", dataset, stream);
 		return stream;
 	}
 	
@@ -114,7 +114,7 @@ public class ChartAction {
 	 */
 	@At("/issue_type_pie")
 	@Ok("raw:stream")
-	public OutputStream drawIssueTypeBar(HttpServletResponse response, @Param("begin") String begin,
+	public OutputStream drawIssueTypePie(HttpServletResponse response, @Param("begin") String begin,
 			@Param("end") String end) {
 		response.setContentType("image/jpeg");
 		DefaultPieDataset dataset = chartService.getIssueTypeDataset("2014-03-24", "2016-05-01");
@@ -125,6 +125,29 @@ public class ChartAction {
 			e.printStackTrace();
 		}
 		ChartUtil.drawIssueType("问题分类统计图", dataset, stream);
+		return stream;
+	}
+
+	/**
+	 * 按行业分类，饼图
+	 * @param response
+	 * @param begin
+	 * @param end
+	 * @return
+	 */
+	@At("/industry_pie")
+	@Ok("raw:stream")
+	public OutputStream drawIndustryPie(HttpServletResponse response, @Param("begin") String begin,
+			@Param("end") String end) {
+		response.setContentType("image/jpeg");
+		DefaultPieDataset dataset = chartService.getIndustryDataset("2014-03-24", "2016-05-01");
+		OutputStream stream = null;
+		try {
+			stream = response.getOutputStream();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		ChartUtil.drawIssueType("行业分类统计图", dataset, stream);
 		return stream;
 	}
 

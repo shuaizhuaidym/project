@@ -44,7 +44,7 @@
 				<img id="imgChartIssue_type" alt="issue_type_pie" src=""/>
 			</div>
 			<div class="tab-pane fade chart-box" id="product">
-				<img alt="" src="<%=path%>/img/industry.png"/>
+				<img id="imgChartIssue" alt="industry_pie" src=""/>
 			</div>
 			<div class="tab-pane fade chart-box" id="range">
 				<img alt="" src="<%=path%>/img/line.png"/>
@@ -68,7 +68,7 @@ $(document).ready(function(){
 		}else if("按问题分类统计"==type){
 			$("#imgChartIssue_type").attr("src","<%=path%>/issue_type_pie");
 		}else if("按行业统计"==type){
-			
+			$("#imgChartIssue").attr("src","<%=path%>/industry_pie");
 		}else{
 			//按时间段统计
 		}

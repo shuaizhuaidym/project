@@ -69,7 +69,6 @@ public class ChartService extends NameEntityService<Project> implements IChartSe
 				List<ChartPie> list = new LinkedList<ChartPie>();
 				while (rs.next())
 					list.add(new ChartPie(rs.getString("issue_type"), rs.getInt("data")));
-				System.out.println(list.size());
 				return list;
 			}
 		});
@@ -80,4 +79,34 @@ public class ChartService extends NameEntityService<Project> implements IChartSe
 		}
 		return dataset;
 	}
+	
+	/**
+	 * 行业分类数据集合获取
+	 * @param begin
+	 * @param end
+	 * @return
+	 */
+	public DefaultPieDataset getIndustryDataset(String begin, String end) {
+		Sql sql = Sqls.create("select industry, count(prj_id) as data from t_project "
+				+ "where DATE(submit_date) BETWEEN DATE(@begin) and DATE(@end) " + "GROUP BY industry");
+		sql.params().set("begin", begin);
+		sql.params().set("end", end);
+		DefaultPieDataset dataset = new DefaultPieDataset();
+		// 数据处理
+		sql.setCallback(new SqlCallback() {
+			public Object invoke(Connection conn, ResultSet rs, Sql sql) throws SQLException {
+				List<ChartPie> list = new LinkedList<ChartPie>();
+				while (rs.next())
+					list.add(new ChartPie(rs.getString("industry"), rs.getInt("data")));
+				System.out.println(list.size());
+				return list;
+			}
+		});
+		dao().execute(sql);
+		// 转换
+		for (ChartPie pie : sql.getList(ChartPie.class)) {
+			dataset.setValue(pie.getCategory(), new Double(pie.getData()));
+		}
+		return dataset;
+	}	
 }

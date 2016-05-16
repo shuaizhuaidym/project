@@ -7,6 +7,8 @@ import java.awt.Paint;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtilities;
@@ -17,12 +19,12 @@ import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.labels.ItemLabelAnchor;
 import org.jfree.chart.labels.ItemLabelPosition;
 import org.jfree.chart.labels.StandardCategoryItemLabelGenerator;
+import org.jfree.chart.labels.StandardPieSectionLabelGenerator;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PiePlot3D;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.ValueMarker;
 import org.jfree.chart.renderer.category.BarRenderer3D;
-import org.jfree.chart.title.TextTitle;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.ui.Layer;
@@ -30,10 +32,11 @@ import org.jfree.ui.TextAnchor;
 import org.jfree.util.Rotation;
 
 public class ChartUtil {
-	
-	protected static final Font titleFont=new Font("黑体", java.awt.Font.CENTER_BASELINE, 32);
+
+	protected static final Font titleFont = new Font("黑体", java.awt.Font.CENTER_BASELINE, 32);
 	protected static final Font labelFont = new Font("宋体", Font.PLAIN, 16);
 	protected static final Font stickLabelFont = new Font("sans-serif", Font.PLAIN, 12);
+
 	/**
 	 * 按负责人统计柱状图
 	 * 
@@ -90,10 +93,6 @@ public class ChartUtil {
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
-			// try {
-			// stream.close();
-			// } catch (Exception e) {
-			// }
 		}
 		return chart;
 	}
@@ -110,7 +109,46 @@ public class ChartUtil {
 		JFreeChart chart = ChartFactory.createPieChart3D(title, dataset, true, true, false);
 		chart.getTitle().setFont(titleFont);
 		PiePlot3D piePlot3D = (PiePlot3D) chart.getPlot();
-		piePlot3D.setDarkerSides(true);
+		// piePlot3D.setDarkerSides(true);
+		piePlot3D.setStartAngle(290.0D);
+		piePlot3D.setDirection(Rotation.CLOCKWISE);
+		piePlot3D.setForegroundAlpha(0.8F);
+		piePlot3D.setCircular(true);
+		piePlot3D.setNoDataMessage("No data to display");
+
+		// 设定百分比显示格式
+		piePlot3D.setLabelGenerator(new StandardPieSectionLabelGenerator("{0}={1}({2})", NumberFormat.getNumberInstance(),
+				new DecimalFormat("0.00%")));
+		// 指定 section 轮廓线的颜色
+		piePlot3D.setBaseSectionOutlinePaint(new Color(0xF7, 0x79, 0xED));
+		// 中文乱码,饼图标签字体
+		piePlot3D.setLabelFont(labelFont);
+		// 设置图例说明Legend上的文字
+		chart.getLegend().setItemFont(labelFont);
+		try {
+			ChartUtilities.writeChartAsJPEG(stream, 1.0f, chart, 1366, 480, null);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+		}
+		return chart;
+	}
+
+	/**
+	 * 按行业分类，饼图
+	 * 
+	 * @param title
+	 * @param dataset
+	 * @param stream
+	 * @return
+	 */
+	public JFreeChart drawIndustryPie(String title, DefaultPieDataset dataset, OutputStream stream) {
+		JFreeChart chart = ChartFactory.createPieChart3D(title, dataset, true, true, false);
+		chart.getTitle().setFont(titleFont);
+		PiePlot3D piePlot3D = (PiePlot3D) chart.getPlot();
+		piePlot3D.setCircular(false);
 		piePlot3D.setStartAngle(290.0D);
 		piePlot3D.setDirection(Rotation.CLOCKWISE);
 		piePlot3D.setForegroundAlpha(0.8F);
@@ -126,18 +164,16 @@ public class ChartUtil {
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
-			// try {
-			// stream.close();
-			// } catch (Exception e) {
-			// }
 		}
 		return chart;
 	}
-	//自定义宣言器
+
+	// 自定义宣言器
 	static class CustomBarRenderer3D extends BarRenderer3D {
 		private static final long serialVersionUID = -3439250645727206023L;
+
 		public Paint getItemPaint(int paramInt1, int paramInt2) {
-			return new Color(200, 32, 32);
+			return new Color(230, 32, 32);
 		}
 	}
 }
