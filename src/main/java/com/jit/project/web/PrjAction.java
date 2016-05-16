@@ -115,26 +115,33 @@ public class PrjAction {
 	protected void initIndustry() {
 		if (mpIndustry.isEmpty()) {
 			mpIndustry.put("", "");
-			mpIndustry.put("能源", "能源");
 			mpIndustry.put("军工", "军工");
 			mpIndustry.put("公安", "公安");
-			mpIndustry.put("政府/综合", "政府/综合");
 			mpIndustry.put("财政", "财政");
+			mpIndustry.put("政府/综合", "政府/综合");
+			mpIndustry.put("能源", "能源");
+			mpIndustry.put("东北政务", "东北政务");
+			mpIndustry.put("金融/电信", "金融/电信");
 		}
 		if (mpIssueType.isEmpty()) {
-			mpIssueType.put("网关客户端", "网关客户端");
-			mpIssueType.put("网关服务器", "网关服务器");
-			mpIssueType.put("旁路报文", "旁路报文");
-			mpIssueType.put("旁路Agent", "旁路Agent");
-			mpIssueType.put("移动中间件", "移动中间件");
-			mpIssueType.put("其他", "其他");
+			mpIssueType.put("网关_客户端", "网关_客户端");
+			mpIssueType.put("网关_旁路_Agent", "网关_旁路_Agent");
+			mpIssueType.put("网关_服务器", "网关_服务器");
+			mpIssueType.put("网关_旁路_报文", "网关_旁路_报文");
+			mpIssueType.put("网关_移动", "网关_移动");
+			mpIssueType.put("磐石_客户端", "磐石_客户端");
+			mpIssueType.put("网关_旁路_其它", "网关_旁路_其它");
+			mpIssueType.put("磐石_服务器", "磐石_服务器");
+			mpIssueType.put("网关_其他", "网关_其他");
+			mpIssueType.put("NULL", "NULL");
 		}
 		if (mpStatus.isEmpty()) {
 			mpStatus.put("未开始", "未开始");
 			mpStatus.put("进行中", "进行中");
 			mpStatus.put("等待反馈", "等待反馈");
 			mpStatus.put("暂停", "暂停");
-			mpStatus.put("完成", "完成");
+			mpStatus.put("已完成", "已完成");
+			mpStatus.put("NULL", "NULL");
 		}
 		if (mpEngineer.isEmpty()) {
 			mpEngineer.put("", "");
