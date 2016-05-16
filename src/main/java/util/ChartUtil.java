@@ -133,7 +133,7 @@ public class ChartUtil {
 		}
 		return chart;
 	}
-
+	//自定义宣言器
 	static class CustomBarRenderer3D extends BarRenderer3D {
 		private static final long serialVersionUID = -3439250645727206023L;
 		public Paint getItemPaint(int paramInt1, int paramInt2) {
