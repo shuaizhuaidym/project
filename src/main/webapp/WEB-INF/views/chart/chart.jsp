@@ -23,7 +23,7 @@
 	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 	<div class="container">
 		<ul id="myTab" class="nav nav-tabs">
-			<li><a href="#engineer" class="active" data-toggle="tab">按负责人统计</a></li>
+			<li class="active"><a href="#engineer" data-toggle="tab">按负责人统计</a></li>
 			<li><a href="#category" data-toggle="tab">按问题分类统计</a></li>
 			<li><a href="#product" data-toggle="tab">按行业统计</a></li>
 			<li><a href="#range" data-toggle="tab">按时间段统计</a></li>
@@ -38,10 +38,10 @@
 			</div>
 			
 			<div class="tab-pane fade in active chart-box" id="engineer">
-				<img id="imgChartEngineer" alt="imgChartEngineer" src="<%=path%>/engineer_bar"/>
+				<img id="imgChartEngineer" alt="imgChartEngineer" src=""/>
 			</div>
 			<div class="tab-pane fade chart-box" id="category">
-				<img alt="issue_type_pie" src="<%=path%>/issue_type_pie"/>
+				<img id="imgChartIssue_type" alt="issue_type_pie" src=""/>
 			</div>
 			<div class="tab-pane fade chart-box" id="product">
 				<img alt="" src="<%=path%>/img/industry.png"/>
@@ -61,11 +61,17 @@ $(document).ready(function(){
 		$(this).tab('show');
 	})
 	$("#btnChart").click(function(){
-		var tp=$("#myTab").find("li.active");
-		if(tp){
+		var tab=$("#myTab").find("li.active a:first");
+		var type=tab.html();
+		if("按负责人统计"==type){
+			$("#imgChartEngineer").attr("src","<%=path%>/engineer_bar");
+		}else if("按问题分类统计"==type){
+			$("#imgChartIssue_type").attr("src","<%=path%>/issue_type_pie");
+		}else if("按行业统计"==type){
 			
+		}else{
+			//按时间段统计
 		}
-		$("#imgChartEngineer").attr("src","<%=path%>/engineer_bar");
 	});
 });
 </script>

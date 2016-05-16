@@ -21,6 +21,16 @@ public class Query implements Condition {
 	private Date submitDate;
 	private String status;
 	private String engineer;
+	
+	public Query() {
+		super();
+	}
+	
+	public Query(int pageSize) {
+		super();
+		this.pageSize = pageSize;
+	}
+
 
 	// 过滤SQL关键字
 	public String normalize(String sql) {

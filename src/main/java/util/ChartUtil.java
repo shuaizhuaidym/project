@@ -17,7 +17,6 @@ import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.labels.ItemLabelAnchor;
 import org.jfree.chart.labels.ItemLabelPosition;
 import org.jfree.chart.labels.StandardCategoryItemLabelGenerator;
-import org.jfree.chart.labels.StandardPieSectionLabelGenerator;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PiePlot3D;
 import org.jfree.chart.plot.PlotOrientation;
@@ -31,6 +30,10 @@ import org.jfree.ui.TextAnchor;
 import org.jfree.util.Rotation;
 
 public class ChartUtil {
+	
+	protected static final Font titleFont=new Font("黑体", java.awt.Font.CENTER_BASELINE, 32);
+	protected static final Font labelFont = new Font("宋体", Font.PLAIN, 16);
+	protected static final Font stickLabelFont = new Font("sans-serif", Font.PLAIN, 12);
 	/**
 	 * 按负责人统计柱状图
 	 * 
@@ -63,7 +66,6 @@ public class ChartUtil {
 				TextAnchor.BASELINE_LEFT));
 		categoryplot.setRenderer(barRenderer3D);
 
-		categoryplot.setRenderer(barRenderer3D);
 		ValueMarker localValueMarker = new ValueMarker(0.7D, new Color(200, 200, 255), new BasicStroke(1.0F),
 				new Color(200, 200, 255), new BasicStroke(1.0F), 1.0F);
 		categoryplot.addRangeMarker(localValueMarker, Layer.BACKGROUND);
@@ -72,15 +74,14 @@ public class ChartUtil {
 		// 中文乱码
 		NumberAxis numberaxis = (NumberAxis) categoryplot.getRangeAxis();
 		CategoryAxis domainAxis = categoryplot.getDomainAxis();
-		TextTitle textTitle = chart.getTitle();
-		textTitle.setFont(new Font("黑体", Font.PLAIN, 20));
+		chart.getTitle().setFont(titleFont);
 
 		domainAxis.setCategoryLabelPositions(CategoryLabelPositions.UP_45);
 
-		domainAxis.setTickLabelFont(new Font("sans-serif", Font.PLAIN, 12));
-		domainAxis.setLabelFont(new Font("宋体", Font.PLAIN, 16));// x大标题
-		numberaxis.setTickLabelFont(new Font("sans-serif", Font.PLAIN, 12));
-		numberaxis.setLabelFont(new Font("宋体", Font.PLAIN, 16));
+		domainAxis.setTickLabelFont(stickLabelFont);
+		domainAxis.setLabelFont(labelFont);// x大标题
+		numberaxis.setTickLabelFont(stickLabelFont);
+		numberaxis.setLabelFont(labelFont);
 
 		try {
 			ChartUtilities.writeChartAsJPEG(stream, 1.0f, chart, 1366, 480, null);
@@ -107,14 +108,17 @@ public class ChartUtil {
 	 */
 	public static JFreeChart drawIssueType(String title, DefaultPieDataset dataset, OutputStream stream) {
 		JFreeChart chart = ChartFactory.createPieChart3D(title, dataset, true, true, false);
+		chart.getTitle().setFont(titleFont);
 		PiePlot3D piePlot3D = (PiePlot3D) chart.getPlot();
 		piePlot3D.setDarkerSides(true);
 		piePlot3D.setStartAngle(290.0D);
 		piePlot3D.setDirection(Rotation.CLOCKWISE);
 		piePlot3D.setForegroundAlpha(0.8F);
 		piePlot3D.setNoDataMessage("No data to display");
-		// 中文乱码
-		piePlot3D.setLabelFont(new Font("宋体", Font.PLAIN, 16));
+		// 中文乱码,饼图标签字体
+		piePlot3D.setLabelFont(labelFont);
+		// 设置图例说明Legend上的文字
+		chart.getLegend().setItemFont(labelFont);
 		try {
 			ChartUtilities.writeChartAsJPEG(stream, 1.0f, chart, 1366, 480, null);
 		} catch (FileNotFoundException e) {
@@ -129,7 +133,7 @@ public class ChartUtil {
 		}
 		return chart;
 	}
-
+	//自定义宣言器
 	static class CustomBarRenderer3D extends BarRenderer3D {
 		private static final long serialVersionUID = -3439250645727206023L;
 		public Paint getItemPaint(int paramInt1, int paramInt2) {

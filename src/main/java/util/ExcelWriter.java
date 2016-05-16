@@ -165,6 +165,7 @@ public class ExcelWriter {
 		font.setColor(HSSFColor.VIOLET.index);
 		font.setFontHeightInPoints((short) 12);
 		font.setBoldweight(fontWeight);
+		font.setFontName("宋体");
 		// 把字体应用到当前的样式
 		style.setFont(font);
 		return style;

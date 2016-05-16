@@ -109,9 +109,10 @@ public class ReportUtil {
 		style.setBorderRight(HSSFCellStyle.BORDER_THIN);
 		style.setBorderTop(HSSFCellStyle.BORDER_THIN);
 
-		style.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+		style.setAlignment(HSSFCellStyle.ALIGN_LEFT);
 		// 生成一个字体
 		HSSFFont font = workbook.createFont();
+		font.setFontName("宋体");
 		font.setColor(HSSFColor.BLACK.index);
 		font.setFontHeightInPoints((short) 12);
 		font.setBoldweight(fontWeight);
