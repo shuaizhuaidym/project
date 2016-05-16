@@ -23,7 +23,7 @@
 	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 	<div class="container">
 		<ul id="myTab" class="nav nav-tabs">
-			<li><a href="#engineer" class="active" data-toggle="tab">按负责人统计</a></li>
+			<li class="active"><a href="#engineer" data-toggle="tab">按负责人统计</a></li>
 			<li><a href="#category" data-toggle="tab">按问题分类统计</a></li>
 			<li><a href="#product" data-toggle="tab">按行业统计</a></li>
 			<li><a href="#range" data-toggle="tab">按时间段统计</a></li>
