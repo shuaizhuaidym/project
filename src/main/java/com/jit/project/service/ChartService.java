@@ -53,13 +53,15 @@ public class ChartService extends NameEntityService<Project> implements IChartSe
 
 	/**
 	 * 问题分类数据集合获取
+	 * 
 	 * @param begin
 	 * @param end
 	 * @return
 	 */
 	public DefaultPieDataset getIssueTypeDataset(String begin, String end) {
 		Sql sql = Sqls.create("select issue_type, count(prj_id) as data from t_project "
-				+ "where DATE(submit_date) BETWEEN DATE(@begin) and DATE(@end) " + "GROUP BY issue_type");
+				+ "where DATE(submit_date) BETWEEN DATE(@begin) and DATE(@end) "
+				+ "GROUP BY issue_type");
 		sql.params().set("begin", begin);
 		sql.params().set("end", end);
 		DefaultPieDataset dataset = new DefaultPieDataset();
@@ -79,16 +81,18 @@ public class ChartService extends NameEntityService<Project> implements IChartSe
 		}
 		return dataset;
 	}
-	
+
 	/**
-	 * 行业分类数据集合获取
+	 * 行业分类饼图，数据集合获取
+	 * 
 	 * @param begin
 	 * @param end
 	 * @return
 	 */
 	public DefaultPieDataset getIndustryDataset(String begin, String end) {
 		Sql sql = Sqls.create("select industry, count(prj_id) as data from t_project "
-				+ "where DATE(submit_date) BETWEEN DATE(@begin) and DATE(@end) " + "GROUP BY industry");
+				+ "where DATE(submit_date) BETWEEN DATE(@begin) and DATE(@end) "
+				+ "GROUP BY industry");
 		sql.params().set("begin", begin);
 		sql.params().set("end", end);
 		DefaultPieDataset dataset = new DefaultPieDataset();
@@ -98,7 +102,6 @@ public class ChartService extends NameEntityService<Project> implements IChartSe
 				List<ChartPie> list = new LinkedList<ChartPie>();
 				while (rs.next())
 					list.add(new ChartPie(rs.getString("industry"), rs.getInt("data")));
-				System.out.println(list.size());
 				return list;
 			}
 		});
@@ -108,5 +111,37 @@ public class ChartService extends NameEntityService<Project> implements IChartSe
 			dataset.setValue(pie.getCategory(), new Double(pie.getData()));
 		}
 		return dataset;
-	}	
+	}
+
+	/**
+	 * 按时间段统计折线图，数据集获取
+	 * @param begin
+	 * @param end
+	 * @return
+	 */
+	public DefaultCategoryDataset getRangeDataset(String begin, String end) {
+		Sql sql = Sqls
+				.create("select month(submit_date) as label, count(prj_id) as data "
+						+ "from t_project "
+						+ "where submit_date BETWEEN DATE(@begin) and DATE(@end) group by month(submit_date)");
+
+		sql.params().set("begin", begin);
+		sql.params().set("end", end);
+		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+		// 数据处理
+		sql.setCallback(new SqlCallback() {
+			public Object invoke(Connection conn, ResultSet rs, Sql sql) throws SQLException {
+				List<ChartBar> list = new LinkedList<ChartBar>();
+				while (rs.next())
+					list.add(new ChartBar(rs.getString("label"), rs.getInt("data")));//FIXME 公用实体
+				return list;
+			}
+		});
+		dao().execute(sql);
+		// 转换
+		for (ChartBar bar : sql.getList(ChartBar.class)) {
+			dataset.addValue(bar.getData(), "", bar.getEngineer());
+		}
+		return dataset;
+	}
 }

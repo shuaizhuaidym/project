@@ -1,5 +1,7 @@
 package com.jit.project.web;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
@@ -8,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.jfree.data.category.CategoryDataset;
+import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 import org.nutz.dao.QueryResult;
 import org.nutz.ioc.annotation.InjectName;
@@ -54,7 +57,8 @@ public class ChartAction {
 	@SuppressWarnings("unchecked")
 	@At("/prj_export")
 	@Ok("raw:stream")
-	public OutputStream export(HttpServletRequest request, HttpServletResponse response, @Param("::query.") Query query) {
+	public OutputStream export(HttpServletRequest request, HttpServletResponse response,
+			@Param("::query.") Query query) {
 		if (query == null) {
 			query = new Query(1024);
 		}
@@ -67,7 +71,8 @@ public class ChartAction {
 			response.addHeader("Content-Disposition", "attachment;filename=prj_export.xls");
 			response.setContentType("application/msexcel;charset=UTF-8");
 			out = response.getOutputStream();
-			reportUtil.exportExcel(Const.title, Const.headers, (List<Project>) qResult.getList(), out);
+			reportUtil.exportExcel(Const.title, Const.headers, (List<Project>) qResult.getList(),
+					out);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -80,13 +85,15 @@ public class ChartAction {
 		}
 		return out;
 	}
+
 	/**
 	 * 跳转到chart页面
+	 * 
 	 * @return
 	 */
 	@At("/chart")
 	@Ok("jsp:views.chart.chart")
-	public String chart(){
+	public String chart() {
 		return null;
 	}
 
@@ -108,14 +115,14 @@ public class ChartAction {
 		ChartUtil.drawEngineer("负责人统计图", "负责人", "项目数量", dataset, stream);
 		return stream;
 	}
-	
+
 	/**
 	 * 统计问题类型
 	 */
 	@At("/issue_type_pie")
 	@Ok("raw:stream")
-	public OutputStream drawIssueTypePie(HttpServletResponse response, @Param("begin") String begin,
-			@Param("end") String end) {
+	public OutputStream drawIssueTypePie(HttpServletResponse response,
+			@Param("begin") String begin, @Param("end") String end) {
 		response.setContentType("image/jpeg");
 		DefaultPieDataset dataset = chartService.getIssueTypeDataset("2014-03-24", "2016-05-01");
 		OutputStream stream = null;
@@ -124,12 +131,13 @@ public class ChartAction {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		ChartUtil.drawIssueType("问题分类统计图", dataset, stream);
+		ChartUtil.drawPie("问题分类统计图", dataset, stream);
 		return stream;
 	}
 
 	/**
 	 * 按行业分类，饼图
+	 * 
 	 * @param response
 	 * @param begin
 	 * @param end
@@ -147,7 +155,34 @@ public class ChartAction {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		ChartUtil.drawIssueType("行业分类统计图", dataset, stream);
+		ChartUtil.drawPie("行业分类统计图", dataset, stream);
+		return stream;
+	}
+
+	/**
+	 * 时间段统计，折线图
+	 * 
+	 * @param response
+	 * @param begin
+	 * @param end
+	 * @return
+	 * @throws FileNotFoundException 
+	 */
+	@At("/range_line")
+	@Ok("raw:stream")
+	public OutputStream drawRangeLine(HttpServletResponse response, @Param("begin") String begin,
+			@Param("end") String end) throws FileNotFoundException {
+		response.setContentType("image/jpeg");
+		DefaultCategoryDataset dataset = chartService.getRangeDataset("2014-03-24", "2016-05-01");
+		System.out.println(dataset.getRowCount());
+		OutputStream stream = null;
+		try {
+			stream = response.getOutputStream();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		FileOutputStream fos = new FileOutputStream("d:/line.jpg");
+		ChartUtil.drawRangeLine("时间段统计图","项目数量", dataset, fos);
 		return stream;
 	}
 

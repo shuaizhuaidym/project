@@ -47,7 +47,7 @@
 				<img id="imgChartIssue" alt="industry_pie" src=""/>
 			</div>
 			<div class="tab-pane fade chart-box" id="range">
-				<img alt="" src="<%=path%>/img/line.png"/>
+				<img id="imgChartRange" alt="range_line" src=""/>
 			</div>
 		</div>
 	</div>
@@ -70,7 +70,7 @@ $(document).ready(function(){
 		}else if("按行业统计"==type){
 			$("#imgChartIssue").attr("src","<%=path%>/industry_pie");
 		}else{
-			//按时间段统计
+			$("#imgChartRange").attr("src","<%=path%>/range_line");
 		}
 	});
 });

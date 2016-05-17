@@ -110,7 +110,7 @@ public class ChartUtil {
 	 * @param stream
 	 * @return
 	 */
-	public static JFreeChart drawIssueType(String title, DefaultPieDataset dataset, OutputStream stream) {
+	public static JFreeChart drawPie(String title, DefaultPieDataset dataset, OutputStream stream) {
 		JFreeChart chart = ChartFactory.createPieChart3D(title, dataset, true, true, false);
 		chart.getTitle().setFont(titleFont);
 		PiePlot3D piePlot3D = (PiePlot3D) chart.getPlot();
@@ -142,38 +142,6 @@ public class ChartUtil {
 	}
 
 	/**
-	 * 按行业分类，饼图
-	 * 
-	 * @param title
-	 * @param dataset
-	 * @param stream
-	 * @return
-	 */
-	public JFreeChart drawIndustryPie(String title, DefaultPieDataset dataset, OutputStream stream) {
-		JFreeChart chart = ChartFactory.createPieChart3D(title, dataset, true, true, false);
-		chart.getTitle().setFont(titleFont);
-		PiePlot3D piePlot3D = (PiePlot3D) chart.getPlot();
-		piePlot3D.setCircular(false);
-		piePlot3D.setStartAngle(290.0D);
-		piePlot3D.setDirection(Rotation.CLOCKWISE);
-		piePlot3D.setForegroundAlpha(0.8F);
-		piePlot3D.setNoDataMessage("No data to display");
-		// 中文乱码,饼图标签字体
-		piePlot3D.setLabelFont(labelFont);
-		// 设置图例说明Legend上的文字
-		chart.getLegend().setItemFont(labelFont);
-		try {
-			ChartUtilities.writeChartAsJPEG(stream, 1.0f, chart, 1366, 480, null);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-		}
-		return chart;
-	}
-
-	/**
 	 * 时间段分布，折线图
 	 * 
 	 * @param title
@@ -182,9 +150,11 @@ public class ChartUtil {
 	 * @param stream
 	 * @return
 	 */
-	public JFreeChart drawRangeLine(String title, String ylabel, CategoryDataset dataset, OutputStream stream) {
+	public static JFreeChart drawRangeLine(String title, String ylabel, CategoryDataset dataset, OutputStream stream) {
 		JFreeChart chart = ChartFactory.createLineChart(title, null, ylabel, dataset, PlotOrientation.VERTICAL, false,
 				false, false);
+		chart.getTitle().setFont(new Font("黑体", 0, 10));
+		
 		TextTitle textTitle = new TextTitle("时间段分布图", new Font("黑体", 0, 10));
 		textTitle.setPosition(RectangleEdge.BOTTOM);
 		textTitle.setHorizontalAlignment(HorizontalAlignment.CENTER);
@@ -192,8 +162,9 @@ public class ChartUtil {
 
 		CategoryPlot categoryPlot = (CategoryPlot) chart.getPlot();
 		categoryPlot.setRangePannable(true);
+		
 		categoryPlot.setRangeGridlinesVisible(false);
-
+		categoryPlot.setDomainGridlinesVisible(true);  //设置背景网格线是否可见
 		NumberAxis numberAxis = (NumberAxis) categoryPlot.getRangeAxis();
 		((NumberAxis) numberAxis).setStandardTickUnits(NumberAxis.createIntegerTickUnits());
 		ChartUtilities.applyCurrentTheme(chart);
@@ -206,6 +177,14 @@ public class ChartUtil {
 		localLineAndShapeRenderer.setSeriesStroke(0, new BasicStroke(3.0F));
 		localLineAndShapeRenderer.setSeriesOutlineStroke(0, new BasicStroke(2.0F));
 		localLineAndShapeRenderer.setSeriesShape(0, new Ellipse2D.Double(-5.0D, -5.0D, 10.0D, 10.0D));
+		try {
+			ChartUtilities.writeChartAsJPEG(stream, 1.0f, chart, 1366, 480, null);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+		}
 		return chart;
 	}
 
@@ -216,5 +195,9 @@ public class ChartUtil {
 		public Paint getItemPaint(int paramInt1, int paramInt2) {
 			return new Color(230, 32, 32);
 		}
+	}
+	
+	public static void main(String[] args) {
+		
 	}
 }
