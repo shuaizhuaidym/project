@@ -15,6 +15,8 @@
 <%
 	int pageNo = pager.getPageNumber();
 	int pageSize = pager.getPageSize();
+	pageContext.setAttribute("pageNo", pageNo);
+	pageContext.setAttribute("pageSize", pageSize);
 	int totalCount = pager.getRecordCount();
 	String path=request.getContextPath();
 %>
@@ -78,8 +80,8 @@
 								<input type="checkbox" name="query.status" value="未开始" />未开始
 								<input type="checkbox" name="query.status" value="进行中" />进行中 
 								<input type="checkbox" name="query.status" value="暂停" />暂停 
-								<input type="checkbox" name="query.status" value="完成" />完成
-								<input type="checkbox" name="query.status" value="未反馈" />未反馈
+								<input type="checkbox" name="query.status" value="已完成" />已完成
+								<input type="checkbox" name="query.status" value="等待反馈" />等待反馈
 						</span></td>
 						<td>负责人</td>
 						<td class="w12">
@@ -109,7 +111,7 @@
 					<tbody>
 						<c:forEach var="prj" items="<%=rst.getList()%>" varStatus="index">
 							<tr>
-								<td>${index.count}</td>
+								<td>${(pageNo-1)*pageSize + index.count}</td>
 								<td>${prj.prjName}</td>
 								<td>${prj.issueType}</td>
 								<td><a href="/project/edit?prjid=${prj.prjID}">${prj.describtion}</a></td>

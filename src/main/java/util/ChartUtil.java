@@ -4,7 +4,6 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Paint;
-import java.awt.geom.Ellipse2D;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -27,12 +26,9 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.ValueMarker;
 import org.jfree.chart.renderer.category.BarRenderer3D;
 import org.jfree.chart.renderer.category.LineAndShapeRenderer;
-import org.jfree.chart.title.TextTitle;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
-import org.jfree.ui.HorizontalAlignment;
 import org.jfree.ui.Layer;
-import org.jfree.ui.RectangleEdge;
 import org.jfree.ui.TextAnchor;
 import org.jfree.util.Rotation;
 
@@ -150,33 +146,41 @@ public class ChartUtil {
 	 * @param stream
 	 * @return
 	 */
-	public static JFreeChart drawRangeLine(String title, String ylabel, CategoryDataset dataset, OutputStream stream) {
-		JFreeChart chart = ChartFactory.createLineChart(title, null, ylabel, dataset, PlotOrientation.VERTICAL, false,
-				false, false);
-		chart.getTitle().setFont(new Font("黑体", 0, 10));
-		
-		TextTitle textTitle = new TextTitle("时间段分布图", new Font("黑体", 0, 10));
-		textTitle.setPosition(RectangleEdge.BOTTOM);
-		textTitle.setHorizontalAlignment(HorizontalAlignment.CENTER);
-		chart.addSubtitle(textTitle);
+	public static JFreeChart drawRangeLine(String title, String xlabel, String ylabel, CategoryDataset dataset,
+			OutputStream stream) {
+		JFreeChart chart = ChartFactory.createLineChart(title, xlabel, ylabel, dataset, PlotOrientation.VERTICAL, true,
+				true, false);
+		chart.getTitle().setFont(titleFont);
+		CategoryPlot categoryplot = (CategoryPlot) chart.getPlot();
 
-		CategoryPlot categoryPlot = (CategoryPlot) chart.getPlot();
-		categoryPlot.setRangePannable(true);
-		
-		categoryPlot.setRangeGridlinesVisible(false);
-		categoryPlot.setDomainGridlinesVisible(true);  //设置背景网格线是否可见
-		NumberAxis numberAxis = (NumberAxis) categoryPlot.getRangeAxis();
-		((NumberAxis) numberAxis).setStandardTickUnits(NumberAxis.createIntegerTickUnits());
-		ChartUtilities.applyCurrentTheme(chart);
+		// 解决图表底部中文乱码问题
+		chart.getLegend().setItemFont(labelFont);
+		categoryplot.setBackgroundPaint(Color.lightGray);
+		categoryplot.setRangeGridlinePaint(Color.white);
+		// Y轴
+		NumberAxis numberaxis = (NumberAxis) categoryplot.getRangeAxis();
 
-		LineAndShapeRenderer localLineAndShapeRenderer = (LineAndShapeRenderer) categoryPlot.getRenderer();
-		localLineAndShapeRenderer.setBaseShapesVisible(true);
-		localLineAndShapeRenderer.setDrawOutlines(true);
-		localLineAndShapeRenderer.setUseFillPaint(true);
-		localLineAndShapeRenderer.setBaseFillPaint(Color.white);
-		localLineAndShapeRenderer.setSeriesStroke(0, new BasicStroke(3.0F));
-		localLineAndShapeRenderer.setSeriesOutlineStroke(0, new BasicStroke(2.0F));
-		localLineAndShapeRenderer.setSeriesShape(0, new Ellipse2D.Double(-5.0D, -5.0D, 10.0D, 10.0D));
+		numberaxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
+		// 解决Y轴标题中文乱码
+		numberaxis.setLabelFont(labelFont);
+		// x轴
+		CategoryAxis domainAxis = (CategoryAxis) categoryplot.getDomainAxis();
+		// 解决x轴坐标上中文乱码
+		domainAxis.setTickLabelFont(labelFont);
+		// 解决x轴标题中文乱码
+		domainAxis.setLabelFont(labelFont);
+		// 用于显示X轴刻度
+		domainAxis.setTickMarksVisible(true);
+		// 设置X轴45度
+		domainAxis.setCategoryLabelPositions(CategoryLabelPositions.UP_45);
+
+		LineAndShapeRenderer lineandshaperenderer = (LineAndShapeRenderer) categoryplot.getRenderer();// 数据点
+		// series 点（即数据点）可见
+		lineandshaperenderer.setBaseShapesVisible(true);
+		// 显示数据点的数据
+		lineandshaperenderer.setBaseItemLabelGenerator(new StandardCategoryItemLabelGenerator());
+		// 显示折线图点上的数据
+		lineandshaperenderer.setBaseItemLabelsVisible(true);
 		try {
 			ChartUtilities.writeChartAsJPEG(stream, 1.0f, chart, 1366, 480, null);
 		} catch (FileNotFoundException e) {
@@ -196,8 +200,8 @@ public class ChartUtil {
 			return new Color(230, 32, 32);
 		}
 	}
-	
+
 	public static void main(String[] args) {
-		
+
 	}
 }

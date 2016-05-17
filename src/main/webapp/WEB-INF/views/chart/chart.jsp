@@ -26,7 +26,7 @@
 			<li class="active"><a href="#engineer" data-toggle="tab">按负责人统计</a></li>
 			<li><a href="#category" data-toggle="tab">按问题分类统计</a></li>
 			<li><a href="#product" data-toggle="tab">按行业统计</a></li>
-			<li><a href="#range" data-toggle="tab">按时间段统计</a></li>
+			<li><a href="#range" data-toggle="tab">按时间段(按月分组)统计</a></li>
 		</ul>
 		<div id="myTabContent" class="tab-content">
 			<div id="condition">

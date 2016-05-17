@@ -1,7 +1,6 @@
 package com.jit.project.web;
 
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
@@ -181,8 +180,7 @@ public class ChartAction {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		FileOutputStream fos = new FileOutputStream("d:/line.jpg");
-		ChartUtil.drawRangeLine("时间段统计图","项目数量", dataset, fos);
+		ChartUtil.drawRangeLine("时间段统计图","2014-03-24——2016-05-01","项目数量", dataset, stream);
 		return stream;
 	}
 
