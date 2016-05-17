@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <div class="footer">
 	<hr/>
-	<p>&copy; yanming_dai@jit.com.cn 2013</p>
+	<p>&copy; yanming_dai@jit.com.cn 2016</p>
 </footer>

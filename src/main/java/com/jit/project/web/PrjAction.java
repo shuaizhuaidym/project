@@ -124,6 +124,7 @@ public class PrjAction {
 			mpIndustry.put("金融/电信", "金融/电信");
 		}
 		if (mpIssueType.isEmpty()) {
+			mpIssueType.put("", "");
 			mpIssueType.put("网关_客户端", "网关_客户端");
 			mpIssueType.put("网关_旁路_Agent", "网关_旁路_Agent");
 			mpIssueType.put("网关_服务器", "网关_服务器");
