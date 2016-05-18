@@ -16,6 +16,7 @@
 
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+<link href="css/commom.css" rel="stylesheet">
 <style type="text/css">
 body {
 	padding-top: 20px;
@@ -26,20 +27,8 @@ body {
 .container-narrow {
 	margin: 0 auto;
 	max-width: 700px;
-	padding-top:80px
+	padding-top:40px
 }
-
-.hero-unit {
-	background-color: #eeeeee;
-	border-radius: 6px;
-	color: inherit;
-	font-size: 18px;
-	font-weight: 200;
-	line-height: 30px;
-	margin-bottom: 30px;
-	padding: 32px;
-}
-
 </style>
 <link href="Template%20%C2%B7%20Bootstrap_files/bootstrap-responsive.css" rel="stylesheet">
 
@@ -131,24 +120,31 @@ style.firebugResetStyles {
 	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 	<div class="container-narrow">
 		<div class="hero-unit">
-			<p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo,
-				tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+			<p>
+			<h4>程序员宣言</h4>
+			Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo,
+				tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+			</p>
 		</div>
 
 		<div class="row-fluid marketing">
 			<div class="span3">
-				<p><img alt="" src="img/svn.png"></p>
+				<p><a href="#"><img alt="" src="img/svn.png"/></a></p>
+				<p><a href="#"><img alt="" src="img/svn.png"/></a></p>
 			</div>
 
 			<div class="span3">
-				<p><img alt="" src="img/qc.png"></p>
+				<p><a href="#"><img alt="" src="img/qc.png"/></a></p>
+				<p><a href="#"><img alt="" src="img/qc.png"/></a></p>
 			</div>
 			<div class="span3">
-				<p><img alt="" src="img/redmine.png"></p>
+				<p><a href="#"><img alt="" src="img/redmine.png"/></a></p>
+				<p><a href="#"><img alt="" src="img/redmine.png"/></a></p>
 			</div>
 
 			<div class="span3">
-				<p><img alt="" src="img/jenkins.png"></p>
+				<p><a href="#"><img alt="" src="img/jenkins.png"/></a></p>
+				<p><a href="#"><img alt="" src="img/jenkins.png"/></a></p>
 			</div>			
 		</div>
 
