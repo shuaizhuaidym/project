@@ -34,7 +34,7 @@
 			<table class="table table-striped table-bordered">
 				<tr>
 					<td><label class="control-label col-xs-2">项目名称</label></td>
-					<td><input type="text" name="project.prjName" class="form-control" value="${prj.prjName}" readonly="readonly"></td>
+					<td><input type="text" name="project.prjName" class="form-control" value="${prj.prjName}"></td>
 					<td><label class="control-label col-xs-2">所属行业</label></td>
 					<td>
 						<ui:select name="project.industry" path="${prj.industry}" items="${mpIndustry}" css="required"></ui:select>
@@ -50,7 +50,7 @@
 				</tr>
 				<tr>
 					<td><label class="control-label col-xs-2">提交日期</label></td>
-					<td><input type="text" name="project.submitDate" value="${prj.localSubmitDate}" class="required datetime" readonly="readonly"></td>
+					<td><input type="text" name="project.submitDate" value="${prj.localSubmitDate}" class="required datetime"></td>
 					<td><label class="control-label col-xs-2">当前状态</label></td>
 					<td>
 						<ui:select name="project.status" path="${prj.status}" items="${mpStatus}" css="required"></ui:select>

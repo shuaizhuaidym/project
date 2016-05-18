@@ -7,7 +7,7 @@ var ioc = {
 		},
 		fields : {
 			driverClassName : "com.mysql.jdbc.Driver",
-			url : "jdbc:mysql://127.0.0.1:3306/test",
+			url : "jdbc:mysql://192.168.9.128:3306/test",
 			username : "root",
 			password : "admin",
 			initialSize : 10,
