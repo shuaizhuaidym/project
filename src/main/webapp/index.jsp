@@ -137,22 +137,18 @@ style.firebugResetStyles {
 
 		<div class="row-fluid marketing">
 			<div class="span3">
-				<h4>Subheading</h4>
-				<p><img alt="" src=""></p>
+				<p><img alt="" src="img/svn.png"></p>
 			</div>
 
 			<div class="span3">
-				<h4>Subheading</h4>
-				<p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+				<p><img alt="" src="img/qc.png"></p>
 			</div>
 			<div class="span3">
-				<h4>Subheading</h4>
-				<p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+				<p><img alt="" src="img/redmine.png"></p>
 			</div>
 
 			<div class="span3">
-				<h4>Subheading</h4>
-				<p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+				<p><img alt="" src="img/jenkins.png"></p>
 			</div>			
 		</div>
 
