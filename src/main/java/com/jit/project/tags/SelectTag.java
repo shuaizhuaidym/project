@@ -11,6 +11,8 @@ import javax.servlet.jsp.tagext.TagSupport;
 public class SelectTag extends TagSupport {
 
 	private static final long serialVersionUID = -1441103689447651975L;
+	
+	private String id;
 
 	private String name;
 
@@ -39,6 +41,9 @@ public class SelectTag extends TagSupport {
 	
 	private String createOptions(){
 		StringBuilder builder=new StringBuilder("<select name=\"").append(name).append("\"");
+		if(id!=null){
+			builder.append(" id=\"").append(id).append("\"");
+		}
 		if(css!=null){
 			builder.append(" class=\"").append(css).append("\"");
 		}
@@ -99,6 +104,14 @@ public class SelectTag extends TagSupport {
 
 	public void setStyle(String style) {
 		this.style = style;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 	
 }

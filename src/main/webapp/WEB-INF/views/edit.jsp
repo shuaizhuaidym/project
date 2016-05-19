@@ -20,6 +20,34 @@
 <script type="text/javascript" src="js/bootstrap-dropdown.js"></script>
 
 <script type="text/javascript" src="js/jquery-validation-1.9.0/jquery.validate.js"></script>
+<script type="text/javascript">
+	$(function() {
+		var datePks=$("#frm_project").find("input.datetime");
+		datePks.each(function(){
+			$(this).datetimepicker({
+				weekStart : 1,
+				todayBtn : 1,
+				autoclose : 1,
+				todayHighlight : 1,
+				startView : 2,
+				minView : 2,
+				forceParse : 0,
+				format:"yyyy-mm-dd"
+			});
+		});
+		$("#slt_state").change(function(){
+			if ("已完成" == $(this).val()){
+				$("#ta_proc").addClass("required");
+				$("#txt_lc").addClass("required");
+				$("#txt_fd").addClass("required");
+			}else{
+				$("#ta_proc").removeClass("required");
+				$("#txt_lc").removeClass("required");
+				$("#txt_fd").removeClass("required");
+			}
+		});
+	});
+</script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
@@ -46,14 +74,14 @@
 						<ui:select name="project.issueType" path="${prj.issueType}" items="${mpIssueType}" css="required"></ui:select>
 					</td>
 					<td><label class="control-label col-xs-2">产品版本</label></td>
-					<td><input type="text" name="project.prudectVersion" value="${prj.prudectVersion}"></td>
+					<td><input type="text" name="project.prudectVersion" value="${prj.prudectVersion}" class="required"></td>
 				</tr>
 				<tr>
-					<td><label class="control-label col-xs-2">提交日期</label></td>
+					<td><label class="control-label col-xs-2">反馈日期</label></td>
 					<td><input type="text" name="project.submitDate" value="${prj.localSubmitDate}" class="required datetime"></td>
 					<td><label class="control-label col-xs-2">当前状态</label></td>
 					<td>
-						<ui:select name="project.status" path="${prj.status}" items="${mpStatus}" css="required"></ui:select>
+						<ui:select id="slt_state" name="project.status" path="${prj.status}" items="${mpStatus}" css="required"></ui:select>
 					</td>
 				</tr>
 				<tr>
@@ -73,12 +101,12 @@
 					<td>
 						<ui:select name="project.engineer" path="${prj.engineer}" items="${mpEngineer}" css="required"></ui:select>
 					</td>
-					<td><label class="control-label col-xs-2">联系方式</label></td>
-					<td><input type="text" name="project.engineerTel" value="${prj.engineerTel}" class="form-control"></td>
+					<td><label class="control-label col-xs-2">结束日期</label></td>
+					<td><input type="text" id="txt_fd" name="project.finishDate" value="${prj.localFinishDate}" class="datetime"></td>
 				</tr>
 				<tr>
 					<td><label class="control-label col-xs-2">处理过程</label></td>
-					<td colspan="3"><textarea name="project.process" class="x-text" rows="5">${prj.process}</textarea></td>
+					<td colspan="3"><textarea id="ta_proc" name="project.process" class="x-text" rows="5">${prj.process}</textarea></td>
 				</tr>
 				<tr>
 					<td><label class="control-label col-xs-2">改进措施</label></td>
@@ -90,7 +118,7 @@
 				</tr>
 				<tr>
 					<td><label class="control-label col-xs-2">人力成本(人*周)</label></td>
-					<td colspan="3"><input type="text" name="project.laborCosts" value="${prj.laborCosts}" class="x-text number" /></td>
+					<td colspan="3"><input type="text" id="txt_lc" name="project.laborCosts" value="${prj.laborCosts}" class="x-text number" /></td>
 				</tr>
 			</table>
 			<div style="text-align: left; margin-right: 80px">

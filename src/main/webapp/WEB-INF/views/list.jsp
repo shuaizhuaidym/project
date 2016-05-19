@@ -112,9 +112,9 @@
 						<c:forEach var="prj" items="<%=rst.getList()%>" varStatus="index">
 							<tr>
 								<td>${(pageNo-1)*pageSize + index.count}</td>
-								<td>${prj.prjName}</td>
+								<td><a href="/project/edit?prjid=${prj.prjID}">${prj.prjName}</a></td>
 								<td>${prj.issueType}</td>
-								<td><a href="/project/edit?prjid=${prj.prjID}">${prj.describtion}</a></td>
+								<td>${prj.describtion}</td>
 								<td>${prj.localSubmitDate}</td>
 								<td>${prj.engineer}</td>
 								<td>${prj.status}</td>

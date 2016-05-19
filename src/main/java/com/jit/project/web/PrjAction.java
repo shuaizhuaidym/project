@@ -134,7 +134,6 @@ public class PrjAction {
 			mpIssueType.put("网关_旁路_其它", "网关_旁路_其它");
 			mpIssueType.put("磐石_服务器", "磐石_服务器");
 			mpIssueType.put("网关_其他", "网关_其他");
-			mpIssueType.put("NULL", "NULL");
 		}
 		if (mpStatus.isEmpty()) {
 			mpStatus.put("未开始", "未开始");
@@ -142,7 +141,6 @@ public class PrjAction {
 			mpStatus.put("等待反馈", "等待反馈");
 			mpStatus.put("暂停", "暂停");
 			mpStatus.put("已完成", "已完成");
-			mpStatus.put("NULL", "NULL");
 		}
 		if (mpEngineer.isEmpty()) {
 			mpEngineer.put("", "");

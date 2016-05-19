@@ -21,15 +21,18 @@
 
 <script type="text/javascript">
 	$(function() {
-		$("#submitDate").datetimepicker({
-			weekStart : 1,
-			todayBtn : 1,
-			autoclose : 1,
-			todayHighlight : 1,
-			startView : 2,
-			minView : 2,
-			forceParse : 0,
-			format:"yyyy-mm-dd"
+		var datePks=$("#frm_project").find("input.datetime");
+		datePks.each(function(){
+			$(this).datetimepicker({
+				weekStart : 1,
+				todayBtn : 1,
+				autoclose : 1,
+				todayHighlight : 1,
+				startView : 2,
+				minView : 2,
+				forceParse : 0,
+				format:"yyyy-mm-dd"
+			});
 		});
 	});
 </script>
@@ -58,10 +61,10 @@
 						<ui:select name="project.issueType" path="${prj.issueType}" items="${mpIssueType}" css="required"></ui:select>
 					</td>
 					<td><label class="control-label col-xs-2">产品版本</label></td>
-					<td><input type="text" id="prj_version" name="project.prudectVersion"></td>
+					<td><input type="text" id="prj_version" name="project.prudectVersion" class="required"></td>
 				</tr>
 				<tr>
-					<td><label class="control-label col-xs-2">提交日期</label></td>
+					<td><label class="control-label col-xs-2">反馈日期</label></td>
 					<td><input type="text" id="submitDate" name="project.submitDate" class="required datetime"></td>
 					<td><label class="control-label col-xs-2">当前状态</label></td>
 					<td>
@@ -91,8 +94,8 @@
 					<td>
 						<ui:select name="project.engineer" path="${prj.engineer}" items="${mpEngineer}" css="required"></ui:select>
 					</td>
-					<td><label class="control-label col-xs-2">联系方式</label></td>
-					<td><input type="text" name="project.engineerTel" class="required"></td>
+					<td><label class="control-label col-xs-2">结束日期</label></td>
+					<td><input type="text" name="project.finishDate" class="datetime"></td>
 				</tr>
 				<tr>
 					<td><label class="control-label col-xs-2">处理过程</label></td>

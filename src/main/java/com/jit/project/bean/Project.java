@@ -249,9 +249,14 @@ public class Project {
 		return describtion.substring(0, 32)+"...";
 	}
 	
-	public String getLocalSubmitDate(){
-		SimpleDateFormat ft=new SimpleDateFormat("yyyy-MM-dd");
-		return ft.format(submitDate);
+	public String getLocalSubmitDate() {
+		SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
+		return submitDate == null ? "" : ft.format(submitDate);
+	}
+
+	public String getLocalFinishDate() {
+		SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
+		return finishDate == null ? "" : ft.format(finishDate);
 	}
 
 	public String getOperatorIP() {
