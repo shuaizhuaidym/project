@@ -104,7 +104,7 @@ public class ChartAction {
 	public OutputStream drawEngineerBar(HttpServletResponse response, @Param("begin") String begin,
 			@Param("end") String end) {
 		response.setContentType("image/jpeg");
-		CategoryDataset dataset = chartService.getEngineerBarDataset("2014-03-24", "2016-05-01");
+		CategoryDataset dataset = chartService.getEngineerBarDataset(begin, end);
 		OutputStream stream = null;
 		try {
 			stream = response.getOutputStream();
@@ -123,7 +123,7 @@ public class ChartAction {
 	public OutputStream drawIssueTypePie(HttpServletResponse response,
 			@Param("begin") String begin, @Param("end") String end) {
 		response.setContentType("image/jpeg");
-		DefaultPieDataset dataset = chartService.getIssueTypeDataset("2014-03-24", "2016-05-01");
+		DefaultPieDataset dataset = chartService.getIssueTypeDataset(begin, end);
 		OutputStream stream = null;
 		try {
 			stream = response.getOutputStream();
@@ -147,7 +147,7 @@ public class ChartAction {
 	public OutputStream drawIndustryPie(HttpServletResponse response, @Param("begin") String begin,
 			@Param("end") String end) {
 		response.setContentType("image/jpeg");
-		DefaultPieDataset dataset = chartService.getIndustryDataset("2014-03-24", "2016-05-01");
+		DefaultPieDataset dataset = chartService.getIndustryDataset(begin, end);
 		OutputStream stream = null;
 		try {
 			stream = response.getOutputStream();
@@ -172,8 +172,7 @@ public class ChartAction {
 	public OutputStream drawRangeLine(HttpServletResponse response, @Param("begin") String begin,
 			@Param("end") String end) throws FileNotFoundException {
 		response.setContentType("image/jpeg");
-		DefaultCategoryDataset dataset = chartService.getRangeDataset("2014-03-24", "2016-05-01");
-		System.out.println(dataset.getRowCount());
+		DefaultCategoryDataset dataset = chartService.getRangeDataset(begin, end);
 		OutputStream stream = null;
 		try {
 			stream = response.getOutputStream();
