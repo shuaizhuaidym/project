@@ -105,6 +105,8 @@ public class PrjAction {
 	@At("/update")
 	@Ok("redirect:/query")
 	public String updateProject(@Param("::project.") Project project) {
+		//更新最后响应时间
+		project.setLastResponse(new java.sql.Date(System.currentTimeMillis()));
 		prjService.update(project);
 		return "SUCCESS";
 	}
