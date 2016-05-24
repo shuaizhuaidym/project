@@ -60,7 +60,7 @@ public class PrjAction {
 
 	/** 新建 */
 	@At("/create")
-	@Ok("redirect:/")
+	@Ok("redirect:/query")
 	public String createProject(@Param("::project.") Project project) {
 		try {
 			prjService.add(project);
