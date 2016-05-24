@@ -23,6 +23,8 @@ public class SelectTag extends TagSupport {
 	private String css;
 	
 	private String style;
+	
+	private String multiple;
 
 	@Override
 	public int doStartTag() throws JspException {
@@ -43,6 +45,9 @@ public class SelectTag extends TagSupport {
 		StringBuilder builder=new StringBuilder("<select name=\"").append(name).append("\"");
 		if(id!=null){
 			builder.append(" id=\"").append(id).append("\"");
+		}
+		if(multiple!=null){
+			builder.append(" multiple=\"multiple\" size=\"1\"");
 		}
 		if(css!=null){
 			builder.append(" class=\"").append(css).append("\"");
@@ -112,6 +117,14 @@ public class SelectTag extends TagSupport {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public String getMultiple() {
+		return multiple;
+	}
+
+	public void setMultiple(String multiple) {
+		this.multiple = multiple;
 	}
 	
 }

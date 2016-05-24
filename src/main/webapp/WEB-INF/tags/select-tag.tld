@@ -46,6 +46,12 @@
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<description>standard html style</description>
-		</attribute>		
+		</attribute>
+		<attribute>
+			<name>multiple</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>standard html attribute</description>			
+		</attribute>
 	</tag>
 </taglib>

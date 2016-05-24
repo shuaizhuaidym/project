@@ -21,6 +21,7 @@ public class Query implements Condition {
 	private Date submitDate;
 	private String status;
 	private String engineer;
+	private String reporter;
 	
 	public Query() {
 		super();
@@ -148,5 +149,13 @@ public class Query implements Condition {
 
 	public void setEngineer(String engineer) {
 		this.engineer = engineer;
+	}
+
+	public String getReporter() {
+		return reporter;
+	}
+
+	public void setReporter(String reporter) {
+		this.reporter = reporter;
 	}
 }

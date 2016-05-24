@@ -28,9 +28,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>项目列表</title>
 
+<link href="css/list.css" rel="stylesheet" />
 <link href="css/bootstrap.min.css" rel="stylesheet" />
 <link href="css/bootstrap-responsive.min.css" rel="stylesheet" />
-<link href="css/list.css" rel="stylesheet" />
 <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 
 <script type="text/javascript" src="js/jquery.min.js"></script>
@@ -74,25 +74,44 @@
 					<tr>
 						<td>项目名称</td>
 						<td class="w12"><input type="text" name="query.prjName" class="qt" value="<%=query.getPrjName()%>" /></td>
-						<td>状态</td>
-						<td class="w28 ibox">
-						<span>
-								<input type="checkbox" name="query.status" value="未开始" />未开始
-								<input type="checkbox" name="query.status" value="进行中" />进行中 
-								<input type="checkbox" name="query.status" value="暂停" />暂停 
-								<input type="checkbox" name="query.status" value="已完成" />已完成
-								<input type="checkbox" name="query.status" value="等待反馈" />等待反馈
-						</span></td>
+						<td class="w12">状态</td>
+						<td>
+							<div class="btn-group">
+								<button class="btn w98">当前状态</button>
+								<button class="btn dropdown-toggle" data-toggle="dropdown">
+									<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu">
+									<li><input type="checkbox" name="query.status" value="未开始" />未开始</li>
+									<li><input type="checkbox" name="query.status" value="进行中" />进行中 </li>
+									<li><input type="checkbox" name="query.status" value="暂停" />暂停 </li>
+									<li><input type="checkbox" name="query.status" value="已完成" />已完成</li>
+									<li><input type="checkbox" name="query.status" value="等待反馈" />等待反馈</li>
+								</ul>
+							</div>
+						</td>
 						<td>负责人</td>
 						<td class="w12">
-							<ui:select name="query.engineer" path="${query.engineer}" items="${mpEngineer}" style="width:128px"></ui:select>
+							<ui:select name="query.engineer" path="${query.engineer}" items="${mpEngineer}" style="width:98%"></ui:select>
 						</td>
-						<td class="w6">提交日期</td>
-						<td class="w8"><input type="text" id="sub_date" name="query.submitDate" class="wp98" /></td>
-						<td style="width: 15%; text-align: center">
-							<button type="button" id="btnQuery" value="查询" class="btn btn-primary">查询</button>
-							<button type="button" id="btnExport" name="_export" value="true" class="btn btn-success">导出EXCEL</button>
+						<td>报告人</td>
+						<td class="w12">
+							<input type="text" name="query.reporter" value="${query.reporter}" style="width:98%"/>
 						</td>
+						<td style="text-align: center" rowspan="2">
+							<button type="button" id="btnQuery" value="查询" class="btn btn-primary" style="width:98%;margin-bottom:16px">查询</button><br/>
+							<button type="button" id="btnExport" name="_export" value="true" class="btn btn-success" style="width:98%">导出EXCEL</button>
+						</td>
+					</tr>
+					<tr>
+						<td>提交日期(起)</td><td>
+						<input type="text" id="sub_date" name="query.submitDate1" class="wp98" /></td>
+						<td>提交日期(止)</td>
+						<td><input type="text" id="sub_date" name="query.submitDate2" class="wp98" /></td>
+						<td>最后响应(起)</td>
+						<td><input type="text" id="sub_date" name="query.finishDate1" class="wp98" /></td>
+						<td>最后响应(止)</td>
+						<td><input type="text" id="sub_date" name="query.finishDate2" class="wp98" /></td>
 					</tr>
 				</table>
 
