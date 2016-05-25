@@ -18,7 +18,11 @@ public class Query implements Condition {
 	private String prudectVersion;
 	private String issueType;
 	private String describtion;
-	private Date submitDate;
+	private Date submitDate1;
+	private Date submitDate2;
+	private Date lastRespDate1;
+	private Date lastRespDate2;
+	
 	private String status;
 	private String engineer;
 	private String reporter;
@@ -64,8 +68,28 @@ public class Query implements Condition {
 		if (!StringUtils.isNullOrEmpty(engineer)) {
 			sqlBuilder.append(" and engineer = '").append(engineer).append("'");
 		}
-		if (submitDate != null) {
-			sqlBuilder.append(" and DATE_FORMAT(submit_date,'%Y-m-%d') = '").append(format.format(submitDate)).append("'");
+		//TODO
+		if (submitDate1 != null && submitDate2 != null) {
+			sqlBuilder.append(" and DATE_FORMAT(submit_date,'%Y-m-%d') between DATE_FORMAT('");
+			sqlBuilder.append(format.format(submitDate1)).append("','%Y-m-%d')").append(" and DATE_FORMAT('");
+			sqlBuilder.append(format.format(submitDate2)).append("','%Y-m-%d')");
+		}else if(submitDate1 != null){
+			sqlBuilder.append(" and DATE_FORMAT(submit_date,'%Y-m-%d') >= DATE_FORMAT('");
+			sqlBuilder.append(format.format(submitDate1)).append("','%Y-m-%d')");
+		}else if(submitDate2 != null){
+			sqlBuilder.append(" and DATE_FORMAT(submit_date,'%Y-m-%d') <= DATE_FORMAT('");
+			sqlBuilder.append(format.format(submitDate2)).append("','%Y-m-%d')");
+		}
+		if(lastRespDate1!=null&&lastRespDate2!=null){
+			sqlBuilder.append(" and DATE_FORMAT(last_response,'%Y-m-%d') between DATE_FORMAT('");
+			sqlBuilder.append(format.format(lastRespDate1)).append("','%Y-m-%d')").append(" and DATE_FORMAT('");
+			sqlBuilder.append(format.format(lastRespDate2)).append("','%Y-m-%d')");
+		}else if(lastRespDate1!=null){
+			sqlBuilder.append(" and DATE_FORMAT(last_response,'%Y-m-%d') >= DATE_FORMAT('");
+			sqlBuilder.append(format.format(lastRespDate1)).append("','%Y-m-%d')");
+		}else if(lastRespDate2!=null){
+			sqlBuilder.append(" and DATE_FORMAT(last_response,'%Y-m-%d') <= DATE_FORMAT('");
+			sqlBuilder.append(format.format(lastRespDate2)).append("','%Y-m-%d')");
 		}
 		sqlBuilder.append(" order by submit_date desc");
 		return sqlBuilder.toString();
@@ -127,14 +151,6 @@ public class Query implements Condition {
 		this.describtion = describtion;
 	}
 
-	public Date getSubmitDate() {
-		return submitDate;
-	}
-
-	public void setSubmitDate(Date submitDate) {
-		this.submitDate = submitDate;
-	}
-
 	public String getStatus() {
 		return status;
 	}
@@ -157,5 +173,37 @@ public class Query implements Condition {
 
 	public void setReporter(String reporter) {
 		this.reporter = reporter;
+	}
+
+	public Date getSubmitDate1() {
+		return submitDate1;
+	}
+
+	public void setSubmitDate1(Date submitDate1) {
+		this.submitDate1 = submitDate1;
+	}
+
+	public Date getSubmitDate2() {
+		return submitDate2;
+	}
+
+	public void setSubmitDate2(Date submitDate2) {
+		this.submitDate2 = submitDate2;
+	}
+
+	public Date getLastRespDate1() {
+		return lastRespDate1;
+	}
+
+	public void setLastRespDate1(Date lastRespDate1) {
+		this.lastRespDate1 = lastRespDate1;
+	}
+
+	public Date getLastRespDate2() {
+		return lastRespDate2;
+	}
+
+	public void setLastRespDate2(Date lastRespDate2) {
+		this.lastRespDate2 = lastRespDate2;
 	}
 }

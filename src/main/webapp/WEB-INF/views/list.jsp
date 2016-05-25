@@ -1,7 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="pg" uri="/WEB-INF/tags"%>
-<%@ taglib prefix="ui" uri="/WEB-INF/tags/select"%>
+<%@taglib prefix="ui" uri="/WEB-INF/tags/select"%>
 <%@page import="org.nutz.dao.pager.Pager"%>
 <%@page import="org.nutz.dao.QueryResult"%>
 <%@page import="com.jit.project.bean.Query"%>
@@ -18,7 +18,7 @@
 	pageContext.setAttribute("pageNo", pageNo);
 	pageContext.setAttribute("pageSize", pageSize);
 	int totalCount = pager.getRecordCount();
-	String path=request.getContextPath();
+	String path = request.getContextPath();
 %>
 <!DOCTYPE html>
 <html>
@@ -38,15 +38,18 @@
 <script type="text/javascript" src="js/bootstrap-datetimepicker.js"></script>
 <script type="text/javascript">
 	$(function() {
-		$("#sub_date").datetimepicker({
-			weekStart : 1,
-			todayBtn : 1,
-			autoclose : 1,
-			todayHighlight : 1,
-			startView : 2,
-			minView : 2,
-			forceParse : 0,
-			format:"yyyy-mm-dd"
+		var datePks=$("#queryForm").find("input.datetime");
+		datePks.each(function(){
+			$(this).datetimepicker({
+				weekStart : 1,
+				todayBtn : 1,
+				autoclose : 1,
+				todayHighlight : 1,
+				startView : 2,
+				minView : 2,
+				forceParse : 0,
+				format:"yyyy-mm-dd"
+			});
 		});
 		$("#btnExport").click(function(){
 			$("#queryForm").attr("action","<%=path%>/prj_export");
@@ -105,13 +108,13 @@
 					</tr>
 					<tr>
 						<td>提交日期(起)</td><td>
-						<input type="text" id="sub_date" name="query.submitDate1" class="wp98" /></td>
+						<input type="text" id="sub_date1" name="query.submitDate1" class="datetime wp98" /></td>
 						<td>提交日期(止)</td>
-						<td><input type="text" id="sub_date" name="query.submitDate2" class="wp98" /></td>
+						<td><input type="text" id="sub_date2" name="query.submitDate2" class="datetime wp98" /></td>
 						<td>最后响应(起)</td>
-						<td><input type="text" id="sub_date" name="query.finishDate1" class="wp98" /></td>
+						<td><input type="text" id="resp_date1" name="query.lastRespDate1" class="datetime wp98" /></td>
 						<td>最后响应(止)</td>
-						<td><input type="text" id="sub_date" name="query.finishDate2" class="wp98" /></td>
+						<td><input type="text" id="resp_date2" name="query.lastRespDate2" class="datetime wp98" /></td>
 					</tr>
 				</table>
 
