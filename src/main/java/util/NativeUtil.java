@@ -16,7 +16,7 @@ public class NativeUtil {
 
 	public static void main(String[] args) {
 		hello();
-		String html = NativeUtil.buildPaginationHtml();
+		String html = NativeUtil.buildPaginationHtml("Hello");
 		System.out.println(html);
 		System.exit(0);
 	}
@@ -29,7 +29,7 @@ public class NativeUtil {
 	 * 
 	 * @return
 	 */
-	public native static String buildPaginationHtml();
+	public native static String buildPaginationHtml(String word);
 
 	/**
 	 * 生成分页标签

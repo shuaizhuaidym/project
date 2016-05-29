@@ -24,10 +24,13 @@ JNIEXPORT void JNICALL Java_util_NativeUtil_hello
  * Method:    buildPaginationHtml
  * Signature: ()Ljava/lang/String;
  */
-JNIEXPORT jstring JNICALL Java_util_NativeUtil_buildPaginationHtml__(JNIEnv * env, jclass){
-		jstring html;
-		char body[]="<html>hello</html>";
-		html=(*env).NewStringUTF(body);
+JNIEXPORT jstring JNICALL Java_util_NativeUtil_buildPaginationHtml__(JNIEnv * env, jclass,jstring word){
+		char* body="<html>";
+		const char* wd = (*env).GetStringUTFChars(word,false);
+		strcat(body,"hello world");
+		strcat(body,"</html>");
+
+		(*env).ReleaseStringUTFChars(word,wd);
 		return (*env).NewStringUTF(body);
 }
 
