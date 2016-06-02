@@ -70,6 +70,7 @@ public class ExcelReader<T> {
 	 * @throws IOException
 	 */
 	public List<Project> readXlsx(String path) throws IOException {
+		System.out.println(path);
 		InputStream is = new FileInputStream(path);
 		XSSFWorkbook xssfWorkbook = new XSSFWorkbook(is);
 		Project prj = null;
@@ -116,7 +117,7 @@ public class ExcelReader<T> {
 					XSSFCell proc = xssfRow.getCell(12);
 					XSSFCell comm = xssfRow.getCell(13);
 					XSSFCell impr = xssfRow.getCell(14);
-
+					
 					prj.setLaborCosts(getNumberValue(cost));
 					prj.setReporter(getValue(contact));
 					prj.setContact(getValue(tel));
@@ -161,7 +162,8 @@ public class ExcelReader<T> {
 		String raw = getValue(xssfCell);
 		if ("NULL".equals(raw) || StringUtils.isEmpty(raw)) {
 			return 0.0F;
-		}
+		}System.out.print(raw+"---");
+//		System.out.println(Float.parseFloat(raw));
 		return Float.parseFloat(raw);
 	}
 
@@ -194,7 +196,7 @@ public class ExcelReader<T> {
 				String temp = style.getDataFormatString();
 				// 单元格设置成常规
 				if (temp.equals("General")) {
-					format.applyPattern("#");
+					format.applyPattern("0.0");
 				}
 				result = format.format(value);
 			}
@@ -208,7 +210,7 @@ public class ExcelReader<T> {
 	public static void main(String[] args) throws ParseException {
 		ExcelReader<Project> u = new ExcelReader<Project>();
 		try {
-			u.readXlsx("C:/Users/daiyma/Desktop/项目支持跟踪表.xlsx");
+			u.readXlsx("E:/项目支持跟踪表.xlsx");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

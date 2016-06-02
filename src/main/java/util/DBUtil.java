@@ -19,7 +19,7 @@ public class DBUtil {
 			connect();
 		}
 		try {
-			List<Project>list=reader.readXlsx("C:/Users/daiyma/Desktop/项目支持跟踪表.xlsx");
+			List<Project>list=reader.readXlsx("E:/项目支持跟踪表.xlsx");
 			System.out.println("记录数"+list.size());
 			
 			conn.setAutoCommit(false);
