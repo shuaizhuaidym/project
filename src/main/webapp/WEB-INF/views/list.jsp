@@ -126,6 +126,7 @@
 							<th class="w8">问题类型</th>
 							<th class="w36">详细描述</th>
 							<th class="w8">提交日期</th>
+							<th class="w8"> 响应日期</th>
 							<th class="w6">负责人</th>
 							<th class="w6">当前状态</th>
 						</tr>
@@ -138,6 +139,7 @@
 								<td>${prj.issueType}</td>
 								<td>${prj.describtion}</td>
 								<td>${prj.localSubmitDate}</td>
+								<td>${prj.localLastResponse}</td>
 								<td>${prj.engineer}</td>
 								<td>${prj.status}</td>
 							</tr>

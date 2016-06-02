@@ -132,25 +132,21 @@ style.firebugResetStyles {
 				<p><a href="svn://172.16.5.251" target="_blank"><img alt="" src="img/svn.png"/></a></p>
 				<p><a href="https://124.207.169.68/" target="_blank"><img alt="" src="img/gw.png"/></a></p>
 				<p><a href="#"><img alt="" src="img/blank.png"/></a></p>
-				<p><a href="#"><img alt="" src="img/blank.png"/></a></p>
 			</div>
 
 			<div class="span3">
 				<p><a href="http://172.16.5.30:8080/qcbin/start_a.htm" target="_blank"><img alt="" src="img/qc.png"/></a></p>
 				<p><a href="#"><img alt="" src="img/bug.png"/></a></p>
 				<p><a href="#"><img alt="" src="img/blank.png"/></a></p>
-				<p><a href="#"><img alt="" src="img/blank.png"/></a></p>
 			</div>
 			<div class="span3">
 				<p><a href="http://172.16.13.168/redmine/" target="_blank"><img alt="" src="img/redmine.png"/></a></p>
-				<p><a href="#"><img alt="" src="img/blank.png"/></a></p>
 				<p><a href="#"><img alt="" src="img/blank.png"/></a></p>
 				<p><a href="#"><img alt="" src="img/blank.png"/></a></p>
 			</div>
 
 			<div class="span3">
 				<p><a href="http://172.16.5.252:9180/hudson/view/Phoenix/" target="_blank"><img alt="" src="img/jenkins.png"/></a></p>
-				<p><a href="#"><img alt="" src="img/blank.png"/></a></p>
 				<p><a href="#"><img alt="" src="img/blank.png"/></a></p>
 				<p><a href="#"><img alt="" src="img/blank.png"/></a></p>
 			</div>			

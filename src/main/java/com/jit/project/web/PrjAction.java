@@ -89,7 +89,6 @@ public class PrjAction {
 	@At("/edit")
 	@Ok("jsp:views.edit")
 	public String getProject(HttpServletRequest request, @Param("prjid") String prjID) {
-		System.out.println(prjID);
 		long id = Long.valueOf(prjID);
 		Project prj = prjService.fetch(id);
 		request.setAttribute("prj", prj);

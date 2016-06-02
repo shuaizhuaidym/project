@@ -253,6 +253,10 @@ public class Project {
 		SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
 		return submitDate == null ? "" : ft.format(submitDate);
 	}
+	public String getLocalLastResponse(){
+		SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
+		return submitDate == null ? "" : ft.format(lastResponse);
+	}
 
 	public String getLocalFinishDate() {
 		SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");

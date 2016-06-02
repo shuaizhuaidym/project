@@ -91,7 +91,7 @@ public class Query implements Condition {
 			sqlBuilder.append(" and DATE_FORMAT(last_response,'%Y-m-%d') <= DATE_FORMAT('");
 			sqlBuilder.append(format.format(lastRespDate2)).append("','%Y-m-%d')");
 		}
-		sqlBuilder.append(" order by submit_date desc");
+		sqlBuilder.append(" order by last_response desc");
 		return sqlBuilder.toString();
 	}
 
