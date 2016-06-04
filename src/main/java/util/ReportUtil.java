@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFDataFormat;
 import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.hssf.usermodel.HSSFRichTextString;
 import org.apache.poi.hssf.usermodel.HSSFRow;
@@ -33,11 +34,13 @@ public class ReportUtil {
 		// 设置表格默认列宽度为15个字节
 		sheet.setDefaultColumnWidth(15);
 		// 表头样式
-		HSSFCellStyle style = createStyle(workbook, HSSFColor.LIGHT_ORANGE.index, HSSFFont.BOLDWEIGHT_BOLD);
+		HSSFCellStyle style = createStyle(workbook, HSSFColor.LIGHT_ORANGE.index, HSSFFont.BOLDWEIGHT_BOLD,null);
 		// 内容样式样式
-		HSSFCellStyle style2 = createStyle(workbook, HSSFColor.WHITE.index, HSSFFont.BOLDWEIGHT_NORMAL);
+		HSSFCellStyle style2 = createStyle(workbook, HSSFColor.WHITE.index, HSSFFont.BOLDWEIGHT_NORMAL,null);
 		//日期样式
-		HSSFCellStyle style3 = createStyle(workbook, HSSFColor.WHITE.index, HSSFFont.BOLDWEIGHT_NORMAL);
+		HSSFCellStyle style3 = createStyle(workbook, HSSFColor.WHITE.index, HSSFFont.BOLDWEIGHT_NORMAL,null);
+		
+		HSSFCellStyle styleF=createStyle(workbook, HSSFColor.WHITE.index, HSSFFont.BOLDWEIGHT_NORMAL,"0.0");
 
 		CreationHelper helper = workbook.getCreationHelper();
 		style3.setDataFormat(helper.createDataFormat().getFormat("yyyy-mm-dd"));
@@ -66,7 +69,7 @@ public class ReportUtil {
 			createCell(row, style2, cdex++, prj.getContact());
 			createCell(row, style3, cdex++, prj.getFinishDate());
 			createCell(row, style2, cdex++, prj.getProcess());
-			createCell(row, style2, cdex++, prj.getLaborCosts());
+			createCell(row, styleF, cdex++, prj.getLaborCosts());
 		}
 		try {
 			workbook.write(stream);
@@ -98,7 +101,7 @@ public class ReportUtil {
 	}
 
 	// create cell style
-	private HSSFCellStyle createStyle(HSSFWorkbook workbook, short foreColor, short fontWeight) {
+	private HSSFCellStyle createStyle(HSSFWorkbook workbook, short foreColor, short fontWeight,String fmt) {
 		HSSFCellStyle style = workbook.createCellStyle();
 		// 设置这些样式
 		style.setFillForegroundColor(foreColor);
@@ -118,6 +121,10 @@ public class ReportUtil {
 		font.setBoldweight(fontWeight);
 		// 把字体应用到当前的样式
 		style.setFont(font);
+		if(fmt!=null){
+			HSSFDataFormat format = workbook.createDataFormat();
+			style.setDataFormat(format.getFormat("0.0")); // 1位小数
+		}
 		return style;
 	}
 }
