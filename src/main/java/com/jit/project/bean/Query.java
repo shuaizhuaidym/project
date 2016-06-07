@@ -70,26 +70,26 @@ public class Query implements Condition {
 		}
 		//TODO
 		if (submitDate1 != null && submitDate2 != null) {
-			sqlBuilder.append(" and DATE_FORMAT(submit_date,'%Y-m-%d') between DATE_FORMAT('");
-			sqlBuilder.append(format.format(submitDate1)).append("','%Y-m-%d')").append(" and DATE_FORMAT('");
-			sqlBuilder.append(format.format(submitDate2)).append("','%Y-m-%d')");
+			sqlBuilder.append(" and UNIX_TIMESTAMP(submit_date) between UNIX_TIMESTAMP('");
+			sqlBuilder.append(format.format(submitDate1)).append("')").append(" and UNIX_TIMESTAMP('");
+			sqlBuilder.append(format.format(submitDate2)).append("')");
 		}else if(submitDate1 != null){
-			sqlBuilder.append(" and DATE_FORMAT(submit_date,'%Y-m-%d') >= DATE_FORMAT('");
-			sqlBuilder.append(format.format(submitDate1)).append("','%Y-m-%d')");
+			sqlBuilder.append(" and UNIX_TIMESTAMP(submit_date) >= UNIX_TIMESTAMP('");
+			sqlBuilder.append(format.format(submitDate1)).append("')");
 		}else if(submitDate2 != null){
-			sqlBuilder.append(" and DATE_FORMAT(submit_date,'%Y-m-%d') <= DATE_FORMAT('");
-			sqlBuilder.append(format.format(submitDate2)).append("','%Y-m-%d')");
+			sqlBuilder.append(" and UNIX_TIMESTAMP(submit_date) <= UNIX_TIMESTAMP('");
+			sqlBuilder.append(format.format(submitDate2)).append("')");
 		}
 		if(lastRespDate1!=null&&lastRespDate2!=null){
-			sqlBuilder.append(" and DATE_FORMAT(last_response,'%Y-m-%d') between DATE_FORMAT('");
-			sqlBuilder.append(format.format(lastRespDate1)).append("','%Y-m-%d')").append(" and DATE_FORMAT('");
-			sqlBuilder.append(format.format(lastRespDate2)).append("','%Y-m-%d')");
+			sqlBuilder.append(" and UNIX_TIMESTAMP(last_response) between UNIX_TIMESTAMP('");
+			sqlBuilder.append(format.format(lastRespDate1)).append("')").append(" and UNIX_TIMESTAMP('");
+			sqlBuilder.append(format.format(lastRespDate2)).append("')");
 		}else if(lastRespDate1!=null){
-			sqlBuilder.append(" and DATE_FORMAT(last_response,'%Y-m-%d') >= DATE_FORMAT('");
-			sqlBuilder.append(format.format(lastRespDate1)).append("','%Y-m-%d')");
+			sqlBuilder.append(" and UNIX_TIMESTAMP(last_response) >= UNIX_TIMESTAMP('");
+			sqlBuilder.append(format.format(lastRespDate1)).append("')");
 		}else if(lastRespDate2!=null){
-			sqlBuilder.append(" and DATE_FORMAT(last_response,'%Y-m-%d') <= DATE_FORMAT('");
-			sqlBuilder.append(format.format(lastRespDate2)).append("','%Y-m-%d')");
+			sqlBuilder.append(" and UNIX_TIMESTAMP(last_response) <= UNIX_TIMESTAMP('");
+			sqlBuilder.append(format.format(lastRespDate2)).append("')");
 		}
 		sqlBuilder.append(" order by last_response desc");
 		return sqlBuilder.toString();

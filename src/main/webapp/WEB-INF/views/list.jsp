@@ -107,13 +107,13 @@
 						</td>
 					</tr>
 					<tr>
-						<td>提交日期(起)</td><td>
+						<td>反馈日期(起)</td><td>
 						<input type="text" id="sub_date1" name="query.submitDate1" class="datetime wp98" /></td>
-						<td>提交日期(止)</td>
+						<td>反馈日期(止)</td>
 						<td><input type="text" id="sub_date2" name="query.submitDate2" class="datetime wp98" /></td>
-						<td>最后响应(起)</td>
+						<td>更新日期(起)</td>
 						<td><input type="text" id="resp_date1" name="query.lastRespDate1" class="datetime wp98" /></td>
-						<td>最后响应(止)</td>
+						<td>更新日期(止)</td>
 						<td><input type="text" id="resp_date2" name="query.lastRespDate2" class="datetime wp98" /></td>
 					</tr>
 				</table>
@@ -125,8 +125,8 @@
 							<th class="w12">项目名称</th>
 							<th class="w8">问题类型</th>
 							<th class="w36">详细描述</th>
-							<th class="w8">提交日期</th>
-							<th class="w8"> 响应日期</th>
+							<th class="w8">反馈日期</th>
+							<th class="w8"> 更新日期</th>
 							<th class="w6">负责人</th>
 							<th class="w6">当前状态</th>
 						</tr>
