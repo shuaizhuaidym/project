@@ -54,7 +54,7 @@ public class Query implements Condition {
 			sqlBuilder.append(" and industry = '").append(industry).append("'");
 		}
 		if (!StringUtils.isNullOrEmpty(status)) {
-			sqlBuilder.append(" and status = '").append(status).append("'");
+			sqlBuilder.append(" and INSTR('").append(status).append("',status)>0");
 		}
 		if (!StringUtils.isNullOrEmpty(prudectVersion)) {
 			sqlBuilder.append(" and prudect_version = '").append(prudectVersion).append("'");
@@ -68,7 +68,9 @@ public class Query implements Condition {
 		if (!StringUtils.isNullOrEmpty(engineer)) {
 			sqlBuilder.append(" and engineer = '").append(engineer).append("'");
 		}
-		//TODO
+		if(!StringUtils.isNullOrEmpty(reporter)){
+			sqlBuilder.append(" and reporter like '%").append(reporter).append("%'");
+		}
 		if (submitDate1 != null && submitDate2 != null) {
 			sqlBuilder.append(" and UNIX_TIMESTAMP(submit_date) between UNIX_TIMESTAMP('");
 			sqlBuilder.append(format.format(submitDate1)).append("')").append(" and UNIX_TIMESTAMP('");
