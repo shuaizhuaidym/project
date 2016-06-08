@@ -89,7 +89,11 @@ public class ReportUtil {
 	// 日期
 	private void createCell(HSSFRow row, HSSFCellStyle cstyle, int index, Date value) {
 		HSSFCell cell0 = row.createCell(index);
-		cell0.setCellValue(value);
+		if(value!=null){
+			cell0.setCellValue(value);
+		}else{
+			cell0.setCellValue("");
+		}
 		cell0.setCellStyle(cstyle);
 	}
 
