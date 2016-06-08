@@ -93,7 +93,7 @@ public class Query implements Condition {
 			sqlBuilder.append(" and UNIX_TIMESTAMP(last_response) <= UNIX_TIMESTAMP('");
 			sqlBuilder.append(format.format(lastRespDate2)).append("')");
 		}
-		sqlBuilder.append(" order by last_response desc");
+		sqlBuilder.append(" order by last_response DESC,submit_date DESC");
 		return sqlBuilder.toString();
 	}
 

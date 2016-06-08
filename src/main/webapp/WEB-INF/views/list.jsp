@@ -137,7 +137,7 @@
 								<td>${(pageNo-1)*pageSize + index.count}</td>
 								<td><a href="/project/edit?prjid=${prj.prjID}">${prj.prjName}</a></td>
 								<td>${prj.issueType}</td>
-								<td>${prj.describtion}</td>
+								<td>${prj.shortDesc}</td>
 								<td>${prj.localSubmitDate}</td>
 								<td>${prj.localLastResponse}</td>
 								<td>${prj.engineer}</td>

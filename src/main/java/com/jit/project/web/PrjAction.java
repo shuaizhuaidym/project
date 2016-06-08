@@ -161,6 +161,9 @@ public class PrjAction {
 			mpEngineer.put("袁春旭", "袁春旭");
 			mpEngineer.put("王建平", "王建平");
 			mpEngineer.put("刘宗凯", "刘宗凯");
+			mpEngineer.put("王会彦", "王会彦");
+			mpEngineer.put("邓佳佳", "邓佳佳");
+			mpEngineer.put("都保星", "都保星");
 		}
 	}
 

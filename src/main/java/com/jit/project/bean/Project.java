@@ -243,10 +243,10 @@ public class Project {
 	}
 
 	public String getShortDesc(){
-		if(describtion==null||describtion.length()<32){
+		if(describtion==null||describtion.length()<64){
 			return describtion;
 		}
-		return describtion.substring(0, 32)+"...";
+		return describtion.substring(0, 64)+"...";
 	}
 	
 	public String getLocalSubmitDate() {
