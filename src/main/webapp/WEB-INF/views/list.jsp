@@ -79,9 +79,9 @@
 						<td class="w12"><input type="text" name="query.prjName" class="qt" value="<%=query.getPrjName()%>" /></td>
 						<td class="w12">状态</td>
 						<td>
-							<div class="btn-group">
-								<button class="btn w98">当前状态</button>
-								<button class="btn dropdown-toggle" data-toggle="dropdown">
+							<div class="btn-group wp98">
+								<button class="btn wp80">当前状态</button>
+								<button class="btn wp20 dropdown-toggle" data-toggle="dropdown">
 									<span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu">
