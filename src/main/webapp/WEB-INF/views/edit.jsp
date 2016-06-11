@@ -86,7 +86,7 @@
 				</tr>
 				<tr>
 					<td><label class="control-label col-xs-2">详细描述</label></td>
-					<td colspan="3"><textarea name="project.describtion" class="required x-text" rows="5">${prj.describtion}</textarea></td>
+					<td colspan="3"><textarea name="project.describtion" class="required x-text" rows="8">${prj.describtion}</textarea></td>
 				</tr>
 				<tr>
 					<td><label class="control-label col-xs-2">报告人</label></td>

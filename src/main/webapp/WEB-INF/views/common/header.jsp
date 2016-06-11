@@ -21,6 +21,7 @@
 						<ul class="dropdown-menu">
 							<li><a href="<%=path %>/dic/list">字典设置</a></li>
 							<li><a href="<%=path %>/dic/list">机构设置</a></li>
+							<li><a href="<%=path %>/dic/list">角色设置</a></li>
 						</ul>
 					</li>
 				</ul>
