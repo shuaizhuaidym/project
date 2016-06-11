@@ -80,8 +80,8 @@
 						<td class="w12">状态</td>
 						<td>
 							<div class="btn-group wp98">
-								<button class="btn wp80">当前状态</button>
-								<button class="btn wp20 dropdown-toggle" data-toggle="dropdown">
+								<button class="btn wp85">当前状态</button>
+								<button class="btn wp15 dropdown-toggle" data-toggle="dropdown">
 									<span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu">
