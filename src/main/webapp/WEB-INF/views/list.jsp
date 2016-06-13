@@ -34,6 +34,8 @@
 <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 
 <script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+
 <script type="text/javascript" src="js/bootstrap-dropdown.js"></script>
 <script type="text/javascript" src="js/bootstrap-datetimepicker.js"></script>
 <script type="text/javascript">
@@ -59,7 +61,9 @@
 			$("#queryForm").attr("action","<%=path%>/query");
 			$("#queryForm").submit();
 		});		
-		
+		// popover demo
+
+		$("#tgl").popover();
 	});
 </script>
 </head>
@@ -84,6 +88,8 @@
 								<button class="btn wp15 dropdown-toggle" data-toggle="dropdown">
 									<span class="caret"></span>
 								</button>
+								<br/>
+								<a href="#" id="tgl" class="btn" data-toggle="popover" data-placement="bottom" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." title="Popover on bottom">Popover on bottom</a>
 								<ul class="dropdown-menu">
 									<li><input type="checkbox" name="query.status" value="未开始" />未开始</li>
 									<li><input type="checkbox" name="query.status" value="进行中" />进行中 </li>
