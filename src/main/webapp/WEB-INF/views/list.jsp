@@ -32,12 +32,13 @@
 <link href="css/bootstrap.min.css" rel="stylesheet" />
 <link href="css/bootstrap-responsive.min.css" rel="stylesheet" />
 <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+<link href="css/bootstrap-multiselect.css" rel="stylesheet" />
 
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
-<script type="text/javascript" src="js/bootstrap-dropdown.js"></script>
 <script type="text/javascript" src="js/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript" src="js/bootstrap-multiselect.js"></script>
 <script type="text/javascript">
 	$(function() {
 		var datePks=$("#queryForm").find("input.datetime");
@@ -60,10 +61,10 @@
 		$("#btnQuery").click(function(){
 			$("#queryForm").attr("action","<%=path%>/query");
 			$("#queryForm").submit();
-		});		
-		// popover demo
-
-		$("#tgl").popover();
+		});
+		$('#dropdown_status').multiselect({buttonWidth: '98%',triggerOnChange:true});
+		var ckd="<%=query.getStatus()%>";
+		$('#dropdown_status').select(ckd, true);
 	});
 </script>
 </head>
@@ -83,21 +84,13 @@
 						<td class="w12"><input type="text" name="query.prjName" class="qt" value="<%=query.getPrjName()%>" /></td>
 						<td class="w12">状态</td>
 						<td>
-							<div class="btn-group wp98">
-								<button class="btn wp85">当前状态</button>
-								<button class="btn wp15 dropdown-toggle" data-toggle="dropdown">
-									<span class="caret"></span>
-								</button>
-								<br/>
-								<a href="#" id="tgl" class="btn" data-toggle="popover" data-placement="bottom" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." title="Popover on bottom">Popover on bottom</a>
-								<ul class="dropdown-menu">
-									<li><input type="checkbox" name="query.status" value="未开始" />未开始</li>
-									<li><input type="checkbox" name="query.status" value="进行中" />进行中 </li>
-									<li><input type="checkbox" name="query.status" value="暂停" />暂停 </li>
-									<li><input type="checkbox" name="query.status" value="已完成" />已完成</li>
-									<li><input type="checkbox" name="query.status" value="等待反馈" />等待反馈</li>
-								</ul>
-							</div>
+							<select id="dropdown_status" name="query.status" multiple="multiple">
+								<option value="未开始">未开始</option>
+								<option value="进行中">进行中</option>
+								<option value="暂停">暂停</option>
+								<option value="已完成">已完成</option>
+								<option value="等待反馈">等待反馈</option>
+						</select>
 						</td>
 						<td>负责人</td>
 						<td class="w12">
