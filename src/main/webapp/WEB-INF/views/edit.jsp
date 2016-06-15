@@ -106,7 +106,7 @@
 				</tr>
 				<tr>
 					<td><label class="control-label col-xs-2">处理过程</label></td>
-					<td colspan="3"><textarea id="ta_proc" name="project.process" class="x-text" rows="5">${prj.process}</textarea></td>
+					<td colspan="3"><textarea id="ta_proc" name="project.process" class="x-text" rows="10">${prj.process}</textarea></td>
 				</tr>
 				<tr>
 					<td><label class="control-label col-xs-2">改进措施</label></td>
