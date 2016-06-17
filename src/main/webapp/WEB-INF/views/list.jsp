@@ -38,7 +38,6 @@
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
 <script type="text/javascript" src="js/bootstrap-datetimepicker.js"></script>
-<script type="text/javascript" src="js/bootstrap-multiselect.js"></script>
 <script type="text/javascript">
 	$(function() {
 		var datePks=$("#queryForm").find("input.datetime");
@@ -62,9 +61,9 @@
 			$("#queryForm").attr("action","<%=path%>/query");
 			$("#queryForm").submit();
 		});
-		$('#dropdown_status').multiselect({buttonWidth: '98%',triggerOnChange:true});
-		var ckd="<%=query.getStatus()%>";
-		$('#dropdown_status').select(ckd, true);
+		$("label.checkbox > input").on("click",function(e) {
+			e.stopPropagation();
+		});
 	});
 </script>
 </head>
@@ -84,13 +83,35 @@
 						<td class="w12"><input type="text" name="query.prjName" class="qt" value="<%=query.getPrjName()%>" /></td>
 						<td class="w12">状态</td>
 						<td>
-							<select id="dropdown_status" name="query.status" multiple="multiple">
-								<option value="未开始">未开始</option>
-								<option value="进行中">进行中</option>
-								<option value="暂停">暂停</option>
-								<option value="已完成">已完成</option>
-								<option value="等待反馈">等待反馈</option>
-						</select>
+							<div class="btn-group wp98">
+								<button class="wp100 dropdown-toggle btn btn-default" data-toggle="dropdown" type="button" title="None selected"
+									aria-expanded="true">
+									<span class="multiselect-selected-text">当前状态</span> <b class="caret"></b>
+								</button>
+
+								<ul id="ctn" class="multiselect-container dropdown-menu wp100">
+									<li><a> <label class="checkbox"> <input type="checkbox" name="query.status" value="未开始">
+												未开始
+										</label>
+									</a></li>
+									<li><a> <label class="checkbox"> <input type="checkbox" name="query.status" value="进行中">
+												进行中
+										</label>
+									</a></li>
+									<li><a> <label class="checkbox"> <input type="checkbox" name="query.status" value="暂停">
+												暂停
+										</label>
+									</a></li>
+									<li><a> <label class="checkbox"> <input type="checkbox" name="query.status" value="已完成">
+												已完成
+										</label>
+									</a></li>
+									<li><a> <label class="checkbox"> <input type="checkbox" name="query.status" value="等待反馈">
+												等待反馈
+										</label>
+									</a></li>
+								</ul>
+							</div>
 						</td>
 						<td>负责人</td>
 						<td class="w12">
