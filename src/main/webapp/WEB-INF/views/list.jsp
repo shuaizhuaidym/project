@@ -61,8 +61,15 @@
 			$("#queryForm").attr("action","<%=path%>/query");
 			$("#queryForm").submit();
 		});
-		$("label.checkbox > input").on("click",function(e) {
+		$("label.checkbox > input").on("click",function(e) {//实现多选
 			e.stopPropagation();
+		});
+		var old="<%=query.getStatus()%>";
+		var opt=$("label.checkbox > input");
+		opt.each(function(){
+			if(old.indexOf(this.value)>=0){
+				this.checked="checked";
+			}
 		});
 	});
 </script>
