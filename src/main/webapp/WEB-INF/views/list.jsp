@@ -5,7 +5,6 @@
 <%@page import="org.nutz.dao.pager.Pager"%>
 <%@page import="org.nutz.dao.QueryResult"%>
 <%@page import="com.jit.project.bean.Query"%>
-<%@page isELIgnored="false"%>
 
 <%
 	Query query = (Query) request.getAttribute("query");
@@ -33,7 +32,7 @@
 <link href="css/bootstrap-responsive.min.css" rel="stylesheet" />
 <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 <link href="css/bootstrap-multiselect.css" rel="stylesheet" />
-
+<style type="text/css">.compress{overflow: hidden}</style>
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
@@ -61,17 +60,28 @@
 			$("#queryForm").attr("action","<%=path%>/query");
 			$("#queryForm").submit();
 		});
-		$("label.checkbox > input").on("click",function(e) {//实现多选
-			e.stopPropagation();
-		});
+		
 		var old="<%=query.getStatus()%>";
-		var opt=$("label.checkbox > input");
-		opt.each(function(){
-			if(old.indexOf(this.value)>=0){
-				this.checked="checked";
+		setBtnText(old);
+		$("label.checkbox > input").click(function(e) {
+			e.stopPropagation();//实现多选
+			var chkd="";
+			var cbx = $("input[type=checkbox]");
+			cbx.each(function() {
+				if(this.checked)
+					chkd += this.value+",";
+			});
+			setBtnText(chkd);
+		});
+		$("label.checkbox > input").each(function() {
+			if (old.indexOf(this.value) >= 0) {
+				this.checked = "checked";
 			}
 		});
 	});
+	function setBtnText(txt){
+		$("span.multiselect-selected-text").html(txt.length>10?txt.substring(0,9)+"...":txt);//represent
+	}
 </script>
 </head>
 <body>
@@ -91,7 +101,7 @@
 						<td class="w12">状态</td>
 						<td>
 							<div class="btn-group wp98">
-								<button class="wp100 dropdown-toggle btn btn-default" data-toggle="dropdown" type="button" title="None selected"
+								<button id="btnm" class="wp100 dropdown-toggle btn btn-default compress" data-toggle="dropdown" type="button" title="None selected"
 									aria-expanded="true">
 									<span class="multiselect-selected-text">当前状态</span> <b class="caret"></b>
 								</button>
