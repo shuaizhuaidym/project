@@ -80,7 +80,11 @@
 		});
 	});
 	function setBtnText(txt){
-		$("span.multiselect-selected-text").html(txt.length>10?txt.substring(0,9)+"...":txt);//represent
+		if(txt && txt!="null"){
+			$("span.multiselect-selected-text").html(txt.length>10?txt.substring(0,9)+"...":txt);//represent
+		}else{
+			$("span.multiselect-selected-text").html("当前状态");//represent
+		}
 	}
 </script>
 </head>
