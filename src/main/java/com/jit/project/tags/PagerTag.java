@@ -40,8 +40,7 @@ public class PagerTag extends TagSupport {
 			pageNo = Math.min(pageNo, totalPage);
 			prev = pageNo > 1 ? pageNo - 1 : -1;
 			next = pageNo < totalPage ? pageNo + 1 : -1;
-			url = url != null ? url : ((HttpServletRequest) this.pageContext.getRequest())
-					.getRequestURI();
+			url = url != null ? url : ((HttpServletRequest) this.pageContext.getRequest()).getContextPath()+"/query";
 			cutBtnNum = btnNum - 2;
 			rest = cutBtnNum % 2;
 		}
@@ -172,6 +171,7 @@ public class PagerTag extends TagSupport {
 		html.append("\tpageNo = 1;\n");
 		html.append("}\n");
 		html.append("\tvar form = document.getElementById(\"queryForm\");\n");
+		html.append("form.action=\"").append(url).append("\";\n");
 		html.append("$('#pageNoInput').val(pageNo);\n");
 		html.append("\tform.submit();\n");
 		html.append("}\n");

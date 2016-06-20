@@ -18,7 +18,7 @@ import com.jit.project.bean.Project;
 import com.jit.project.bean.Query;
 import com.jit.project.service.PrjService;
 
-//TODO dictionary/check box group tag
+//TODO dictionary
 @InjectName("prjAction")
 public class PrjAction {
 	

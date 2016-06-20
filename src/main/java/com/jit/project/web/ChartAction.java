@@ -44,6 +44,8 @@ public class ChartAction {
 
 	@Inject("chartService")
 	private ChartService chartService;
+	
+	private static final int MAX_EXPORT_COUNT=10240;
 
 	/**
 	 * 导出Excel
@@ -59,9 +61,11 @@ public class ChartAction {
 	public OutputStream export(HttpServletRequest request, HttpServletResponse response,
 			@Param("::query.") Query query) {
 		if (query == null) {
-			query = new Query(1024);
+			query = new Query();
 		}
-		query.setPageSize(1024);
+		//导出不分页
+		query.setPageNumber(1);
+		query.setPageSize(MAX_EXPORT_COUNT);
 		// query data
 		QueryResult qResult = prjService.query(query);
 
