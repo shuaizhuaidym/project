@@ -1,7 +1,8 @@
 package com.jit.project.bean;
 
-import java.text.SimpleDateFormat;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import org.nutz.dao.entity.annotation.Column;
 import org.nutz.dao.entity.annotation.Id;
@@ -269,5 +270,37 @@ public class Project {
 
 	public void setOperatorIP(String operatorIP) {
 		this.operatorIP = operatorIP;
+	}
+
+	public final String getColor() {
+		int passed = diff(Calendar.getInstance().getTime(), this.submitDate);
+		String color;
+		if ("已完成".equals(this.status)) {
+			return "white";
+		}
+		switch (passed) {
+		case 1:
+		case 2:
+			color = "white";
+			break;
+		case 3: {
+			color = "blue";
+			break;
+		}
+		case 4: {
+			color = "yellow";
+			break;
+		}
+		default: {
+			color = "red";
+			break;
+		}
+		}
+		return color;
+	}
+
+	public int diff(java.util.Date late, java.util.Date earler) {
+		int pass = (int) (late.getTime() - earler.getTime()) / 1000 / 3600 / 24;
+		return pass;
 	}
 }

@@ -174,7 +174,7 @@
 					</thead>
 					<tbody>
 						<c:forEach var="prj" items="<%=rst.getList()%>" varStatus="index">
-							<tr>
+							<tr style="background-color:${prj.color}">
 								<td>${(pageNo-1)*pageSize + index.count}</td>
 								<td><a href="/project/edit?prjid=${prj.prjID}">${prj.prjName}</a></td>
 								<td>${prj.issueType}</td>

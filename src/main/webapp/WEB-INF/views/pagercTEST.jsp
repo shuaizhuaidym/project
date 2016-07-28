@@ -1,5 +1,3 @@
-<%@ taglib uri="/WEB-INF/tld/c.tld" prefix="c"%>
-<%@ taglib uri="/WEB-INF/tld/fmt.tld" prefix="fmt"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="tags"%>
 <head>
 <style><!--分页样式-->
