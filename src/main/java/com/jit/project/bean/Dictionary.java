@@ -1,6 +1,7 @@
 package com.jit.project.bean;
 
 import org.nutz.dao.entity.annotation.Column;
+import org.nutz.dao.entity.annotation.Id;
 import org.nutz.dao.entity.annotation.Name;
 import org.nutz.dao.entity.annotation.Table;
 
@@ -12,24 +13,32 @@ import org.nutz.dao.entity.annotation.Table;
  */
 @Table("t_dictionary")
 public class Dictionary {
+	@Id
 	@Column("dic_id")
-	private String dicID;
+	private Integer dicID;
 	// 字典类型
 	@Name
-	@Column("dic_name")
+	@Column("dic_type")
 	private String dicType;
 	// 字典名称
 	@Column("dic_name")
 	private String dicName;
+	//用途说明
+	@Column("comments")
+	private String comments;
 	// 是否可用（逻辑删除）
 	@Column("available")
 	private boolean available;
 
-	public String getDicID() {
+	public Integer getDicID() {
 		return dicID;
 	}
 
-	public void setDicID(String dicID) {
+	public String getState() {
+		return available ? "启用" : "停用";
+	}
+
+	public void setDicID(Integer dicID) {
 		this.dicID = dicID;
 	}
 
@@ -56,5 +65,15 @@ public class Dictionary {
 	public void setAvailable(boolean available) {
 		this.available = available;
 	}
+	enum DicTyps{
+		EGINEER,STATUS,INDUSTRY
+	}
+	public String getComments() {
+		return comments;
+	}
 
+	public void setComments(String comments) {
+		this.comments = comments;
+	}
+	
 }

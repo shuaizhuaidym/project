@@ -18,7 +18,6 @@ import com.jit.project.bean.Project;
 import com.jit.project.bean.Query;
 import com.jit.project.service.PrjService;
 
-//TODO dictionary
 @InjectName("prjAction")
 public class PrjAction {
 	

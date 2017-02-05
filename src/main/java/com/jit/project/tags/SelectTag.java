@@ -56,15 +56,18 @@ public class SelectTag extends TagSupport {
 			builder.append(" style=\"").append(style).append("\"");
 		}
 		builder.append(">");
-		
-		for(Entry<String, String>nt:items.entrySet()){
-			String key=nt.getKey();
-			String val=nt.getValue();
-			if(val.equalsIgnoreCase(path)){
-				builder.append("<option value=\"").append(key).append("\"");
-				builder.append("selected=\"selected\">").append(val).append("</option>");
-			}else{
-				builder.append("<option value=\"").append(key).append("\">").append(val).append("</option>");
+		if (items != null) {
+			for (Entry<String, String> nt : items.entrySet()) {
+				String key = nt.getKey();
+				String val = nt.getValue();
+				if (val.equalsIgnoreCase(path)) {
+					builder.append("<option value=\"").append(key).append("\"");
+					builder.append("selected=\"selected\">").append(val)
+							.append("</option>");
+				} else {
+					builder.append("<option value=\"").append(key).append("\">")
+							.append(val).append("</option>");
+				}
 			}
 		}
 		builder.append("</select>");

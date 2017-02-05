@@ -3,11 +3,11 @@ body {
 	padding-bottom: 40px;
 }
 
-td:nth-child(even) {
+form td:nth-child(even) {
 	text-align: left;
 }
 
-td:nth-child(odd) {
+form td:nth-child(odd) {
 	text-align: right;
 }
 

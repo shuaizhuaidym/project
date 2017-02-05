@@ -2,6 +2,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="pg" uri="/WEB-INF/tags"%>
 <%@taglib prefix="ui" uri="/WEB-INF/tags/select"%>
+
 <%@page import="org.nutz.dao.pager.Pager"%>
 <%@page import="org.nutz.dao.QueryResult"%>
 <%@page import="com.jit.project.bean.Query"%>
@@ -32,6 +33,7 @@
 <link href="css/bootstrap-responsive.min.css" rel="stylesheet" />
 <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 <link href="css/bootstrap-multiselect.css" rel="stylesheet" />
+
 <style type="text/css">.compress{overflow: hidden}</style>
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
@@ -93,10 +95,10 @@
 	<div class="container-fluid">
 		<fieldset>
 			<legend>
-				项目列表<a href="<%=path%>/form" style="margin-left: 50px">&gt;&gt;新建项目</a>
+				项目列表<a href="<%=path%>/form" style="margin-left: 50px;color:white">+新建项目</a>
 			</legend>
 		</fieldset>
-		<form id="queryForm" action="<%=path%>/query" method="post">
+			<form id="queryForm" action="<%=path%>/query" method="post">
 			<div class="table-responsive">
 				<table class="table table-bordered table-striped">
 					<tr>
@@ -158,7 +160,6 @@
 						<td><input type="text" id="resp_date2" name="query.lastRespDate2" class="datetime wp98" /></td>
 					</tr>
 				</table>
-
 				<table class="table table-bordered table-striped">
 					<thead>
 						<tr>
@@ -190,12 +191,12 @@
 			</div>
 			<pg:page pageNo="<%=pageNo%>" currentClass="active" pageSize="<%=pageSize%>" totalCount="<%=totalCount%>">
 			</pg:page>
-		</form>
+			</form>
 
 	</div>
+	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 
 	<!-- /container -->
-	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 
 </body>
 </html>

@@ -152,10 +152,11 @@ public class PagerTag extends TagSupport {
 			html.append("<li class=\"" + disableClass + "\"><a>尾页</a></li>");
 		}
 		
-		html.append("<input type=\"button\" onclick=\"goPage()\" value=\"跳转\"></input>到第");
-		html.append("<input type=\"text\" id=\"pageNoInput\" name=\"query.pageNumber\" value=\"" + pageNo + "\" style=\"width:20px\"/></input>页|");
+		html.append("共"+totalPage+"页，");
+		html.append("到第");
+		html.append("<input type=\"mumber\" id=\"pageNoInput\" name=\"query.pageNumber\" value=\"" + pageNo + "\" style=\"width:20px\"/>");
+		html.append("</input>页<input type=\"button\" onclick=\"goPage()\" value=\"确定\" class=\"btn-jump\"></input>");
 		html.append("</ul>");
-		html.append("共"+totalCount+"条记录|每页"+pageSize+"条|当前"+pageNo+"/"+totalPage+"页");
 		html.append("</div>");
 		html.append("<input type=\"hidden\" name=\"pageSize\" value=\"" + pageSize + "\"></input>");
 //		html.append("</form>");
@@ -171,7 +172,7 @@ public class PagerTag extends TagSupport {
 		html.append("\tpageNo = 1;\n");
 		html.append("}\n");
 		html.append("\tvar form = document.getElementById(\"queryForm\");\n");
-		html.append("form.action=\"").append(url).append("\";\n");
+//		html.append("form.action=\"").append(url).append("\";\n");
 		html.append("$('#pageNoInput').val(pageNo);\n");
 		html.append("\tform.submit();\n");
 		html.append("}\n");
