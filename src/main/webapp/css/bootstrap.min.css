@@ -1002,7 +1002,7 @@ select,textarea,input[type="text"],input[type="password"],input[type="datetime"]
 	vertical-align: middle;
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
-	border-radius: 4px
+	border-radius: 2px
 }
 
 input,textarea,.uneditable-input {

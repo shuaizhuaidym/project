@@ -47,7 +47,7 @@
 				<table class="table table-bordered table-striped table-condensed">
 					<tr>
 						<td>字典名称</td>
-						<td><input type="text" name="query.dicName" value="${obj.query.dicName}" class="qt" /></td>
+						<td><input type="text" name="query.dicName" value="${obj.query.dicName}"/></td>
 						<td>字典类型</td>
 						<td><ui:select name="query.dicType" path="${obj.query.dicType}" items="${obj.mDicType}"></ui:select></td>
 
@@ -84,7 +84,6 @@
 			<%-- TODO pager --%>
 			<pg:page pageNo="<%=pageNo%>" currentClass="active" pageSize="<%=pageSize%>" totalCount="<%=totalCount%>">
 			</pg:page>
-			<input type="number"/>
 		</form>
 
 	</div>

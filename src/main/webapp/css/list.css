@@ -78,7 +78,19 @@ form td:nth-child(odd) {
 	margin:0 auto;
 	text-align: center;
 }
-
+.pagination .input {
+	border: 1px solid #ededed;
+	height: 21px;
+	text-align: center;
+	width: 35px;
+}
+.pagination .btn-jump,.pagination .input {
+	/* float: left; */
+	margin-top: -1px;
+}
+.pagination span{
+	line-height: 30px;
+} 
 .pagination .btn-jump {
 	background-clip: padding-box;
 	border: 1px solid #ededed;
