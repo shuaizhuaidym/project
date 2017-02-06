@@ -155,7 +155,7 @@ public class PagerTag extends TagSupport {
 		html.append("<span>共"+totalPage+"页，");
 		html.append("到第</span>");
 		html.append("<input type=\"mumber\" id=\"pageNoInput\" name=\"query.pageNumber\" value=\"" + pageNo + "\" class=\"input\"/>");
-		html.append("</input>页<input type=\"button\" onclick=\"goPage()\" value=\"确定\" class=\"btn-jump\"></input>");
+		html.append("</input><span>页</span><input type=\"button\" onclick=\"goPage()\" value=\"确定\" class=\"btn-jump\"></input>");
 		html.append("</ul>");
 		html.append("</div>");
 		html.append("<input type=\"hidden\" name=\"pageSize\" value=\"" + pageSize + "\"></input>");

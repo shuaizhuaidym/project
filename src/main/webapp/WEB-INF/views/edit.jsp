@@ -18,6 +18,7 @@
 <script type="text/javascript" src="js/jquery/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="js/bootstrap-datetimepicker.js"></script>
 <script type="text/javascript" src="js/bootstrap-dropdown.js"></script>
+<script type="text/javascript" src="js/Util.js"></script>
 
 <script type="text/javascript" src="js/jquery-validation-1.9.0/jquery.validate.js"></script>
 <script type="text/javascript">
@@ -108,7 +109,7 @@
 					<td><label class="control-label col-xs-2">处理过程</label></td>
 					<td colspan="3">
 						<textarea id="ta_proc" name="project.process" class="x-text" rows="10">${prj.process}</textarea>
-						<a>当前日期</a>
+						<a id="dateX" class="pointer">当前日期</a>
 					</td>
 				</tr>
 				<tr>
@@ -135,7 +136,7 @@
 </body>
 <script type="text/javascript">
 $(function() {
-	$( "#frm_project" ).validate( {
+	$("#frm_project" ).validate( {
 			errorPlacement : function(error, element) {
 				//error.addClass( "ui red pointing label transition" );
 				//error.insertAfter( element.parent() );
@@ -146,6 +147,9 @@ $(function() {
 			unhighlight : function(element, errorClass, validClass) {
 				$(element).css("border-color", "#ccc");
 			}
+		});
+		$("#dateX").click(function(){
+			$("#ta_proc").append(getNowFormatDate());
 		});
 	});
 </script>

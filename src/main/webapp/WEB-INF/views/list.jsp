@@ -160,7 +160,7 @@
 						<td><input type="text" id="resp_date2" name="query.lastRespDate2" class="datetime wp98" /></td>
 					</tr>
 				</table>
-				<table class="table table-bordered table-striped">
+				<table class="table table-bordered">
 					<thead>
 						<tr>
 							<th class="w4">序号</th>

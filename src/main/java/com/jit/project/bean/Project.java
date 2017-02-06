@@ -279,16 +279,17 @@ public class Project {
 			return "white";
 		}
 		switch (passed) {
+		case 0:
 		case 1:
 		case 2:
 			color = "white";
 			break;
 		case 3: {
-			color = "blue";
+			color = "yellow";
 			break;
 		}
 		case 4: {
-			color = "yellow";
+			color = "red";
 			break;
 		}
 		default: {

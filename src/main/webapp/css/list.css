@@ -90,6 +90,7 @@ form td:nth-child(odd) {
 }
 .pagination span{
 	line-height: 30px;
+	padding:4px 12px;
 } 
 .pagination .btn-jump {
 	background-clip: padding-box;
