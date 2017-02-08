@@ -79,7 +79,7 @@ form td:nth-child(odd) {
 	text-align: center;
 }
 .pagination .input {
-	border: 1px solid #ededed;
+	border: 1px solid #dddddd;
 	height: 21px;
 	text-align: center;
 	width: 35px;
