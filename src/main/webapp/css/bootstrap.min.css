@@ -965,7 +965,8 @@ legend {
 	font-size: 21px;
 	line-height: 40px;
 	color: #333;
-	background-color:#1A7CC1;
+	background:linear-gradient(to bottom, #086ed5, #055db5) repeat scroll 0 0 rgba(0, 0, 0, 0);
+	background-color:rgb(7, 103, 200);
 	border: 0;
 	border-bottom: 1px solid #e5e5e5
 }
