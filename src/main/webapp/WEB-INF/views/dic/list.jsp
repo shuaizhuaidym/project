@@ -40,7 +40,7 @@
 	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 	<div class="container-fluid">
 		<fieldset>
-			<legend> 字典列表 </legend>
+			<legend><span>字典列表</span></legend>
 		</fieldset>
 		<form id="queryForm" action="<%=path%>/dic/query" method="post">
 			<div class="table-responsive">

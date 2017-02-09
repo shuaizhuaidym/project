@@ -57,7 +57,7 @@
 		<form id="frm_project" action="update" method="post">
 			<input type="hidden" name="project.prjID" value="${prj.prjID}" />
 			<fieldset>
-				<legend>更新项目进展</legend>
+				<legend><span>更新项目进展</span></legend>
 			</fieldset>
 
 			<table class="table table-striped table-bordered">

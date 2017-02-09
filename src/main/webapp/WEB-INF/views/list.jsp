@@ -95,7 +95,9 @@
 	<div class="container-fluid">
 		<fieldset>
 			<legend>
-				项目列表<a href="<%=path%>/form" style="margin-left: 50px;color:white">+新建项目</a>
+				<span>
+					项目列表<a href="<%=path%>/form" style="margin-left: 50px;color:white">+新建项目</a>
+				</span>
 			</legend>
 		</fieldset>
 			<form id="queryForm" action="<%=path%>/query" method="post">

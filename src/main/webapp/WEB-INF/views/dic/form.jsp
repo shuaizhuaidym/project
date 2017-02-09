@@ -25,7 +25,7 @@
 	<div class="row-fluid">
 		<div class="span8 offset2">
 			<fieldset>
-				<legend>增加字典</legend>
+				<legend><span>增加字典</span></legend>
 			</fieldset>
 			<form class="form-horizontal" action="<%=path%>/dic/create" method="post">
 				<div class="control-group">

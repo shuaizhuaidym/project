@@ -26,7 +26,7 @@
 	<div class="row-fluid">
 		<div class="span8 offset2">
 			<fieldset>
-				<legend>编辑字典</legend>
+				<legend><span>编辑字典</span></legend>
 			</fieldset>
 			<form class="form-horizontal" action="<%=path%>/dic/update" method="post">
 				<input type="hidden" id="dic.dicID" name="dic.dicID" value="${obj.dict.dicID}"/>

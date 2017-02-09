@@ -43,7 +43,7 @@
 	<div class="container" style="width: 65%; margin: 0 auto">
 		<form id="frm_project" action="create" method="post">
 			<fieldset>
-				<legend>新建项目</legend>
+				<legend><span>新建项目</span></legend>
 			</fieldset>
 
 			<table class="table table-bordered table-striped">
