@@ -1,4 +1,4 @@
-package com.jit.project.auth;
+package com.jit.project.bean;
 
 import java.util.Date;
 

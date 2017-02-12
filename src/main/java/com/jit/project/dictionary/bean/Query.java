@@ -1,4 +1,4 @@
-package com.jit.project.bean.dic;
+package com.jit.project.dictionary.bean;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

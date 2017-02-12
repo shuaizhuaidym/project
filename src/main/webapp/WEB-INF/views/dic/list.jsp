@@ -6,7 +6,7 @@
 <%@page import="org.nutz.dao.QueryResult"%>
 <%@page import="com.jit.project.bean.Query"%>
 <%@page import="org.nutz.mvc.ViewModel"%>
-<%@page import="com.jit.project.bean.Dictionary"%>
+<%@page import="com.jit.project.dictionary.bean.Dictionary"%>
 <%@page import="java.util.List"%>
 
 <%

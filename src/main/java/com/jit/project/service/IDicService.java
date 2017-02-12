@@ -2,8 +2,8 @@ package com.jit.project.service;
 
 import org.nutz.dao.QueryResult;
 
-import com.jit.project.bean.Dictionary;
-import com.jit.project.bean.dic.Query;
+import com.jit.project.dictionary.bean.Dictionary;
+import com.jit.project.dictionary.bean.Query;
 
 /**
  * 字典管理类

@@ -1,4 +1,4 @@
-package com.jit.project.auth;
+package com.jit.project.user.bean;
 
 import java.util.List;
 
@@ -10,10 +10,15 @@ import org.nutz.dao.entity.annotation.Name;
 import org.nutz.dao.entity.annotation.One;
 import org.nutz.dao.entity.annotation.Table;
 
+import com.jit.project.auth.bean.Permission;
+import com.jit.project.auth.bean.Role;
+import com.jit.project.bean.BasePojo;
+
 @Table("t_user")
 public class User extends BasePojo {
 
 	@Id
+	@Column(value="user_id")
 	protected int id;
 	@Name
 	@Column
@@ -25,9 +30,9 @@ public class User extends BasePojo {
 	protected String salt;
 	@Column
 	private boolean locked;
-	@ManyMany(from = "u_id", relation = "t_user_role", target = Role.class, to = "role_id")
+	@ManyMany(from = "user_id", relation = "t_user_role", target = Role.class, to = "role_id")
 	protected List<Role> roles;
-	@ManyMany(from = "u_id", relation = "t_user_permission", target = Permission.class, to = "permission_id")
+	@ManyMany(from = "user_id", relation = "t_user_permission", target = Permission.class, to = "permission_id")
 	protected List<Permission> permissions;
 	@One(target = UserProfile.class, field = "id", key = "userId")
 	protected UserProfile profile;

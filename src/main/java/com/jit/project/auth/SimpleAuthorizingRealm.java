@@ -1,4 +1,4 @@
-package com.jit.project.authshiro.realm;
+package com.jit.project.auth;
 
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -16,25 +16,28 @@ import org.nutz.dao.Dao;
 import org.nutz.integration.shiro.SimpleShiroToken;
 import org.nutz.mvc.Mvcs;
 
-import com.jit.project.auth.Permission;
-import com.jit.project.auth.Role;
-import com.jit.project.auth.User;
+import com.jit.project.auth.bean.Permission;
+import com.jit.project.auth.bean.Role;
+import com.jit.project.user.bean.User;
 
 public class SimpleAuthorizingRealm extends AuthorizingRealm {
 
 	protected Dao dao; // ShiroFilter先于NutFilter初始化化,所以无法使用注入功能
 
-	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
+	protected AuthorizationInfo doGetAuthorizationInfo(
+			PrincipalCollection principals) {
 		// null usernames are invalid
 		if (principals == null) {
-			throw new AuthorizationException("PrincipalCollection method argument cannot be null.");
+			throw new AuthorizationException(
+					"PrincipalCollection method argument cannot be null.");
 		}
 		int userId = (Integer) principals.getPrimaryPrincipal();
 		User user = dao().fetch(User.class, userId);
 		if (user == null)
 			return null;
 		if (user.isLocked())
-			throw new LockedAccountException("Account [" + user.getName() + "] is locked.");
+			throw new LockedAccountException("Account [" + user.getName()
+					+ "] is locked.");
 
 		SimpleAuthorizationInfo auth = new SimpleAuthorizationInfo();
 		user = dao().fetchLinks(user, null);
@@ -57,31 +60,34 @@ public class SimpleAuthorizingRealm extends AuthorizingRealm {
 		return auth;
 	}
 
-	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token)
-			throws AuthenticationException {
+	protected AuthenticationInfo doGetAuthenticationInfo(
+			AuthenticationToken token) throws AuthenticationException {
 		SimpleShiroToken upToken = (SimpleShiroToken) token;
 		// upToken.getPrincipal() 的返回值就是SimpleShiroToken构造方法传入的值
 		// 可以是int也可以是User类实例,或任何你希望的值,自行处理一下就好了
-		User user = dao().fetch(User.class, ((Integer) upToken.getPrincipal()).longValue());
+		User user = dao().fetch(User.class,
+				((Integer) upToken.getPrincipal()).longValue());
 		if (user == null)
 			return null;
 		if (user.isLocked())
-			throw new LockedAccountException("Account [" + user.getName() + "] is locked.");
+			throw new LockedAccountException("Account [" + user.getName()
+					+ "] is locked.");
 		return new SimpleAccount(user.getId(), user.getPassword(), getName());
 	}
 
 	/**
 	 * 覆盖父类的验证,直接pass. 在shiro内做验证的话, 出错了都不知道哪里错
 	 */
-	protected void assertCredentialsMatch(AuthenticationToken token, AuthenticationInfo info)
-			throws AuthenticationException {
+	protected void assertCredentialsMatch(AuthenticationToken token,
+			AuthenticationInfo info) throws AuthenticationException {
 	}
 
 	public SimpleAuthorizingRealm() {
 		this(null, null);
 	}
 
-	public SimpleAuthorizingRealm(CacheManager cacheManager, CredentialsMatcher matcher) {
+	public SimpleAuthorizingRealm(CacheManager cacheManager,
+			CredentialsMatcher matcher) {
 		super(cacheManager, matcher);
 		setAuthenticationTokenClass(SimpleShiroToken.class); // 非常非常重要,与SecurityUtils.getSubject().login是对应关系!!!
 	}

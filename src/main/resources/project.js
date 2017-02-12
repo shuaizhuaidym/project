@@ -1,4 +1,10 @@
 var ioc = {
+		conf : {
+		type : "org.nutz.ioc.impl.PropertiesProxy",
+		fields : {
+			paths : [ "mail/" ]
+		}
+	},
 	// 数据源
 	dataSource : {
 		type : "org.apache.commons.dbcp.BasicDataSource",
@@ -73,11 +79,19 @@ var ioc = {
 		}
 	},
 	dicAction : {
-		type : "com.jit.project.web.DicAction",
+		type : "com.jit.project.dictionary.web.DicAction",
 		fields : {
 			dicService : {
 				refer : 'dicService'
 			}
 		}
-	}
+	},
+	authorityService : {
+		type : 'com.jit.project.auth.service.AuthorityServiceImpl',
+		fields : {
+			dao : {
+				refer : 'dao'
+			}
+		}
+	},
 };

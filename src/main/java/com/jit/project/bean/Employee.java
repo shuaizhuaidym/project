@@ -7,6 +7,8 @@ import org.nutz.dao.entity.annotation.Id;
 import org.nutz.dao.entity.annotation.ManyMany;
 import org.nutz.dao.entity.annotation.Table;
 
+import com.jit.project.auth.bean.Role;
+
 /**
  * <p>
  * Title:Employee

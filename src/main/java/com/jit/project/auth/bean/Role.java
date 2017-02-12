@@ -1,4 +1,4 @@
-package com.jit.project.auth;
+package com.jit.project.auth.bean;
 
 import java.util.List;
 
@@ -9,6 +9,8 @@ import org.nutz.dao.entity.annotation.Id;
 import org.nutz.dao.entity.annotation.ManyMany;
 import org.nutz.dao.entity.annotation.Name;
 import org.nutz.dao.entity.annotation.Table;
+
+import com.jit.project.bean.BasePojo;
 
 @Table("t_role")
 public class Role extends BasePojo {

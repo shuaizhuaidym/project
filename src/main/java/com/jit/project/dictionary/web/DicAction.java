@@ -1,4 +1,4 @@
-package com.jit.project.web;
+package com.jit.project.dictionary.web;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -13,8 +13,8 @@ import org.nutz.mvc.annotation.At;
 import org.nutz.mvc.annotation.Ok;
 import org.nutz.mvc.annotation.Param;
 
-import com.jit.project.bean.Dictionary;
-import com.jit.project.bean.dic.Query;
+import com.jit.project.dictionary.bean.Dictionary;
+import com.jit.project.dictionary.bean.Query;
 import com.jit.project.service.IDicService;
 
 /**

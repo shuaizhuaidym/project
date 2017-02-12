@@ -11,6 +11,8 @@ import org.nutz.lang.util.NutMap;
 import org.nutz.log.Log;
 import org.nutz.log.Logs;
 
+import com.jit.project.user.bean.User;
+
 public class Toolkit {
 	public static final Log log = Logs.get();
 

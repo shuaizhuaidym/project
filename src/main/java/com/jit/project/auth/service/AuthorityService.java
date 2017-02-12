@@ -1,7 +1,7 @@
 package com.jit.project.auth.service;
 
-import com.jit.project.auth.Role;
-import com.jit.project.auth.User;
+import com.jit.project.auth.bean.Role;
+import com.jit.project.user.bean.User;
 
 public interface AuthorityService {
 	/**

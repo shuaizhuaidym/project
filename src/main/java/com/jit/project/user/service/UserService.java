@@ -1,4 +1,4 @@
-package com.jit.project.user;
+package com.jit.project.user.service;
 
 import java.util.Date;
 
@@ -7,10 +7,11 @@ import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.lang.random.R;
 import org.nutz.service.IdNameEntityService;
 
-import com.jit.project.auth.User;
+import com.jit.project.user.bean.User;
 
 @IocBean(fields = "dao")
 public class UserService extends IdNameEntityService<User> {
+
 	public User add(String name, String password) {
 		User user = new User();
 		user.setName(name.trim());

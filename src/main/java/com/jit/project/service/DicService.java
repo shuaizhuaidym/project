@@ -6,8 +6,8 @@ import org.nutz.dao.QueryResult;
 import org.nutz.dao.pager.Pager;
 import org.nutz.service.NameEntityService;
 
-import com.jit.project.bean.Dictionary;
-import com.jit.project.bean.dic.Query;
+import com.jit.project.dictionary.bean.Dictionary;
+import com.jit.project.dictionary.bean.Query;
 
 public class DicService extends NameEntityService<Dictionary> implements IDicService {
 

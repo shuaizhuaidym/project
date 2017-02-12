@@ -1,4 +1,4 @@
-package com.jit.project.bean;
+package com.jit.project.dictionary.bean;
 
 import org.nutz.dao.entity.annotation.Column;
 import org.nutz.dao.entity.annotation.Id;

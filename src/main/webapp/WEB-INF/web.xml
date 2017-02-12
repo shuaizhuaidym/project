@@ -25,7 +25,7 @@
 		<dispatcher>INCLUDE</dispatcher>
 		<dispatcher>ERROR</dispatcher>
 	</filter-mapping>
-	
+
 	<filter>
 		<filter-name>nutz</filter-name>
 		<filter-class>org.nutz.mvc.NutFilter</filter-class>
@@ -59,6 +59,10 @@
 		<taglib>
 			<taglib-uri>/WEB-INF/tags/select</taglib-uri>
 			<taglib-location>tags/select-tag.tld</taglib-location>
-		</taglib>		
+		</taglib>
 	</jsp-config>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/WEB-INF/views/500.jsp</location>
+	</error-page>
 </web-app>
