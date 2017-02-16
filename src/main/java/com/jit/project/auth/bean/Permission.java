@@ -8,7 +8,7 @@ import org.nutz.dao.entity.annotation.Table;
 @Table("t_permission")
 public class Permission {
 	@Id
-	@Column(value = "id")
+	@Column(value = "permission_id")
 	protected int id;
 	@Name
 	@Column(value = "name")

@@ -15,6 +15,7 @@ import com.jit.project.bean.BasePojo;
 @Table("t_role")
 public class Role extends BasePojo {
 	@Id
+	@Column("role_id")
 	protected long id;
 	@Name
 	protected String name;
