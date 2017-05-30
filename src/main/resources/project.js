@@ -94,4 +94,36 @@ var ioc = {
 			}
 		}
 	},
+	prdtAction : {
+		type : "com.jit.project.product.web.ProductAction",
+		fields : {
+			prdtService : {
+				refer : 'prdtService'
+			}
+		}
+	},
+	prdtService : {
+		type : 'com.jit.project.product.service.ProductService',
+		fields : {
+//			dao : {
+//				refer : 'dao'
+//			}
+		}
+	},
+	orgAction : {
+		type : "com.jit.project.org.web.OrgAction",
+		fields : {
+			orgService : {
+				refer : 'orgService'
+			}
+		}
+	},
+	orgService : {
+		type : 'com.jit.project.org.service.OrgServiceImple',
+		fields : {
+//			dao : {
+//				refer : 'dao'
+//			}
+		}
+	}
 };

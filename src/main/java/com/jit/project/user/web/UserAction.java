@@ -27,7 +27,7 @@ import org.nutz.mvc.filter.CheckSession;
 import com.jit.project.auth.Toolkit;
 import com.jit.project.user.bean.User;
 import com.jit.project.user.service.UserService;
-
+@At("/user")
 public class UserAction {
 	Dao dao;
 
@@ -73,7 +73,7 @@ public class UserAction {
 		}
 	}
 
-	@At
+	@At("/add")
 	@RequiresPermissions("user:add")
 	public Object add(@Param("..") User user) { // 两个点号是按对象属性一一设置
 		NutMap re = new NutMap();
