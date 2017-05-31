@@ -162,7 +162,7 @@
 						<td><input type="text" id="resp_date2" name="query.lastRespDate2" class="datetime wp98" /></td>
 					</tr>
 				</table>
-				<table class="table table-bordered">
+				<table class="table table-bordered table-striped">
 					<thead>
 						<tr>
 							<th class="w4">序号</th>
@@ -177,7 +177,7 @@
 					</thead>
 					<tbody>
 						<c:forEach var="prj" items="<%=rst.getList()%>" varStatus="index">
-							<tr style="background-color:${prj.color}">
+							<tr><!--  style="background-color:${prj.color}" -->
 								<td>${(pageNo-1)*pageSize + index.count}</td>
 								<td><a href="/project/edit?prjid=${prj.prjID}">${prj.prjName}</a></td>
 								<td>${prj.issueType}</td>
