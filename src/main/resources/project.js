@@ -121,9 +121,25 @@ var ioc = {
 	orgService : {
 		type : 'com.jit.project.org.service.OrgServiceImple',
 		fields : {
-//			dao : {
-//				refer : 'dao'
-//			}
+			dao : {
+				refer : 'dao'
+			}
+		}
+	},
+	missionAction : {
+		type : "com.jit.project.mission.MissionAction",
+		fields : {
+			missionService : {
+				refer : 'missionService'
+			}
+		}
+	},
+	missionService : {
+		type : 'com.jit.project.mission.MissionServiceImpl',
+		fields : {
+			dao : {
+				refer : 'dao'
+			}
 		}
 	}
 };

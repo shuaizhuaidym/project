@@ -1,5 +1,7 @@
 package com.jit.project.org.service;
 
-public class OrgServiceImple implements IOrgService {
+import org.nutz.service.NameEntityService;
+
+public class OrgServiceImple extends NameEntityService<com.jit.project.org.bean.Org> implements IOrgService {
 
 }

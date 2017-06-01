@@ -11,9 +11,9 @@
 
 <title>产品管理</title>
 
-<link href="css/commom.css" rel="stylesheet">
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+<link href="<%=path%>/css/commom.css" rel="stylesheet">
+<link href="<%=path%>/css/bootstrap.min.css" rel="stylesheet">
+<link href="<%=path%>/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 
 <link href="zTree/zTreeStyle.css" rel="stylesheet">
 
@@ -26,17 +26,31 @@
 .form-title {
 	color: #333;
 	font-size: 21px;
-	background: rgb(7, 103, 200)
-		linear-gradient(to bottom, #086ed5, #055db5) repeat scroll 0 0;
+	background: #f1f1f1;
 }
-.assign:before{content:'\e261';font-family: NewZenIcon;}
+
+.top0 {
+	margin-bottom: 0px;
+}
+
+.tree-box {
+	border: 1px solid #ddd;
+	border-top: 0
+}
+
+.modal-body form input,select {
+	width: 80%;
+	height: 22px
+}
 </style>
 
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="zTree/jquery-ztree-core-min.js"></script>
+<script type="text/javascript" src="<%=path %>/js/jquery/jquery-1.11.1.js"></script>
+<script type="text/javascript" src="<%=path %>/js/bootstrap-dropdown.js"></script>
+<script type="text/javascript" src="<%=path %>/zTree/jquery-ztree-core-min.js"></script>
 
-<script type="text/javascript" src="js/bootstrap-modal.js"></script>
-<script type="text/javascript" src="js/bootstrap-tab.js"></script>
+<script type="text/javascript" src="<%=path %>/js/bootstrap-modal.js"></script>
+<script type="text/javascript" src="<%=path %>/js/bootstrap-tab.js"></script>
+
 
 <script type="text/javascript">
 	var zTreeModule;
@@ -103,8 +117,8 @@
 		} ]
 	} ];
 	$(document).ready(function() {
-		zTreeModule = $.fn.zTree.init($("#treeDemo"), setting, zNodes);
-		zTreeVersion = $.fn.zTree.init($("#tVersion"), setting, zNodesv);
+		zTreeModule = $.fn.zTree.init($("#treeModule"), setting, zNodes);
+		zTreeVersion = $.fn.zTree.init($("#treeVersion"), setting, zNodesv);
 	});
 	$('#myTab a').click(function(e) {
 		e.preventDefault();
@@ -120,22 +134,22 @@
 				<!--Sidebar content-->
 				<fieldset>
 					<legend>
-						<span>产品管理 <a href="#myModal" class="white-pointer" data-toggle="modal">[+]</a>
+						<span>产品模块 <a href="#myModal" class="white-pointer" data-toggle="modal">[+]</a>
 						</span>
 					</legend>
 				</fieldset>
 				<div class="table-responsive">
-					<ul id="myTab" class="nav nav-tabs">
+					<ul id="myTab" class="nav nav-tabs top0">
 						<li class="active"><a href="#cmodule" data-toggle="tab">模块视图</a></li>
 						<li><a href="#cversion" data-toggle="tab">版本视图</a></li>
 					</ul>
 
 					<div class="tab-content">
-						<div class="tab-pane active" id="cmodule">
-							<ul id="treeDemo" class="ztree"></ul>
+						<div class="tab-pane tree-box active" id="cmodule">
+							<ul id="treeModule" class="ztree"></ul>
 						</div>
-						<div class="tab-pane" id="cversion" style="border: 1px blue solid">
-							<ul id="tVersion" class="ztree"></ul>
+						<div class="tab-pane tree-box" id="cversion">
+							<ul id="treeVersion" class="ztree"></ul>
 						</div>
 					</div>
 				</div>
@@ -143,7 +157,7 @@
 			<div class="span10">
 				<fieldset>
 					<legend>
-						<span>任务列表<a href="<%=path%>/form" style="margin-left: 50px; color: white">+新建任务</a>
+						<span>任务列表<a href="<%=path%>/mission/add" style="margin-left: 50px; color: white">+新建任务</a>
 						</span>
 					</legend>
 				</fieldset>
@@ -159,7 +173,7 @@
 								<th class="w6">负责人</th>
 								<th class="w6">下级任务</th>
 								<th class="w6">当前状态</th>
-								<th class="w6">编辑/查看历史</th>
+								<th class="w6">操作</th>
 							</tr>
 						</thead>
 						<tr>
@@ -170,8 +184,12 @@
 							<td>sfdg</td>
 							<td>[2]</td>
 							<td>sdfg</td>
-							<td><a href="#">编辑/查看历史</a></td>
-							
+							<td>
+								<a href="#"><i class="icon-hand-right" title="指派"></i></a> 
+								<a href="#"><i class="icon-pencil" title="编辑"></i></a>
+								<a href="#"><i class="icon-time" title="任务历史"></i></a>
+							</td>
+
 						</tr>
 						<tr>
 							<td>sfd</td>
@@ -181,7 +199,11 @@
 							<td>sfdg</td>
 							<td>[0]</td>
 							<td>sdfg</td>
-							<td><a href="#">编辑/查看历史</a></td>
+							<td>
+								<a href="#"><i class="icon-hand-right" title="指派"></i></a> 
+								<a href="#"><i class="icon-pencil" title="编辑"></i></a>
+								<a href="#"><i class="icon-time" title="任务历史"></i></a>
+							</td>
 						</tr>
 						<tr>
 							<td>sfd</td>
@@ -190,8 +212,12 @@
 							<td>sdfg</td>
 							<td>sfdg</td>
 							<td>[1]</td>
-							<td><i class="assign"></i></td>
-							<td><a href="#">编辑/查看历史</a></td>
+							<td>进行中</td>
+							<td>
+								<a href="#"><i class="icon-hand-right" title="指派"></i></a> 
+								<a href="#"><i class="icon-pencil" title="编辑"></i></a>
+								<a href="#"><i class="icon-time" title="任务历史"></i></a>
+							</td>
 						</tr>
 					</table>
 				</div>
@@ -221,7 +247,7 @@
 					</tr>
 					<tr>
 						<td>备注</td>
-						<td colspan="3"><textarea rows="6" cols="128" style="width: 88%"></textarea></td>
+						<td colspan="3"><textarea rows="6" cols="128" style="width: 93%"></textarea></td>
 					</tr>
 				</table>
 			</form>

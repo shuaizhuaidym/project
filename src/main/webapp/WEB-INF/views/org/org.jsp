@@ -11,18 +11,15 @@
 
 <title>机构管理</title>
 
-<link href="css/commom.css" rel="stylesheet">
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+<link href="<%=path %>/css/commom.css" rel="stylesheet">
+<link href="<%=path %>/css/bootstrap.min.css" rel="stylesheet">
+<link href="<%=path %>/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 
-<link href="zTree/zTreeStyle.css" rel="stylesheet">
+<link href="<%=path %>/zTree/zTreeStyle.css" rel="stylesheet">
 
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="zTree/jquery-ztree-core-min.js"></script>
-
-<script type="text/javascript" src="js/bootstrap-dropdown.js"></script>
-
-<script type="text/javascript" src="js/jquery-validation-1.9.0/jquery.validate.js"></script>
+<script type="text/javascript" src="<%=path %>/js/jquery/jquery-1.11.1.js"></script>
+<script type="text/javascript" src="<%=path %>/js/bootstrap-dropdown.js"></script>
+<script type="text/javascript" src="<%=path %>/zTree/jquery-ztree-core-min.js"></script>
 <script type="text/javascript">
 	var zTreeObj;
 	// zTree 的参数配置，深入使用请参考 API 文档（setting 配置详解）

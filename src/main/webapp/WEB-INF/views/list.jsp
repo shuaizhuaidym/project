@@ -35,7 +35,6 @@
 <link href="css/bootstrap-multiselect.css" rel="stylesheet" />
 
 <style type="text/css">.compress{overflow: hidden}</style>
-<script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
 <script type="text/javascript" src="js/bootstrap-datetimepicker.js"></script>

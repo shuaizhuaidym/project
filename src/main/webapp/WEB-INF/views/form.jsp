@@ -6,6 +6,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title>新建项目</title>
 
 <link href="css/commom.css" rel="stylesheet">
@@ -13,9 +14,7 @@
 <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 
 
-<script type="text/javascript" src="js/jquery/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="js/bootstrap-datetimepicker.js"></script>
-<script type="text/javascript" src="js/bootstrap-dropdown.js"></script>
 
 <script type="text/javascript" src="js/jquery-validation-1.9.0/jquery.validate.js"></script>
 

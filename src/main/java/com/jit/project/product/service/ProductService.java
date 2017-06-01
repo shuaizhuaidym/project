@@ -1,5 +1,9 @@
 package com.jit.project.product.service;
 
-public class ProductService implements IProductService{
+import org.nutz.service.NameEntityService;
+
+import com.jit.project.product.bean.Product;
+
+public class ProductService extends NameEntityService<Product> implements IProductService{
 
 }

@@ -1943,8 +1943,8 @@ table td[class*="span"],table th[class*="span"],.row-fluid table td[class*="span
 
 [class^="icon-"],[class*=" icon-"] {
 	display: inline-block;
-	width: 14px;
-	height: 14px;
+	width: 21px;
+	height: 21px;
 	margin-top: 1px;
 	*margin-right: .3em;
 	line-height: 14px;
@@ -2048,7 +2048,7 @@ table td[class*="span"],table th[class*="span"],.row-fluid table td[class*="span
 }
 
 .icon-time {
-	background-position: -48px -24px
+	background-position: -72px -36px
 }
 
 .icon-road {
@@ -2200,7 +2200,7 @@ table td[class*="span"],table th[class*="span"],.row-fluid table td[class*="span
 }
 
 .icon-pencil {
-	background-position: 0 -72px
+	background-position: 0 -108px
 }
 
 .icon-map-marker {
@@ -2467,7 +2467,7 @@ table td[class*="span"],table th[class*="span"],.row-fluid table td[class*="span
 }
 
 .icon-hand-right {
-	background-position: -144px -144px
+	background-position: -216px -216px
 }
 
 .icon-hand-left {
@@ -5688,7 +5688,7 @@ to {
 	background-color: #eee;
 	-webkit-border-radius: 6px;
 	-moz-border-radius: 6px;
-	border:2px solid  rgb(7, 103, 200);
+	border:1px solid  rgb(7, 103, 200);
 	border-radius: 2px
 }
 

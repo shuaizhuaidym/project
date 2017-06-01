@@ -47,6 +47,10 @@
 				$("#txt_fd").removeClass("required");
 			}
 		});
+		$("#dateX").click(function(){
+			alert(getNowFormatDate());
+			$("#ta_proc").append(getNowFormatDate());
+		});
 	});
 </script>
 </head>
@@ -148,9 +152,7 @@ $(function() {
 				$(element).css("border-color", "#ccc");
 			}
 		});
-		$("#dateX").click(function(){
-			$("#ta_proc").append(getNowFormatDate());
-		});
+
 	});
 </script>
 </html>
