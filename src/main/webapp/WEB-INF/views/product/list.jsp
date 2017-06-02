@@ -134,7 +134,7 @@
 				<!--Sidebar content-->
 				<fieldset>
 					<legend>
-						<span>产品模块 <a href="#myModal" class="white-pointer" data-toggle="modal">[+]</a>
+						<span>产品模块 <a href="#orgModal" class="white-pointer" data-toggle="modal">[+]</a>
 						</span>
 					</legend>
 				</fieldset>
@@ -184,11 +184,8 @@
 							<td>sfdg</td>
 							<td>[2]</td>
 							<td>sdfg</td>
-							<td>
-								<a href="#"><i class="icon-hand-right" title="指派"></i></a> 
-								<a href="#"><i class="icon-pencil" title="编辑"></i></a>
-								<a href="#"><i class="icon-time" title="任务历史"></i></a>
-							</td>
+							<td><a href="#assignModal"  data-toggle="modal"><i class="icon-hand-right" title="指派"></i></a> <a href="#"><i class="icon-pencil" title="编辑"></i></a>
+								<a href="#"><i class="icon-time" title="任务历史"></i></a></td>
 
 						</tr>
 						<tr>
@@ -199,11 +196,8 @@
 							<td>sfdg</td>
 							<td>[0]</td>
 							<td>sdfg</td>
-							<td>
-								<a href="#"><i class="icon-hand-right" title="指派"></i></a> 
-								<a href="#"><i class="icon-pencil" title="编辑"></i></a>
-								<a href="#"><i class="icon-time" title="任务历史"></i></a>
-							</td>
+							<td><a href="#assignModal" data-toggle="modal"><i class="icon-hand-right" title="指派"></i></a> <a href="#"><i class="icon-pencil" title="编辑"></i></a>
+								<a href="#"><i class="icon-time" title="任务历史"></i></a></td>
 						</tr>
 						<tr>
 							<td>sfd</td>
@@ -213,19 +207,16 @@
 							<td>sfdg</td>
 							<td>[1]</td>
 							<td>进行中</td>
-							<td>
-								<a href="#"><i class="icon-hand-right" title="指派"></i></a> 
-								<a href="#"><i class="icon-pencil" title="编辑"></i></a>
-								<a href="#"><i class="icon-time" title="任务历史"></i></a>
-							</td>
+							<td><a href="#assignModal" data-toggle="modal"><i class="icon-hand-right" title="指派"></i></a> <a href="#"><i class="icon-pencil" title="编辑"></i></a>
+								<a href="#"><i class="icon-time" title="任务历史"></i></a></td>
 						</tr>
 					</table>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- modal dialog -->
-	<div id="myModal" class="modal hide fade" tabindex="-1">
+	<!-- modal dialog add product module -->
+	<div id="orgModal" class="modal hide fade" tabindex="-1">
 		<div class="modal-header form-title">
 			<button type="button" class="close" data-dismiss="modal">×</button>
 			<span id="myModalLabel">新建模块</span>
@@ -252,6 +243,41 @@
 				</table>
 			</form>
 		</div>
+
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal">关闭</button>
+			<button class="btn btn-primary">保存</button>
+		</div>
+	</div>
+	<!-- modal dialog assign task -->
+	<div id="assignModal" class="modal hide fade" tabindex="-1">
+		<div class="modal-header form-title">
+			<button type="button" class="close" data-dismiss="modal">×</button>
+			<span id="myModalLabel">任务指派</span>
+		</div>
+		<div class="modal-body">
+			<form action="#">
+				<table>
+					<tr>
+						<td>所属产品</td>
+						<td><input value="身份认证网关" /></td>
+						<td>上级模块</td>
+						<td><input /></td>
+					</tr>
+					<tr>
+						<td>产品发布版本</td>
+						<td><input /></td>
+						<td>产品迭代版本</td>
+						<td><select></select></td>
+					</tr>
+					<tr>
+						<td>备注</td>
+						<td colspan="3"><textarea rows="6" cols="128" style="width: 93%"></textarea></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+
 		<div class="modal-footer">
 			<button class="btn" data-dismiss="modal">关闭</button>
 			<button class="btn btn-primary">保存</button>
