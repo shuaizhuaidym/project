@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="ui" uri="/WEB-INF/tags/select"%>
+<%String path = request.getContextPath();%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,14 +10,14 @@
 
 <title>新建项目</title>
 
-<link href="css/commom.css" rel="stylesheet">
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+<link href="<%=path %>/css/commom.css" rel="stylesheet">
+<link href="<%=path %>/css/bootstrap.min.css" rel="stylesheet">
+<link href="<%=path %>/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 
-
-<script type="text/javascript" src="js/bootstrap-datetimepicker.js"></script>
-
-<script type="text/javascript" src="js/jquery-validation-1.9.0/jquery.validate.js"></script>
+<script type="text/javascript" src="<%=path %>/js/jquery/jquery-1.11.1.js"></script>
+<script type="text/javascript" src="<%=path %>/js/bootstrap-dropdown.js"></script>
+<script type="text/javascript" src="<%=path %>/js/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript" src="<%=path %>/js/jquery-validation-1.9.0/jquery.validate.js"></script>
 
 <script type="text/javascript">
 	$(function() {

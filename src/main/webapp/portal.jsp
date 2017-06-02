@@ -101,7 +101,7 @@ body {
 
 			<div class="span9">
 				<div class="panel-heading">
-					<span class="panel-title">我的任务</span>
+					<span class="panel-title">我的任务&nbsp;<a href="#">[写日报]</a></span>
 				</div>
 				<table class="table table-striped angle">
 					<tbody>

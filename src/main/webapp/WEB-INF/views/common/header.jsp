@@ -18,6 +18,7 @@
 						</ul></li>
 					<li><a href="<%=path %>/product">产品管理</a></li>
 					<li><a href="<%=path %>/chart">图表分析</a></li>
+					<li><a href="<%=path %>/chart">团队日报</a></li>
 					<li><a href="<%=path %>/org">机构设置</a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">系统维护<b class="caret"></b></a>
 						<ul class="dropdown-menu">

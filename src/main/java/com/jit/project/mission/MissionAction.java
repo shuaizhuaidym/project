@@ -17,7 +17,9 @@ public class MissionAction {
 		return SUCCESS;
 	}
 
-	public String save(@Param("::mission.") Mission mission){
+	@At("/mission/create")
+	@Ok("redirect:/product")
+	public String create(@Param("::mission.") Mission mission){
 		System.out.println(mission.toString());
 		return SUCCESS;
 	}

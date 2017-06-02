@@ -6,7 +6,7 @@
 <%@page import="org.nutz.dao.pager.Pager"%>
 <%@page import="org.nutz.dao.QueryResult"%>
 <%@page import="com.jit.project.bean.Query"%>
-
+<%String path = request.getContextPath(); %>
 <%
 	Query query = (Query) request.getAttribute("query");
 	QueryResult rst = (QueryResult) request.getAttribute("result");
@@ -18,7 +18,6 @@
 	pageContext.setAttribute("pageNo", pageNo);
 	pageContext.setAttribute("pageSize", pageSize);
 	int totalCount = pager.getRecordCount();
-	String path = request.getContextPath();
 %>
 <!DOCTYPE html>
 <html>
@@ -28,16 +27,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>项目列表</title>
 
-<link href="css/list.css" rel="stylesheet" />
-<link href="css/bootstrap.min.css" rel="stylesheet" />
-<link href="css/bootstrap-responsive.min.css" rel="stylesheet" />
-<link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
-<link href="css/bootstrap-multiselect.css" rel="stylesheet" />
+<link href="<%=path %>/css/list.css" rel="stylesheet" />
+<link href="<%=path %>/css/bootstrap.min.css" rel="stylesheet" />
+<link href="<%=path %>/css/bootstrap-responsive.min.css" rel="stylesheet" />
+<link href="<%=path %>/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+<link href="<%=path %>/css/bootstrap-multiselect.css" rel="stylesheet" />
 
 <style type="text/css">.compress{overflow: hidden}</style>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
 
-<script type="text/javascript" src="js/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript" src="<%=path %>/js/jquery/jquery-1.11.1.js"></script>
+<script type="text/javascript" src="<%=path %>/js/bootstrap-dropdown.js"></script>
+
+<script type="text/javascript" src="<%=path %>/js/bootstrap-datetimepicker.js"></script>
 <script type="text/javascript">
 	$(function() {
 		var datePks=$("#queryForm").find("input.datetime");

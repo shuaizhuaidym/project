@@ -62,7 +62,7 @@ textarea {
 			<table class="table table-bordered table-striped">
 				<tr>
 					<td><label class="control-label col-xs-2">任务名称</label></td>
-					<td colspan="3"><input type="text" id="mission_name" name="mission.mName" class="required w-input"></td>
+					<td colspan="3"><input type="text" id="mission_name" name="mission.missionName" class="required w-input"></td>
 				</tr>
 				<tr>
 					<td><label class="control-label col-xs-2">任务内容</label></td>
@@ -71,51 +71,59 @@ textarea {
 				</tr>
 				<tr>
 					<td><label class="control-label col-xs-2">产品版本</label></td>
-					<td><input type="text" id="prj_version" name="mission.prudectVersion" class="required"></td>
+					<td><input type="text" id="prj_version" name="mission.productVersion" class="required"></td>
 					<td><label class="control-label col-xs-2">任务类型</label></td>
 					<td><select name="mission.type">
-						<option>科研项目</option>
-						<option>售前技术支持</option>
-						<option>售后技术支持</option>
-						<option>持续改进</option>
-						<option>售后需求开发</option>
-						<option>售前需求开发</option>
-						<option>售前定制开发</option>
-						<option>售后定制开发</option>
+							<option value="1">科研项目</option>
+							<option value="2">售前技术支持</option>
+							<option value="3">售后技术支持</option>
+							<option value="4">持续改进</option>
+							<option value="5">售后需求开发</option>
+							<option value="6">售前需求开发</option>
+							<option value="7">售前定制开发</option>
+							<option value="8">售后定制开发</option>
 					</select></td>
 				</tr>
 				<tr>
 					<td><label class="control-label col-xs-2">所属模块</label></td>
-					<td><select name="mission.module"></select></td>
-					<td><label class="control-label col-xs-2">任务类别</label></td>
-					<td><select name="mission.class" class="required">
-							<option>新功能</option>
-							<option>缺陷修复</option>
-							<option>产品改进</option>
-					</select></td>
-				</tr>
-				<tr>
-					<td><label class="control-label col-xs-2">指派给</label></td>
-					<td><select name="mission.assignedTo"></select></td>
-					<td><label class="control-label col-xs-2">当前状态</label></td>
 					<td>
-						<select name="mission.status" class="required">
-							<option>未启动</option>
-							<option>进行中_需求分析中</option>
-							<option>进行中_设计中</option>
-							
-							<option>进行中_开发中</option>
-							<option>进行中_测试中</option>
-							<option>延期进行中</option>
-							<option>完成</option>
-							<option>暂停</option>
-							<option>等待反馈</option>
+						<select name="mission.module">
+							<option value="1">客户端/UI</option>
+						</select>
+					</td>
+					<td><label class="control-label col-xs-2">任务类别</label></td>
+					<td>
+						<select name="mission.taskClass" class="required">
+								<option value="8">新功能</option>
+								<option value="8">缺陷修复</option>
+								<option value="8">产品改进</option>
 						</select>
 					</td>
 				</tr>
 				<tr>
+					<td><label class="control-label col-xs-2">指派给</label></td>
+					<td>
+						<select name="mission.assignedTo">
+							<option value="8">张三萌</option>
+						</select>
+				</td>
+					<td><label class="control-label col-xs-2">当前状态</label></td>
+					<td><select name="mission.status" class="required">
+							<option value="1">未启动</option>
+							<option value="2">进行中_需求分析中</option>
+							<option value="3">进行中_设计中</option>
+
+							<option value="4">进行中_开发中</option>
+							<option value="5">进行中_测试中</option>
+							<option value="6">延期进行中</option>
+							<option value="7">完成</option>
+							<option value="8">暂停</option>
+							<option value="9">等待反馈</option>
+					</select></td>
+				</tr>
+				<tr>
 					<td><label class="control-label col-xs-2">进展说明</label></td>
-					<td colspan="3"><textarea name="project.process" class="w-input" rows="8"></textarea></td>
+					<td colspan="3"><textarea name="project.progress" class="w-input" rows="8"></textarea></td>
 				</tr>
 				<tr>
 					<td><label class="control-label col-xs-2">备注</label></td>
@@ -123,7 +131,7 @@ textarea {
 				</tr>
 				<tr>
 					<td><label class="control-label col-xs-2">完成百分比</label></td>
-					<td ><input type="text" id="prj_name" name="project.prjName" class="required">%</td>
+					<td><input type="text" id="prj_name" name="project.prjName" class="required">%</td>
 					<td><label class="control-label col-xs-2">已投入人力(小时)</label></td>
 					<td><input type="text" name="project.laborCosts" class="number" /></td>
 				</tr>
