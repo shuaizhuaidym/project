@@ -82,7 +82,7 @@ body {
 				<table class="table angle table-defeat">
 					<tr>
 						<td style="width: 32px">编号</td>
-						<td>客户端访问正向代理应用页面变形</td>
+						<td>缺陷描述</td>
 					</tr>
 					<tr>
 						<td>2881</td>
@@ -107,18 +107,22 @@ body {
 					<tbody>
 						<tr>
 							<td>任务名称</td>
-							<td>缺陷描述</td>
+							<td>任务类型</td>
+							<td>任务描述</td>
 						</tr>
 						<tr>
-							<td>财政服务端开发【功能开发】</td>
+							<td>财政服务端开发</td>
+							<td>【功能开发】</td>
 							<td>财政部支持SM2算法客户端+代理模块|静默安装包开发测试上线</td>
 						</tr>
 						<tr>
 							<td>任务名称</td>
+							<td>【功能开发】</td>
 							<td>缺陷描述</td>
 						</tr>
 						<tr>
 							<td>黑龙江省厅【项目支持】</td>
+							<td>【功能开发】</td>
 							<td>黑龙江省公安厅项目从I网关升级到E网关升级包制作，代码研发</td>
 						</tr>
 					</tbody>

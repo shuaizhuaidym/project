@@ -168,8 +168,8 @@
 							<tr>
 								<th class="w4">序号</th>
 								<th class="w12">任务名称</th>
-								<th class="w8">问题类型</th>
-								<th class="w36">详细描述</th>
+								<th class="w8">任务类型</th>
+								<th class="w36">任务摘要</th>
 								<th class="w6">负责人</th>
 								<th class="w6">下级任务</th>
 								<th class="w6">当前状态</th>
