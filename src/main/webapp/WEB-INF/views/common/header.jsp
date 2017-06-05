@@ -16,7 +16,7 @@
 							<li class="divider"></li>
 							<li><a href="<%=path%>/query">检索项目</a></li>
 						</ul></li>
-					<li><a href="<%=path %>/product">产品管理</a></li>
+					<li><a href="<%=path %>/mission/query">任务管理</a></li>
 					<li><a href="<%=path %>/chart">图表分析</a></li>
 					<li><a href="<%=path %>/chart">团队日报</a></li>
 					<li><a href="<%=path %>/org">机构设置</a></li>

@@ -2,6 +2,13 @@
 <%
 	String path = request.getContextPath();
 %>
+<%
+	int pageNo = 2;
+	int pageSize = 20;
+	pageContext.setAttribute("pageNo", pageNo);
+	pageContext.setAttribute("pageSize", pageSize);
+	int totalCount = 1001;
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,12 +51,12 @@
 }
 </style>
 
-<script type="text/javascript" src="<%=path %>/js/jquery/jquery-1.11.1.js"></script>
-<script type="text/javascript" src="<%=path %>/js/bootstrap-dropdown.js"></script>
-<script type="text/javascript" src="<%=path %>/zTree/jquery-ztree-core-min.js"></script>
+<script type="text/javascript" src="<%=path%>/js/jquery/jquery-1.11.1.js"></script>
+<script type="text/javascript" src="<%=path%>/js/bootstrap-dropdown.js"></script>
+<script type="text/javascript" src="<%=path%>/zTree/jquery-ztree-core-min.js"></script>
 
-<script type="text/javascript" src="<%=path %>/js/bootstrap-modal.js"></script>
-<script type="text/javascript" src="<%=path %>/js/bootstrap-tab.js"></script>
+<script type="text/javascript" src="<%=path%>/js/bootstrap-modal.js"></script>
+<script type="text/javascript" src="<%=path%>/js/bootstrap-tab.js"></script>
 
 
 <script type="text/javascript">
@@ -184,8 +191,8 @@
 							<td>sfdg</td>
 							<td>[2]</td>
 							<td>sdfg</td>
-							<td><a href="#assignModal"  data-toggle="modal"><i class="icon-hand-right" title="指派"></i></a> <a href="#"><i class="icon-pencil" title="编辑"></i></a>
-								<a href="#"><i class="icon-time" title="任务历史"></i></a></td>
+							<td><a href="#assignModal" data-toggle="modal"><i class="icon-hand-right" title="指派"></i></a> <a href="#"><i
+									class="icon-pencil" title="编辑"></i></a> <a href="#"><i class="icon-time" title="任务历史"></i></a></td>
 
 						</tr>
 						<tr>
@@ -196,8 +203,8 @@
 							<td>sfdg</td>
 							<td>[0]</td>
 							<td>sdfg</td>
-							<td><a href="#assignModal" data-toggle="modal"><i class="icon-hand-right" title="指派"></i></a> <a href="#"><i class="icon-pencil" title="编辑"></i></a>
-								<a href="#"><i class="icon-time" title="任务历史"></i></a></td>
+							<td><a href="#assignModal" data-toggle="modal"><i class="icon-hand-right" title="指派"></i></a> <a href="#"><i
+									class="icon-pencil" title="编辑"></i></a> <a href="#"><i class="icon-time" title="任务历史"></i></a></td>
 						</tr>
 						<tr>
 							<td>sfd</td>
@@ -207,10 +214,12 @@
 							<td>sfdg</td>
 							<td>[1]</td>
 							<td>进行中</td>
-							<td><a href="#assignModal" data-toggle="modal"><i class="icon-hand-right" title="指派"></i></a> <a href="#"><i class="icon-pencil" title="编辑"></i></a>
-								<a href="#"><i class="icon-time" title="任务历史"></i></a></td>
+							<td><a href="#assignModal" data-toggle="modal"><i class="icon-hand-right" title="指派"></i></a> <a href="#"><i
+									class="icon-pencil" title="编辑"></i></a> <a href="#"><i class="icon-time" title="任务历史"></i></a></td>
 						</tr>
 					</table>
+					<pg:page pageNo="<%=pageNo%>" currentClass="active" pageSize="<%=pageSize%>" totalCount="<%=totalCount%>">
+					</pg:page>
 				</div>
 			</div>
 		</div>

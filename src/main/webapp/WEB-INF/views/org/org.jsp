@@ -16,7 +16,14 @@
 <link href="<%=path %>/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 
 <link href="<%=path %>/zTree/zTreeStyle.css" rel="stylesheet">
+<style type="text/css">
 
+.tree-box {
+	border: 1px solid #ddd;
+	border-top: 0;
+}
+
+</style>
 <script type="text/javascript" src="<%=path %>/js/jquery/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="<%=path %>/js/bootstrap-dropdown.js"></script>
 <script type="text/javascript" src="<%=path %>/zTree/jquery-ztree-core-min.js"></script>
@@ -51,7 +58,7 @@
 	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 	<div class="container-fluid">
 		<div class="row-fluid">
-			<div class="span2">
+			<div class="span2 tree-box">
 				<!--Sidebar content-->
 				<fieldset>
 					<legend>
