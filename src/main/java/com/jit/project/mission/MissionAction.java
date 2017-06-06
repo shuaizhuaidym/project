@@ -6,6 +6,7 @@ import java.util.List;
 import org.nutz.dao.Condition;
 import org.nutz.dao.Dao;
 import org.nutz.dao.QueryResult;
+import org.nutz.dao.entity.Entity;
 import org.nutz.dao.pager.Pager;
 import org.nutz.ioc.annotation.InjectName;
 import org.nutz.mvc.annotation.At;
@@ -89,12 +90,33 @@ public class MissionAction {
 	}
 
 	/**
-	 * 指派任务
+	 * 分配之前加载任务，因为任务内容可能发生变化
+	 * 
 	 * @return
 	 */
-	public String assign(@Param("::mission.") Mission mission){
+	@At("/mission/loadForAssignAsync")
+	@Ok("json:full")
+	public Mission loadForAssignAsync(@Param("mission_id") final String missionID) {
+		Condition cnd = new Condition() {
+			@Override
+			public String toSql(Entity<?> entity) {
+				String sql = "where mission_id = " + missionID;
+				return sql;
+			}
+		};
+		Mission mission = this.missionService.fetch(cnd);
+		return mission;
+	}
+
+	/**
+	 * 指派任务
+	 * 
+	 * @return
+	 */
+	public String assign(@Param("::mission.") Mission mission) {
 		return SUCCESS;
 	}
+
 	public MissionServiceImpl getMissionService() {
 		return missionService;
 	}

@@ -4,13 +4,6 @@
 <%
 	String path = request.getContextPath();
 %>
-<%
-	int pageNo = 2;
-	int pageSize = 20;
-	pageContext.setAttribute("pageNo", pageNo);
-	pageContext.setAttribute("pageSize", pageSize);
-	int totalCount = 1001;
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,6 +12,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>产品管理</title>
+
+<base href="<%=path%>"/>
 
 <link href="<%=path%>/css/commom.css" rel="stylesheet">
 <link href="<%=path%>/css/bootstrap.min.css" rel="stylesheet">
@@ -45,11 +40,6 @@
 .tree-box {
 	border: 1px solid #ddd;
 	border-top: 0
-}
-
-.modal-body form input,select {
-	width: 80%;
-	height: 22px
 }
 /*图标被放大，内边距要减小*/
 .icon-box{
@@ -138,6 +128,24 @@
 		$(this).tab('show');
 	});
 </script>
+
+<link rel="stylesheet" href="<%=path %>/kindediter/themes/default/default.css" />
+<script charset="utf-8" src="<%=path %>/kindediter/kindeditor-min.js"></script>
+<script charset="utf-8" src="<%=path %>/kindediter/lang/zh_CN.js"></script>
+<script>
+	var editor;
+	KindEditor.ready(function(K) {	
+		editor = K.create('textarea[id="assignContent"]', {
+			resizeType : 0,
+			allowPreviewEmoticons : false,
+			allowImageUpload : false,
+			items : [
+				'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+				'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+				'insertunorderedlist', '|', 'emoticons', 'image', 'link']
+		});
+	});
+</script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
@@ -147,7 +155,7 @@
 				<!--Sidebar content-->
 				<fieldset>
 					<legend>
-						<span>产品模块 <a href="#orgModal" class="white-pointer" data-toggle="modal">[+]</a>
+						<span>产品模块 <a href="#productModal" class="white-pointer" data-toggle="modal">[+]</a>
 						</span>
 					</legend>
 				</fieldset>
@@ -202,14 +210,14 @@
 						</tr>
 						</c:forEach>
 					</table>
-					<pg:page pageNo="<%=pageNo%>" currentClass="active" pageSize="<%=pageSize%>" totalCount="<%=totalCount%>">
+					<pg:page pageNo="${obj.pager.pageNumber}" currentClass="active" pageSize="${obj.pager.pageSize}" totalCount="${obj.pager.recordCount}">
 					</pg:page>
 				</div>
 			</div>
 		</div>
 	</div>
 	<!-- modal dialog add product module -->
-	<div id="orgModal" class="modal hide fade" tabindex="-1">
+	<div id="productModal" class="modal hide fade" tabindex="-1">
 		<div class="modal-header form-title">
 			<button type="button" class="close" data-dismiss="modal">×</button>
 			<span id="myModalLabel">新建模块</span>
@@ -218,7 +226,7 @@
 			<form action="#">
 				<table>
 					<tr>
-						<td>所属产品</td>
+						<td>模块名称</td>
 						<td><input value="身份认证网关" /></td>
 						<td>上级模块</td>
 						<td><input /></td>
@@ -231,7 +239,7 @@
 					</tr>
 					<tr>
 						<td>备注</td>
-						<td colspan="3"><textarea rows="6" cols="128" style="width: 93%"></textarea></td>
+						<td colspan="3"><textarea rows="3" cols="128" style="width: 93%"></textarea></td>
 					</tr>
 				</table>
 			</form>
@@ -252,20 +260,41 @@
 			<form action="#">
 				<table>
 					<tr>
+						<td>任务名称</td>
+						<td><input disabled="disabled" value="身份认证网关客户端开发"/></td>
 						<td>所属产品</td>
-						<td><input value="身份认证网关" /></td>
-						<td>上级模块</td>
-						<td><input /></td>
+						<td><input disabled="disabled" value="身份认证网关"/></td>
 					</tr>
 					<tr>
-						<td>产品发布版本</td>
-						<td><input /></td>
-						<td>产品迭代版本</td>
-						<td><select></select></td>
+						<td>迭代版本</td>
+						<td><input disabled="disabled" value="3.0.24.4"/></td>
+						<td>所属项目</td>
+						<td><input disabled="disabled" value="华为项目"/></td>
 					</tr>
 					<tr>
-						<td>备注</td>
-						<td colspan="3"><textarea rows="6" cols="128" style="width: 93%"></textarea></td>
+						<td>任务类型</td>
+						<td><input disabled="disabled" value="3.0.24.4"/></td>
+						<td>截止日期</td>
+						<td><input readonly="readonly" value="华为项目"/></td>
+					</tr>
+					<tr>
+						<td>指派给</td>
+						<td>
+							<select name="mission.assignTo">
+								<option value="1">田永健</option>
+								<option value="2">黄建华</option>
+							</select>
+						</td>
+						<td>预计投入（人×天）</td>
+						<td><input name="mission.totalHours" value="100"/></td>
+					</tr>
+					<tr>
+						<td>任务内容</td>
+						<td colspan="3"><textarea id="assignContent" disabled="disabled" rows="8" cols="128" style="width: 93%;height:108px"></textarea></td>
+					</tr>
+					<tr>
+						<td>备注信息</td>
+						<td colspan="3"><textarea id="assignComments" name="mission.comments" rows="3" cols="128" style="width: 93%"></textarea></td>
 					</tr>
 				</table>
 			</form>
@@ -276,5 +305,10 @@
 			<button class="btn btn-primary">保存</button>
 		</div>
 	</div>
+	<script type="text/javascript">
+		function loadForAssignAsync(){
+			
+		}
+	</script>
 </body>
 </html>

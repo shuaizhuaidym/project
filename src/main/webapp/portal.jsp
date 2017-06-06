@@ -35,13 +35,13 @@ body {
 }
 
 .panel-heading {
-	height: 30px;
+	height: 25px;
 	line-height: 18px;
 	background-color: #f1f1f1;
 	border: 1px #ddd solid;
 	border-bottom: 0;
 	font-weight: 700;
-	padding: 10px 60px 0px 6px;
+	padding: 8px 60px 0px 6px;
 	color: #333;
 }
 

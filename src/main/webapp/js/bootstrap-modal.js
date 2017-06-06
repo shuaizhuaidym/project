@@ -209,7 +209,7 @@
   }
 
   $.fn.modal.defaults = {
-      backdrop: true
+      backdrop: 'static'
     , keyboard: true
     , show: true
   }

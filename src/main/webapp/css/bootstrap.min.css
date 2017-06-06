@@ -963,7 +963,7 @@ legend {
 	padding: 0;
 	/*margin-bottom: 20px;*/
 	font-size: 21px;
-	line-height: 40px;
+	line-height: 35px;
 	color: #333;
 	background:linear-gradient(to bottom, #086ed5, #055db5) repeat scroll 0 0 rgba(0, 0, 0, 0);
 	background-color:rgb(7, 103, 200);
@@ -1248,8 +1248,8 @@ input.span1,textarea.span1,.uneditable-input.span1 {
 
 input[disabled],select[disabled],textarea[disabled],input[readonly],select[readonly],textarea[readonly]
 	{
-	cursor: not-allowed;
-	background-color: #eee
+	/* cursor: not-allowed;
+	background-color: #eee */
 }
 
 input[type="radio"][disabled],input[type="checkbox"][disabled],input[type="radio"][readonly],input[type="checkbox"][readonly]
@@ -4706,8 +4706,8 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini {
 }
 
 .modal-backdrop,.modal-backdrop.fade.in {
-	opacity: .8;
-	filter: alpha(opacity = 80)
+	opacity: .6;
+	filter: alpha(opacity = 60)
 }
 
 .modal {
