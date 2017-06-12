@@ -1,6 +1,7 @@
 package com.jit.project.mission;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.nutz.dao.Condition;
@@ -13,11 +14,16 @@ import org.nutz.mvc.annotation.At;
 import org.nutz.mvc.annotation.Ok;
 import org.nutz.mvc.annotation.Param;
 
+import com.jit.project.daily.DailyItem;
+import com.jit.project.daily.DailyItemServiceImpl;
+import com.jit.project.daily.DailyServiceImpl;
+
 @InjectName("missionAction")
 public class MissionAction {
 	private String SUCCESS = "SUCCESS";
 
 	private MissionServiceImpl missionService;
+	private DailyItemServiceImpl dailyItemService;
 
 	@At("/mission/query")
 	@Ok("jsp:views.mission.list")
@@ -90,13 +96,13 @@ public class MissionAction {
 	}
 
 	/**
-	 * 分配之前加载任务，因为任务内容可能发生变化
+	 * 分配任务
 	 * 
 	 * @return
 	 */
 	@At("/mission/loadForAssignAsync")
 	@Ok("json:full")
-	public Mission loadForAssignAsync(@Param("mission_id") final String missionID) {
+	public Mission assignAsync(@Param("mission_id") final String missionID) {
 		Condition cnd = new Condition() {
 			@Override
 			public String toSql(Entity<?> entity) {
@@ -113,8 +119,37 @@ public class MissionAction {
 	 * 
 	 * @return
 	 */
-	public String assign(@Param("::mission.") Mission mission) {
-		return SUCCESS;
+	@At("/mission/edit")
+	@Ok("json:full")
+	public Mission edit(@Param("mission_id") final String missionID) {
+		Condition cnd = new Condition() {
+			@Override
+			public String toSql(Entity<?> entity) {
+				String sql = "where mission_id = " + missionID;
+				return sql;
+			}
+		};
+		Mission mission = this.missionService.fetch(cnd);
+		return mission;
+	}
+
+	/**
+	 * 查看任务执行历史(日报条目)
+	 * @return
+	 */
+	@At("/mission/history")
+	@Ok("json:full")
+	public List<DailyItem> history(@Param("mission_id") final String missionID) {
+		List<DailyItem> history = new LinkedList<DailyItem>();
+		Condition cnd = new Condition() {
+			@Override
+			public String toSql(Entity<?> entity) {
+				String sql = "where mission_id = " + missionID;
+				return sql;
+			}
+		};
+		this.dailyItemService.fetch(cnd);
+		return history;
 	}
 
 	public MissionServiceImpl getMissionService() {
@@ -124,4 +159,13 @@ public class MissionAction {
 	public void setMissionService(MissionServiceImpl missionService) {
 		this.missionService = missionService;
 	}
+
+	public DailyItemServiceImpl getDailyItemService() {
+		return dailyItemService;
+	}
+
+	public void setDailyItemService(DailyItemServiceImpl dailyItemService) {
+		this.dailyItemService = dailyItemService;
+	}
+
 }

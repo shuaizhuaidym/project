@@ -18,6 +18,7 @@ import com.jit.project.bean.Project;
 import com.jit.project.bean.Query;
 import com.jit.project.service.PrjService;
 
+//TODO dictionary
 @InjectName("prjAction")
 public class PrjAction {
 	
@@ -163,6 +164,13 @@ public class PrjAction {
 			mpEngineer.put("王会彦", "王会彦");
 			mpEngineer.put("邓佳佳", "邓佳佳");
 			mpEngineer.put("都保星", "都保星");
+			mpEngineer.put("闫晋忠", "闫晋忠");
+			mpEngineer.put("曾宇波", "曾宇波");
+			mpEngineer.put("吴畏", "吴畏");
+			mpEngineer.put("张杰文", "张杰文");
+			mpEngineer.put("丛哲", "丛哲");
+			mpEngineer.put("李红义", "李红义");
+			mpEngineer.put("杜俊杰", "杜俊杰");
 		}
 	}
 

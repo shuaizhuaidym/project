@@ -13,7 +13,7 @@
 
 <title>产品管理</title>
 
-<base href="<%=path%>"/>
+<base href="<%=path%>" />
 
 <link href="<%=path%>/css/commom.css" rel="stylesheet">
 <link href="<%=path%>/css/bootstrap.min.css" rel="stylesheet">
@@ -41,10 +41,7 @@
 	border: 1px solid #ddd;
 	border-top: 0
 }
-/*图标被放大，内边距要减小*/
-.icon-box{
-	padding-top:40px;
-}
+.table td,th{padding:2px 5px 8px 5px}
 </style>
 
 <script type="text/javascript" src="<%=path%>/js/jquery/jquery-1.11.1.js"></script>
@@ -56,10 +53,18 @@
 
 
 <script type="text/javascript">
+	function zTreeOnClick(event, treeId, treeNode) {
+		alert(treeNode.tId + ", " + treeNode.name);
+	};
+	var setting = {
+		callback : {
+			onClick : zTreeOnClick
+		}
+	};
 	var zTreeModule;
 	var zTreeVersion;
 	// zTree 的参数配置，深入使用请参考 API 文档（setting 配置详解）
-	var setting = {};
+	// var setting = {};
 	// zTree 的数据属性，深入使用请参考 API 文档（zTreeNode 节点数据详解）
 	var zNodes = [ {
 		name : "身份认证网关[phoenix]",
@@ -129,20 +134,21 @@
 	});
 </script>
 
-<link rel="stylesheet" href="<%=path %>/kindediter/themes/default/default.css" />
-<script charset="utf-8" src="<%=path %>/kindediter/kindeditor-min.js"></script>
-<script charset="utf-8" src="<%=path %>/kindediter/lang/zh_CN.js"></script>
+<link rel="stylesheet" href="<%=path%>/kindediter/themes/default/default.css" />
+<script charset="utf-8" src="<%=path%>/kindediter/kindeditor-min.js"></script>
+<script charset="utf-8" src="<%=path%>/kindediter/lang/zh_CN.js"></script>
 <script>
 	var editor;
-	KindEditor.ready(function(K) {	
+	KindEditor.ready(function(K) {
 		editor = K.create('textarea[id="assignContent"]', {
 			resizeType : 0,
 			allowPreviewEmoticons : false,
 			allowImageUpload : false,
-			items : [
-				'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
-				'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
-				'insertunorderedlist', '|', 'emoticons', 'image', 'link']
+			items : [ 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor',
+					'bold', 'italic', 'underline', 'removeformat', '|',
+					'justifyleft', 'justifycenter', 'justifyright',
+					'insertorderedlist', 'insertunorderedlist', '|',
+					'emoticons', 'image', 'link' ]
 		});
 	});
 </script>
@@ -197,20 +203,22 @@
 							</tr>
 						</thead>
 						<c:forEach var="mission" items="${obj.list}" varStatus="index">
-						<tr>
-							<td>${index.count}</td>
-							<td>${mission.missionName}</td>
-							<td>${mission.type}</td>
-							<td>${mission.summary}</td>
-							<td>${mission.assignTo}</td>
-							<td>${mission.status}</td>
-							<td><a href="#assignModal" data-toggle="modal"><i class="icon-hand-right" title="指派"></i></a> <a href="#"><i
-									class="icon-pencil" title="编辑"></i></a> <a href="#"><i class="icon-time" title="任务历史"></i></a></td>
+							<tr>
+								<td>${index.count}</td>
+								<td>${mission.missionName}</td>
+								<td>${mission.type}</td>
+								<td>${mission.summary}</td>
+								<td>${mission.assignTo}</td>
+								<td>${mission.status}</td>
+								<td><a href="#assignModal" data-toggle="modal"><i class="icon-hand-right" title="指派"></i></a> <a
+									href="mission/edit?mission_id=${mission.missionID}"><i class="icon-pencil" title="编辑"></i></a> <a
+									href="mission/history?mission_id=${mission.missionID}"><i class="icon-time" title="任务历史"></i></a></td>
 
-						</tr>
+							</tr>
 						</c:forEach>
 					</table>
-					<pg:page pageNo="${obj.pager.pageNumber}" currentClass="active" pageSize="${obj.pager.pageSize}" totalCount="${obj.pager.recordCount}">
+					<pg:page pageNo="${obj.pager.pageNumber}" currentClass="active" pageSize="${obj.pager.pageSize}"
+						totalCount="${obj.pager.recordCount}">
 					</pg:page>
 				</div>
 			</div>
@@ -261,36 +269,35 @@
 				<table>
 					<tr>
 						<td>任务名称</td>
-						<td><input disabled="disabled" value="身份认证网关客户端开发"/></td>
+						<td><input disabled="disabled" value="身份认证网关客户端开发" /></td>
 						<td>所属产品</td>
-						<td><input disabled="disabled" value="身份认证网关"/></td>
+						<td><input disabled="disabled" value="身份认证网关" /></td>
 					</tr>
 					<tr>
 						<td>迭代版本</td>
-						<td><input disabled="disabled" value="3.0.24.4"/></td>
+						<td><input disabled="disabled" value="3.0.24.4" /></td>
 						<td>所属项目</td>
-						<td><input disabled="disabled" value="华为项目"/></td>
+						<td><input disabled="disabled" value="华为项目" /></td>
 					</tr>
 					<tr>
 						<td>任务类型</td>
-						<td><input disabled="disabled" value="3.0.24.4"/></td>
+						<td><input disabled="disabled" value="3.0.24.4" /></td>
 						<td>截止日期</td>
-						<td><input readonly="readonly" value="华为项目"/></td>
+						<td><input readonly="readonly" value="华为项目" /></td>
 					</tr>
 					<tr>
 						<td>指派给</td>
-						<td>
-							<select name="mission.assignTo">
+						<td><select name="mission.assignTo">
 								<option value="1">田永健</option>
 								<option value="2">黄建华</option>
-							</select>
-						</td>
+						</select></td>
 						<td>预计投入（人×天）</td>
-						<td><input name="mission.totalHours" value="100"/></td>
+						<td><input name="mission.totalHours" value="100" /></td>
 					</tr>
 					<tr>
 						<td>任务内容</td>
-						<td colspan="3"><textarea id="assignContent" disabled="disabled" rows="8" cols="128" style="width: 93%;height:108px"></textarea></td>
+						<td colspan="3"><textarea id="assignContent" disabled="disabled" rows="8" cols="128"
+								style="width: 93%; height: 108px"></textarea></td>
 					</tr>
 					<tr>
 						<td>备注信息</td>
@@ -306,8 +313,8 @@
 		</div>
 	</div>
 	<script type="text/javascript">
-		function loadForAssignAsync(){
-			
+		function loadForAssignAsync() {
+
 		}
 	</script>
 </body>

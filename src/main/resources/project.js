@@ -1,5 +1,5 @@
 var ioc = {
-		conf : {
+	conf : {
 		type : "org.nutz.ioc.impl.PropertiesProxy",
 		fields : {
 			paths : [ "mail/" ]
@@ -105,9 +105,9 @@ var ioc = {
 	prdtService : {
 		type : 'com.jit.project.product.service.ProductService',
 		fields : {
-//			dao : {
-//				refer : 'dao'
-//			}
+		// dao : {
+		// refer : 'dao'
+		// }
 		}
 	},
 	orgAction : {
@@ -131,11 +131,22 @@ var ioc = {
 		fields : {
 			missionService : {
 				refer : 'missionService'
+			},
+			dailyItemService : {
+				refer : 'dailyItemService'
 			}
 		}
 	},
 	missionService : {
 		type : 'com.jit.project.mission.MissionServiceImpl',
+		fields : {
+			dao : {
+				refer : 'dao'
+			}
+		}
+	},
+	dailyItemService : {
+		type : 'com.jit.project.daily.DailyItemServiceImpl',
 		fields : {
 			dao : {
 				refer : 'dao'
