@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="pg" uri="/WEB-INF/tags"%>
 <%
 	String path = request.getContextPath();
 %>
@@ -49,6 +51,7 @@
 	width: 80%;
 	height: 22px
 }
+.table td,th{padding:2px 5px 8px 5px}
 </style>
 
 <script type="text/javascript" src="<%=path%>/js/jquery/jquery-1.11.1.js"></script>
@@ -141,7 +144,7 @@
 				<!--Sidebar content-->
 				<fieldset>
 					<legend>
-						<span>产品模块 <a href="#orgModal" class="white-pointer" data-toggle="modal">[+]</a>
+						<span>产品列表 <a href="#orgModal" class="white-pointer" data-toggle="modal">[+]</a>
 						</span>
 					</legend>
 				</fieldset>
@@ -164,7 +167,7 @@
 			<div class="span10">
 				<fieldset>
 					<legend>
-						<span>任务列表<a href="<%=path%>/mission/add" style="margin-left: 50px; color: white">+新建任务</a>
+						<span>产品模块<a href="<%=path%>/product/add" style="margin-left: 50px; color: white">+增加产品</a>
 						</span>
 					</legend>
 				</fieldset>
@@ -174,52 +177,37 @@
 						<thead>
 							<tr>
 								<th class="w4">序号</th>
-								<th class="w12">任务名称</th>
-								<th class="w8">任务类型</th>
-								<th class="w36">任务摘要</th>
-								<th class="w6">负责人</th>
-								<th class="w6">下级任务</th>
-								<th class="w6">当前状态</th>
+								<th class="w12">产品名称</th>
+								<th class="w8">产品编号</th>
+								<th class="w6">研发经理</th>
+								<th class="w6">产品经理</th>
+								<th class="w6">测试经理</th>
+								<th class="w6">最新版本</th>
+								<th class="w6">发布时间</th>
 								<th class="w6">操作</th>
 							</tr>
 						</thead>
-						<tr>
-							<td>sfd</td>
-							<td>sdfg</td>
-							<td>sfd</td>
-							<td>sdfg</td>
-							<td>sfdg</td>
-							<td>[2]</td>
-							<td>sdfg</td>
-							<td><a href="#assignModal" data-toggle="modal"><i class="icon-hand-right" title="指派"></i></a> <a href="#"><i
-									class="icon-pencil" title="编辑"></i></a> <a href="#"><i class="icon-time" title="任务历史"></i></a></td>
-
-						</tr>
-						<tr>
-							<td>sfd</td>
-							<td>sdfg</td>
-							<td>sfd</td>
-							<td>sdfg</td>
-							<td>sfdg</td>
-							<td>[0]</td>
-							<td>sdfg</td>
-							<td><a href="#assignModal" data-toggle="modal"><i class="icon-hand-right" title="指派"></i></a> <a href="#"><i
-									class="icon-pencil" title="编辑"></i></a> <a href="#"><i class="icon-time" title="任务历史"></i></a></td>
-						</tr>
-						<tr>
-							<td>sfd</td>
-							<td>sdfg</td>
-							<td>sfd</td>
-							<td>sdfg</td>
-							<td>sfdg</td>
-							<td>[1]</td>
-							<td>进行中</td>
-							<td><a href="#assignModal" data-toggle="modal"><i class="icon-hand-right" title="指派"></i></a> <a href="#"><i
-									class="icon-pencil" title="编辑"></i></a> <a href="#"><i class="icon-time" title="任务历史"></i></a></td>
-						</tr>
+						<c:forEach var="prd" items="${obj.list}" varStatus="index">
+							<tr>
+								<td>${index.count}</td>
+								<td>${prd.productName}</td>
+								<td>${prd.code}</td>
+								<td>${prd.devMgr}</td>
+								<td>${prd.productMgr}</td>
+								<td>${prd.testMgr}</td>
+								<td>${prd.releaseVersion}</td>
+								<td>${prd.releaseDate}</td>
+								<td>
+									<a href="#"><i class="icon-pencil" title="编辑"></i></a>
+									<a href="#"><i class=" icon-remove" title="删除"></i></a>
+								</td>
+							</tr>
+						</c:forEach>
 					</table>
-					<pg:page pageNo="<%=pageNo%>" currentClass="active" pageSize="<%=pageSize%>" totalCount="<%=totalCount%>">
-					</pg:page>
+					<form id="queryForm" action="<%=path%>/product/list">
+						<pg:page pageNo="${obj.pager.pageNumber}" currentClass="active" pageSize="${obj.pager.pageSize}" totalCount="<%=totalCount%>">
+						</pg:page>
+					</form>
 				</div>
 			</div>
 		</div>
@@ -262,7 +250,7 @@
 	<div id="assignModal" class="modal hide fade" tabindex="-1">
 		<div class="modal-header form-title">
 			<button type="button" class="close" data-dismiss="modal">×</button>
-			<span id="myModalLabel">任务指派</span>
+			<span id="myModalLabel">子模块</span>
 		</div>
 		<div class="modal-body">
 			<form action="#">

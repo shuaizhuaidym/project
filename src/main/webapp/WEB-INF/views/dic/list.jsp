@@ -66,6 +66,8 @@
 							<th class="w4">序号</th>
 							<th class="w12">字典名称</th>
 							<th class="w8">字典类型</th>
+							<th class="w8">字典编码</th>
+							<th class="w8">显示顺序</th>
 							<th class="w36">详细描述</th>
 							<th class="w6">当前状态</th>
 						</tr>
@@ -75,6 +77,8 @@
 							<td>${index.count}</td>
 							<td><a href="<%=path%>/dic/edit?dic_id=${dic.dicID}">${dic.dicName}</a></td>
 							<td>${dic.dicType}</td>
+							<td>${dic.dicCode}</td>
+							<td>${dic.displayNumber}</td>
 							<td>${dic.comments}</td>
 							<td>${dic.state}</td>
 						</tr>

@@ -15,7 +15,7 @@ import org.nutz.mvc.annotation.Param;
 
 import com.jit.project.dictionary.bean.Dictionary;
 import com.jit.project.dictionary.bean.Query;
-import com.jit.project.service.IDicService;
+import com.jit.project.dictionary.service.IDicService;
 
 /**
  * 字典数据管理
@@ -37,6 +37,9 @@ public class DicAction {
 		dicType.put("问题类型", "问题类型");
 		dicType.put("所属行业", "所属行业");
 		dicType.put("当前状态", "当前状态");
+		dicType.put("任务类型", "任务类型");
+		dicType.put("任务类别", "任务类别");
+		dicType.put("任务状态", "任务状态");
 	}
 	
 	/**

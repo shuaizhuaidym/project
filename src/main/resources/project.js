@@ -71,7 +71,7 @@ var ioc = {
 		}
 	},
 	dicService : {
-		type : 'com.jit.project.service.DicService',
+		type : 'com.jit.project.dictionary.service.DicService',
 		fields : {
 			dao : {
 				refer : 'dao'
@@ -105,9 +105,9 @@ var ioc = {
 	prdtService : {
 		type : 'com.jit.project.product.service.ProductService',
 		fields : {
-		// dao : {
-		// refer : 'dao'
-		// }
+			dao : {
+				refer : 'dao'
+			}
 		}
 	},
 	orgAction : {
@@ -134,6 +134,9 @@ var ioc = {
 			},
 			dailyItemService : {
 				refer : 'dailyItemService'
+			},
+			dicService : {
+				refer : 'dicService'
 			}
 		}
 	},

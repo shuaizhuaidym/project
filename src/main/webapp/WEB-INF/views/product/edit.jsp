@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>增加产品</title>
+<title>编辑产品信息</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -51,10 +51,10 @@ textarea {
 	<div class="row-fluid">
 		<div class="span8 offset2">
 			<fieldset>
-				<legend><span>新增产品</span></legend>
+				<legend><span>编辑产品信息</span></legend>
 			</fieldset>
 			<form class="form-horizontal" action="<%=path%>/product/create" method="post">
-				
+				<input type="hidden" name="product.productID" value="${obj.productID}"/>
 				<div class="control-group">
 					<label class="control-label" for="productName">产品名称</label>
 					<div class="controls">

@@ -31,6 +31,11 @@ public class Query implements Condition {
 		super();
 	}
 	
+	public Query(String dicType) {
+		super();
+		this.dicType = dicType;
+	}
+
 	public Query(int pageSize) {
 		super();
 		this.pageSize = pageSize;

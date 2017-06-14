@@ -2,25 +2,35 @@ package com.jit.project.product.bean;
 
 import java.util.*;
 
+import org.nutz.dao.entity.annotation.Column;
+import org.nutz.dao.entity.annotation.Id;
+import org.nutz.dao.entity.annotation.Table;
+
 /**
  * @author yanming_dai
  * @date 2017-06-02
  */
+@Table("t_product")
 public class Product {
-	/** @pdOid 08fc2e9f-bdff-426f-b5c8-72eccaf5221c */
+	@Id
+	@Column("p_id")
 	private int productID;
-	/** @pdOid d3dc4570-5cd6-4013-9fb3-d44e35ad17b5 */
+	@Column("name")
 	private String productName;
-	/** @pdOid 548250a7-947e-4a33-8ab4-dca337dde403 */
+	@Column("code")
+	private String code;
+	@Column("release_version")
 	private String releaseVersion;
-	/** @pdOid a4db7e7a-b533-4cf0-b169-e040d6a4dfda */
-	private Date relaseDate;
-	/** @pdOid 29126e0c-3f18-4785-95a0-2efe7726322c */
+	@Column("release_date")
+	private Date releaseDate;
+	@Column("product_mgr")
 	private String productMgr;
-	/** @pdOid 59e6737a-63f6-4d3e-bb2f-ac0d8657ebaa */
+	@Column("test_mgr")
 	private String testMgr;
-	/** @pdOid abd4c7cc-1649-43fa-bdfb-e597651d311d */
+	@Column("dev_mgr")
 	private String devMgr;
+	@Column("intruduction")
+	private String desc;
 
 	public int getProductID() {
 		return productID;
@@ -46,14 +56,6 @@ public class Product {
 		this.releaseVersion = releaseVersion;
 	}
 
-	public Date getRelaseDate() {
-		return relaseDate;
-	}
-
-	public void setRelaseDate(Date relaseDate) {
-		this.relaseDate = relaseDate;
-	}
-
 	public String getProductMgr() {
 		return productMgr;
 	}
@@ -76,6 +78,30 @@ public class Product {
 
 	public void setDevMgr(String devMgr) {
 		this.devMgr = devMgr;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public String getDesc() {
+		return desc;
+	}
+
+	public void setDesc(String desc) {
+		this.desc = desc;
+	}
+
+	public Date getReleaseDate() {
+		return releaseDate;
+	}
+
+	public void setReleaseDate(Date releaseDate) {
+		this.releaseDate = releaseDate;
 	}
 
 }

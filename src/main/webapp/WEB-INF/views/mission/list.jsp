@@ -11,7 +11,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>产品管理</title>
+<title>任务管理</title>
 
 <base href="<%=path%>" />
 
@@ -210,16 +210,19 @@
 								<td>${mission.summary}</td>
 								<td>${mission.assignTo}</td>
 								<td>${mission.status}</td>
-								<td><a href="#assignModal" data-toggle="modal"><i class="icon-hand-right" title="指派"></i></a> <a
-									href="mission/edit?mission_id=${mission.missionID}"><i class="icon-pencil" title="编辑"></i></a> <a
-									href="mission/history?mission_id=${mission.missionID}"><i class="icon-time" title="任务历史"></i></a></td>
+								<td>
+									<a href="<%=path %>/mission/loadForAssignAsync?mission_id=${mission.missionID}" data-toggle="modal" data-target="#assignModal"><i class="icon-hand-right" title="指派"></i></a>
+									<a href="<%=path %>/mission/edit?mission_id=${mission.missionID}"><i class="icon-pencil" title="编辑"></i></a>
+									<a href="<%=path %>/mission/history?mission_id=${mission.missionID}"><i class="icon-time" title="任务历史"></i></a></td>
 
 							</tr>
 						</c:forEach>
 					</table>
-					<pg:page pageNo="${obj.pager.pageNumber}" currentClass="active" pageSize="${obj.pager.pageSize}"
-						totalCount="${obj.pager.recordCount}">
-					</pg:page>
+					<form id="queryForm" action="<%=path%>/mission/query">
+						<pg:page pageNo="${obj.pager.pageNumber}" currentClass="active" pageSize="${obj.pager.pageSize}"
+							totalCount="${obj.pager.recordCount}">
+						</pg:page>
+					</form>
 				</div>
 			</div>
 		</div>
@@ -265,57 +268,17 @@
 			<span id="myModalLabel">任务指派</span>
 		</div>
 		<div class="modal-body">
-			<form action="#">
-				<table>
-					<tr>
-						<td>任务名称</td>
-						<td><input disabled="disabled" value="身份认证网关客户端开发" /></td>
-						<td>所属产品</td>
-						<td><input disabled="disabled" value="身份认证网关" /></td>
-					</tr>
-					<tr>
-						<td>迭代版本</td>
-						<td><input disabled="disabled" value="3.0.24.4" /></td>
-						<td>所属项目</td>
-						<td><input disabled="disabled" value="华为项目" /></td>
-					</tr>
-					<tr>
-						<td>任务类型</td>
-						<td><input disabled="disabled" value="3.0.24.4" /></td>
-						<td>截止日期</td>
-						<td><input readonly="readonly" value="华为项目" /></td>
-					</tr>
-					<tr>
-						<td>指派给</td>
-						<td><select name="mission.assignTo">
-								<option value="1">田永健</option>
-								<option value="2">黄建华</option>
-						</select></td>
-						<td>预计投入（人×天）</td>
-						<td><input name="mission.totalHours" value="100" /></td>
-					</tr>
-					<tr>
-						<td>任务内容</td>
-						<td colspan="3"><textarea id="assignContent" disabled="disabled" rows="8" cols="128"
-								style="width: 93%; height: 108px"></textarea></td>
-					</tr>
-					<tr>
-						<td>备注信息</td>
-						<td colspan="3"><textarea id="assignComments" name="mission.comments" rows="3" cols="128" style="width: 93%"></textarea></td>
-					</tr>
-				</table>
-			</form>
+			<!-- 加载远端 -->
 		</div>
-
 		<div class="modal-footer">
 			<button class="btn" data-dismiss="modal">关闭</button>
-			<button class="btn btn-primary">保存</button>
+			<button class="btn btn-primary" onclick="assign();">保存</button>
 		</div>
 	</div>
 	<script type="text/javascript">
-		function loadForAssignAsync() {
-
-		}
+	function assign(){
+		$("#assignForm").submit();
+	}
 	</script>
 </body>
 </html>

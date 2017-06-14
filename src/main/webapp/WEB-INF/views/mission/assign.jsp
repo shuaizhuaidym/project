@@ -1,0 +1,78 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="ui" uri="/WEB-INF/tags/select"%>
+<%
+	String path = request.getContextPath();
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<base href="<%=path %>" />
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="<%=path%>/kindediter/themes/default/default.css" />
+<script type="text/javascript" src="<%=path%>/js/jquery/jquery-1.11.1.js"></script>
+<script charset="utf-8" src="<%=path%>/kindediter/kindeditor-min.js"></script>
+<script charset="utf-8" src="<%=path%>/kindediter/lang/zh_CN.js"></script>
+
+</head>
+<body>
+	<form id="assignForm" action="<%=path %>/mission/assign" method="post">
+		<input type="hidden" name="mission.missionID" value="${obj.missionID}"/>
+		<table>
+			<tr>
+				<td>任务名称</td>
+				<td><input disabled="disabled" value="${obj.missionName}" /></td>
+				<td>所属产品</td>
+				<td><input disabled="disabled" value="${obj.productName}" /></td>
+			</tr>
+			<tr>
+				<td>迭代版本</td>
+				<td><input disabled="disabled" value="${obj.productVersion}" /></td>
+				<td>所属项目</td>
+				<td><input disabled="disabled" value="${obj.projectName}" /></td>
+			</tr>
+			<tr>
+				<td>任务类型</td>
+				<td><input disabled="disabled" value="${obj.type}" /></td>
+				<td>截止日期</td>
+				<td><input readonly="readonly" value="${obj.formatDeadline}" /></td>
+			</tr>
+			<tr>
+				<td>指派给</td>
+				<td><select name="mission.assignTo">
+						<option value="田永健">田永健</option>
+						<option value="黄建华">黄建华</option>
+				</select></td>
+				<td>预计投入（人×天）</td>
+				<td><input name="mission.totalHours" value="100" /></td>
+			</tr>
+			<tr>
+				<td>任务内容</td>
+				<td colspan="3"><textarea id="assignContent" disabled="disabled" rows="8" cols="128" style="width: 93%; height: 108px">${obj.content}</textarea></td>
+			</tr>
+			<tr>
+				<td>备注信息</td>
+				<td colspan="3"><textarea id="assignComments" name="mission.comments" rows="3" cols="128" style="width: 93%">${obj.comments}</textarea></td>
+			</tr>
+		</table>
+	</form>
+	<script>
+	var editor;
+	KindEditor.ready(function(K) {
+		editor = K.create('textarea[id="assignContent"]', {
+			resizeType : 0,
+			allowPreviewEmoticons : false,
+			allowImageUpload : false,
+			items : [ 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor',
+					'bold', 'italic', 'underline', 'removeformat', '|',
+					'justifyleft', 'justifycenter', 'justifyright',
+					'insertorderedlist', 'insertunorderedlist', '|',
+					'emoticons', 'image', 'link' ]
+		});
+	});
+</script>
+</body>
+</html>

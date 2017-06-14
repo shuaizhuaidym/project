@@ -9,6 +9,7 @@ form td:nth-child(even) {
 
 form td:nth-child(odd) {
 	text-align: right;
+	width:12%;
 }
 
 input {

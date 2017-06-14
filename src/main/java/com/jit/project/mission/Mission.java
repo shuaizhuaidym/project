@@ -4,6 +4,7 @@ package com.jit.project.mission;
  * @author yanming_dai
  * @date 2017-06-02
  */
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.nutz.dao.entity.annotation.Column;
@@ -17,7 +18,7 @@ public class Mission {
 	@Column("mission_name")
 	private String missionName;
 	@Column("type")
-	private int type;
+	private String type;
 	@Column("content")
 	private String content;
 	@Column("summary")
@@ -25,7 +26,7 @@ public class Mission {
 	@Column("deadline")
 	private Date deadline;
 	@Column("status")
-	private int status;
+	private String status;
 	@Column("progress")
 	private int progress;
 	@Column("task_class")
@@ -48,6 +49,8 @@ public class Mission {
 	private String productBaseVersion;
 	@Column("project_id")
 	private int projectID;
+	@Column("project_name")
+	private int projectName;//冗余字段
 	@Column("product_id")
 	private int productID;
 	@Column("product_name")
@@ -58,11 +61,16 @@ public class Mission {
 	private int module;
 	@Column("assign_to")
 	private String assignTo;
+	@Column("total_hours")
+	private String totalHours;
 	@Column("team_id")
 	private int teamID;
 	@Column("comments")
 	private String comments;
 
+	public String getFormatDeadline(){
+		return deadline == null ? "" : new SimpleDateFormat("yyyy-MM-dd").format(deadline);
+	}
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
@@ -85,11 +93,11 @@ public class Mission {
 		this.missionName = missionName;
 	}
 
-	public int getType() {
+	public String getType() {
 		return type;
 	}
 
-	public void setType(int type) {
+	public void setType(String type) {
 		this.type = type;
 	}
 
@@ -117,11 +125,11 @@ public class Mission {
 		this.deadline = deadLine;
 	}
 
-	public int getStatus() {
+	public String getStatus() {
 		return status;
 	}
 
-	public void setStatus(int status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 
@@ -159,6 +167,10 @@ public class Mission {
 
 	public Date getPlanStart() {
 		return planStart;
+	}
+	
+	public String getFormatPlanStart(){
+		return new SimpleDateFormat("yyyy-MM-dd").format(planStart);
 	}
 
 	public void setPlanStart(Date planStart) {
@@ -268,4 +280,19 @@ public class Mission {
 	public void setComments(String comments) {
 		this.comments = comments;
 	}
+
+	public int getProjectName() {
+		return projectName;
+	}
+
+	public void setProjectName(int projectName) {
+		this.projectName = projectName;
+	}
+	public String getTotalHours() {
+		return totalHours;
+	}
+	public void setTotalHours(String totalHours) {
+		this.totalHours = totalHours;
+	}
+	
 }

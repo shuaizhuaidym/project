@@ -29,15 +29,27 @@
 			</fieldset>
 			<form class="form-horizontal" action="<%=path%>/dic/create" method="post">
 				<div class="control-group">
+					<label class="control-label" for="dicType">字典类型</label>
+					<div class="controls">
+						<ui:select name="dic.dicType" path="${dic.dicType}" items="${mDicType}"></ui:select>
+					</div>
+				</div>
+				<div class="control-group">
 					<label class="control-label" for="dicName">字典名称</label>
 					<div class="controls">
 						<input type="text" id="dicName" name="dic.dicName">
 					</div>
 				</div>
 				<div class="control-group">
-					<label class="control-label" for="dicType">字典类型</label>
+					<label class="control-label" for="dicCode">字典编码</label>
 					<div class="controls">
-						<ui:select name="dic.dicType" path="${dic.dicType}" items="${mDicType}"></ui:select>
+						<input type="text" id="dicCode" name="dic.dicCode">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="displayNumber">显示顺序</label>
+					<div class="controls">
+						<input type="text" id="displayNumber" name="dic.displayNumber">
 					</div>
 				</div>
 				<div class="control-group">
@@ -49,14 +61,14 @@
 				<div class="control-group">
 					<div class="controls">
 						<label class="checkbox">
-							<input type="checkbox" id="available" name="dic.available">是否启用
+							<input type="checkbox" checked="checked" id="available" name="dic.available">是否启用
 						</label>
 					</div>
 				</div>
 				<div class="control-group">
 					<div class="controls">
 						<button type="submit" class="btn btn-primary">保存</button>
-						<button type="reset" class="btn">重置</button>
+						<a href="<%=path %>/dic/list" class="btn">返回列表</a>
 					</div>
 				</div>
 			</form>

@@ -23,7 +23,13 @@ public class Dictionary {
 	// 字典名称
 	@Column("dic_name")
 	private String dicName;
-	//用途说明
+	//字典编码
+	@Column("dic_code")
+	private String dicCode;
+	//显示顺序
+	@Column("display_number")
+	private Integer displayNumber;
+	// 用途说明
 	@Column("comments")
 	private String comments;
 	// 是否可用（逻辑删除）
@@ -65,9 +71,11 @@ public class Dictionary {
 	public void setAvailable(boolean available) {
 		this.available = available;
 	}
-	enum DicTyps{
-		EGINEER,STATUS,INDUSTRY
+
+	enum DicTyps {
+		EGINEER, STATUS, INDUSTRY
 	}
+
 	public String getComments() {
 		return comments;
 	}
@@ -75,5 +83,21 @@ public class Dictionary {
 	public void setComments(String comments) {
 		this.comments = comments;
 	}
-	
+
+	public String getDicCode() {
+		return dicCode;
+	}
+
+	public void setDicCode(String dicCode) {
+		this.dicCode = dicCode;
+	}
+
+	public Integer getDisplayNumber() {
+		return displayNumber;
+	}
+
+	public void setDisplayNumber(Integer displayOrder) {
+		this.displayNumber = displayOrder;
+	}
+
 }
