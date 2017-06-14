@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50527
 File Encoding         : 65001
 
-Date: 2017-02-16 17:08:22
+Date: 2017-06-14 18:48:02
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -21,17 +21,89 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `t_dictionary`;
 CREATE TABLE `t_dictionary` (
   `dic_id` int(32) NOT NULL AUTO_INCREMENT,
-  `dic_type` varchar(128) DEFAULT NULL,
-  `dic_name` varchar(255) DEFAULT NULL,
+  `dic_type` varchar(128) NOT NULL,
+  `dic_name` varchar(255) NOT NULL,
   `comments` varchar(1024) DEFAULT NULL,
   `available` varchar(16) DEFAULT NULL,
+  `display_number` int(11) DEFAULT NULL,
+  `dic_code` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`dic_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_dictionary
 -- ----------------------------
-INSERT INTO `t_dictionary` VALUES ('13', '负责人', '刘宗恺', '研发负责人', '1');
+INSERT INTO `t_dictionary` VALUES ('13', '负责人', '刘宗恺', '研发负责人', '1', null, null);
+INSERT INTO `t_dictionary` VALUES ('14', '任务状态', '未启动', '', '1', null, null);
+INSERT INTO `t_dictionary` VALUES ('15', '任务状态', '进行中-需求分析中', '', '1', null, null);
+INSERT INTO `t_dictionary` VALUES ('16', '任务状态', '进行中-设计中', '', '1', null, null);
+INSERT INTO `t_dictionary` VALUES ('17', '任务状态', '进行中-开发中', '', '1', null, null);
+INSERT INTO `t_dictionary` VALUES ('18', '任务状态', '进行中-测试中', '', '1', null, null);
+INSERT INTO `t_dictionary` VALUES ('19', '任务状态', '延期-开发中', '', '1', null, null);
+INSERT INTO `t_dictionary` VALUES ('20', '任务状态', '延期-测试中', '', '1', null, null);
+INSERT INTO `t_dictionary` VALUES ('21', '任务状态', '完成', '', '1', null, null);
+INSERT INTO `t_dictionary` VALUES ('22', '任务状态', '暂停', '', '1', null, null);
+INSERT INTO `t_dictionary` VALUES ('23', '任务类型', '科研项目', '科研项目', '1', '0', '科研项目');
+INSERT INTO `t_dictionary` VALUES ('24', '任务类型', '售前技术支持', '售前技术支持', '1', '0', '售前技术支持');
+INSERT INTO `t_dictionary` VALUES ('25', '任务类型', '售后技术支持', '售后技术支持', '1', '0', '售后技术支持');
+INSERT INTO `t_dictionary` VALUES ('26', '任务类型', '持续改进', '持续改进', '1', '0', '持续改进');
+INSERT INTO `t_dictionary` VALUES ('27', '任务类型', '售后需求开发', '售后需求开发', '1', '0', '售后需求开发');
+INSERT INTO `t_dictionary` VALUES ('28', '任务类型', '售前需求开发', '售前需求开发', '1', '0', '售前需求开发');
+INSERT INTO `t_dictionary` VALUES ('29', '任务类型', '售前定制开发', '售前定制开发', '1', '0', '售前定制开发');
+INSERT INTO `t_dictionary` VALUES ('30', '任务类型', '售后定制开发', '售后定制开发', '1', '0', '售后定制开发');
+INSERT INTO `t_dictionary` VALUES ('31', '任务类别', '新功能', '', '1', '0', '新功能');
+INSERT INTO `t_dictionary` VALUES ('32', '任务类别', '缺陷修复', '', '1', '9', '缺陷修复');
+INSERT INTO `t_dictionary` VALUES ('33', '任务类别', '产品改进', '', '1', '8', '产品改进');
+
+-- ----------------------------
+-- Table structure for t_mission
+-- ----------------------------
+DROP TABLE IF EXISTS `t_mission`;
+CREATE TABLE `t_mission` (
+  `mission_id` int(11) NOT NULL AUTO_INCREMENT,
+  `mission_name` varchar(254) DEFAULT NULL,
+  `type` varchar(32) DEFAULT NULL,
+  `content` text,
+  `summary` varchar(1024) DEFAULT NULL,
+  `deadline` datetime DEFAULT NULL,
+  `status` varchar(64) DEFAULT NULL,
+  `progress` int(11) DEFAULT NULL,
+  `task_class` varchar(64) DEFAULT NULL,
+  `parent_id` varchar(254) DEFAULT NULL,
+  `product_version` varchar(254) DEFAULT NULL,
+  `plan_start` datetime DEFAULT NULL,
+  `start_date` datetime DEFAULT NULL,
+  `plan_end` datetime DEFAULT NULL,
+  `end_date` datetime DEFAULT NULL,
+  `product_sub_type` int(11) DEFAULT NULL,
+  `product_base_version` varchar(32) DEFAULT NULL,
+  `project_id` int(32) DEFAULT NULL,
+  `project_name` varchar(255) DEFAULT NULL,
+  `product_id` int(11) DEFAULT NULL,
+  `product_name` varchar(254) DEFAULT NULL,
+  `progress_detail` text,
+  `assign_to` varchar(64) DEFAULT NULL,
+  `total_hours` int(11) DEFAULT NULL,
+  `team_id` int(11) DEFAULT NULL,
+  `module` int(11) DEFAULT NULL,
+  `comments` text,
+  PRIMARY KEY (`mission_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COMMENT='task_class:任务类别，产品研发，缺陷，改进\r\ntask_type:任务类型，科研项目，售前技术支持，';
+
+-- ----------------------------
+-- Records of t_mission
+-- ----------------------------
+INSERT INTO `t_mission` VALUES ('1', '客户端数据同步接口开发', '1', '<p>\r\n	1、通讯协议设计\r\n</p>\r\n<p>\r\n	2、通讯接口设计包含参数类型、异常处理\r\n</p>', '客户端数据同步接口开发', '2017-12-01 00:00:00', '暂停', '0', '缺陷修复', '1202,2012-01-02,2017-12-01', '3.0.36.3', null, null, null, null, '0', '0', '0', null, '1201', null, null, null, null, '0', '1', null);
+INSERT INTO `t_mission` VALUES ('2', '客户端数据同步接口开发', '1', '<p>\r\n	1、通讯协议设计\r\n</p>\r\n<p>\r\n	2、通讯接口设计包含参数类型、异常处理\r\n</p>', '客户端数据同步接口开发', '2017-12-01 00:00:00', '暂停', '0', '缺陷修复', '1202,2012-01-02,2017-12-01', '3.0.36.3', null, null, null, null, '0', '0', '0', null, '1201', null, null, null, null, '0', '1', null);
+INSERT INTO `t_mission` VALUES ('3', '华为海外项目开发', '1', '<p>\r\n	1、需求分析获取\r\n</p>\r\n<p>\r\n	2、安全性测试，扫描漏洞、补丁开发\r\n</p>', '华为海外项目开发', null, '暂停', '22', '缺陷修复', '1101', '3.0.33.6', '2012-01-02 00:00:00', '2012-01-03 00:00:00', '2012-01-03 00:00:00', '2012-01-04 00:00:00', '1103', '0', '0', null, '1100', null, '2012-01-03\r\n1、需求分析获取\r\n\r\n2、安全性测试，扫描漏洞、补丁开发', '8', null, '0', '1', '无');
+INSERT INTO `t_mission` VALUES ('4', '华为海外项目开发', '1', '1、需求分析获取<br />\r\n2、安全性测试，扫描漏洞、补丁开发', '华为海外项目开发', '2012-01-01 00:00:00', '暂停', '83', '缺陷修复', '1101', '3.0.33.6', '2012-01-02 00:00:00', '2012-01-03 00:00:00', '2012-01-03 00:00:00', '2012-01-04 00:00:00', '1103', '3.3.36.6', '0', null, '1100', null, '2012-01-03\r\n1、需求分析获取\r\n2、安全性测试，扫描漏洞、补丁开发', '8', null, '1104', '1', '无');
+INSERT INTO `t_mission` VALUES ('5', '二维码认证客户端数据同步接口开发', '1', '<p>\r\n	二维码认证客户端数据同步接口开发\r\n</p>\r\n<p>\r\n	客户端数据同步接口，设计开发\r\n</p>', '客户端数据同步接口，设计开发', '2012-01-01 00:00:00', '暂停', '83', '缺陷修复', '1202', '3.0.34.5', '2012-01-02 00:00:00', '2012-01-03 00:00:00', '2012-01-03 00:00:00', '2012-01-04 00:00:00', '1103', '3.3.36.6', '1100', null, '1201', null, '2017-06-12\r\n客户端数据同步接口，设计开发', '8', null, '1104', '1', '无');
+INSERT INTO `t_mission` VALUES ('6', '公安部移动警务项目开发', '1', '公安部移动警务项目开发&nbsp;&nbsp;&nbsp;&nbsp;', '公安部移动警务项目开发', '2012-01-01 00:00:00', '暂停', '23', '缺陷修复', '1202', '3.0.33.6', '2012-01-02 00:00:00', '2012-01-03 00:00:00', '2012-01-03 00:00:00', '2012-01-04 00:00:00', '1103', '3.3.36.6', '2000', null, '2001', null, '公安部移动警务项目开发', '8', null, '1104', '1', '公安部移动警务项目开发');
+INSERT INTO `t_mission` VALUES ('7', '公安部移动警务项目开发', '1', '公安部移动警务项目开发&nbsp;&nbsp;&nbsp;&nbsp;', '公安部移动警务项目开发', '2012-01-01 00:00:00', '暂停', '23', '缺陷修复', '1202', '3.0.33.6', '2012-01-02 00:00:00', '2012-01-03 00:00:00', '2012-01-03 00:00:00', '2012-01-04 00:00:00', '1103', '3.3.36.6', '2000', null, '2001', null, '公安部移动警务项目开发', '8', null, '1104', '1', '公安部移动警务项目开发');
+INSERT INTO `t_mission` VALUES ('8', '陕西省社保厅售后项目支持', '3', '数据库宕机，整体服务不可用；恢复数据库，恢复服务。', '数据库宕机，整体服务不可用', '2012-01-01 00:00:00', '暂停', '100', '缺陷修复', '123', '3.0.33.6', '2012-01-02 00:00:00', '2012-01-03 00:00:00', '2012-01-03 00:00:00', '2012-01-04 00:00:00', '1103', '3.3.36.6', '101', null, '101', null, '陕西省社保厅售后项目支持', '8', null, '1104', '1', '陕西省社保厅售后项目支持');
+INSERT INTO `t_mission` VALUES ('9', '沧州市公安局售后项目支持', '科研项目', '沧州市公安局售后项目支持<br />', '沧州市公安局售后项目支持', '2012-01-01 00:00:00', '暂停', '0', '缺陷修复', '1101', '3.0.34.5', '2012-01-02 00:00:00', '2012-01-03 00:00:00', '2012-01-03 00:00:00', '2012-01-04 00:00:00', '0', '3.3.36.6', '0', '0', '0', null, '沧州市公安局售后项目支持', '黄建华', '100', '0', '0', '杭州市政府共享单车意见书。');
+INSERT INTO `t_mission` VALUES ('10', '河北某部队边防项目', '售前技术支持', '河北某部队边防项目', '河北某部队边防项目', '2012-01-01 00:00:00', '暂停', '83', '缺陷修复', '123', '3.0.33.6', '2012-01-02 00:00:00', '2012-01-03 00:00:00', '2012-01-03 00:00:00', '2012-01-04 00:00:00', '1103', '3.3.36.6', '1100', '0', '11', null, '河北某部队边防项目，需求调研中。', '黄建华', '100', '1104', '1', '河北某部队边防项目');
+INSERT INTO `t_mission` VALUES ('11', '华能二维码项目支持任务', '售前技术支持', '华能二维码项目&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;', '华能二维码项目', '2012-01-01 00:00:00', '4', '22', '8', '1202', '3.0.33.6', '2012-01-02 00:00:00', '2012-01-03 00:00:00', '2012-01-03 00:00:00', '2012-01-04 00:00:00', '1103', '3.3.36.6', '0', '13213', '1100', null, '华能二维码项目支持任务', '李四', '128', '1104', '1', '华能二维码项目支持任务');
 
 -- ----------------------------
 -- Table structure for t_permission
@@ -48,6 +120,28 @@ CREATE TABLE `t_permission` (
 -- Records of t_permission
 -- ----------------------------
 INSERT INTO `t_permission` VALUES ('1', 'user:add', null, null);
+
+-- ----------------------------
+-- Table structure for t_product
+-- ----------------------------
+DROP TABLE IF EXISTS `t_product`;
+CREATE TABLE `t_product` (
+  `p_id` int(16) NOT NULL AUTO_INCREMENT,
+  `name` varchar(254) DEFAULT NULL,
+  `code` varchar(255) DEFAULT NULL,
+  `release_version` varchar(254) DEFAULT NULL,
+  `release_date` date DEFAULT NULL,
+  `product_mgr` varchar(32) DEFAULT NULL,
+  `test_mgr` varchar(32) DEFAULT NULL,
+  `dev_mgr` varchar(32) DEFAULT NULL,
+  `intruduction` text,
+  PRIMARY KEY (`p_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_product
+-- ----------------------------
+INSERT INTO `t_product` VALUES ('1', 'SM算法加密机', 'phoenix', '3.0.33.6', '2015-01-01', '刘亮', '张海', '张斌', 'SM算法加密机');
 
 -- ----------------------------
 -- Table structure for t_project
