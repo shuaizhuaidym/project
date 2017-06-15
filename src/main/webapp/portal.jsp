@@ -16,6 +16,7 @@
 
 <script type="text/javascript" src="<%=path %>/js/jquery.min.js"></script>
 <script type="text/javascript" src="<%=path %>/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="<%=path%>/js/bootstrap-modal.js"></script>
 
 <style type="text/css">
 body {
@@ -56,10 +57,10 @@ body {
 	overflow: hidden;
 }
 
-.table-defeat tbody>tr:nth-child(odd)>td,.table-striped tbody>tr:nth-child(odd)>th {
+.table-defeat tbody>tr:nth-child(odd)>td,.table-striped tbody>tr:nth-child(odd)>th
+	{
 	background: #blue;
 }
-
 </style>
 </head>
 <body>
@@ -77,7 +78,7 @@ body {
 		<div class="row-fluid marketing">
 			<div class="span3">
 				<div class="panel-heading">
-					<span class="panel-title">我的缺陷</span><a href="<%=path%>/defeat/claim" title="认领缺陷">[认领缺陷]</a>
+					<span class="panel-title">我的缺陷<a href="<%=path%>/defeat/claim" title="认领缺陷"><i class="icon-flag" title="写日报"></i></a></span>
 				</div>
 				<table class="table angle table-defeat">
 					<tr>
@@ -101,7 +102,9 @@ body {
 
 			<div class="span9">
 				<div class="panel-heading">
-					<span class="panel-title">我的任务&nbsp;<a href="<%=path%>/daily/form">[写日报]</a></span>
+					<span class="panel-title">我的任务&nbsp;
+					<a href="<%=path%>/daily/form" data-toggle="modal" data-target="#dailyModal"><i class=" icon-list-alt" title="写日报"></i></a>
+					</span>
 				</div>
 				<table class="table table-striped angle">
 					<tbody>
@@ -132,6 +135,20 @@ body {
 		</div>
 
 		<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
+	</div>
+	<!-- modal dialog assign task -->
+	<div id="dailyModal" class="modal hide fade" tabindex="-1">
+		<div class="modal-header form-title">
+			<button type="button" class="close" data-dismiss="modal">×</button>
+			<span id="myModalLabel">我的日报</span>
+		</div>
+		<div class="modal-body">
+			<!-- 加载远端 -->
+		</div>
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal">关闭</button>
+			<button class="btn btn-primary" onclick="assign();">保存</button>
+		</div>
 	</div>
 </body>
 </html>

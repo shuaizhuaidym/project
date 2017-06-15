@@ -184,7 +184,8 @@
 			<div class="span10">
 				<fieldset>
 					<legend>
-						<span>任务列表<a href="<%=path%>/mission/form" style="margin-left: 50px; color: white">+新建任务</a>
+						<span>
+							任务列表<a href="<%=path%>/mission/form" style="margin-left: 50px; color: white">+新建任务</a>
 						</span>
 					</legend>
 				</fieldset>
