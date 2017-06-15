@@ -148,8 +148,27 @@ var ioc = {
 			}
 		}
 	},
+	dailyAction : {
+		type : "com.jit.project.daily.web.DailyAction",
+		fields : {
+			dailyService : {
+				refer : 'dailyService'
+			},
+			dailyItemService : {
+				refer : 'dailyItemService'
+			}
+		}
+	},
 	dailyItemService : {
-		type : 'com.jit.project.daily.DailyItemServiceImpl',
+		type : 'com.jit.project.daily.service.DailyItemServiceImpl',
+		fields : {
+			dao : {
+				refer : 'dao'
+			}
+		}
+	},
+	dailyService : {
+		type : 'com.jit.project.daily.service.DailyServiceImpl',
 		fields : {
 			dao : {
 				refer : 'dao'

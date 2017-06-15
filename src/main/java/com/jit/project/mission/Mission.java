@@ -30,7 +30,7 @@ public class Mission {
 	@Column("progress")
 	private int progress;
 	@Column("task_class")
-	private int taskClass;
+	private String taskClass;
 	@Column("parent_id")
 	private String parentID;
 	@Column("product_version")
@@ -141,11 +141,11 @@ public class Mission {
 		this.progress = progress;
 	}
 
-	public int getTaskClass() {
+	public String getTaskClass() {
 		return taskClass;
 	}
 
-	public void setTaskClass(int taskClass) {
+	public void setTaskClass(String taskClass) {
 		this.taskClass = taskClass;
 	}
 

@@ -1,4 +1,4 @@
-package com.jit.project.daily;
+package com.jit.project.daily.bean;
 
 
 /**

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="ui" uri="/WEB-INF/tags/select"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f" %> 
 <%
 	String path = request.getContextPath();
 %>
@@ -58,62 +59,62 @@ textarea {
 				<div class="control-group">
 					<label class="control-label" for="productName">产品名称</label>
 					<div class="controls">
-						<input type="text" id="productName" name="product.productName">
+						<input type="text" id="productName" name="product.productName" value="${obj.productName}">
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="code">产品代号</label>
 					<div class="controls">
-						<input type="text" id="code" name="product.code">
+						<input type="text" id="code" name="product.code" value="${obj.code}">
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="devMgr">研发经理</label>
 					<div class="controls">
-						<input type="text" id="devMgr" name="product.devMgr">
+						<input type="text" id="devMgr" name="product.devMgr" value="${obj.devMgr}">
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="productMgr">产品经理</label>
 					<div class="controls">
-						<input type="text" id="productMgr" name="product.productMgr">
+						<input type="text" id="productMgr" name="product.productMgr" value="${obj.productMgr}">
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="testMgr">测试经理</label>
 					<div class="controls">
-						<input type="text" id="testMgr" name="product.testMgr">
+						<input type="text" id="testMgr" name="product.testMgr" value="${obj.testMgr}">
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="releaseVersion">最新版本</label>
 					<div class="controls">
-						<input type="text" id="releaseVersion" name="product.releaseVersion">
+						<input type="text" id="releaseVersion" name="product.releaseVersion" value="${obj.releaseVersion}">
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="releaseDate">发布时间</label>
 					<div class="controls">
-						<input type="text" id="releaseDate" name="product.releaseDate">
+						<input type="text" id="releaseDate" name="product.releaseDate" value="<f:formatDate value="${obj.releaseDate}" pattern="yyyy-MM-dd" />">
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="desc">产品描述</label>
 					<div class="controls">
-						<textarea rows="3" id="desc" name="product.desc"  class="w-input"></textarea>
+						<textarea rows="3" id="desc" name="product.desc"  class="w-input">${obj.desc}</textarea>
 					</div>
 				</div>
-				<div class="control-group">
+<!-- 				<div class="control-group">
 					<div class="controls">
 						<label class="checkbox">
 							<input type="checkbox" checked="checked" id="available" name="dic.available">是否启用
 						</label>
 					</div>
-				</div>
+				</div> -->
 				<div class="control-group">
 					<div class="controls">
 						<button type="submit" class="btn btn-primary">保存</button>
-						<a href="<%=path %>/dic/list" class="btn">返回列表</a>
+						<a href="<%=path %>/product/list" class="btn">返回列表</a>
 					</div>
 				</div>
 			</form>

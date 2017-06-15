@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib prefix="pg" uri="/WEB-INF/tags"%>
 <%
 	String path = request.getContextPath();
@@ -21,6 +22,7 @@
 <title>产品管理</title>
 
 <link href="<%=path%>/css/commom.css" rel="stylesheet">
+<link href="<%=path%>/css/list.css" rel="stylesheet">
 <link href="<%=path%>/css/bootstrap.min.css" rel="stylesheet">
 <link href="<%=path%>/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 
@@ -196,16 +198,16 @@
 								<td>${prd.productMgr}</td>
 								<td>${prd.testMgr}</td>
 								<td>${prd.releaseVersion}</td>
-								<td>${prd.releaseDate}</td>
+								<td><fmt:formatDate value="${prd.releaseDate}" pattern="yyyy-MM-dd" /></td>
 								<td>
-									<a href="#"><i class="icon-pencil" title="编辑"></i></a>
+									<a href="<%=path%>/product/edit?product_id=${prd.productID}"><i class="icon-pencil" title="编辑"></i></a>
 									<a href="#"><i class=" icon-remove" title="删除"></i></a>
 								</td>
 							</tr>
 						</c:forEach>
 					</table>
 					<form id="queryForm" action="<%=path%>/product/list">
-						<pg:page pageNo="${obj.pager.pageNumber}" currentClass="active" pageSize="${obj.pager.pageSize}" totalCount="<%=totalCount%>">
+						<pg:page pageNo="${obj.pager.pageNumber}" currentClass="active" pageSize="${obj.pager.pageSize}" totalCount="${obj.pager.recordCount}">
 						</pg:page>
 					</form>
 				</div>
