@@ -13,7 +13,7 @@ import org.nutz.dao.entity.annotation.Table;
 @Table("t_product")
 public class Product {
 	@Id
-	@Column("p_id")
+	@Column("product_id")
 	private int productID;
 	@Column("name")
 	private String productName;

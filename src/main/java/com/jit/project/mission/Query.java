@@ -4,14 +4,14 @@ import org.nutz.dao.Condition;
 import org.nutz.dao.entity.Entity;
 
 public class Query implements Condition {
-	private Integer pageNumber;
+	private Integer pageNumber = 1;
 
-	private Integer pageSize;
+	private Integer pageSize = 10;
 
 	@Override
 	public String toSql(Entity<?> entity) {
 		// TODO Auto-generated method stub
-		return null;
+		return "1=1";
 	}
 
 	public Integer getPageNumber() {

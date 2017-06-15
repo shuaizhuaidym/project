@@ -87,7 +87,8 @@ public class ProductAction {
 	 */
 	@At("/product/update")
 	@Ok("redirect:/product/list")
-	public String update() {
+	public String update(@Param("::product.") Product product) {
+		this.prdtService.dao().updateIgnoreNull(product);
 		return "SUCCESS";
 	}
 

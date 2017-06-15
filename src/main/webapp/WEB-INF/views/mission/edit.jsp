@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="ui" uri="/WEB-INF/tags/select"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="c" %> 
 <%
 	String path = request.getContextPath();
 %>
@@ -52,7 +53,7 @@ textarea {
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 	<div class="container" style="width: 65%; margin: 0 auto">
-		<form id="frm_mission" action="create" method="post">
+		<form id="frm_mission" action="update" method="post">
 			<input type="hidden" name="mission.missionID" value="${obj.missionID}"/>
 			<fieldset>
 				<legend>
@@ -123,7 +124,8 @@ textarea {
 					<td><label class="control-label col-xs-2">上级任务</label></td>
 					<td><input type="text" id="mission_name" name="mission.parentID" value="${obj.parentID}" class="required"></td>
 					<td><label class="control-label col-xs-2">截止日期</label></td>
-					<td><input type="text" id="mission_name" name="mission.deadline" value="${obj.deadline}" class="required"></td>
+					<td><input type="text" id="mission_name" name="mission.deadline" 
+					value="<c:formatDate value="${obj.deadline}" pattern="yyyy-MM-dd" />" class="required"></td>
 				</tr>
 				<tr>
 					<td><label class="control-label col-xs-2">产品版本</label></td>
@@ -140,15 +142,19 @@ textarea {
 				
 				<tr>
 					<td><label class="control-label col-xs-2">计划开始时间</label></td>
-					<td><input type="text" id="mission_name" name="mission.planStart" value="${obj.planStart}" class="required"></td>
+					<td><input type="text" id="mission_name" name="mission.planStart" 
+					value="<c:formatDate value="${obj.planStart}" pattern="yyyy-MM-dd" />" class="required"></td>
 					<td><label class="control-label col-xs-2">开始时间</label></td>
-					<td><input type="text" id="mission_name" name="mission.startDate" value="${obj.startDate}" class="required"></td>
+					<td><input type="text" id="mission_name" name="mission.startDate" 
+					value="<c:formatDate value="${obj.startDate}" pattern="yyyy-MM-dd" />" class="required"></td>
 				</tr>
 				<tr>
 					<td><label class="control-label col-xs-2">计划结束时间</label></td>
-					<td><input type="text" id="mission_name" name="mission.planEnd" value="${obj.planEnd}" class="required"></td>
+					<td><input type="text" id="mission_name" name="mission.planEnd" 
+					value="<c:formatDate value="${obj.planEnd}" pattern="yyyy-MM-dd" />" class="required"></td>
 					<td><label class="control-label col-xs-2">结束时间</label></td>
-					<td><input type="text" id="mission_name" name="mission.endDate" value="${obj.endDate}" class="required"></td>
+					<td><input type="text" id="mission_name" name="mission.endDate" 
+					value="<c:formatDate value="${obj.endDate}" pattern="yyyy-MM-dd" />" class="required"></td>
 				</tr>
 				<tr>
 					<td><label class="control-label col-xs-2">进展说明</label></td>
@@ -167,7 +173,7 @@ textarea {
 			</table>
 			<div style="text-align: left; margin-right: 80px">
 				<button type="submit" class="btn btn-primary">提交</button>
-				<button type="reset" class="btn" style="margin-left: 10px">返回</button>
+				<a class="btn" href="<%=path %>/mission/query" style="margin-left: 10px">返回列表</a>
 			</div>
 		</form>
 

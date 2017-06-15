@@ -8,7 +8,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.nutz.dao.Condition;
-import org.nutz.dao.Dao;
 import org.nutz.dao.QueryResult;
 import org.nutz.dao.entity.Entity;
 import org.nutz.dao.pager.Pager;
@@ -17,8 +16,9 @@ import org.nutz.mvc.annotation.At;
 import org.nutz.mvc.annotation.Ok;
 import org.nutz.mvc.annotation.Param;
 
-import com.jit.project.daily.DailyItem;
-import com.jit.project.daily.DailyItemServiceImpl;
+import com.jit.project.bean.Project;
+import com.jit.project.daily.bean.DailyItem;
+import com.jit.project.daily.service.DailyItemServiceImpl;
 import com.jit.project.dictionary.service.IDicService;
 
 @InjectName("missionAction")
@@ -29,15 +29,25 @@ public class MissionAction {
 	private DailyItemServiceImpl dailyItemService;
 	
 	private IDicService dicService;
-	int pageNumber = 1;
-	int pageSize = 10;
 
+	/**
+	 * 任务列表
+	 * @return
+	 */
+	@At("/mission/list")
+	@Ok("jsp:views.jsp.mission.list")
+	public QueryResult list(HttpServletRequest request) {
+		QueryResult result = new QueryResult(new ArrayList<Mission>(), new Pager());
+		request.setAttribute("query", new Query());
+		return result;
+	}
+	
 	/**
 	 * 新增任务跳转
 	 * 
 	 * @return
 	 */
-	@At("/mission/add")
+	@At("/mission/form")
 	@Ok("jsp:views.mission.form")
 	public String add() {
 		return SUCCESS;
@@ -64,17 +74,12 @@ public class MissionAction {
 	 */
 	@At("/mission/query")
 	@Ok("jsp:views.mission.list")
-	public QueryResult queryPage(@Param("::query") Query query) {
-		Dao dao = missionService.dao();
-
-		Condition cnd = null;
-		Pager pager = dao.createPager(pageNumber, pageSize);
-
-		pager.setRecordCount(dao.count(Mission.class, cnd));
-
-		List<Mission> missions = this.missionService.query(cnd, pager);
-
-		return new QueryResult(missions, pager);
+	public QueryResult queryPage(HttpServletRequest request, @Param("::query.") com.jit.project.mission.Query query) {
+		if (query == null) {
+			query = new com.jit.project.mission.Query();
+		}
+		QueryResult result = this.missionService.query(query);
+		return result;
 	}
 
 	/**
@@ -183,11 +188,11 @@ public class MissionAction {
 				return sql;
 			}
 		};
-		Mission msn = this.missionService.fetch(cnd);
-		msn.setAssignTo(mission.getAssignTo());//TODO other fields
-		msn.setTotalHours(mission.getTotalHours());
-		msn.setComments(mission.getComments());
-		this.missionService.dao().updateIgnoreNull(msn);
+//		Mission msn = this.missionService.fetch(cnd);
+//		msn.setAssignTo(mission.getAssignTo());//TODO other fields
+//		msn.setTotalHours(mission.getTotalHours());
+//		msn.setComments(mission.getComments());
+		this.missionService.dao().updateIgnoreNull(mission);
 		return mission;
 	}
 	

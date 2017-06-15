@@ -16,9 +16,9 @@
 <base href="<%=path%>" />
 
 <link href="<%=path%>/css/commom.css" rel="stylesheet">
+<link href="<%=path%>/css/list.css" rel="stylesheet">
 <link href="<%=path%>/css/bootstrap.min.css" rel="stylesheet">
 <link href="<%=path%>/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
-<link href="<%=path%>/css/list.css" rel="stylesheet">
 <link href="<%=path%>/zTree/zTreeStyle.css" rel="stylesheet">
 
 <style type="text/css">
@@ -184,7 +184,7 @@
 			<div class="span10">
 				<fieldset>
 					<legend>
-						<span>任务列表<a href="<%=path%>/mission/add" style="margin-left: 50px; color: white">+新建任务</a>
+						<span>任务列表<a href="<%=path%>/mission/form" style="margin-left: 50px; color: white">+新建任务</a>
 						</span>
 					</legend>
 				</fieldset>
@@ -198,7 +198,7 @@
 								<th class="w64px">任务类型</th>
 								<th>任务摘要</th>
 								<th class="w64px">负责人</th>
-								<th class="w32px">状态</th>
+								<th class="w64px">状态</th>
 								<th class="w72px">操作</th>
 							</tr>
 						</thead>

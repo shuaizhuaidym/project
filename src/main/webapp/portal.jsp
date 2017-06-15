@@ -11,11 +11,11 @@
 
 <title>我的首页</title>
 
-<link href="css/bootstrap.min.css" rel="stylesheet" />
-<link href="css/bootstrap-responsive.min.css" rel="stylesheet" />
+<link href="<%=path %>/css/bootstrap.min.css" rel="stylesheet" />
+<link href="<%=path %>/css/bootstrap-responsive.min.css" rel="stylesheet" />
 
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="<%=path %>/js/jquery.min.js"></script>
+<script type="text/javascript" src="<%=path %>/js/bootstrap.min.js"></script>
 
 <style type="text/css">
 body {
@@ -67,7 +67,7 @@ body {
 	<div class="container-narrow">
 		<div class="hero-unit">
 			<p>
-			<h4>IPC黑板</h4>
+			<h4>IPC板报</h4>
 			<p>
 				Apache部署文档目录：http://172.16.5.251/svn/phoenix/src/modules_test/tools/apache搭建/Apache安装说明.txt <br />
 				网关定制化开发路：http://172.16.5.251/svn/phoenix/定制化开发
@@ -77,7 +77,7 @@ body {
 		<div class="row-fluid marketing">
 			<div class="span3">
 				<div class="panel-heading">
-					<span class="panel-title">我的缺陷</span><a href="#">[+]</a>
+					<span class="panel-title">我的缺陷</span><a href="<%=path%>/defeat/claim" title="认领缺陷">[认领缺陷]</a>
 				</div>
 				<table class="table angle table-defeat">
 					<tr>
@@ -101,7 +101,7 @@ body {
 
 			<div class="span9">
 				<div class="panel-heading">
-					<span class="panel-title">我的任务&nbsp;<a href="#">[写日报]</a></span>
+					<span class="panel-title">我的任务&nbsp;<a href="<%=path%>/daily/form">[写日报]</a></span>
 				</div>
 				<table class="table table-striped angle">
 					<tbody>

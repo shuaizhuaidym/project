@@ -103,17 +103,17 @@ textarea {
 						<textarea rows="3" id="desc" name="product.desc"  class="w-input"></textarea>
 					</div>
 				</div>
-				<div class="control-group">
+<!-- 				<div class="control-group">
 					<div class="controls">
 						<label class="checkbox">
 							<input type="checkbox" checked="checked" id="available" name="dic.available">是否启用
 						</label>
 					</div>
-				</div>
+				</div> -->
 				<div class="control-group">
 					<div class="controls">
 						<button type="submit" class="btn btn-primary">保存</button>
-						<a href="<%=path %>/dic/list" class="btn">返回列表</a>
+						<a href="<%=path %>/product/list" class="btn">返回列表</a>
 					</div>
 				</div>
 			</form>
