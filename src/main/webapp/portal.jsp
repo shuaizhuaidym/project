@@ -16,6 +16,7 @@
 
 <script type="text/javascript" src="<%=path %>/js/jquery.min.js"></script>
 <script type="text/javascript" src="<%=path %>/js/bootstrap.min.js"></script>
+
 <script type="text/javascript" src="<%=path%>/js/bootstrap-modal.js"></script>
 
 <style type="text/css">
@@ -103,7 +104,7 @@ body {
 			<div class="span9">
 				<div class="panel-heading">
 					<span class="panel-title">我的任务&nbsp;
-					<a href="<%=path%>/daily/form" data-toggle="modal" data-target="#dailyModal"><i class=" icon-list-alt" title="写日报"></i></a>
+						<a href="<%=path%>/daily/form" data-toggle="modal" data-target="#dailyModal"><i class=" icon-list-alt" title="写日报"></i></a>
 					</span>
 				</div>
 				<table class="table table-striped angle">
