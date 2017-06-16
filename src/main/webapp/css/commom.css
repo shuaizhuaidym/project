@@ -25,6 +25,9 @@ input {
 	margin:0 auto;
 	text-align: center;
 }
+.w-input {
+	width: 92%
+}
 .pointer{cursor:pointer}
 .w32px{width:32px}
 .w64px{width:64px}

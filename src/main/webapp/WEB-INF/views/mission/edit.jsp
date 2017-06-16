@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="ui" uri="/WEB-INF/tags/select"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="c" %> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f" %> 
 <%
 	String path = request.getContextPath();
 %>
@@ -19,10 +19,6 @@
 
 <link href="<%=path %>/zTree/zTreeStyle.css" rel="stylesheet">
 <style type="text/css">
-.w-input {
-	width: 92%
-}
-
 textarea {
 	display: block;
 }
@@ -125,7 +121,7 @@ textarea {
 					<td><input type="text" id="mission_name" name="mission.parentID" value="${obj.parentID}" class="required"></td>
 					<td><label class="control-label col-xs-2">截止日期</label></td>
 					<td><input type="text" id="mission_name" name="mission.deadline" 
-					value="<c:formatDate value="${obj.deadline}" pattern="yyyy-MM-dd" />" class="required"></td>
+					value="<f:formatDate value="${obj.deadline}" pattern="yyyy-MM-dd" />" class="required"></td>
 				</tr>
 				<tr>
 					<td><label class="control-label col-xs-2">产品版本</label></td>
@@ -143,18 +139,18 @@ textarea {
 				<tr>
 					<td><label class="control-label col-xs-2">计划开始时间</label></td>
 					<td><input type="text" id="mission_name" name="mission.planStart" 
-					value="<c:formatDate value="${obj.planStart}" pattern="yyyy-MM-dd" />" class="required"></td>
+					value="<f:formatDate value="${obj.planStart}" pattern="yyyy-MM-dd" />" class="required"></td>
 					<td><label class="control-label col-xs-2">开始时间</label></td>
 					<td><input type="text" id="mission_name" name="mission.startDate" 
-					value="<c:formatDate value="${obj.startDate}" pattern="yyyy-MM-dd" />" class="required"></td>
+					value="<f:formatDate value="${obj.startDate}" pattern="yyyy-MM-dd" />" class="required"></td>
 				</tr>
 				<tr>
 					<td><label class="control-label col-xs-2">计划结束时间</label></td>
 					<td><input type="text" id="mission_name" name="mission.planEnd" 
-					value="<c:formatDate value="${obj.planEnd}" pattern="yyyy-MM-dd" />" class="required"></td>
+					value="<f:formatDate value="${obj.planEnd}" pattern="yyyy-MM-dd" />" class="required"></td>
 					<td><label class="control-label col-xs-2">结束时间</label></td>
 					<td><input type="text" id="mission_name" name="mission.endDate" 
-					value="<c:formatDate value="${obj.endDate}" pattern="yyyy-MM-dd" />" class="required"></td>
+					value="<f:formatDate value="${obj.endDate}" pattern="yyyy-MM-dd" />" class="required"></td>
 				</tr>
 				<tr>
 					<td><label class="control-label col-xs-2">进展说明</label></td>

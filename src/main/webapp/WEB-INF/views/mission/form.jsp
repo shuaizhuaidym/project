@@ -173,7 +173,7 @@ textarea {
 			</table>
 			<div style="text-align: left; margin-right: 80px">
 				<button type="submit" class="btn btn-primary">提交</button>
-				<a class="btn" style="margin-left: 10px">返回列表</a>
+				<a href="<%=path%>/mission/query" class="btn" style="margin-left: 10px">返回列表</a>
 			</div>
 		</form>
 

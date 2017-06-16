@@ -1,6 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f"%>
+<%@taglib prefix="pg" uri="/WEB-INF/tags"%>
+<%@page import="java.util.Date"%>
 <%
 	String path = request.getContextPath();
+	Date today = new Date();
 %>
 <!DOCTYPE html>
 <html>
@@ -11,58 +16,21 @@
 
 <title>我的首页</title>
 
-<link href="<%=path %>/css/bootstrap.min.css" rel="stylesheet" />
-<link href="<%=path %>/css/bootstrap-responsive.min.css" rel="stylesheet" />
+<link href="<%=path%>/css/bootstrap.min.css" rel="stylesheet" />
+<link href="<%=path%>/css/portal.css" rel="stylesheet" />
+<link href="<%=path %>/css/list.css" rel="stylesheet" />
 
-<script type="text/javascript" src="<%=path %>/js/jquery.min.js"></script>
-<script type="text/javascript" src="<%=path %>/js/bootstrap.min.js"></script>
-
-<script type="text/javascript" src="<%=path%>/js/bootstrap-modal.js"></script>
-
-<style type="text/css">
-body {
-	padding-top: 20px;
-	padding-bottom: 40px;
-}
-
-.angle {
-	border-radius: 0px;
-	border: 1px #ddd solid;
-}
-/* Custom container */
-.container-narrow {
-	width: 85%;
-	margin: 0 auto;
-	padding-top: 40px
-}
-
-.panel-heading {
-	height: 25px;
-	line-height: 18px;
-	background-color: #f1f1f1;
-	border: 1px #ddd solid;
-	border-bottom: 0;
-	font-weight: 700;
-	padding: 8px 60px 0px 6px;
-	color: #333;
-}
-
-.table-defeat {
-	border-top: 1px solid #ddd;
-	word-wrap: break-word;
-	word-break: break-all;
-}
-
-.table-defeat td {
-	border-top: none;
-	overflow: hidden;
-}
-
-.table-defeat tbody>tr:nth-child(odd)>td,.table-striped tbody>tr:nth-child(odd)>th
-	{
-	background: #blue;
-}
-</style>
+<script type="text/javascript" src="<%=path%>/js/jquery/jquery-1.11.1.js"></script>
+<script type="text/javascript" src="<%=path%>/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#btnAppend").click(function() {
+			$("#frm_daily").append($("#daily_item").clone());
+		});
+		//load data
+		$.ajax();
+	});
+</script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
@@ -103,8 +71,8 @@ body {
 
 			<div class="span9">
 				<div class="panel-heading">
-					<span class="panel-title">我的任务&nbsp;
-						<a href="<%=path%>/daily/form" data-toggle="modal" data-target="#dailyModal"><i class=" icon-list-alt" title="写日报"></i></a>
+					<span class="panel-title">我的任务&nbsp; <a data-toggle="modal" href="<%=path%>/daily/form" data-target="#dailyModal"><i
+							class=" icon-list-alt" title="写日报"></i></a>
 					</span>
 				</div>
 				<table class="table table-striped angle">
@@ -114,23 +82,17 @@ body {
 							<td>任务类型</td>
 							<td>任务描述</td>
 						</tr>
-						<tr>
-							<td>财政服务端开发</td>
-							<td>【功能开发】</td>
-							<td>财政部支持SM2算法客户端+代理模块|静默安装包开发测试上线</td>
-						</tr>
-						<tr>
-							<td>任务名称</td>
-							<td>【功能开发】</td>
-							<td>缺陷描述</td>
-						</tr>
-						<tr>
-							<td>黑龙江省厅【项目支持】</td>
-							<td>【功能开发】</td>
-							<td>黑龙江省公安厅项目从I网关升级到E网关升级包制作，代码研发</td>
-						</tr>
+						<c:forEach items="#">
+							<tr>
+								<td>财政服务端开发</td>
+								<td>功能开发</td>
+								<td>财政部支持SM2算法客户端+代理模块|静默安装包开发测试上线</td>
+							</tr>
+						</c:forEach>
 					</tbody>
 				</table>
+				<pg:page pageNo="1" currentClass="active" pageSize="10" totalCount="91">
+				</pg:page>
 			</div>
 
 		</div>
@@ -141,14 +103,15 @@ body {
 	<div id="dailyModal" class="modal hide fade" tabindex="-1">
 		<div class="modal-header form-title">
 			<button type="button" class="close" data-dismiss="modal">×</button>
-			<span id="myModalLabel">我的日报</span>
+			<span id="myModalLabel">我的日报<f:formatDate value="<%=today%>" pattern="yyyy-MM-dd" /></span>
 		</div>
 		<div class="modal-body">
 			<!-- 加载远端 -->
 		</div>
 		<div class="modal-footer">
-			<button class="btn" data-dismiss="modal">关闭</button>
-			<button class="btn btn-primary" onclick="assign();">保存</button>
+			<button id="btnAppend" class="btn btn-info">新增</button>
+			<button id="btnDelete" class="btn btn-danger">删除</button>
+			<button id="btnSave" class="btn btn-primary">保存</button>
 		</div>
 	</div>
 </body>

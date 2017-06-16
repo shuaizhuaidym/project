@@ -227,6 +227,7 @@
 				</div>
 			</div>
 		</div>
+		<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 	</div>
 	<!-- modal dialog add product module -->
 	<div id="productModal" class="modal hide fade" tabindex="-1">
@@ -277,9 +278,10 @@
 		</div>
 	</div>
 	<script type="text/javascript">
-	function assign(){
-		$("#assignForm").submit();
-	}
+		function assign(){
+			$("#assignForm").submit();
+		}
 	</script>
+	
 </body>
 </html>

@@ -1,0 +1,62 @@
+body {
+	padding-top: 20px;
+	padding-bottom: 40px;
+}
+
+.angle {
+	border-radius: 0px;
+	border: 1px #ddd solid;
+}
+/* Custom container */
+.container-narrow {
+	width: 85%;
+	margin: 0 auto;
+	padding-top: 40px
+}
+
+.panel-heading {
+	height: 25px;
+	line-height: 18px;
+	background-color: #f1f1f1;
+	border: 1px #ddd solid;
+	border-bottom: 0;
+	font-weight: 700;
+	padding: 8px 60px 0px 6px;
+	color: #333;
+}
+
+.table-defeat {
+	border-top: 1px solid #ddd;
+	word-wrap: break-word;
+	word-break: break-all;
+}
+
+.table-defeat td {
+	border-top: none;
+	overflow: hidden;
+}
+
+.table-defeat tbody>tr:nth-child(odd)>td,.table-striped tbody>tr:nth-child(odd)>th
+	{
+	background: #blue;
+}
+/*模态对话框标题栏*/
+.form-title {
+	color: #333;
+	font-size: 21px;
+	background: #f1f1f1;
+}
+.div_with_divider{
+	border-bottom: 1px #ddd dashed;
+	border-top: 1px #ddd dashed;
+}
+.narrow-label {
+	float: left;
+	padding-top: 5px;
+	text-align: right;
+	width: 80px;
+}
+
+.lcontrols {
+	margin-left: 100px;
+}
