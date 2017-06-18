@@ -30,8 +30,8 @@ public class ProductAction {
 	@At("/product/list")
 	@Ok("jsp:views.product.list")
 	public QueryResult query(@Param("::query.") Query cnd) {
-		if(cnd==null){
-			cnd=new Query();
+		if (cnd == null) {
+			cnd = new Query();
 		}
 		QueryResult products = this.prdtService.query(cnd);
 
@@ -90,6 +90,13 @@ public class ProductAction {
 	public String update(@Param("::product.") Product product) {
 		this.prdtService.dao().updateIgnoreNull(product);
 		return "SUCCESS";
+	}
+
+	@At("product/tree")
+	@Ok("json:full")
+	public String tree(@Param("parent_id") String parent_id, @Param("node_type") String node_type) {
+		String nodes = this.prdtService.loadTreeJson(parent_id, node_type);
+		return nodes;
 	}
 
 	public ProductService getPrdtService() {

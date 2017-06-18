@@ -26,8 +26,7 @@
 <link href="<%=path%>/css/bootstrap.min.css" rel="stylesheet">
 <link href="<%=path%>/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 
-<link href="zTree/zTreeStyle.css" rel="stylesheet">
-
+<link href="<%=path%>/zTree/zTreeStyle.css" rel="stylesheet">
 <style type="text/css">
 .white-pointer {
 	cursor: pointer;
