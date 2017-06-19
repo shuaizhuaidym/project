@@ -22,25 +22,12 @@
 <link href="<%=path%>/zTree/zTreeStyle.css" rel="stylesheet">
 
 <style type="text/css">
-.white-pointer {
-	cursor: pointer;
-	color: white;
-}
 
-.form-title {
-	color: #333;
-	font-size: 21px;
-	background: #f1f1f1;
-}
 
 .top0 {
 	margin-bottom: 0px;
 }
 
-.tree-box {
-	border: 1px solid #ddd;
-	border-top: 0
-}
 .table td,th{padding:2px 5px 8px 5px}
 </style>
 

@@ -183,17 +183,6 @@ public class MissionAction {
 		if (mission == null || mission.getMissionID() == null) {
 			return null;
 		}
-		Condition cnd = new Condition() {
-			@Override
-			public String toSql(Entity<?> entity) {
-				String sql = "where mission_id = " + mission.getMissionID();
-				return sql;
-			}
-		};
-		// Mission msn = this.missionService.fetch(cnd);
-		// msn.setAssignTo(mission.getAssignTo());//TODO other fields
-		// msn.setTotalHours(mission.getTotalHours());
-		// msn.setComments(mission.getComments());
 		this.missionService.dao().updateIgnoreNull(mission);
 		return mission;
 	}
@@ -225,8 +214,12 @@ public class MissionAction {
 	 */
 	@At("/mission/refer")
 	@Ok("jsp:views.mission.refer")
-	public String refer() {
-		return "SUCCESS";
+	public QueryResult refer(HttpServletRequest request, @Param("::query.") Query query) {
+		if (query == null) {
+			query = new com.jit.project.mission.Query();
+		}
+		QueryResult result = this.missionService.query(query);
+		return result;
 	}
 
 	public MissionServiceImpl getMissionService() {

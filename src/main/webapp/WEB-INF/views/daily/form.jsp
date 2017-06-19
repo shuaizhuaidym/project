@@ -16,14 +16,14 @@
 <link href="<%=path%>/css/bootstrap.min.css" rel="stylesheet">
 <link href="<%=path%>/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 <style type="text/css">
-.div_with_divider{
+.div_with_divider {
 	border-bottom: 1px #ddd dashed;
 	border-top: 1px #ddd dashed;
 }
 </style>
 <script type="text/javascript" src="<%=path%>/js/jquery/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="<%=path%>/js/bootstrap-dropdown.js"></script>
-<script type="text/javascript" src="<%=path%>/js/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript" src="<%=path%>/js/bootstrap-modal.js"></script>
 <script type="text/javascript" src="<%=path%>/js/jquery-validation-1.9.0/jquery.validate.js"></script>
 <script type="text/javascript" src="<%=path%>/js/portal.js"></script>
 
@@ -41,14 +41,16 @@
 			<div class="control-group">
 				<label class="control-label" for="productName">发送给</label>
 				<div class="controls">
-					<input type="text" id="productName" name="product.productName" class="w-input"/><a>选择</a>
+					<input type="text"<input class="w-input" />
+					<a>选择</a>
 				</div>
 			</div>
 			<div id="daily_item" class="div_with_divider">
 				<div class="control-group">
 					<label class="control-label" for="code">关联任务</label>
 					<div class="controls">
-						<input type="text" id="code" name="product.code" class="w-input"><a>选择</a>
+						<input type="text" id="summary1" name="missionSummary" class="w-input"> 
+						<a data-toggle="modal" href="<%=path%>/mission/refer" data-target="#missionModal">选择</a>
 					</div>
 				</div>
 				<div class="control-group">
@@ -81,6 +83,20 @@
 	</div>
 	<!-- /container -->
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
+	
+	<!-- modal dialog assign task -->
+	<div id="missionModal" class="modal hide fade" tabindex="-1">
+		<div class="modal-header form-title">
+			<button type="button" class="close" data-dismiss="modal">×</button>
+			<span id="myModalLabel">我的日报${today}</span>
+		</div>
+		<div class="modal-body">
+			<!-- 加载远端 -->
+		</div>
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal">关闭</button>
+		</div>
+	</div>
 </body>
 <script type="text/javascript">
 	$(function() {

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="com.jit.project.bean.Project"%>
+<%@ page import="com.jit.project.project.bean.Project"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="ui" uri="/WEB-INF/tags/select"%>
 <!DOCTYPE html>
