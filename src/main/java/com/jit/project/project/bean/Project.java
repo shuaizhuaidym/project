@@ -1,4 +1,4 @@
-package com.jit.project.bean;
+package com.jit.project.project.bean;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;

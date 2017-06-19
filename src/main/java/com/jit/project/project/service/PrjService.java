@@ -1,4 +1,4 @@
-package com.jit.project.service;
+package com.jit.project.project.service;
 
 import java.util.List;
 
@@ -7,8 +7,8 @@ import org.nutz.dao.QueryResult;
 import org.nutz.dao.pager.Pager;
 import org.nutz.service.NameEntityService;
 
-import com.jit.project.bean.Project;
 import com.jit.project.bean.Query;
+import com.jit.project.project.bean.Project;
 
 public class PrjService extends NameEntityService<Project> implements IPrjService {
 

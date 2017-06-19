@@ -5,7 +5,7 @@ import org.nutz.mvc.NutConfig;
 import org.nutz.mvc.Setup;
 
 import com.jit.project.auth.service.AuthorityService;
-import com.jit.project.bean.Project;
+import com.jit.project.project.bean.Project;
 import com.jit.project.user.bean.User;
 
 public class MvcSetup implements Setup {

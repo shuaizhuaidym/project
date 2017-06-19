@@ -11,6 +11,7 @@ import com.jit.project.mission.MissionAction;
 import com.jit.project.org.web.OrgAction;
 import com.jit.project.portal.PortalAction;
 import com.jit.project.product.web.ProductAction;
+import com.jit.project.project.web.PrjAction;
 
 @Modules({ PrjAction.class, DicAction.class, ChartAction.class, ProductAction.class, OrgAction.class,
 		MissionAction.class, DailyAction.class, PortalAction.class })

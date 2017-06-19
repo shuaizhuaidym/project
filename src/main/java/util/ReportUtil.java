@@ -16,7 +16,7 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.CreationHelper;
 
-import com.jit.project.bean.Project;
+import com.jit.project.project.bean.Project;
 
 public class ReportUtil {
 	/**

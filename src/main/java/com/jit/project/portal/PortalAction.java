@@ -1,8 +1,5 @@
 package com.jit.project.portal;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.nutz.dao.QueryResult;
 import org.nutz.ioc.annotation.InjectName;
 import org.nutz.ioc.loader.annotation.Inject;
@@ -10,10 +7,8 @@ import org.nutz.mvc.annotation.At;
 import org.nutz.mvc.annotation.Ok;
 import org.nutz.mvc.annotation.Param;
 
-import com.jit.project.defeat.Defeat;
 import com.jit.project.mission.MissionServiceImpl;
 import com.jit.project.mission.Query;
-import com.jit.project.product.service.ProductService;
 
 @InjectName("portalAction")
 public class PortalAction {
@@ -26,7 +21,7 @@ public class PortalAction {
 	 * @return
 	 */
 	@At("/portal")
-	@Ok("jsp:/portal")
+	@Ok("jsp:views.portal")
 	public QueryResult portal(@Param("::query.") Query cnd) {
 //		List<Defeat> defeats = new ArrayList<Defeat>();
 		//TODO 根据当前用户，查询“我”的待办任务

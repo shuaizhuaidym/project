@@ -24,7 +24,7 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import com.jit.project.bean.Project;
+import com.jit.project.project.bean.Project;
 
 public class ExcelReader<T> {
 

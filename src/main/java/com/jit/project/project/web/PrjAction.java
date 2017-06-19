@@ -1,4 +1,4 @@
-package com.jit.project.web;
+package com.jit.project.project.web;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -14,9 +14,9 @@ import org.nutz.mvc.annotation.At;
 import org.nutz.mvc.annotation.Ok;
 import org.nutz.mvc.annotation.Param;
 
-import com.jit.project.bean.Project;
 import com.jit.project.bean.Query;
-import com.jit.project.service.PrjService;
+import com.jit.project.project.bean.Project;
+import com.jit.project.project.service.PrjService;
 
 @InjectName("prjAction")
 public class PrjAction {
@@ -40,7 +40,7 @@ public class PrjAction {
 	 * @param request
 	 */
 	@At("/")
-	@Ok("jsp:views.list")
+	@Ok("jsp:views.project.list")
 	public void home(HttpServletRequest request) {
 		QueryResult qResult = new QueryResult(new ArrayList<Project>(), new Pager());
 		request.setAttribute("query", new Query());
@@ -49,7 +49,7 @@ public class PrjAction {
 	}
 
 	@At("/form")
-	@Ok("jsp:views.form")
+	@Ok("jsp:views.project.form")
 	public void form(HttpServletRequest request) {
 		request.setAttribute("mpIndustry", mpIndustry);
 		request.setAttribute("mpIssueType", mpIssueType);
@@ -66,12 +66,12 @@ public class PrjAction {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "jsp:views/error";
+		return "SUCCESS";
 	}
 
 	/** 查询 */
 	@At("/query")
-	@Ok("jsp:views.list")
+	@Ok("jsp:views.project.list")
 	public QueryResult queryProject(HttpServletRequest request, @Param("::query.") Query query) {
 		if (query == null) {
 			query = new Query();
@@ -86,7 +86,7 @@ public class PrjAction {
 
 	// 加载
 	@At("/edit")
-	@Ok("jsp:views.edit")
+	@Ok("jsp:views.project.edit")
 	public String getProject(HttpServletRequest request, @Param("prjid") String prjID) {
 		long id = Long.valueOf(prjID);
 		Project prj = prjService.fetch(id);

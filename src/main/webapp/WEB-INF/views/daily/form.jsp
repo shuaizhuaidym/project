@@ -15,7 +15,12 @@
 <link href="<%=path%>/css/commom.css" rel="stylesheet">
 <link href="<%=path%>/css/bootstrap.min.css" rel="stylesheet">
 <link href="<%=path%>/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
-
+<style type="text/css">
+.div_with_divider{
+	border-bottom: 1px #ddd dashed;
+	border-top: 1px #ddd dashed;
+}
+</style>
 <script type="text/javascript" src="<%=path%>/js/jquery/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="<%=path%>/js/bootstrap-dropdown.js"></script>
 <script type="text/javascript" src="<%=path%>/js/bootstrap-datetimepicker.js"></script>
@@ -36,14 +41,14 @@
 			<div class="control-group">
 				<label class="control-label" for="productName">发送给</label>
 				<div class="controls">
-					<input type="text" id="productName" name="product.productName" class="w-input">
+					<input type="text" id="productName" name="product.productName" class="w-input"/><a>选择</a>
 				</div>
 			</div>
 			<div id="daily_item" class="div_with_divider">
 				<div class="control-group">
 					<label class="control-label" for="code">关联任务</label>
 					<div class="controls">
-						<input type="text" id="code" name="product.code" class="w-input">
+						<input type="text" id="code" name="product.code" class="w-input"><a>选择</a>
 					</div>
 				</div>
 				<div class="control-group">

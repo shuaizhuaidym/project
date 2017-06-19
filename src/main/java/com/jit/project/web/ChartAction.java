@@ -22,10 +22,10 @@ import util.ChartUtil;
 import util.Const;
 import util.ReportUtil;
 
-import com.jit.project.bean.Project;
 import com.jit.project.bean.Query;
+import com.jit.project.project.bean.Project;
+import com.jit.project.project.service.PrjService;
 import com.jit.project.service.ChartService;
-import com.jit.project.service.PrjService;
 
 /**
  * 报表

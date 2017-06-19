@@ -23,6 +23,14 @@ var ioc = {
 			validationQuery : "select 1"
 		}
 	},
+	prjAction : {
+		type : "com.jit.project.project.web.PrjAction",
+		fields : {
+			prjService : {
+				refer : 'prjService'
+			}
+		}
+	},
 	dao : {
 		type : "org.nutz.dao.impl.NutDao",
 		args : [ {
@@ -30,18 +38,10 @@ var ioc = {
 		} ]
 	},
 	prjService : {
-		type : "com.jit.project.service.PrjService",
+		type : "com.jit.project.project.service.PrjService",
 		fields : {
 			dao : {
 				refer : 'dao'
-			}
-		}
-	},
-	prjAction : {
-		type : "com.jit.project.web.PrjAction",
-		fields : {
-			prjService : {
-				refer : 'prjService'
 			}
 		}
 	},

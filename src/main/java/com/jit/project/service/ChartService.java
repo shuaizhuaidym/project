@@ -15,7 +15,7 @@ import org.nutz.service.NameEntityService;
 
 import com.jit.project.bean.ChartBar;
 import com.jit.project.bean.ChartPie;
-import com.jit.project.bean.Project;
+import com.jit.project.project.bean.Project;
 
 public class ChartService extends NameEntityService<Project> implements IChartService {
 

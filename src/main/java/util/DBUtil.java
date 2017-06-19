@@ -7,7 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.jit.project.bean.Project;
+import com.jit.project.project.bean.Project;
 
 public class DBUtil {
 	public static Connection conn = null;

@@ -11,7 +11,7 @@ import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.trans.Atom;
 import org.nutz.trans.Trans;
 
-import com.jit.project.bean.Project;
+import com.jit.project.project.bean.Project;
 @IocBean
 public class PrjDao {
 	@Inject
