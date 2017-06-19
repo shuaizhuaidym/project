@@ -1,5 +1,8 @@
 package com.jit.project.daily.web;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.nutz.ioc.annotation.InjectName;
 import org.nutz.mvc.annotation.At;
 import org.nutz.mvc.annotation.Ok;
@@ -14,13 +17,27 @@ public class DailyAction {
 	
 	private IDailyItemService dailyItemService;
 
+	/**
+	 * 模态窗口
+	 * @return
+	 */
+	@At("/daily/window")
+	@Ok("jsp:views.daily.window")
+	public String window(){
+		String today = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+		return today;
+	}
+	
+	/**
+	 * 常规页面
+	 * @return
+	 */
 	@At("/daily/form")
 	@Ok("jsp:views.daily.form")
 	public String form(){
-		
-		return "SUCCESS";
+		String today = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+		return today;
 	}
-
 	public IDailyService getDailyService() {
 		return dailyService;
 	}

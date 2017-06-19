@@ -18,19 +18,11 @@
 
 <link href="<%=path%>/css/bootstrap.min.css" rel="stylesheet" />
 <link href="<%=path%>/css/portal.css" rel="stylesheet" />
-<link href="<%=path %>/css/list.css" rel="stylesheet" />
+<link href="<%=path%>/css/list.css" rel="stylesheet" />
 
 <script type="text/javascript" src="<%=path%>/js/jquery/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="<%=path%>/js/bootstrap.min.js"></script>
-<script type="text/javascript">
-	$(document).ready(function() {
-		$("#btnAppend").click(function() {
-			$("#frm_daily").append($("#daily_item").clone());
-		});
-		//load data
-		$.ajax();
-	});
-</script>
+<script type="text/javascript" src="<%=path%>/js/portal.js"></script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
@@ -51,8 +43,8 @@
 				</div>
 				<table class="table angle table-defeat">
 					<tr>
-						<td style="width: 32px">编号</td>
-						<td>缺陷描述</td>
+						<th style="width: 32px">编号</th>
+						<th>缺陷描述</th>
 					</tr>
 					<tr>
 						<td>2881</td>
@@ -71,28 +63,36 @@
 
 			<div class="span9">
 				<div class="panel-heading">
-					<span class="panel-title">我的任务&nbsp; <a data-toggle="modal" href="<%=path%>/daily/form" data-target="#dailyModal"><i
-							class=" icon-list-alt" title="写日报"></i></a>
+					<span class="panel-title">我的任务&nbsp; 
+						<a data-toggle="modal" href="<%=path%>/daily/window" data-target="#dailyModal">
+							<i class=" icon-list-alt" title="写日报"></i>
+						</a>
+						<a href="<%=path%>/daily/form">
+							<i class=" icon-list-alt" title="写日报"></i>
+						</a>
 					</span>
 				</div>
 				<table class="table table-striped angle">
 					<tbody>
 						<tr>
-							<td>任务名称</td>
-							<td>任务类型</td>
-							<td>任务描述</td>
+							<th>任务名称</th>
+							<th>任务类型</th>
+							<th>任务描述</th>
 						</tr>
-						<c:forEach items="#">
+						<c:forEach var="mission" items="${obj.list}" varStatus="index">
 							<tr>
-								<td>财政服务端开发</td>
-								<td>功能开发</td>
-								<td>财政部支持SM2算法客户端+代理模块|静默安装包开发测试上线</td>
+								<td>${mission.missionName}</td>
+								<td>${mission.taskClass}</td>
+								<td>${mission.summary}</td>
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
-				<pg:page pageNo="1" currentClass="active" pageSize="10" totalCount="91">
-				</pg:page>
+				<form action="<%=path %>/portal" id="queryForm">
+					<pg:page pageNo="${obj.pager.pageNumber}" currentClass="active" pageSize="${obj.pager.pageSize}"
+						totalCount="${obj.pager.recordCount}">
+					</pg:page>
+				</form>
 			</div>
 
 		</div>

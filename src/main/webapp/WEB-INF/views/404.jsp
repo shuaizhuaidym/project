@@ -21,7 +21,7 @@
 
 		<map name="phly">
 			<area id="links" coords="390,333,526,366" alt="返回上一页" title="返回上一页" href="javascript:goback();" />
-			<area id="links" coords="536,333,622,366" alt="返回首页" title="返回首页" href="<%=path%>/" />
+			<area id="links" coords="536,333,622,366" alt="返回首页" title="返回首页" href="<%=path%>/portal" />
 		</map>
 	</div>
 </body>

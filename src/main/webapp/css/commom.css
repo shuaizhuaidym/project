@@ -32,3 +32,9 @@ input {
 .w32px{width:32px}
 .w64px{width:64px}
 .w72px{width:72px}
+.bordered{border:1px #ddd solid}
+
+.white-pointer {
+	cursor: pointer;
+	color: white;
+}

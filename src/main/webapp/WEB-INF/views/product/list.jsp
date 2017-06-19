@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib prefix="pg" uri="/WEB-INF/tags"%>
 <%
 	String path = request.getContextPath();
@@ -28,10 +28,6 @@
 
 <link href="<%=path%>/zTree/zTreeStyle.css" rel="stylesheet">
 <style type="text/css">
-.white-pointer {
-	cursor: pointer;
-	color: white;
-}
 
 .form-title {
 	color: #333;
@@ -197,7 +193,7 @@
 								<td>${prd.productMgr}</td>
 								<td>${prd.testMgr}</td>
 								<td>${prd.releaseVersion}</td>
-								<td><fmt:formatDate value="${prd.releaseDate}" pattern="yyyy-MM-dd" /></td>
+								<td><f:formatDate value="${prd.releaseDate}" pattern="yyyy-MM-dd" /></td>
 								<td>
 									<a href="<%=path%>/product/edit?product_id=${prd.productID}"><i class="icon-pencil" title="编辑"></i></a>
 									<a href="#"><i class=" icon-remove" title="删除"></i></a>

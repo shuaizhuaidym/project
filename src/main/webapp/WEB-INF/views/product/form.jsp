@@ -49,12 +49,11 @@ textarea {
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 	<div class="row-fluid">
-		<div class="span8 offset2">
+		<div class="span8 offset2 bordered">
 			<fieldset>
 				<legend><span>新增产品</span></legend>
 			</fieldset>
 			<form class="form-horizontal" action="<%=path%>/product/create" method="post">
-				
 				<div class="control-group">
 					<label class="control-label" for="productName">产品名称</label>
 					<div class="controls">

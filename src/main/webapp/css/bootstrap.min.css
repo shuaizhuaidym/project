@@ -962,7 +962,7 @@ legend {
 	width: 100%;
 	padding: 0;
 	/*margin-bottom: 20px;*/
-	font-size: 21px;
+	font-size: 18px;
 	line-height: 35px;
 	color: #333;
 	background:linear-gradient(to bottom, #086ed5, #055db5) repeat scroll 0 0 rgba(0, 0, 0, 0);
@@ -5685,9 +5685,9 @@ to {
 	font-weight: 200;
 	line-height: 30px;
 	color: inherit;
-	background-color: #eee;
-	-webkit-border-radius: 6px;
-	-moz-border-radius: 6px;
+	background-color: #f8f3e4;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
 	border:1px solid  rgb(7, 103, 200);
 	border-radius: 2px
 }

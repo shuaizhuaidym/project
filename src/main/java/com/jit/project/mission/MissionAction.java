@@ -16,7 +16,6 @@ import org.nutz.mvc.annotation.At;
 import org.nutz.mvc.annotation.Ok;
 import org.nutz.mvc.annotation.Param;
 
-import com.jit.project.bean.Project;
 import com.jit.project.daily.bean.DailyItem;
 import com.jit.project.daily.service.DailyItemServiceImpl;
 import com.jit.project.dictionary.service.IDicService;
@@ -27,11 +26,12 @@ public class MissionAction {
 
 	private MissionServiceImpl missionService;
 	private DailyItemServiceImpl dailyItemService;
-	
+
 	private IDicService dicService;
 
 	/**
 	 * 任务列表
+	 * 
 	 * @return
 	 */
 	@At("/mission/list")
@@ -41,7 +41,7 @@ public class MissionAction {
 		request.setAttribute("query", new Query());
 		return result;
 	}
-	
+
 	/**
 	 * 新增任务跳转
 	 * 
@@ -74,7 +74,8 @@ public class MissionAction {
 	 */
 	@At("/mission/query")
 	@Ok("jsp:views.mission.list")
-	public QueryResult queryPage(HttpServletRequest request, @Param("::query.") com.jit.project.mission.Query query) {
+	public QueryResult queryPage(HttpServletRequest request,
+			@Param("::query.") com.jit.project.mission.Query query) {
 		if (query == null) {
 			query = new com.jit.project.mission.Query();
 		}
@@ -125,7 +126,7 @@ public class MissionAction {
 	@At("/mission/assign")
 	@Ok("redirect:/mission/query")
 	public Mission assign(@Param("::mission.") final Mission mission) {
-		if(mission==null||mission.getMissionID()==null){
+		if (mission == null || mission.getMissionID() == null) {
 			return null;
 		}
 		Condition cnd = new Condition() {
@@ -136,12 +137,13 @@ public class MissionAction {
 			}
 		};
 		Mission msn = this.missionService.fetch(cnd);
-		msn.setAssignTo(mission.getAssignTo());//TODO other fields
+		msn.setAssignTo(mission.getAssignTo());// TODO other fields
 		msn.setTotalHours(mission.getTotalHours());
 		msn.setComments(mission.getComments());
 		this.missionService.dao().updateIgnoreNull(msn);
 		return mission;
 	}
+
 	/**
 	 * 编辑任务
 	 * 
@@ -169,7 +171,7 @@ public class MissionAction {
 		Mission msn = this.missionService.fetch(cnd);
 		return msn;
 	}
-	
+
 	/**
 	 * 更新任务
 	 * 
@@ -178,7 +180,7 @@ public class MissionAction {
 	@At("/mission/update")
 	@Ok("redirect:/mission/query")
 	public Mission update(@Param("::mission.") final Mission mission) {
-		if(mission==null||mission.getMissionID()==null){
+		if (mission == null || mission.getMissionID() == null) {
 			return null;
 		}
 		Condition cnd = new Condition() {
@@ -188,16 +190,17 @@ public class MissionAction {
 				return sql;
 			}
 		};
-//		Mission msn = this.missionService.fetch(cnd);
-//		msn.setAssignTo(mission.getAssignTo());//TODO other fields
-//		msn.setTotalHours(mission.getTotalHours());
-//		msn.setComments(mission.getComments());
+		// Mission msn = this.missionService.fetch(cnd);
+		// msn.setAssignTo(mission.getAssignTo());//TODO other fields
+		// msn.setTotalHours(mission.getTotalHours());
+		// msn.setComments(mission.getComments());
 		this.missionService.dao().updateIgnoreNull(mission);
 		return mission;
 	}
-	
+
 	/**
 	 * 查看任务执行历史(日报条目)
+	 * 
 	 * @return
 	 */
 	@At("/mission/history")
@@ -213,6 +216,17 @@ public class MissionAction {
 		};
 		this.dailyItemService.fetch(cnd);
 		return history;
+	}
+
+	/**
+	 * 日报引用关联任务
+	 * 
+	 * @return
+	 */
+	@At("/mission/refer")
+	@Ok("jsp:views.mission.refer")
+	public String refer() {
+		return "SUCCESS";
 	}
 
 	public MissionServiceImpl getMissionService() {

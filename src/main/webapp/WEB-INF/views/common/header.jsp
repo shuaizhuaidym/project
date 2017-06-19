@@ -9,7 +9,7 @@
 			<a class="brand">项目管理系统</a>
 			<div class="nav-collapse collapse">
 				<ul class="nav">
-					<li class="active"><a href="${path}/project/">首页</a></li>
+					<li class="active"><a href="${path}/project/portal">首页</a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">项目管理 <b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li><a href="<%=path%>/form">新建项目</a></li>

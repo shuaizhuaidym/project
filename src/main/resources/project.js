@@ -174,5 +174,13 @@ var ioc = {
 				refer : 'dao'
 			}
 		}
+	},
+	portalAction : {
+		type : "com.jit.project.portal.PortalAction",
+		fields : {
+			missionService : {
+				refer : 'missionService'
+			}
+		}
 	}
 };

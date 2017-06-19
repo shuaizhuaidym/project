@@ -50,7 +50,7 @@ textarea {
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 	<div class="row-fluid">
-		<div class="span8 offset2">
+		<div class="span8 offset2 bordered">
 			<fieldset>
 				<legend><span>编辑产品信息</span></legend>
 			</fieldset>

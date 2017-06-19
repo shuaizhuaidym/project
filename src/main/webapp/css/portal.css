@@ -11,13 +11,15 @@ body {
 .container-narrow {
 	width: 85%;
 	margin: 0 auto;
-	padding-top: 40px
+	/* padding-top: 40px */
 }
 
 .panel-heading {
 	height: 25px;
 	line-height: 18px;
-	background-color: #f1f1f1;
+	/* background-color: #f1f1f1; */
+	background: rgba(0, 0, 0, 0) linear-gradient(to bottom, #ffffff -10%, #f8f3e4 100%) repeat scroll 0 0;
+	background-color: rgb(248, 243, 228);
 	border: 1px #ddd solid;
 	border-bottom: 0;
 	font-weight: 700;
