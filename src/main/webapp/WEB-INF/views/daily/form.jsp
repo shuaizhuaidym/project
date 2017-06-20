@@ -41,7 +41,7 @@
 			<div class="control-group">
 				<label class="control-label" for="productName">发送给</label>
 				<div class="controls">
-					<input type="text"<input class="w-input" />
+					<input type="text" class="w-input" />
 					<a>选择</a>
 				</div>
 			</div>
@@ -90,7 +90,7 @@
 			<button type="button" class="close" data-dismiss="modal">×</button>
 			<span id="myModalLabel">我的日报${today}</span>
 		</div>
-		<div class="modal-body">
+		<div id="modal-body" class="modal-body">
 			<!-- 加载远端 -->
 		</div>
 		<div class="modal-footer">

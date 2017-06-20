@@ -24,10 +24,25 @@
 			$("#summary1").val(box.id + ":" + box.name)
 		}
 	}
+
+	function paging() {
+		$.ajax({
+			cache : true,
+			type : "POST",
+			url : "<%=path %>/mission/refer",
+			data : $('#ajaxForm').serialize(),
+			async : false,
+			error : function(request) {
+				alert("Connection error");
+			},
+			success : function(data) {
+				$("#modal-body").html(data);
+			}
+		});
+	}
 </script>
 </head>
 <body>
-
 	<div class="container-fluid">
 		<div class="row-fluid">
 			<table class="table table-bordered table-striped">
@@ -47,7 +62,7 @@
 				</c:forEach>
 			</table>
 		</div>
-		<form action="<%=path %>/mission/refer" id="queryForm">
+		<form action="<%=path %>/mission/refer" id="ajaxForm">
 			<pg:page pageNo="${obj.pager.pageNumber}" currentClass="active" pageSize="${obj.pager.pageSize}"
 				totalCount="${obj.pager.recordCount}">
 			</pg:page>

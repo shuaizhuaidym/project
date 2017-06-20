@@ -172,7 +172,7 @@ public class PagerTag extends TagSupport {
 		html.append("\tpageNo = 1;\n");
 		html.append("}\n");
 		html.append("\tvar form = document.getElementById(\"queryForm\");\n");
-		html.append("\tif(!form){alert('queryForm not found');return false;}\n");
+		html.append("\tif(!form){$('#pageNoInput').val(pageNo);paging();return false;}\n");
 //		html.append("form.action=\"").append(url).append("\";\n");
 		html.append("$('#pageNoInput').val(pageNo);\n");
 		html.append("\tform.submit();\n");
