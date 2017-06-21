@@ -41,24 +41,9 @@
 				<div class="panel-heading">
 					<span class="panel-title">我的缺陷<a href="<%=path%>/defeat/claim" title="认领缺陷"><i class="icon-flag" title="写日报"></i></a></span>
 				</div>
-				<table class="table angle table-defeat">
-					<tr>
-						<th style="width: 32px">编号</th>
-						<th>缺陷描述</th>
-					</tr>
-					<tr>
-						<td>2881</td>
-						<td>任务描述XXX</td>
-					</tr>
-					<tr>
-						<td>128</td>
-						<td>Apache部署文档目录：http://172.16.5.oenix</td>
-					</tr>
-					<tr>
-						<td>3692</td>
-						<td>任务描hkjhjhjkh述</td>
-					</tr>
-				</table>
+				<div id="bug-box">
+					<!-- BUG列表 -->
+				</div>
 			</div>
 
 			<div class="span9">
@@ -67,46 +52,26 @@
 						<a data-toggle="modal" href="<%=path%>/daily/window" data-target="#dailyModal">
 							<i class=" icon-list-alt" title="写日报"></i>
 						</a>
-						<a href="<%=path%>/daily/form">
-							<i class=" icon-list-alt" title="写日报"></i>
-						</a>
+						<a href="<%=path%>/daily/form"> <i class=" icon-list-alt" title="写日报"></i></a>
 					</span>
 				</div>
-				<table class="table table-striped angle">
-					<tbody>
-						<tr>
-							<th>任务名称</th>
-							<th>任务类型</th>
-							<th>任务描述</th>
-						</tr>
-						<c:forEach var="mission" items="${obj.list}" varStatus="index">
-							<tr>
-								<td>${mission.missionName}</td>
-								<td>${mission.taskClass}</td>
-								<td>${mission.summary}</td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-				<form action="<%=path %>/portal" id="queryForm">
-					<pg:page pageNo="${obj.pager.pageNumber}" currentClass="active" pageSize="${obj.pager.pageSize}"
-						totalCount="${obj.pager.recordCount}">
-					</pg:page>
-				</form>
+				<div id="mission-box">
+					<!-- 任务列表 -->
+				</div>
 			</div>
 
 		</div>
 
 		<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 	</div>
-	<!-- modal dialog assign task -->
+	<!-- modal dialog daily -->
 	<div id="dailyModal" class="modal hide fade" tabindex="-1">
 		<div class="modal-header form-title">
 			<button type="button" class="close" data-dismiss="modal">×</button>
 			<span id="myModalLabel">我的日报<f:formatDate value="<%=today%>" pattern="yyyy-MM-dd" /></span>
 		</div>
 		<div class="modal-body">
-			<!-- 加载远端 -->
+			<!-- 加载远端日报页面 -->
 		</div>
 		<div class="modal-footer">
 			<button id="btnAppend" class="btn btn-info">新增</button>

@@ -2,7 +2,7 @@ package util;
 
 public class Const {
 	public static final String DRIVER = "com.mysql.jdbc.Driver";
-	public static final String DB_NAME = "test";
+	public static final String DB_NAME = "project";
 	public static final String USERNAME = "root";
 	public static final String PASSWORD = "admin";
 	public static final String IP = "127.0.0.1";

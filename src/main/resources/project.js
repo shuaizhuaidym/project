@@ -180,6 +180,17 @@ var ioc = {
 		fields : {
 			missionService : {
 				refer : 'missionService'
+			},
+			bugService:{
+				refer:'bugService'
+			}
+		}
+	},
+	bugService:{
+		type : 'com.jit.project.bug.service.BugServiceImpl',
+		fields : {
+			dao : {
+				refer : 'dao'
 			}
 		}
 	}
