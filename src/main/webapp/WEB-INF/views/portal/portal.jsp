@@ -23,6 +23,24 @@
 <script type="text/javascript" src="<%=path%>/js/jquery/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="<%=path%>/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="<%=path%>/js/portal.js"></script>
+<script type="text/javascript">
+	function paging(fid) {
+		var frm = $('#' + fid).attr('action');
+		$.ajax({
+			cache : true,
+			type : "POST",
+			url : $('#' + fid).attr('action'),
+			data : $('#' + fid).serialize(),
+			async : false,
+			error : function(request) {
+				alert("Connection error");
+			},
+			success : function(data) {
+				$("#" + fid + "-box").html(data);
+			}
+		});
+	}
+</script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
@@ -41,7 +59,7 @@
 				<div class="panel-heading">
 					<span class="panel-title">我的缺陷<a href="<%=path%>/defeat/claim" title="认领缺陷"><i class="icon-flag" title="写日报"></i></a></span>
 				</div>
-				<div id="bug-box">
+				<div id="bugForm-box">
 					<!-- BUG列表 -->
 				</div>
 			</div>
@@ -55,7 +73,7 @@
 						<a href="<%=path%>/daily/form"> <i class=" icon-list-alt" title="写日报"></i></a>
 					</span>
 				</div>
-				<div id="mission-box">
+				<div id="missionForm-box">
 					<!-- 任务列表 -->
 				</div>
 			</div>

@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f"%>
+<%@taglib prefix="pg" uri="/WEB-INF/tags"%>
 <%
 	String path = request.getContextPath();
 %>
 
-<form action="<%=path%>/portal" id="ajaxForm">
+<form action="<%=path%>/portal/bug" id="bugForm">
 	<table class="table angle table-defeat">
 		<tr>
 			<th style="width: 32px">编号</th>
@@ -18,4 +19,7 @@
 			</tr>
 		</c:forEach>
 	</table>
+	<pg:page id="bugForm" async="true" pageNo="${obj.pager.pageNumber}" currentClass="active" pageSize="${obj.pager.pageSize}"
+		totalCount="${obj.pager.recordCount}">
+	</pg:page>
 </form>

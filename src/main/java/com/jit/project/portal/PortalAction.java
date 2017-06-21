@@ -72,25 +72,7 @@ public class PortalAction {
 	@At("/demo")
 	@Ok("raw:json")
 	public String demo(@Param("::query.") Query cnd) {
-		// List<Defeat> defeats = new ArrayList<Defeat>();
-		// TODO 根据当前用户，查询“我”的待办任务
-		if (cnd == null) {
-			cnd = new Query();
-		}
-		QueryResult products = this.missionService.query(cnd);
-		String json = "[ {" + "\"name\" : \"Tiger Nixon\"," + "\"position\" : \"System Architect\","
-				+ "\"salary\" : \"$3,120\"," + "\"start_date\" : \"2011/04/25\","
-				+ "\"office\" : \"Edinburgh\"," + "\"extn\" : \"5421\"" + "}, {"
-				+ "\"name\" : \"Garrett Winters\"," + "\"position\" : \"Director\","
-				+ "\"salary\" : \"$5,300\"," + "\"start_date\" : \"2011/07/25\","
-				+ "\"office\" : \"Edinburgh\"," + "\"extn\" : \"8422\"" + "}, {"
-				+ "\"name\" : \"Tiger Nixon\"," + "\"position\" : \"System Architect\","
-				+ "\"salary\" : \"$3,120\"," + "\"start_date\" : \"2011/04/25\","
-				+ "\"office\" : \"Edinburgh\"," + "\"extn\" : \"5421\"" + "}, {"
-				+ "\"name\" : \"Garrett Winters\"," + "\"position\" : \"Director\","
-				+ "\"salary\" : \"$5,300\"," + "\"start_date\" : \"2011/07/25\","
-				+ "\"office\" : \"Edinburgh\"," + "\"extn\" : \"8422\"" + "} ]";
-		System.out.println(json);
+		String json = "[ {} ]";
 		return json;
 	}
 

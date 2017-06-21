@@ -14,7 +14,7 @@ $(document).ready(function() {
 		async : true, //或false,是否异步
 		timeout : 5000, //超时时间
 		success : function(data, textStatus, jqXHR) {
-			$("#mission-box").html(data);
+			$("#missionForm-box").html(data);
 		},
 		error : function(xhr, textStatus) {
 			alert('错误');
@@ -28,7 +28,7 @@ $(document).ready(function() {
 		async : true, //或false,是否异步
 		timeout : 5000, //超时时间
 		success : function(data, textStatus, jqXHR) {
-			$("#bug-box").html(data);
+			$("#bugForm-box").html(data);
 		},
 		error : function(xhr, textStatus) {
 			alert('错误');

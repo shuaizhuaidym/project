@@ -65,5 +65,11 @@
 			<rtexprvalue>true</rtexprvalue>
 			<description>当前面按钮样式</description>
 		</attribute>
+		<attribute>
+			<name>async</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>是否异步请求</description>
+		</attribute>
 	</tag>
 </taglib>

@@ -24,6 +24,7 @@ public class PagerTag extends TagSupport {
 	private String name;
 	private int cutBtnNum;
 	private int rest;
+	private boolean async = false;
 
 	@Override
 	public int doStartTag() throws JspException {
@@ -155,7 +156,7 @@ public class PagerTag extends TagSupport {
 		html.append("<span>共"+totalPage+"页，");
 		html.append("到第</span>");
 		html.append("<input type=\"mumber\" id=\"pageNoInput\" name=\"query.pageNumber\" value=\"" + pageNo + "\" class=\"input\"/>");
-		html.append("</input><span>页</span><input type=\"button\" onclick=\"goPage()\" value=\"确定\" class=\"btn-jump\"></input>");
+		html.append("</input><span>页</span><input type=\"button\" onclick=\"goPage"+id+"()\" value=\"确定\" class=\"btn-jump\"></input>");
 		html.append("</ul>");
 		html.append("</div>");
 		html.append("<input type=\"hidden\" name=\"pageSize\" value=\"" + pageSize + "\"></input>");
@@ -163,7 +164,7 @@ public class PagerTag extends TagSupport {
 
 		// 创建JavaScript代码
 		html.append("\r\n<script type='text/javascript'>\n");
-		html.append("function goPage(pageNo){\n");
+		html.append("function goPage" + id + "(pageNo){\n");
 		html.append("\tvar pageNoInput = document.getElementById(\"pageNoInput\");\n");
 		html.append("\tif(pageNo == undefined){\n");
 		html.append("\t\tpageNo = pageNoInput.value;\n");
@@ -171,8 +172,11 @@ public class PagerTag extends TagSupport {
 		html.append("\tif(isNaN(pageNo)||pageNo<1){\n");
 		html.append("\tpageNo = 1;\n");
 		html.append("}\n");
-		html.append("\tvar form = document.getElementById(\"queryForm\");\n");
-		html.append("\tif(!form){$('#pageNoInput').val(pageNo);paging();return false;}\n");
+		html.append("\tif(!!").append( async ).append("){");
+		html.append("\t\t$('#pageNoInput').val(pageNo);");
+		html.append("\t\tpaging('").append(id).append("');");
+		html.append("\t\treturn false;}\n");
+		html.append("\tvar form = document.getElementById(\"").append( id ).append("\");\n");
 //		html.append("form.action=\"").append(url).append("\";\n");
 		html.append("$('#pageNoInput').val(pageNo);\n");
 		html.append("\tform.submit();\n");
@@ -183,7 +187,7 @@ public class PagerTag extends TagSupport {
 
 	private String wrapGoLink(int pageNo, Serializable text) {
 		return new StringBuilder().append(
-				"<a href=\"javascript:void(0);\" onclick=\"goPage(" + pageNo + ")\">" + text + "</a>").toString();
+				"<a href=\"javascript:void(0);\" onclick=\"goPage"+id+"(" + pageNo + ")\">" + text + "</a>").toString();
 	}
 
 //	private String attr(String attrName, Object value) {
@@ -269,6 +273,14 @@ public class PagerTag extends TagSupport {
 
 	public void setCutBtnNum(int cutBtnNum) {
 		this.cutBtnNum = cutBtnNum;
+	}
+
+	public boolean isAsync() {
+		return async;
+	}
+
+	public void setAsync(boolean async) {
+		this.async = async;
 	}
 
 }

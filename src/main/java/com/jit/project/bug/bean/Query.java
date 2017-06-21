@@ -6,7 +6,7 @@ import org.nutz.dao.entity.Entity;
 public class Query implements Condition {
 	private Integer pageNumber = 1;
 
-	private Integer pageSize = 100;
+	private Integer pageSize = 10;
 	// 负责人
 	private String responsible = "代艳明";
 	private String status = "('打开','重新打开')";

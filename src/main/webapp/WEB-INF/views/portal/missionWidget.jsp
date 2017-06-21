@@ -6,7 +6,7 @@
 	String path = request.getContextPath();
 %>
 
-<form action="<%=path%>/portal" id="ajaxForm">
+<form action="<%=path%>/portal/mission" id="missionForm">
 	<table class="table table-striped angle">
 		<tbody>
 			<tr>
@@ -25,24 +25,7 @@
 			</c:forEach>
 		</tbody>
 	</table>
-	<pg:page pageNo="${obj.pager.pageNumber}" currentClass="active" pageSize="${obj.pager.pageSize}"
+	<pg:page id="missionForm" async="true" pageNo="${obj.pager.pageNumber}" currentClass="active" pageSize="${obj.pager.pageSize}"
 		totalCount="${obj.pager.recordCount}">
 	</pg:page>
-	<script type="text/javascript">
-	function paging() {
-		$.ajax({
-			cache : true,
-			type : "POST",
-			url : "/project/portal/mission",
-				data : $('#ajaxForm').serialize(),
-				async : false,
-				error : function(request) {
-					alert("Connection error");
-				},
-				success : function(data) {
-					$("#mission-box").html(data);
-				}
-			});
-		}
-	</script>
 </form>
