@@ -165,20 +165,20 @@ public class PagerTag extends TagSupport {
 		// 创建JavaScript代码
 		html.append("\r\n<script type='text/javascript'>\n");
 		html.append("function goPage" + id + "(pageNo){\n");
-		html.append("\tvar pageNoInput = document.getElementById(\"pageNoInput\");\n");
+		html.append("\tvar pageNoInput = $('#"+id+"').find(\"#pageNoInput\");\n");
 		html.append("\tif(pageNo == undefined){\n");
-		html.append("\t\tpageNo = pageNoInput.value;\n");
+		html.append("\t\tpageNo = pageNoInput.val();\n");
 		html.append("}\n");
 		html.append("\tif(isNaN(pageNo)||pageNo<1){\n");
 		html.append("\tpageNo = 1;\n");
 		html.append("}\n");
 		html.append("\tif(!!").append( async ).append("){");
-		html.append("\t\t$('#pageNoInput').val(pageNo);");
+		html.append("\t\tpageNoInput.val(pageNo);");
 		html.append("\t\tpaging('").append(id).append("');");
 		html.append("\t\treturn false;}\n");
 		html.append("\tvar form = document.getElementById(\"").append( id ).append("\");\n");
 //		html.append("form.action=\"").append(url).append("\";\n");
-		html.append("$('#pageNoInput').val(pageNo);\n");
+		html.append("\tpageNoInput.val(pageNo);\n");
 		html.append("\tform.submit();\n");
 		html.append("}\n");
 		html.append("</script>");

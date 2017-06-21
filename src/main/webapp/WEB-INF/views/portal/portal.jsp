@@ -27,7 +27,7 @@
 	function paging(fid) {
 		var frm = $('#' + fid).attr('action');
 		$.ajax({
-			cache : true,
+			cache : false,
 			type : "POST",
 			url : $('#' + fid).attr('action'),
 			data : $('#' + fid).serialize(),
