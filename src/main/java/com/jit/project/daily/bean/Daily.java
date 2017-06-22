@@ -1,7 +1,12 @@
 package com.jit.project.daily.bean;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
+import org.nutz.dao.entity.annotation.Column;
+import org.nutz.dao.entity.annotation.Id;
+import org.nutz.dao.entity.annotation.Many;
 import org.nutz.dao.entity.annotation.Table;
 
 /**
@@ -10,17 +15,23 @@ import org.nutz.dao.entity.annotation.Table;
  */
 @Table("t_daily")
 public class Daily {
-	/** @pdOid 3c33b1a3-95e8-493a-989b-6ba3efa51313 */
+	@Id
+	@Column("daily_id")
 	private int dailyID;
-	/** @pdOid 3182081a-5e2c-48df-b927-08251edd6ac3 */
+	
+	@Column("create_date")
 	private Date createDate;
-	/** @pdOid 8cd87c70-f5b0-46bc-9033-c97640af8518 */
+	
+	@Column("owner_id")
 	private int ownerID;
-	/** @pdOid 2ccc7904-b2b1-498f-ac8b-51bc7563c251 */
+	
+	@Column("owner_name")
+	private String ownerName;
+	
+	@Column("mail_to")
 	private int mailTo;
-	/** @pdOid b58652bd-f5de-4b3c-b504-a9a7becff904 */
-	private String owner;
-
+	
+	@Many(target = DailyItem.class, field = "dailyID")
 	private List<DailyItem> items = new ArrayList<DailyItem>();
 
 	public int getDailyID() {
@@ -55,20 +66,20 @@ public class Daily {
 		this.mailTo = mailTo;
 	}
 
-	public String getOwner() {
-		return owner;
-	}
-
-	public void setOwner(String owner) {
-		this.owner = owner;
-	}
-
 	public List<DailyItem> getItems() {
 		return items;
 	}
 
 	public void setItems(List<DailyItem> items) {
 		this.items = items;
+	}
+
+	public String getOwnerName() {
+		return ownerName;
+	}
+
+	public void setOwnerName(String ownerName) {
+		this.ownerName = ownerName;
 	}
 
 }

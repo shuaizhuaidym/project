@@ -30,7 +30,7 @@ public class DailyItem {
 	@Column("percentage")
 	private int percentage;
 	
-	@Column("detail")
+	@Column("progress_detail")
 	private String detail;
 	
 	@Column("problerm")

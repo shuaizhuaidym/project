@@ -41,6 +41,13 @@
 		<filter-name>TagFilter</filter-name>
 		<filter-class>com.jit.project.auth.TagFilter</filter-class>
 	</filter>
+	<filter>
+		<description>
+		</description>
+		<display-name>AuthFilter</display-name>
+		<filter-name>AuthFilter</filter-name>
+		<filter-class>com.jit.project.auth.web.AuthFilter</filter-class>
+	</filter>
 
 	<filter-mapping>
 		<filter-name>nutz</filter-name>
@@ -49,6 +56,10 @@
 	<filter-mapping>
 		<filter-name>TagFilter</filter-name>
 		<url-pattern>/TagFilter</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>AuthFilter</filter-name>
+		<url-pattern>/AuthFilter</url-pattern>
 	</filter-mapping>
 
 	<jsp-config>

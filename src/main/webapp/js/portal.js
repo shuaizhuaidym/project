@@ -73,7 +73,8 @@ function sendDaily() {
 			alert('Connection error');
 		},
 		success : function(data) {
-			$("#commonLayout_appcreshi").parent().html(data);
+			confirm(data);
+			$('#dailyModal').modal('hide');
 		}
 	});
 }
@@ -89,6 +90,6 @@ function refMission(index) {
 function refer(index, msg) {
 	var summary = "summary_0".replace(/0/, index);
 	var idd = "id_0".replace(/0/, index);
-	$("#"+summary).val(msg);
-	$("#"+idd).val(msg);
+	$("#"+summary).val(msg.name);
+	$("#"+idd).val(msg.id);
 }

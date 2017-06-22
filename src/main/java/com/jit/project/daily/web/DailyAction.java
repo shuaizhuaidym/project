@@ -19,7 +19,7 @@ public class DailyAction {
 	
 	private IDailyItemService dailyItemService;
 
-	private static String success = "SUCCESS";
+	private static String success = "操作成功";
 	/**
 	 * 模态窗口
 	 * @return
@@ -47,9 +47,9 @@ public class DailyAction {
 	 * @return
 	 */
 	@At("/daily/save")
-	@Ok("jsp:views.daily.save")
+	@Ok("json:full")
 	public String save(@Param("::daily.") Daily daily) {
-		// TODO
+		this.dailyService.saveWith(daily);
 		return success;
 	}
 	

@@ -18,7 +18,7 @@
 <script type="text/javascript">
 	function confirm(box) {
 		if(window.opener){
-			window.opener.refer('${mission_index}',box.id + ":" + box.name);
+			window.opener.refer('${mission_index}',{id : box.id, name : box.name});
 			window.close();
 		}else{
 			$("#summary").val('${mission_index}',box.id + ":" + box.name);

@@ -81,6 +81,10 @@
 		<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 	</div>
 	<!-- modal dialog daily -->
+	<div class="alert fade in">
+		<button class="close" data-dismiss="alert" type="button">×</button>
+		<strong>Holy guacamole!</strong> Best check yo self, you're not looking too good.
+	</div>
 	<div id="dailyModal" class="modal hide fade" tabindex="-1">
 		<div class="modal-header form-title">
 			<button type="button" class="close" data-dismiss="modal">×</button>
@@ -92,7 +96,7 @@
 		<div class="modal-footer">
 			<button id="btnAppend" class="btn btn-info">新增</button>
 			<button id="btnDelete" class="btn btn-danger">删除</button>
-			<button id="btnSave" class="btn btn-primary">保存</button>
+			<button id="btnSave"data-dismiss="modal" aria-hidden="true" class="btn btn-primary">保存</button>
 		</div>
 	</div>
 </body>
