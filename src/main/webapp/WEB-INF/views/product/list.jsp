@@ -202,7 +202,7 @@
 						</c:forEach>
 					</table>
 					<form id="queryForm" action="<%=path%>/product/list">
-						<pg:page pageNo="${obj.pager.pageNumber}" currentClass="active" pageSize="${obj.pager.pageSize}" totalCount="${obj.pager.recordCount}">
+						<pg:page id="queryForm" pageNo="${obj.pager.pageNumber}" currentClass="active" pageSize="${obj.pager.pageSize}" totalCount="${obj.pager.recordCount}">
 						</pg:page>
 					</form>
 				</div>

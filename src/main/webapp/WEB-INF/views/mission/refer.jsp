@@ -18,10 +18,10 @@
 <script type="text/javascript">
 	function confirm(box) {
 		if(window.opener){
-			window.opener.refer(box.id + ":" + box.name);
+			window.opener.refer('${mission_index}',box.id + ":" + box.name);
 			window.close();
 		}else{
-			$("#summary1").val(box.id + ":" + box.name)
+			$("#summary").val('${mission_index}',box.id + ":" + box.name);
 		}
 	}
 
@@ -63,7 +63,7 @@
 			</table>
 		</div>
 		<form action="<%=path %>/mission/refer" id="ajaxForm">
-			<pg:page pageNo="${obj.pager.pageNumber}" currentClass="active" pageSize="${obj.pager.pageSize}"
+			<pg:page id="ajaxForm" async="true" pageNo="${obj.pager.pageNumber}" currentClass="active" pageSize="${obj.pager.pageSize}"
 				totalCount="${obj.pager.recordCount}">
 			</pg:page>
 		</form>

@@ -2,10 +2,13 @@ package com.jit.project.daily.bean;
 
 import java.util.*;
 
+import org.nutz.dao.entity.annotation.Table;
+
 /**
  * @author yanming_dai
  * @date 2017-06-02
  */
+@Table("t_daily")
 public class Daily {
 	/** @pdOid 3c33b1a3-95e8-493a-989b-6ba3efa51313 */
 	private int dailyID;
@@ -17,6 +20,8 @@ public class Daily {
 	private int mailTo;
 	/** @pdOid b58652bd-f5de-4b3c-b504-a9a7becff904 */
 	private String owner;
+
+	private List<DailyItem> items = new ArrayList<DailyItem>();
 
 	public int getDailyID() {
 		return dailyID;
@@ -56,6 +61,14 @@ public class Daily {
 
 	public void setOwner(String owner) {
 		this.owner = owner;
+	}
+
+	public List<DailyItem> getItems() {
+		return items;
+	}
+
+	public void setItems(List<DailyItem> items) {
+		this.items = items;
 	}
 
 }

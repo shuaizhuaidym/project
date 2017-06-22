@@ -22,10 +22,11 @@
 
 <script type="text/javascript" src="<%=path%>/js/jquery/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="<%=path%>/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="<%=path%>/js/bootstrap-collapse.js"></script>
+
 <script type="text/javascript" src="<%=path%>/js/portal.js"></script>
 <script type="text/javascript">
 	function paging(fid) {
-		var frm = $('#' + fid).attr('action');
 		$.ajax({
 			cache : false,
 			type : "POST",
@@ -45,13 +46,12 @@
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 	<div class="container-narrow">
-		<div class="hero-unit">
-			<p>
-			<h4>IPC板报</h4>
-			<p>
+		<div class="panel-heading">
+			<span class="panel-title">常用地址<a data-toggle="collapse" data-target="notice" title="展开"><i class="icon-flag" title="展开"></i></a></span>
+		</div>
+		<div id="notice" class="hero-unit collapse in">
 				Apache部署文档目录：http://172.16.5.251/svn/phoenix/src/modules_test/tools/apache搭建/Apache安装说明.txt <br />
 				网关定制化开发路：http://172.16.5.251/svn/phoenix/定制化开发
-			</p>
 		</div>
 
 		<div class="row-fluid marketing">
@@ -66,11 +66,9 @@
 
 			<div class="span9">
 				<div class="panel-heading">
-					<span class="panel-title">我的任务&nbsp; 
-						<a data-toggle="modal" href="<%=path%>/daily/window" data-target="#dailyModal">
+					<span class="panel-title">我的任务&nbsp; <a data-toggle="modal" href="<%=path%>/daily/window" data-target="#dailyModal">
 							<i class=" icon-list-alt" title="写日报"></i>
-						</a>
-						<a href="<%=path%>/daily/form"> <i class=" icon-list-alt" title="写日报"></i></a>
+					</a> <a href="<%=path%>/daily/form"> <i class=" icon-list-alt" title="写日报"></i></a>
 					</span>
 				</div>
 				<div id="missionForm-box">

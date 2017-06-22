@@ -207,7 +207,7 @@
 						</c:forEach>
 					</table>
 					<form id="queryForm" action="<%=path%>/mission/query">
-						<pg:page pageNo="${obj.pager.pageNumber}" currentClass="active" pageSize="${obj.pager.pageSize}"
+						<pg:page id="queryForm" pageNo="${obj.pager.pageNumber}" currentClass="active" pageSize="${obj.pager.pageSize}"
 							totalCount="${obj.pager.recordCount}">
 						</pg:page>
 					</form>

@@ -6,7 +6,9 @@ import java.util.Date;
 import org.nutz.ioc.annotation.InjectName;
 import org.nutz.mvc.annotation.At;
 import org.nutz.mvc.annotation.Ok;
+import org.nutz.mvc.annotation.Param;
 
+import com.jit.project.daily.bean.Daily;
 import com.jit.project.daily.service.IDailyItemService;
 import com.jit.project.daily.service.IDailyService;
 
@@ -17,6 +19,7 @@ public class DailyAction {
 	
 	private IDailyItemService dailyItemService;
 
+	private static String success = "SUCCESS";
 	/**
 	 * 模态窗口
 	 * @return
@@ -38,6 +41,18 @@ public class DailyAction {
 		String today = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 		return today;
 	}
+	
+	/**
+	 * 保存日报
+	 * @return
+	 */
+	@At("/daily/save")
+	@Ok("jsp:views.daily.save")
+	public String save(@Param("::daily.") Daily daily) {
+		// TODO
+		return success;
+	}
+	
 	public IDailyService getDailyService() {
 		return dailyService;
 	}

@@ -219,6 +219,7 @@ public class MissionAction {
 			query = new com.jit.project.mission.Query();
 		}
 		QueryResult result = this.missionService.query(query);
+		request.setAttribute("mission_index", request.getParameter("mission_index"));
 		return result;
 	}
 

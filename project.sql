@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50527
 File Encoding         : 65001
 
-Date: 2017-06-21 18:23:29
+Date: 2017-06-22 18:16:33
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -1174,6 +1174,25 @@ INSERT INTO `t_bug` VALUES ('3687', '打开', '丛哲', 'TECH', 'DEV', '使用�
 INSERT INTO `t_bug` VALUES ('3688', '打开', '王会彦', 'TECH', 'DEV', '正向属性传递应用，应用编码为“GBK”，应用页面也为“GBK”页面，使用中文证书访问，传递的主题属性仍然显示乱码。', '<html><body>前提条件：<br>属性模版中已经添加证书基本信息：主题、主题（空格）等信息<br>操作步骤：<br>1.应用管理中添加正向代理属性传递应用--应用地址为：http://192.168.12.230:9090/IIS_FX/index_GBK.asp<br>2.应用高级配置--应用编码--选择&quot;GBK&quot;--保存<br>3.通过客户端或者IP+别名访问访问该应用--使用中文证书登录<br>4.登录成功后查看传递的主题属性是否显示正常<br>预期结果：<br>传递的属性可以正常显示<br>实际结果：<br>传递的主题属性显示乱码</body></html>', 'dev-commonts', '1', 'serity', 'priority', '张敬兵', '2017-06-21', '3.0.34.7', 'Phoenix', 'Client');
 INSERT INTO `t_bug` VALUES ('3689', '新建', '王毅', 'TECH', 'DEV', '当网关上的拨KEY插件高于本地，不升级插件不能访问网关服务端', '<html><body>预期条件：<br>1.网关【系统设置】【高级设置】，开启&quot;拨KEY关IE&quot;<br>2.重新访问网关服务端，下载安装拨KEY关IE插件<br>操作步骤：<br>1.登录网关服务端，选择【系统维护】【控件管理】，上传一个高版本控件<br>2.重新访问网关服务端，认证后跳转至下载控件页面，点击&quot;暂不升级&quot;使用当前版本控件<br>预期结果：<br>不升级控件可以正常访问网关服务端<br>实际结果：<br>点击&quot;暂不升级&quot;，页面不跳转，不能访问网关服务端</body></html>', 'dev-commonts', '1', 'serity', 'priority', '霍成义', '2017-06-21', '3.0.34.7', 'Phoenix', 'Client');
 INSERT INTO `t_bug` VALUES ('3690', '打开', '刘志钢', 'TECH', 'DEV', 'win10上安装客户，PNXSrervice服务无法启动，通过排查发现由于系统启动服务器失败后不进行继续启动导致。', '<html><body>前置条件：<br>1、准备一台干净的win10操作系统的PC机<br>2、为了确保win10系统运行慢可以在启动win10的同时在启动一台win7虚拟机和一台XP虚拟机<br>3、网关配置正向代理应用<br>操作步骤：<br>1、使用IE11浏览器访问网关Portal页面<br>2、认证后自动安装客户端，客户端安装完成后重启操作系统<br>预期结果：<br>重启完成后，客户端所有服务器正常启动，并且客户端自动运行<br>实际结果：<br>客户端不自动运行，经过排查发现PNXService服务处于停止状态，查看日志发现PNXService服务启动超时导致不进行自动重启，如附件。</body></html>', 'dev-commonts', '1', 'serity', 'priority', '于凯', '2017-06-21', '3.0.34.7', 'Phoenix', 'Client');
+
+-- ----------------------------
+-- Table structure for t_daily_item
+-- ----------------------------
+DROP TABLE IF EXISTS `t_daily_item`;
+CREATE TABLE `t_daily_item` (
+  `item_id` int(11) DEFAULT NULL,
+  `daily_id` int(11) DEFAULT NULL,
+  `mission_id` int(11) DEFAULT NULL,
+  `mission_summary` varchar(255) DEFAULT NULL,
+  `hourse` int(11) DEFAULT NULL,
+  `percentage` int(11) DEFAULT NULL,
+  `progress_detail` text,
+  `problerm` varchar(254) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_daily_item
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for t_dictionary

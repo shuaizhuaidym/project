@@ -38,19 +38,12 @@
 					<span>写日报<a href="#" class="white-pointer" href="javascript:" id="btnInsert">[增加日志条目]</a></span>
 				</legend>
 			</fieldset>
-			<div class="control-group">
-				<label class="control-label" for="productName">发送给</label>
-				<div class="controls">
-					<input type="text" class="w-input" />
-					<a>选择</a>
-				</div>
-			</div>
 			<div id="daily_item" class="div_with_divider">
 				<div class="control-group">
 					<label class="control-label" for="code">关联任务</label>
 					<div class="controls">
 						<input type="text" id="summary1" name="missionSummary" class="w-input"> 
-						<a data-toggle="modal" href="<%=path%>/mission/refer" data-target="#missionModal">选择</a>
+						<a data-toggle="modal" href="<%=path%>/mission/refer" data-target="#missionModal">[选择]</a>
 					</div>
 				</div>
 				<div class="control-group">

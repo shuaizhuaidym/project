@@ -191,7 +191,7 @@
 					</tbody>
 				</table>
 			</div>
-			<pg:page pageNo="<%=pageNo%>" currentClass="active" pageSize="<%=pageSize%>" totalCount="<%=totalCount%>">
+			<pg:page id="queryForm" pageNo="<%=pageNo%>" currentClass="active" pageSize="<%=pageSize%>" totalCount="<%=totalCount%>">
 			</pg:page>
 			</form>
 

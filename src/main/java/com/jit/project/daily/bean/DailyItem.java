@@ -1,25 +1,40 @@
 package com.jit.project.daily.bean;
 
+import org.nutz.dao.entity.annotation.Column;
+import org.nutz.dao.entity.annotation.Id;
+import org.nutz.dao.entity.annotation.Table;
+
 
 /**
  * @author yanming_dai
  * @date 2017-06-02
  */
+@Table("t_daily_item")
 public class DailyItem {
-	/** @pdOid 54173c3b-4371-487d-9ee9-8105c7405421 */
+	@Id
+	@Column("item_id")
 	private int itemID;
-	/** @pdOid be220743-df0d-4b00-822d-9a30304f887f */
-	/** @pdOid 41496809-cc4e-407f-8436-c6de3d40885b */
-	private String detail;
-	/** @pdOid 4178dfc5-83f4-4bf2-ade4-0c527af15a8f */
-	private String problerm;
-	/** @pdOid 7e6ea280-81ff-4e07-b341-0f7e839af384 */
-	private int progress;
-
-	/** @pdOid 8cd68897-a1ac-4af5-b947-7861e4118eee */
+	
+	@Column("daily_id")
 	private int dailyID;
-	/** @pdRoleInfo migr=no name=Mission assc=association7 mult=1..1 */
+	
+	@Column("mission_id")
 	public String missionID;
+	
+	@Column("mission_summary")
+	private String missionSummary;
+	
+	@Column("hours")
+	private int hours;
+	
+	@Column("percentage")
+	private int percentage;
+	
+	@Column("detail")
+	private String detail;
+	
+	@Column("problerm")
+	private String problerm;
 
 	public int getItemID() {
 		return itemID;
@@ -45,14 +60,6 @@ public class DailyItem {
 		this.problerm = problerm;
 	}
 
-	public int getProgress() {
-		return progress;
-	}
-
-	public void setProgress(int progress) {
-		this.progress = progress;
-	}
-
 	public int getDailyID() {
 		return dailyID;
 	}
@@ -67,6 +74,30 @@ public class DailyItem {
 
 	public void setMissionID(String missionID) {
 		this.missionID = missionID;
+	}
+
+	public String getMissionSummary() {
+		return missionSummary;
+	}
+
+	public void setMissionSummary(String missionSummary) {
+		this.missionSummary = missionSummary;
+	}
+
+	public int getHours() {
+		return hours;
+	}
+
+	public void setHours(int hours) {
+		this.hours = hours;
+	}
+
+	public int getPercentage() {
+		return percentage;
+	}
+
+	public void setPercentage(int percentage) {
+		this.percentage = percentage;
 	}
 
 }

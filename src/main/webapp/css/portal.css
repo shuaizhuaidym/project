@@ -13,13 +13,16 @@ body {
 	margin: 0 auto;
 	/* padding-top: 40px */
 }
-
+.control-group {
+	margin-bottom: 0px;
+}
+.no-margin{margin:0}
 .panel-heading {
 	height: 25px;
 	line-height: 18px;
-	/* background-color: #f1f1f1; */
-	background: rgba(0, 0, 0, 0) linear-gradient(to bottom, #ffffff -10%, #f8f3e4 100%) repeat scroll 0 0;
-	background-color: rgb(248, 243, 228);
+	/* background-color: #f1f1f1;#eff5ff 0px, #e0ecff #ffffff -10%, #f8f3e4*/
+	background: rgba(0, 0, 0, 0) linear-gradient(to bottom, #eff5ff -10%, #e0ecff 100%) repeat scroll 0 0;
+	background-color: #e1edff;
 	border: 1px #ddd solid;
 	border-bottom: 0;
 	font-weight: 700;
