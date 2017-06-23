@@ -10,7 +10,6 @@ public class Query implements Condition {
 
 	@Override
 	public String toSql(Entity<?> entity) {
-		// TODO Auto-generated method stub
 		return "1=1";
 	}
 

@@ -63,6 +63,7 @@ public class DicService extends NameEntityService<Dictionary> implements
 			dics = new LinkedHashMap<String, String>();
 			QueryResult result = this.query(new Query(type));
 			for (Dictionary dic : result.getList(Dictionary.class)) {
+				dics.put("", "");//TODO configurable
 				dics.put(dic.getDicName(), dic.getDicName());
 			}
 			cache.put(type, dics);

@@ -134,9 +134,10 @@
 				<button type="reset" class="btn" style="margin-left: 10px">重置</button>
 			</div>
 		</form>
+		
+		<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 	</div>
 	<!-- /container -->
-	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 </body>
 <script type="text/javascript">
 $(function() {

@@ -107,14 +107,8 @@ public class MissionAction {
 	@At("/mission/loadForAssignAsync")
 	@Ok("jsp:views.mission.assign")
 	public Mission loadForAssignAsync(@Param("mission_id") final String missionID) {
-		Condition cnd = new Condition() {
-			@Override
-			public String toSql(Entity<?> entity) {
-				String sql = "where mission_id = " + missionID;
-				return sql;
-			}
-		};
-		Mission mission = this.missionService.fetch(cnd);
+		
+		Mission mission = this.missionService.fetch(missionID);
 		return mission;
 	}
 

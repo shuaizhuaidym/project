@@ -34,4 +34,5 @@ public interface IDicService {
 	public static String type_mission_type="任务类型";
 	public static String type_mission_status="任务状态";
 	public static String type_mission_class="任务类别";
+	public static String type_engineer="负责人";
 }

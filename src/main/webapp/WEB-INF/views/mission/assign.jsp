@@ -23,38 +23,38 @@
 		<input type="hidden" name="mission.missionID" value="${obj.missionID}"/>
 		<table>
 			<tr>
-				<td>任务名称</td>
+				<th class="w64px">任务名称</th>
 				<td><input disabled="disabled" value="${obj.missionName}" /></td>
-				<td>所属产品</td>
+				<th>所属产品</th>
 				<td><input disabled="disabled" value="${obj.productName}" /></td>
 			</tr>
 			<tr>
-				<td>迭代版本</td>
+				<th>迭代版本</th>
 				<td><input disabled="disabled" value="${obj.productVersion}" /></td>
-				<td>所属项目</td>
+				<th>所属项目</th>
 				<td><input disabled="disabled" value="${obj.projectName}" /></td>
 			</tr>
 			<tr>
-				<td>任务类型</td>
+				<th>任务类型</th>
 				<td><input disabled="disabled" value="${obj.type}" /></td>
-				<td>截止日期</td>
+				<th>截止日期</th>
 				<td><input readonly="readonly" value="${obj.formatDeadline}" /></td>
 			</tr>
 			<tr>
-				<td>指派给</td>
+				<th>指派给</th>
 				<td><select name="mission.assignTo">
 						<option value="田永健">田永健</option>
 						<option value="黄建华">黄建华</option>
 				</select></td>
-				<td>预计投入（人×天）</td>
+				<th>预计人天</th>
 				<td><input name="mission.totalHours" value="100" /></td>
 			</tr>
 			<tr>
-				<td>任务内容</td>
+				<th>任务内容</th>
 				<td colspan="3"><textarea id="assignContent" disabled="disabled" rows="8" cols="128" style="width: 93%; height: 108px">${obj.content}</textarea></td>
 			</tr>
 			<tr>
-				<td>备注信息</td>
+				<th>备注信息</th>
 				<td colspan="3"><textarea id="assignComments" name="mission.comments" rows="3" cols="128" style="width: 93%">${obj.comments}</textarea></td>
 			</tr>
 		</table>

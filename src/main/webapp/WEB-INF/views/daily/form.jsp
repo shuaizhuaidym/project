@@ -35,7 +35,7 @@
 		<form id="frm_daily" action="create" method="post" class="form-horizontal">
 			<fieldset>
 				<legend>
-					<span>写日报<a href="#" class="white-pointer" href="javascript:" id="btnInsert">[增加日志条目]</a></span>
+					<span>写日报</span>
 				</legend>
 			</fieldset>
 			<div id="daily_item" class="div_with_divider">
@@ -67,8 +67,9 @@
 			</div>
 			<div class="control-group" id="function_box">
 				<div class="controls">
-					<button type="submit" class="btn btn-primary">保存</button>
-					<a href="<%=path%>/product/list" class="btn">返回列表</a>
+					<a href="#"  class="btn btn-warning" id="btnInsert">新增日志条目</a>
+					<button type="submit" class="btn btn-success">保存</button>
+					<a href="<%=path%>/product/list" class="btn btn-primary">返回列表</a>
 				</div>
 			</div>
 		</form>

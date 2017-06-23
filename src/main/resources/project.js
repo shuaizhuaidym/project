@@ -156,6 +156,9 @@ var ioc = {
 			},
 			dailyItemService : {
 				refer : 'dailyItemService'
+			},
+			dicService : {
+				refer : 'dicService'
 			}
 		}
 	},

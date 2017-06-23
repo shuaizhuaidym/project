@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@taglib prefix="pg" uri="/WEB-INF/tags"%>
 <%
 	String path = request.getContextPath();
@@ -28,7 +28,6 @@
 
 <link href="<%=path%>/zTree/zTreeStyle.css" rel="stylesheet">
 <style type="text/css">
-
 .form-title {
 	color: #333;
 	font-size: 21px;
@@ -48,7 +47,10 @@
 	width: 80%;
 	height: 22px
 }
-.table td,th{padding:2px 5px 8px 5px}
+
+.table td,th {
+	padding: 2px 5px 8px 5px
+}
 </style>
 
 <script type="text/javascript" src="<%=path%>/js/jquery/jquery-1.11.1.js"></script>
@@ -57,11 +59,8 @@
 
 <script type="text/javascript" src="<%=path%>/js/bootstrap-modal.js"></script>
 <script type="text/javascript" src="<%=path%>/js/bootstrap-tab.js"></script>
-
-
 <script type="text/javascript">
 	var zTreeModule;
-	var zTreeVersion;
 	// zTree 的参数配置，深入使用请参考 API 文档（setting 配置详解）
 	var setting = {};
 	// zTree 的数据属性，深入使用请参考 API 文档（zTreeNode 节点数据详解）
@@ -92,44 +91,8 @@
 			name : "test2_2"
 		} ]
 	} ];
-	var zNodesv = [ {
-		name : "身份认证网关[phoenix]",
-		open : true,
-		children : [ {
-			name : "3.0.33.6",
-			children : [ {
-				name : "功能开发"
-			}, {
-				name : "缺陷"
-			}, {
-				name : "持续改进"
-			} ]
-		}, {
-			name : "3.0.34.1",
-			children : [ {
-				name : "功能开发"
-			}, {
-				name : "缺陷"
-			}, {
-				name : "持续改进"
-			} ]
-		} ]
-	}, {
-		name : "磐石终端",
-		open : true,
-		children : [ {
-			name : "2.0.16"
-		}, {
-			name : "2.0.20"
-		} ]
-	} ];
 	$(document).ready(function() {
 		zTreeModule = $.fn.zTree.init($("#treeModule"), setting, zNodes);
-		zTreeVersion = $.fn.zTree.init($("#treeVersion"), setting, zNodesv);
-	});
-	$('#myTab a').click(function(e) {
-		e.preventDefault();
-		$(this).tab('show');
 	});
 </script>
 </head>
@@ -146,17 +109,9 @@
 					</legend>
 				</fieldset>
 				<div class="table-responsive">
-					<ul id="myTab" class="nav nav-tabs top0">
-						<li class="active"><a href="#cmodule" data-toggle="tab">模块视图</a></li>
-						<li><a href="#cversion" data-toggle="tab">版本视图</a></li>
-					</ul>
-
 					<div class="tab-content">
 						<div class="tab-pane tree-box active" id="cmodule">
 							<ul id="treeModule" class="ztree"></ul>
-						</div>
-						<div class="tab-pane tree-box" id="cversion">
-							<ul id="treeVersion" class="ztree"></ul>
 						</div>
 					</div>
 				</div>
@@ -194,60 +149,27 @@
 								<td>${prd.testMgr}</td>
 								<td>${prd.releaseVersion}</td>
 								<td><f:formatDate value="${prd.releaseDate}" pattern="yyyy-MM-dd" /></td>
-								<td>
-									<a href="<%=path%>/product/edit?product_id=${prd.productID}"><i class="icon-pencil" title="编辑"></i></a>
-									<a href="#"><i class=" icon-remove" title="删除"></i></a>
-								</td>
+								<td><a href="<%=path%>/product/edit?product_id=${prd.productID}"><i class="icon-pencil" title="编辑"></i></a> <a
+									href="#"><i class=" icon-remove" title="删除"></i></a></td>
 							</tr>
 						</c:forEach>
 					</table>
 					<form id="queryForm" action="<%=path%>/product/list">
-						<pg:page id="queryForm" pageNo="${obj.pager.pageNumber}" currentClass="active" pageSize="${obj.pager.pageSize}" totalCount="${obj.pager.recordCount}">
+						<pg:page id="queryForm" pageNo="${obj.pager.pageNumber}" currentClass="active" pageSize="${obj.pager.pageSize}"
+							totalCount="${obj.pager.recordCount}">
 						</pg:page>
 					</form>
 				</div>
 			</div>
 		</div>
-	</div>
+		<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
+	</div><!-- end container-fluid -->
+	
 	<!-- modal dialog add product module -->
 	<div id="orgModal" class="modal hide fade" tabindex="-1">
 		<div class="modal-header form-title">
 			<button type="button" class="close" data-dismiss="modal">×</button>
 			<span id="myModalLabel">新建模块</span>
-		</div>
-		<div class="modal-body">
-			<form action="#">
-				<table>
-					<tr>
-						<td>所属产品</td>
-						<td><input value="身份认证网关" /></td>
-						<td>上级模块</td>
-						<td><input /></td>
-					</tr>
-					<tr>
-						<td>产品发布版本</td>
-						<td><input /></td>
-						<td>产品迭代版本</td>
-						<td><select></select></td>
-					</tr>
-					<tr>
-						<td>备注</td>
-						<td colspan="3"><textarea rows="6" cols="128" style="width: 93%"></textarea></td>
-					</tr>
-				</table>
-			</form>
-		</div>
-
-		<div class="modal-footer">
-			<button class="btn" data-dismiss="modal">关闭</button>
-			<button class="btn btn-primary">保存</button>
-		</div>
-	</div>
-	<!-- modal dialog assign task -->
-	<div id="assignModal" class="modal hide fade" tabindex="-1">
-		<div class="modal-header form-title">
-			<button type="button" class="close" data-dismiss="modal">×</button>
-			<span id="myModalLabel">子模块</span>
 		</div>
 		<div class="modal-body">
 			<form action="#">

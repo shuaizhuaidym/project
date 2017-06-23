@@ -120,9 +120,9 @@
 			</div>
 		</form>
 
+		<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 	</div>
 	<!-- /container -->
-	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 </body>
 <script type="text/javascript">
 $(function() {

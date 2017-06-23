@@ -148,7 +148,7 @@
 				<!--Sidebar content-->
 				<fieldset>
 					<legend>
-						<span>产品模块 <a href="#productModal" class="white-pointer" data-toggle="modal">[+]</a>
+						<span>产品导航 </a>
 						</span>
 					</legend>
 				</fieldset>
@@ -183,10 +183,10 @@
 							<tr>
 								<th class="w32px">序号</th>
 								<th>任务名称</th>
-								<th class="w64px">任务类型</th>
+								<th class="w96px">任务类型</th>
 								<th>任务摘要</th>
-								<th class="w64px">负责人</th>
-								<th class="w64px">状态</th>
+								<th class="w48px">负责人</th>
+								<th class="w128px">状态</th>
 								<th class="w72px">操作</th>
 							</tr>
 						</thead>
@@ -215,40 +215,6 @@
 			</div>
 		</div>
 		<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
-	</div>
-	<!-- modal dialog add product module -->
-	<div id="productModal" class="modal hide fade" tabindex="-1">
-		<div class="modal-header form-title">
-			<button type="button" class="close" data-dismiss="modal">×</button>
-			<span id="myModalLabel">新建模块</span>
-		</div>
-		<div class="modal-body">
-			<form action="#">
-				<table>
-					<tr>
-						<td>模块名称</td>
-						<td><input value="身份认证网关" /></td>
-						<td>上级模块</td>
-						<td><input /></td>
-					</tr>
-					<tr>
-						<td>产品发布版本</td>
-						<td><input /></td>
-						<td>产品迭代版本</td>
-						<td><select></select></td>
-					</tr>
-					<tr>
-						<td>备注</td>
-						<td colspan="3"><textarea rows="3" cols="128" style="width: 93%"></textarea></td>
-					</tr>
-				</table>
-			</form>
-		</div>
-
-		<div class="modal-footer">
-			<button class="btn" data-dismiss="modal">关闭</button>
-			<button class="btn btn-primary">保存</button>
-		</div>
 	</div>
 	<!-- modal dialog assign task -->
 	<div id="assignModal" class="modal hide fade" tabindex="-1">

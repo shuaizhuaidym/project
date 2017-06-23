@@ -12,15 +12,15 @@
 					<li class="active"><a href="${path}/project/portal">首页</a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">项目管理 <b class="caret"></b></a>
 						<ul class="dropdown-menu">
-							<li><a href="<%=path%>/form">新建项目</a></li>
+							<li><a href="<%=path%>/form">项目新建</a></li>
 							<li class="divider"></li>
-							<li><a href="<%=path%>/query">检索项目</a></li>
+							<li><a href="<%=path%>/query">项目检索</a></li>
 						</ul>
 					</li>
-					<li><a href="<%=path %>/product/list">产品维护</a></li>
 					<li><a href="<%=path %>/mission/query">任务管理</a></li>
+					<li><a href="<%=path %>/product/list">产品维护</a></li>
+					<li><a href="<%=path %>/daily/search">日报检索</a></li>
 					<li><a href="<%=path %>/chart">图表分析</a></li>
-					<li><a href="<%=path %>/chart">团队日报</a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">系统维护<b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li><a href="<%=path %>/dic/list">字典设置</a></li>

@@ -9,7 +9,7 @@ form td:nth-child(even) {
 
 form td:nth-child(odd) {
 	text-align: right;
-	width:12%;
+	/* width:12%; */
 }
 .form-title {
 	color: #333;
@@ -25,7 +25,6 @@ input {
 }
 .x-text{width:90%}
 .footer{
-	width:75%;
 	margin:0 auto;
 	text-align: center;
 }
@@ -33,10 +32,17 @@ input {
 	width: 92%
 }
 .pointer{cursor:pointer}
+.w16px{width:16px}
 .w32px{width:32px}
+.w48px{width:48px}
 .w64px{width:64px}
 .w72px{width:72px}
+.w96px{width:96px}
+.w108px{width:108px}
+.w128px{width:128px}
 .bordered{border:1px #ddd solid}
+
+.font10{font-size:10px}
 
 .white-pointer {
 	cursor: pointer;

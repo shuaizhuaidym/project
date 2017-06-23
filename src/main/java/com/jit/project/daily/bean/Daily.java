@@ -33,6 +33,13 @@ public class Daily {
 	
 	@Many(target = DailyItem.class, field = "dailyID")
 	private List<DailyItem> items = new ArrayList<DailyItem>();
+	
+	@Column("item_links")
+	private String itemLinks;
+	
+	public String getItemLinks() {
+		return itemLinks;
+	}
 
 	public int getDailyID() {
 		return dailyID;
@@ -80,6 +87,10 @@ public class Daily {
 
 	public void setOwnerName(String ownerName) {
 		this.ownerName = ownerName;
+	}
+
+	public void setItemLinks(String itemLinks) {
+		this.itemLinks = itemLinks;
 	}
 
 }
