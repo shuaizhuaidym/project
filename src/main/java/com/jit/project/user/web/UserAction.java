@@ -80,7 +80,7 @@ public class UserAction {
 		}
 	}
 
-	@At("/add")
+	@At("/user/add")
 	@RequiresPermissions("user:add")
 	public Object add(@Param("..") User user) { // 两个点号是按对象属性一一设置
 		NutMap re = new NutMap();
@@ -99,7 +99,7 @@ public class UserAction {
 		session.invalidate();
 	}
 
-	@At
+	@At("/user/update")
 	@RequiresPermissions("user:update")
 	public Object update(@Param("..") User user) {
 		NutMap re = new NutMap();
@@ -114,7 +114,7 @@ public class UserAction {
 		return re.setv("ok", true);
 	}
 
-	@At
+	@At("/user/update/password")
 	public Object update(@Param("password") String password, @Attr("me") int me) {
 		if (Strings.isBlank(password) || password.length() < 6)
 			return new NutMap().setv("ok", false).setv("msg", "密码不符合要求");
@@ -122,7 +122,7 @@ public class UserAction {
 		return new NutMap().setv("ok", true);
 	}
 
-	@At
+	@At("/user/delete")
 	public Object delete(@Param("id") int id, @Attr("me") int me) {
 		if (me == id) {
 			return new NutMap().setv("ok", false).setv("msg", "不能删除当前用户!!");
@@ -131,7 +131,7 @@ public class UserAction {
 		return new NutMap().setv("ok", true);
 	}
 
-	@At
+	@At("/user/query")
 	public Object query(@Param("name") String name, @Param("..") Pager pager) {
 		Cnd cnd = Strings.isBlank(name) ? null : Cnd.where("name", "like", "%"
 				+ name + "%");
@@ -142,7 +142,7 @@ public class UserAction {
 		return qr; // 默认分页是第1页,每页20条
 	}
 
-	@At("/")
+	@At("/user/list")
 	@Ok("jsp:jsp.user.list")
 	// 真实路径是 /WEB-INF/jsp/user/list.jsp
 	public void index() {

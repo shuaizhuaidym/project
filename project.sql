@@ -10,13 +10,13 @@ Target Server Type    : MYSQL
 Target Server Version : 50527
 File Encoding         : 65001
 
-Date: 2017-06-23 17:31:45
+Date: 2017-06-24 22:23:52
 */
 
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
--- Table structure for t_bug
+-- Table structure for `t_bug`
 -- ----------------------------
 DROP TABLE IF EXISTS `t_bug`;
 CREATE TABLE `t_bug` (
@@ -1176,7 +1176,7 @@ INSERT INTO `t_bug` VALUES ('3689', '新建', '王毅', 'TECH', 'DEV', '当网�
 INSERT INTO `t_bug` VALUES ('3690', '打开', '刘志钢', 'TECH', 'DEV', 'win10上安装客户，PNXSrervice服务无法启动，通过排查发现由于系统启动服务器失败后不进行继续启动导致。', '<html><body>前置条件：<br>1、准备一台干净的win10操作系统的PC机<br>2、为了确保win10系统运行慢可以在启动win10的同时在启动一台win7虚拟机和一台XP虚拟机<br>3、网关配置正向代理应用<br>操作步骤：<br>1、使用IE11浏览器访问网关Portal页面<br>2、认证后自动安装客户端，客户端安装完成后重启操作系统<br>预期结果：<br>重启完成后，客户端所有服务器正常启动，并且客户端自动运行<br>实际结果：<br>客户端不自动运行，经过排查发现PNXService服务处于停止状态，查看日志发现PNXService服务启动超时导致不进行自动重启，如附件。</body></html>', 'dev-commonts', '1', 'serity', 'priority', '于凯', '2017-06-21', '3.0.34.7', 'Phoenix', 'Client');
 
 -- ----------------------------
--- Table structure for t_daily
+-- Table structure for `t_daily`
 -- ----------------------------
 DROP TABLE IF EXISTS `t_daily`;
 CREATE TABLE `t_daily` (
@@ -1187,43 +1187,38 @@ CREATE TABLE `t_daily` (
   `mail_to` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `item_links` text,
   PRIMARY KEY (`daily_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_daily
 -- ----------------------------
-INSERT INTO `t_daily` VALUES ('3', '2017-06-23 12:40:11', '0', '刘宗恺', '0', null);
-INSERT INTO `t_daily` VALUES ('4', '2017-06-23 12:40:53', '0', '刘宗恺', '0', null);
-INSERT INTO `t_daily` VALUES ('5', '2017-06-23 12:41:20', '0', '刘宗恺', '0', null);
-INSERT INTO `t_daily` VALUES ('6', '2017-06-23 13:27:42', '0', '刘宗恺', '0', '<a href=\'/project/daily/item?item_id=0\'>信息: Server startup in 6226 ms</a><a href=\'/project/daily/item?item_id=0\'>信息: Server startup in 6226 ms</a>');
+INSERT INTO `t_daily` VALUES ('7', '2017-06-24 11:08:55', '0', '刘宗恺', '0', '<a href=\'/project/daily/item?item_id=0\'>Bootstrap是Twitter推出的一个用于前端开发的开源工具包。它由Twitter的设计师Mark Otto和Jacob Thornton合作开发,是一个CSS/HTML框架。目前,Bootstrap最新版本为3.0 </a>|');
 
 -- ----------------------------
--- Table structure for t_daily_item
+-- Table structure for `t_daily_item`
 -- ----------------------------
 DROP TABLE IF EXISTS `t_daily_item`;
 CREATE TABLE `t_daily_item` (
-  `item_id` int(11) DEFAULT NULL,
+  `item_id` int(11) NOT NULL AUTO_INCREMENT,
   `daily_id` int(11) DEFAULT NULL,
   `mission_id` int(11) DEFAULT NULL,
   `mission_summary` varchar(255) DEFAULT NULL,
   `hours` int(11) DEFAULT NULL,
   `percentage` int(11) DEFAULT NULL,
   `progress_detail` text,
-  `problerm` varchar(254) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `problerm` varchar(254) DEFAULT NULL,
+  PRIMARY KEY (`item_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_daily_item
 -- ----------------------------
-INSERT INTO `t_daily_item` VALUES (null, '3', '1', '客户端数据同步接口开发', '2', '66', 'configurable', null);
-INSERT INTO `t_daily_item` VALUES (null, '4', '5', '二维码认证客户端数据同步接口开发', '9', '98', 'configurable', null);
-INSERT INTO `t_daily_item` VALUES (null, '5', '6', '公安部移动警务项目开发', '9', '98', 'configurable', null);
-INSERT INTO `t_daily_item` VALUES (null, '5', '8', '陕西省社保厅售后项目支持', '8', '87', 'configurable2', null);
-INSERT INTO `t_daily_item` VALUES (null, '6', '9', '沧州市公安局售后项目支持', '2', '22', '信息: Server startup in 6226 ms', null);
-INSERT INTO `t_daily_item` VALUES (null, '6', '9', '沧州市公安局售后项目支持', '2', '22', '信息: Server startup in 6226 ms', null);
+INSERT INTO `t_daily_item` VALUES ('1', '0', '3', '3:华为海外项目开发', '2', '22', '<div class=\"alert fade in\">\r\n<button class=\"close\" data-dismiss=\"alert\" type=\"button\">×</button>\r\n<strong>Holy guacamole!</strong>\r\nBest check yo self, you\'re not looking too good.\r\n</div>', null);
+INSERT INTO `t_daily_item` VALUES ('2', '2', '2', '客户端数据同步接口开发', '2', '56', '{id : box.id, name : box.name}{id : box.id, name : box.name}{id : box.id, name : box.name}', null);
+INSERT INTO `t_daily_item` VALUES ('3', '7', '5', '二维码认证客户端数据同步接口开发', '2', '66', 'Bootstrap是Twitter推出的一个用于前端开发的开源工具包。它由Twitter的设计师Mark Otto和Jacob Thornton合作开发,是一个CSS/HTML框架。目前,Bootstrap最新版本为3.0 ', null);
 
 -- ----------------------------
--- Table structure for t_dictionary
+-- Table structure for `t_dictionary`
 -- ----------------------------
 DROP TABLE IF EXISTS `t_dictionary`;
 CREATE TABLE `t_dictionary` (
@@ -1235,7 +1230,7 @@ CREATE TABLE `t_dictionary` (
   `display_number` int(11) DEFAULT NULL,
   `dic_code` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`dic_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_dictionary
@@ -1261,12 +1256,9 @@ INSERT INTO `t_dictionary` VALUES ('30', '任务类型', '售后定制开发', '
 INSERT INTO `t_dictionary` VALUES ('31', '任务类别', '新功能', '', '1', '0', '新功能');
 INSERT INTO `t_dictionary` VALUES ('32', '任务类别', '缺陷修复', '', '1', '9', '缺陷修复');
 INSERT INTO `t_dictionary` VALUES ('33', '任务类别', '产品改进', '', '1', '8', '产品改进');
-INSERT INTO `t_dictionary` VALUES ('34', '负责人', '闫晋中', '研发负责人', '1', '2', '1001');
-INSERT INTO `t_dictionary` VALUES ('35', '负责人', '曾宇波', 'type_mission_class=\"任务类别\";', '1', '9', '1002');
-INSERT INTO `t_dictionary` VALUES ('36', '负责人', '于彩斌', 'public static String type_mission_class=\"任务类别\";', '1', '4', '1003');
 
 -- ----------------------------
--- Table structure for t_mission
+-- Table structure for `t_mission`
 -- ----------------------------
 DROP TABLE IF EXISTS `t_mission`;
 CREATE TABLE `t_mission` (
@@ -1311,26 +1303,27 @@ INSERT INTO `t_mission` VALUES ('5', '二维码认证客户端数据同步接口
 INSERT INTO `t_mission` VALUES ('6', '公安部移动警务项目开发', '1', '公安部移动警务项目开发&nbsp;&nbsp;&nbsp;&nbsp;', '公安部移动警务项目开发', '2012-01-01 00:00:00', '暂停', '23', '缺陷修复', '1202', '3.0.33.6', '2012-01-02 00:00:00', '2012-01-03 00:00:00', '2012-01-03 00:00:00', '2012-01-04 00:00:00', '1103', '3.3.36.6', '2000', null, '2001', null, '公安部移动警务项目开发', '8', null, '1104', '1', '公安部移动警务项目开发');
 INSERT INTO `t_mission` VALUES ('7', '公安部移动警务项目开发', '1', '公安部移动警务项目开发&nbsp;&nbsp;&nbsp;&nbsp;', '公安部移动警务项目开发', '2012-01-01 00:00:00', '暂停', '23', '缺陷修复', '1202', '3.0.33.6', '2012-01-02 00:00:00', '2012-01-03 00:00:00', '2012-01-03 00:00:00', '2012-01-04 00:00:00', '1103', '3.3.36.6', '2000', null, '2001', null, '公安部移动警务项目开发', '8', null, '1104', '1', '公安部移动警务项目开发');
 INSERT INTO `t_mission` VALUES ('8', '陕西省社保厅售后项目支持', '3', '数据库宕机，整体服务不可用；恢复数据库，恢复服务。', '数据库宕机，整体服务不可用', '2012-01-01 00:00:00', '暂停', '100', '缺陷修复', '123', '3.0.33.6', '2012-01-02 00:00:00', '2012-01-03 00:00:00', '2012-01-03 00:00:00', '2012-01-04 00:00:00', '1103', '3.3.36.6', '101', null, '101', null, '陕西省社保厅售后项目支持', '8', null, '1104', '1', '陕西省社保厅售后项目支持');
-INSERT INTO `t_mission` VALUES ('9', '沧州市公安局售后项目支持', '科研项目', '沧州市公安局售后项目支持<br />', '沧州市公安局售后项目支持', '2012-01-01 00:00:00', '暂停', '0', '缺陷修复', '1101', '3.0.34.5', '2012-01-02 00:00:00', '2012-01-03 00:00:00', '2012-01-03 00:00:00', '2012-01-04 00:00:00', '0', '3.3.36.6', '0', '0', '0', null, '沧州市公安局售后项目支持', '黄建华', '100', '0', '0', '杭州市政府共享单车意见书。');
-INSERT INTO `t_mission` VALUES ('10', '河北某部队边防项目A', '售后技术支持', '河北某部队边防项目A', '河北某部队边防项目A', '2012-01-01 00:00:00', '完成', '83', '产品改进', '123', '3.0.33.6', '2012-01-02 00:00:00', '2012-01-03 00:00:00', '2012-01-03 00:00:00', '2012-01-04 00:00:00', '1103', '3.3.36.6', '0', '0', '0', null, '河北某部队边防项目，需求调研中。', '张三', '100', '1104', '1', '河北某部队边防项目');
-INSERT INTO `t_mission` VALUES ('11', '华能二维码项目支持任务', '售前技术支持', '华能二维码项目&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;', '华能二维码项目', '2012-01-01 00:00:00', '4', '22', '8', '1202', '3.0.33.6', '2012-01-02 00:00:00', '2012-01-03 00:00:00', '2012-01-03 00:00:00', '2012-01-04 00:00:00', '1103', '3.3.36.6', '0', '13213', '1100', null, '华能二维码项目支持任务', '李四', '128', '1104', '1', '华能二维码项目支持任务');
-INSERT INTO `t_mission` VALUES ('12', '河北某部队边防项目', '售前技术支持', '河北某部队边防项目', '河北某部队边防项目', '2012-01-01 00:00:00', '延期-开发中', '83', '缺陷修复', '123', '3.0.33.6', '2012-01-02 00:00:00', '2012-01-03 00:00:00', '2012-01-03 00:00:00', '2012-01-04 00:00:00', '1103', '3.3.36.6', '0', '0', '0', null, '河北某部队边防项目，需求调研中。', '张三', '100', '1104', '1', '河北某部队边防项目');
+INSERT INTO `t_mission` VALUES ('9', '沧州市公安局售后项目支持', '科研项目', '沧州市公安局售后项目支持<br />', '沧州市公安局售后项目支持', '2012-01-01 00:00:00', '暂停', '0', '缺陷修复', '1101', '3.0.34.5', '2012-01-02 00:00:00', '2012-01-03 00:00:00', '2012-01-03 00:00:00', '2012-01-04 00:00:00', '0', '3.3.36.6', '0', '0', '0', null, '沧州市公安局售后项目支持', '代艳明', '100', '0', '0', '杭州市政府共享单车意见书。');
+INSERT INTO `t_mission` VALUES ('10', '河北某部队边防项目A', '售后技术支持', '河北某部队边防项目A', '河北某部队边防项目A', '2012-01-01 00:00:00', '完成', '83', '产品改进', '123', '3.0.33.6', '2012-01-02 00:00:00', '2012-01-03 00:00:00', '2012-01-03 00:00:00', '2012-01-04 00:00:00', '1103', '3.3.36.6', '0', '0', '0', null, '河北某部队边防项目，需求调研中。', '代艳明', '100', '1104', '1', '河北某部队边防项目');
+INSERT INTO `t_mission` VALUES ('11', '华能二维码项目支持任务', '售前技术支持', '华能二维码项目&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;', '华能二维码项目', '2012-01-01 00:00:00', '4', '22', '8', '1202', '3.0.33.6', '2012-01-02 00:00:00', '2012-01-03 00:00:00', '2012-01-03 00:00:00', '2012-01-04 00:00:00', '1103', '3.3.36.6', '0', '13213', '1100', null, '华能二维码项目支持任务', '代艳明', '128', '1104', '1', '华能二维码项目支持任务');
+INSERT INTO `t_mission` VALUES ('12', '河北某部队边防项目', '售前技术支持', '河北某部队边防项目', '河北某部队边防项目', '2012-01-01 00:00:00', '延期-开发中', '83', '缺陷修复', '123', '3.0.33.6', '2012-01-02 00:00:00', '2012-01-03 00:00:00', '2012-01-03 00:00:00', '2012-01-04 00:00:00', '1103', '3.3.36.6', '0', '0', '0', null, '河北某部队边防项目，需求调研中。', '代艳明', '100', '1104', '1', '河北某部队边防项目');
 INSERT INTO `t_mission` VALUES ('13', '河北某部队边防项目', '售前技术支持', '河北某部队边防项目', '河北某部队边防项目', '2012-01-01 00:00:00', '进行中-需求分析中', '83', '缺陷修复', '123', '3.0.33.6', '2012-01-02 00:00:00', '2012-01-03 00:00:00', '2012-01-03 00:00:00', '2012-01-04 00:00:00', '1103', '3.3.36.6', '0', '0', '0', null, '河北某部队边防项目，需求调研中。', '张三', '100', '1104', '1', '河北某部队边防项目');
-INSERT INTO `t_mission` VALUES ('14', '河北某部队边防项目', '售前技术支持', '河北某部队边防项目', '河北某部队边防项目', '2012-01-01 00:00:00', '暂停', '83', '产品改进', '123', '3.0.33.6', '2012-01-02 00:00:00', '2012-01-03 00:00:00', '2012-01-03 00:00:00', '2012-01-04 00:00:00', '1103', '3.3.36.6', '0', '0', '0', null, '河北某部队边防项目，需求调研中。', '张三', '100', '1104', '1', '河北某部队边防项目');
+INSERT INTO `t_mission` VALUES ('14', '河北某部队边防项目', '售前技术支持', '河北某部队边防项目', '河北某部队边防项目', '2012-01-01 00:00:00', '暂停', '83', '产品改进', '123', '3.0.33.6', '2012-01-02 00:00:00', '2012-01-03 00:00:00', '2012-01-03 00:00:00', '2012-01-04 00:00:00', '1103', '3.3.36.6', '0', '0', '0', null, '河北某部队边防项目，需求调研中。', '代艳明', '100', '1104', '1', '河北某部队边防项目');
 INSERT INTO `t_mission` VALUES ('15', '河北某部队边防项目', '售后技术支持', '河北某部队边防项目', '河北某部队边防项目', '2012-01-01 00:00:00', '完成', '83', '产品改进', '123', '3.0.33.6', '2012-01-02 00:00:00', '2012-01-03 00:00:00', '2012-01-03 00:00:00', '2012-01-04 00:00:00', '1103', '3.3.36.6', '0', '0', '0', null, '河北某部队边防项目，需求调研中。', '张三', '100', '1104', '1', '河北某部队边防项目');
-INSERT INTO `t_mission` VALUES ('16', '河北某部队边防项目', '售后技术支持', '河北某部队边防项目', '河北某部队边防项目', '2012-01-01 00:00:00', '完成', '83', '产品改进', '123', '3.0.33.6', '2012-01-02 00:00:00', '2012-01-03 00:00:00', '2012-01-03 00:00:00', '2012-01-04 00:00:00', '1103', '3.3.36.6', '0', '0', '0', null, '河北某部队边防项目，需求调研中。', '张三', '100', '1104', '1', '河北某部队边防项目');
+INSERT INTO `t_mission` VALUES ('16', '河北某部队边防项目', '售后技术支持', '河北某部队边防项目', '河北某部队边防项目', '2012-01-01 00:00:00', '完成', '83', '产品改进', '123', '3.0.33.6', '2012-01-02 00:00:00', '2012-01-03 00:00:00', '2012-01-03 00:00:00', '2012-01-04 00:00:00', '1103', '3.3.36.6', '0', '0', '0', null, '河北某部队边防项目，需求调研中。', '代艳明', '100', '1104', '1', '河北某部队边防项目');
 INSERT INTO `t_mission` VALUES ('17', '河北某部队边防项目', '售前技术支持', '河北某部队边防项目', '河北某部队边防项目', '2012-01-01 00:00:00', '暂停', '83', '缺陷修复', '123', '3.0.33.6', '2012-01-02 00:00:00', '2012-01-03 00:00:00', '2012-01-03 00:00:00', '2012-01-04 00:00:00', '1103', '3.3.36.6', '0', '0', '0', null, '河北某部队边防项目，需求调研中。', '张三', '100', '1104', '1', '河北某部队边防项目');
 INSERT INTO `t_mission` VALUES ('18', '科工集团算法升级项目', '科研项目', '<p>\r\n	科工集团算法升级项目&nbsp;&nbsp;&nbsp;\r\n</p>\r\n<p>\r\n	科工集团算法升级项目&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n</p>', '科工集团算法升级项目', '2012-01-01 00:00:00', '1', '20', '8', '123', '3.0.25.3', '2012-01-02 00:00:00', '2012-01-03 00:00:00', '2012-01-03 00:00:00', '2012-01-04 00:00:00', '1103', '3.3.36.6', '0', '12300', '456', null, '科工集团算法升级项目', '李四', '22', '1104', '1', '科工集团算法升级项目');
 
 -- ----------------------------
--- Table structure for t_permission
+-- Table structure for `t_permission`
 -- ----------------------------
 DROP TABLE IF EXISTS `t_permission`;
 CREATE TABLE `t_permission` (
-  `permission_id` int(32) DEFAULT NULL,
+  `permission_id` int(32) NOT NULL DEFAULT '0',
   `name` varchar(255) DEFAULT NULL,
   `alias` varchar(255) DEFAULT NULL,
-  `description` varchar(255) DEFAULT NULL
+  `description` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`permission_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -1339,7 +1332,7 @@ CREATE TABLE `t_permission` (
 INSERT INTO `t_permission` VALUES ('1', 'user:add', null, null);
 
 -- ----------------------------
--- Table structure for t_product
+-- Table structure for `t_product`
 -- ----------------------------
 DROP TABLE IF EXISTS `t_product`;
 CREATE TABLE `t_product` (
@@ -1372,7 +1365,7 @@ INSERT INTO `t_product` VALUES ('11', 'jkhkjhkj', 'hjk', 'hkl', '2015-01-01', 'k
 INSERT INTO `t_product` VALUES ('12', 'jkhjkh', 'kjhjk', '3.0.21.4', '2015-01-01', 'hj', 'kljh', 'kljh', '<p>\r\n	kjlhjkhjkhkljhkjkjkjkjkjkjkjkjl kljjjjjjjjjjjj\r\n</p>\r\n<p>\r\n	hjkhkjhk\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	kjhjhkjhkj\r\n</p>');
 
 -- ----------------------------
--- Table structure for t_project
+-- Table structure for `t_project`
 -- ----------------------------
 DROP TABLE IF EXISTS `t_project`;
 CREATE TABLE `t_project` (
@@ -1846,7 +1839,7 @@ INSERT INTO `t_project` VALUES ('1703', '浙江移动', '金融/电信', '0.1.2b
 INSERT INTO `t_project` VALUES ('1704', '北京市公安局', '公安', '0.2.5r', '网关_服务器', '反向代理问题', '2017-02-06 00:00:00', '进行中', '邓佳佳', null, null, '1', '李东兴', '15301236548', '分析原因\r\n2017-02-06 13:40:23\r\n2017-02-06 13:40:27\r\n2017-02-06 13:42:23', '分析原因', '分析原因', '2017-02-06 00:00:00', null);
 
 -- ----------------------------
--- Table structure for t_role
+-- Table structure for `t_role`
 -- ----------------------------
 DROP TABLE IF EXISTS `t_role`;
 CREATE TABLE `t_role` (
@@ -1865,7 +1858,7 @@ CREATE TABLE `t_role` (
 INSERT INTO `t_role` VALUES ('1', 'admin', 'admin', 'kkk', '2017-02-12 16:48:48', '2017-02-16 16:48:56');
 
 -- ----------------------------
--- Table structure for t_role_permission
+-- Table structure for `t_role_permission`
 -- ----------------------------
 DROP TABLE IF EXISTS `t_role_permission`;
 CREATE TABLE `t_role_permission` (
@@ -1881,7 +1874,7 @@ CREATE TABLE `t_role_permission` (
 INSERT INTO `t_role_permission` VALUES ('0', '1', '1');
 
 -- ----------------------------
--- Table structure for t_user
+-- Table structure for `t_user`
 -- ----------------------------
 DROP TABLE IF EXISTS `t_user`;
 CREATE TABLE `t_user` (
@@ -1892,16 +1885,18 @@ CREATE TABLE `t_user` (
   `locked` int(255) DEFAULT NULL,
   `create_time` datetime DEFAULT NULL,
   `update_time` datetime DEFAULT NULL,
+  `real_name` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_user
 -- ----------------------------
-INSERT INTO `t_user` VALUES ('1', 'admin', null, null, null, null, null);
+INSERT INTO `t_user` VALUES ('1', 'admin', '3ba6b0567d04bd9ac0679ca9a3ea026b09608a63c58df426d40c78d1ad268bd4', '001', null, '2017-06-24 21:08:49', '2017-06-24 21:08:57', '系统管理员');
+INSERT INTO `t_user` VALUES ('2', 'yanming_dai', '3ba6b0567d04bd9ac0679ca9a3ea026b09608a63c58df426d40c78d1ad268bd4', '001', null, '2017-06-24 21:08:36', '2017-06-24 21:08:54', '代艳明');
 
 -- ----------------------------
--- Table structure for t_user_role
+-- Table structure for `t_user_role`
 -- ----------------------------
 DROP TABLE IF EXISTS `t_user_role`;
 CREATE TABLE `t_user_role` (
