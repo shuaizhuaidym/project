@@ -7,6 +7,7 @@
 %>
 
 <form action="<%=path%>/portal/mission" id="missionForm">
+	<input type="hidden" name="query.assignTo" value="${query.assignTo}"/>
 	<table class="table table-striped angle">
 		<tbody>
 			<tr>

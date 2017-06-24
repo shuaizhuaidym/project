@@ -196,5 +196,22 @@ var ioc = {
 				refer : 'dao'
 			}
 		}
+	},
+	userAction : {
+		type : "com.jit.project.user.web.UserAction",
+		fields : {
+			userService : {
+				refer : 'userService'
+			}
+		}
+	},
+	userService:{
+		type : 'com.jit.project.user.service.UserService',
+		fields : {
+			dao : {
+				refer : 'dao'
+			}
+		}
 	}
+	
 };

@@ -22,16 +22,10 @@ public class UserService extends IdNameEntityService<User> {
 		return dao().insert(user);
 	}
 
-	public int fetch(String username, String password) {
+	public User fetch(String username, String password) {
 		User user = fetch(username);
-		if (user == null) {
-			return -1;
-		}
-		String _pass = new Sha256Hash(password, user.getSalt()).toHex();
-		if (_pass.equalsIgnoreCase(user.getPassword())) {
-			return user.getId();
-		}
-		return -1;
+		
+		return user;
 	}
 
 	public void updatePassword(int userId, String password) {

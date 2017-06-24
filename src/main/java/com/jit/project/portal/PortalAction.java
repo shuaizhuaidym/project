@@ -1,5 +1,9 @@
 package com.jit.project.portal;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.apache.shiro.authz.annotation.RequiresUser;
 import org.nutz.dao.QueryResult;
 import org.nutz.ioc.annotation.InjectName;
 import org.nutz.ioc.loader.annotation.Inject;
@@ -30,6 +34,7 @@ public class PortalAction {
 	 */
 	@At("/portal")
 	@Ok("jsp:views.portal.portal")
+	@RequiresUser
 	public String portal() {
 		return success;
 	}
@@ -41,11 +46,15 @@ public class PortalAction {
 	 */
 	@At("/portal/bug")
 	@Ok("jsp:views.portal.bugWidget")
-	public QueryResult bug(@Param("::query.") com.jit.project.bug.bean.Query cnd) {
-		if (cnd == null) {// TODO 根据当前用户，查询“我”的待办任务
-			cnd = new com.jit.project.bug.bean.Query();
+	public QueryResult bug(@Param("::query.") com.jit.project.bug.bean.Query vo, HttpServletRequest request,
+			HttpSession session) {
+		if (vo == null) {
+			vo = new com.jit.project.bug.bean.Query();
 		}
-		QueryResult bugs = this.bugService.query(cnd);
+		String userName = (String) session.getAttribute("me");
+		vo.setResponsible(userName);
+		request.setAttribute("query", vo);
+		QueryResult bugs = this.bugService.query(vo);
 		return bugs;
 	}
 
@@ -56,12 +65,15 @@ public class PortalAction {
 	 */
 	@At("/portal/mission")
 	@Ok("jsp:views.portal.missionWidget")
-	public QueryResult mission(@Param("::query.") Query cnd) {
-		if (cnd == null) {// TODO 根据当前用户，查询“我”的待办任务
-			cnd = new Query();
+	public QueryResult mission(@Param("::query.") Query vo, HttpServletRequest request, HttpSession session) {
+		if (vo == null) {
+			vo = new Query();
 		}
-		QueryResult products = this.missionService.query(cnd);
-		return products;
+		String userName = (String) session.getAttribute("me");
+		vo.setAssignTo(userName);
+		request.setAttribute("query", vo);
+		QueryResult missions = this.missionService.query(vo);
+		return missions;
 	}
 
 	/**

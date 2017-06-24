@@ -31,8 +31,9 @@
 						</ul>
 					</li>
 				</ul>
-				<form class="navbar-form pull-right">
-					<input class="span2" type="text" placeholder="Account"> <input class="span2" type="password" placeholder="Password">
+				<form class="navbar-form pull-right" action="<%=path%>/user/authenticate" method="post">
+					<input type="text" name="account" class="span2" placeholder="Account"/>
+					<input type="password" name="password" class="span2" placeholder="Password"/>
 					<button type="submit" class="btn btn-success">登录</button>
 				</form>
 			</div>

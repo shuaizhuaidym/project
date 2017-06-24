@@ -7,6 +7,7 @@
 %>
 
 <form action="<%=path%>/portal/bug" id="bugForm">
+	<input type="hidden" name="query.responsible" value="${query.responsible}"/>
 	<table class="table angle table-defeat">
 		<tr>
 			<th style="width: 32px">编号</th>

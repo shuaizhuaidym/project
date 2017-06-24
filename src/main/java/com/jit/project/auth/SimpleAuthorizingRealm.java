@@ -26,7 +26,6 @@ public class SimpleAuthorizingRealm extends AuthorizingRealm {
 
 	protected AuthorizationInfo doGetAuthorizationInfo(
 			PrincipalCollection principals) {
-		// null usernames are invalid
 		if (principals == null) {
 			throw new AuthorizationException(
 					"PrincipalCollection method argument cannot be null.");
@@ -60,18 +59,15 @@ public class SimpleAuthorizingRealm extends AuthorizingRealm {
 		return auth;
 	}
 
-	protected AuthenticationInfo doGetAuthenticationInfo(
-			AuthenticationToken token) throws AuthenticationException {
+	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 		SimpleShiroToken upToken = (SimpleShiroToken) token;
 		// upToken.getPrincipal() 的返回值就是SimpleShiroToken构造方法传入的值
 		// 可以是int也可以是User类实例,或任何你希望的值,自行处理一下就好了
-		User user = dao().fetch(User.class,
-				((Integer) upToken.getPrincipal()).longValue());
+		User user = dao().fetch(User.class, ((User) upToken.getPrincipal()).getName());
 		if (user == null)
 			return null;
 		if (user.isLocked())
-			throw new LockedAccountException("Account [" + user.getName()
-					+ "] is locked.");
+			throw new LockedAccountException("Account [" + user.getName() + "] is locked.");
 		return new SimpleAccount(user.getId(), user.getPassword(), getName());
 	}
 

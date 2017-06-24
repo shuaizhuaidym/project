@@ -1,5 +1,6 @@
 package com.jit.project.mission;
 
+import org.apache.commons.lang3.StringUtils;
 import org.nutz.dao.Condition;
 import org.nutz.dao.entity.Entity;
 
@@ -7,10 +8,16 @@ public class Query implements Condition {
 	private Integer pageNumber = 1;
 
 	private Integer pageSize = 10;
+	
+	private String assignTo;
 
 	@Override
 	public String toSql(Entity<?> entity) {
-		return "1=1";
+		StringBuilder buf = new StringBuilder("1=1");
+		if (StringUtils.isNoneEmpty(assignTo)) {
+			buf.append(" and assign_to='").append(assignTo).append("'");
+		}
+		return buf.toString();
 	}
 
 	public Integer getPageNumber() {
@@ -29,4 +36,11 @@ public class Query implements Condition {
 		this.pageSize = pageSize;
 	}
 
+	public String getAssignTo() {
+		return assignTo;
+	}
+
+	public void setAssignTo(String assignTo) {
+		this.assignTo = assignTo;
+	}
 }

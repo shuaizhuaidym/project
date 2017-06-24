@@ -4,72 +4,79 @@ import java.util.Date;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.nutz.dao.Cnd;
 import org.nutz.dao.Dao;
 import org.nutz.dao.QueryResult;
 import org.nutz.dao.pager.Pager;
-import org.nutz.ioc.loader.annotation.IocBean;
+import org.nutz.integration.shiro.SimpleShiroToken;
+import org.nutz.ioc.annotation.InjectName;
 import org.nutz.lang.Strings;
 import org.nutz.lang.util.NutMap;
-import org.nutz.mvc.Scope;
 import org.nutz.mvc.annotation.At;
 import org.nutz.mvc.annotation.Attr;
-import org.nutz.mvc.annotation.By;
 import org.nutz.mvc.annotation.Fail;
-import org.nutz.mvc.annotation.Filters;
 import org.nutz.mvc.annotation.GET;
 import org.nutz.mvc.annotation.Ok;
 import org.nutz.mvc.annotation.POST;
 import org.nutz.mvc.annotation.Param;
-import org.nutz.mvc.filter.CheckSession;
 
-import com.jit.project.auth.Toolkit;
 import com.jit.project.user.bean.User;
 import com.jit.project.user.service.UserService;
-@At("/user")
+
+@InjectName("userAction")
 public class UserAction {
+	Logger logger = LogManager.getLogger(UserAction.class);
+	
 	Dao dao;
 
 	UserService userService;
+	
+	private String success = "SUCCESS";
 
+	/**
+	 * 跳转到登录页
+	 * @return
+	 */
 	@GET
-	@At("/login")
-	@Filters
-	@Ok("jsp:jsp.user.login")
-	// 降内部重定向到登录jsp
-	public void loginPage() {
+	@At("/user/login")
+	@Ok("jsp:views.user.login")
+	public String loginPage() {
+		return success;
 	}
 
-	@IocBean
-	// 声明为Ioc容器中的一个Bean
-	@At("/user")
-	// 整个模块的路径前缀
-	@Ok("json:{locked:'password|salt',ignoreNull:true}")
-	// 忽略password和salt属性,忽略空属性的json输出
-	@Fail("http:500")
-	// 抛出异常的话,就走500页面
-	@Filters(@By(type = CheckSession.class, args = { "me", "/" }))
-	// 检查当前Session是否带me这个属性
+	/**
+	 * 用户认证,用户名不能相同
+	 * @param username
+	 * @param password
+	 * @param session
+	 * @return
+	 */
 	@POST
-	public Object login(
-			@Param("username") String username,
-			@Param("password") String password,
-			@Param("captcha") String captcha,
-			@Attr(scope = Scope.SESSION, value = "nutz_captcha") String _captcha,
+	@At("/user/authenticate")
+	@Ok("jsp:views.portal.portal")
+	@Fail("http:500")
+	public Object authenticate(@Param("account") String username, @Param("password") String password,
 			HttpSession session) {
 		NutMap re = new NutMap();
-		if (!Toolkit.checkCaptcha(_captcha, captcha)) {
-			return re.setv("ok", false).setv("msg", "验证码错误");
-		}
-		int userId = userService.fetch(username, password);
-		if (userId < 0) {
-			return re.setv("ok", false).setv("msg", "用户名或密码错误");
+		User user = userService.fetch(username, password);
+		if (user == null) {
+			return re.setv("ok", false).setv("msg", "用户名");
 		} else {
-			session.setAttribute("me", userId);
-			// 完成nutdao_realm后启用.
-			// SecurityUtils.getSubject().login(new SimpleShiroToken(userId));
-			return re.setv("ok", true);
+			String _pass = new Sha256Hash(password, user.getSalt()).toHex();
+			if (_pass.equalsIgnoreCase(user.getPassword())) {
+				logger.info(user.getName() + " loged in");
+				session.setAttribute("me", user.getRealName());
+				// 隐式依赖SimpleAuthorizingRealm
+				SecurityUtils.getSubject().login(new SimpleShiroToken(user));
+				return re.setv("ok", true);
+			} else {
+				return re.setv("ok", false).setv("msg", "用户名或密码错误");
+			}
 		}
 	}
 

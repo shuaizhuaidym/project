@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.shiro.authz.annotation.RequiresUser;
 import org.nutz.dao.QueryResult;
 import org.nutz.ioc.annotation.InjectName;
 import org.nutz.mvc.annotation.At;
@@ -51,6 +52,7 @@ public class DailyAction {
 	 */
 	@At("/daily/form")
 	@Ok("jsp:views.daily.form")
+	@RequiresUser
 	public String form() {
 		String today = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 		return today;

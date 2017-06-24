@@ -26,6 +26,8 @@ public class User extends BasePojo {
 	@Column("passwd")
 	@ColDefine(width = 128)
 	protected String password;
+	@Column("real_name")
+	protected String realName;
 	@Column
 	protected String salt;
 	@Column
@@ -99,6 +101,14 @@ public class User extends BasePojo {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getRealName() {
+		return realName;
+	}
+
+	public void setRealName(String realName) {
+		this.realName = realName;
 	}
 
 }

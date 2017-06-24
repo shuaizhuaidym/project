@@ -1,5 +1,5 @@
 <%@ tag language="java" pageEncoding="UTF-8"%>
-<%@ taglib uri="/WEB-INF/tld/c.tld" prefix="c"%>
+<%-- <%@ taglib uri="/WEB-INF/tld/c.tld" prefix="c"%> --%>
 <%@ attribute name="curIndex" type="java.lang.Long" required="true"%>
 <%@ attribute name="pageSize" type="java.lang.Long" required="true"%>
 <%@ attribute name="pagerRange" type="java.lang.Long" required="true"%>
