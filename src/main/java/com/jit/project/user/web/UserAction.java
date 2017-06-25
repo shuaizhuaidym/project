@@ -63,23 +63,33 @@ public class UserAction {
 	public Object authenticate(@Param("account") String username, @Param("password") String password,
 			HttpSession session) {
 		NutMap re = new NutMap();
-		User user = userService.fetch(username, password);
+		User user = userService.fetch(username);
 		if (user == null) {
-			return re.setv("ok", false).setv("msg", "用户名");
+			return re.setv("ok", false).setv("msg", "用户不存在");
 		} else {
 			String _pass = new Sha256Hash(password, user.getSalt()).toHex();
 			if (_pass.equalsIgnoreCase(user.getPassword())) {
-				logger.info(user.getName() + " loged in");
+				logger.info(user.getName() + " loged in>>>>>>>>>>>>>>>>>>>>");
 				session.setAttribute("me", user.getRealName());
 				// 隐式依赖SimpleAuthorizingRealm
 				SecurityUtils.getSubject().login(new SimpleShiroToken(user));
 				return re.setv("ok", true);
 			} else {
-				return re.setv("ok", false).setv("msg", "用户名或密码错误");
+				return re.setv("ok", false).setv("msg", "密码错误");
 			}
 		}
 	}
-
+	
+	/**
+	 * 新建用户
+	 * @param session
+	 */
+	@At("/user/form")
+	@Ok("jsp:views.user.form")
+	public String form(HttpSession session) {
+		return success;
+	}
+	
 	@At("/user/add")
 	@RequiresPermissions("user:add")
 	public Object add(@Param("..") User user) { // 两个点号是按对象属性一一设置

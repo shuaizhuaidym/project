@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="ui" uri="/WEB-INF/tags/select"%>
 <%
 	String path = request.getContextPath();
@@ -7,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>编辑字典</title>
+<title>增加用户</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,53 +26,50 @@
 		<div class="span8 offset2 bordered">
 			<fieldset>
 				<legend>
-					<span>编辑字典</span>
+					<span>增加用户</span>
 				</legend>
 			</fieldset>
-			<form class="form-horizontal" action="<%=path%>/dic/update" method="post">
-				<input type="hidden" id="dic.dicID" name="dic.dicID" value="${obj.dict.dicID}" />
+			<form class="form-horizontal" action="<%=path%>/user/save" method="post">
 				<div class="control-group">
-					<label class="control-label" for="dicType">字典类型</label>
+					<label class="control-label" for="dicType">部门</label>
 					<div class="controls">
-						<ui:select name="dic.dicType" path="${obj.dict.dicType}" items="${obj.mDicType}"></ui:select>
+						<ui:select name="dic.dicType" path="${dic.dicType}" items="${mDicType}"></ui:select>
 					</div>
 				</div>
 				<div class="control-group">
-					<label class="control-label" for="dicName">字典名称</label>
+					<label class="control-label" for="dicName">登录密码</label>
 					<div class="controls">
-						<input type="text" id="dicName" name="dic.dicName" value="${obj.dict.dicName}">
+						<input type="text" id="dicName" name="dic.dicName">
 					</div>
 				</div>
 				<div class="control-group">
-					<label class="control-label" for="dicCode">字典编码</label>
+					<label class="control-label" for="dicName">账号</label>
 					<div class="controls">
-						<input type="text" id="dicCode" name="dic.dicCode" value="${obj.dict.dicCode}">
+						<input type="text" id="dicName" name="dic.dicName">
 					</div>
 				</div>
 				<div class="control-group">
-					<label class="control-label" for="displayNumber">显示顺序</label>
+					<label class="control-label" for="dicCode">真实姓名</label>
 					<div class="controls">
-						<input type="text" id="displayNumber" name="dic.displayNumber" value="${obj.dict.displayNumber}">
+						<input type="text" id="dicCode" name="dic.dicCode">
 					</div>
 				</div>
 				<div class="control-group">
-					<label class="control-label" for="dic.comments">用途说明</label>
+					<label class="control-label" for="displayNumber">salt</label>
 					<div class="controls">
-						<textarea rows="3" cols="256" name="dic.comments">${obj.dict.comments}</textarea>
+						<input type="text" id="displayNumber" name="dic.displayNumber">
 					</div>
 				</div>
 				<div class="control-group">
 					<div class="controls">
-						<label class="checkbox"> <input type="checkbox" id="available" name="dic.available"
-							<c:if test="${obj.dict.available}">checked</c:if> />是否启用
-
+						<label class="checkbox"> <input type="checkbox" checked="checked" id="available" name="dic.available">是否锁定
 						</label>
 					</div>
 				</div>
 				<div class="control-group">
 					<div class="controls">
 						<button type="submit" class="btn btn-primary">保存</button>
-						<button type="reset" class="btn">重置</button>
+						<a href="<%=path%>/dic/list" class="btn">返回列表</a>
 					</div>
 				</div>
 			</form>

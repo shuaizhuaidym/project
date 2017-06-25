@@ -119,7 +119,7 @@
 			<div class="span10">
 				<fieldset>
 					<legend>
-						<span>产品模块<a href="<%=path%>/product/add" style="margin-left: 50px; color: white">+增加产品</a>
+						<span>产品模块<a href="<%=path%>/product/add" style="margin-left: 50px; color: white">增加产品</a>
 						</span>
 					</legend>
 				</fieldset>

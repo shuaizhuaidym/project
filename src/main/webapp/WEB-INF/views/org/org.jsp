@@ -17,42 +17,37 @@
 
 <link href="<%=path %>/zTree/zTreeStyle.css" rel="stylesheet">
 <style type="text/css">
-
 .tree-box {
 	border: 1px solid #ddd;
 	border-top: 0;
 }
-
 </style>
 <script type="text/javascript" src="<%=path %>/js/jquery/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="<%=path %>/js/bootstrap-dropdown.js"></script>
 <script type="text/javascript" src="<%=path %>/zTree/jquery-ztree-core-min.js"></script>
 <script type="text/javascript">
+	//根据结构查询人员
+	function wiz(nodeID) {
+		alert(nodeID);
+	}
 	var zTreeObj;
 	// zTree 的参数配置，深入使用请参考 API 文档（setting 配置详解）
-	var setting = {};
-	// zTree 的数据属性，深入使用请参考 API 文档（zTreeNode 节点数据详解）
-	var zNodes = [ {
-		name : "test1",
-		open : true,
-		children : [ {
-			name : "test1_1"
-		}, {
-			name : "test1_2"
-		} ]
-	}, {
-		name : "test2",
-		open : true,
-		children : [ {
-			name : "test2_1"
-		}, {
-			name : "test2_2"
-		} ]
-	} ];
+	var setting = {
+		async : {
+			enable : true,
+			url : "/project/org/tree",
+			autoParam : [ "orgID=parent_id" ],
+			contentType : "application/x-www-form-urlencoded",
+			dataType : 'json',
+			type : "post"
+		}
+	};
+
 	$(document).ready(function() {
-		zTreeObj = $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+		zTreeObj = $.fn.zTree.init($("#treeDemo"), setting);
 	});
 </script>
+
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
@@ -68,13 +63,14 @@
 				<div class="table-responsive">
 					<div>
 						<ul id="treeDemo" class="ztree"></ul>
+						<div><a>增加子节点</a></div>
 					</div>
 				</div>
 			</div>
 			<div class="span10">
 				<fieldset>
 					<legend>
-						<span> 机构列表<a href="<%=path%>/form" style="margin-left: 50px; color: white">+新建机构</a>
+						<span> 机构列表<a href="<%=path%>/user/form" style="margin-left: 50px; color: white">新增人员</a>
 						</span>
 					</legend>
 				</fieldset>
@@ -83,14 +79,11 @@
 					<table class="table table-bordered table-striped">
 						<thead>
 							<tr>
-								<th class="w4">序号</th>
-								<th class="w12">项目名称</th>
-								<th class="w8">问题类型</th>
-								<th class="w36">详细描述</th>
-								<th class="w8">反馈日期</th>
-								<th class="w8">更新日期</th>
-								<th class="w6">负责人</th>
-								<th class="w6">当前状态</th>
+								<th class="w32px">序号</th>
+								<th class="w12">用户名[登录账号]</th>
+								<th class="w8">真实姓名</th>
+								<th class="w36">登录密码[星号展示]</th>
+								<th class="w6">是否锁定</th>
 							</tr>
 						</thead>
 						<tr>
@@ -98,10 +91,7 @@
 							<td>sdfg</td>
 							<td>sfd</td>
 							<td>sdfg</td>
-							<td>sfdg</td>
 							<td>sdfg</td>
-							<td>sdfg</td>
-							<td>sfd</td>
 						</tr>
 					</table>
 				</div>

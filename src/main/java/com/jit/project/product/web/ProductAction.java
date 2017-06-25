@@ -1,5 +1,8 @@
 package com.jit.project.product.web;
 
+import java.util.List;
+
+import org.apache.commons.lang3.StringUtils;
 import org.nutz.dao.Condition;
 import org.nutz.dao.QueryResult;
 import org.nutz.dao.entity.Entity;
@@ -92,10 +95,22 @@ public class ProductAction {
 		return "SUCCESS";
 	}
 
-	@At("product/tree")
+	/**
+	 * 展示产品树状结构
+	 * @param parent_id 上级节点
+	 * @param view_type 视图[模块/版本]
+	 * @return
+	 */
+	@At("/product/tree")
 	@Ok("json:full")
-	public String tree(@Param("parent_id") String parent_id, @Param("node_type") String node_type) {
-		String nodes = this.prdtService.loadTreeJson(parent_id, node_type);
+	public List<Product> tree(@Param("parent_id") String parent_id, @Param("view_type") String view_type) {
+		if (StringUtils.isEmpty(parent_id)) {
+			parent_id = "-1";
+		}
+		if(StringUtils.isEmpty(view_type)){
+			view_type="module";
+		}
+		List<Product> nodes = this.prdtService.tree(parent_id, view_type);
 		return nodes;
 	}
 

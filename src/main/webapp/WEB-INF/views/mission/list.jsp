@@ -40,80 +40,26 @@
 
 
 <script type="text/javascript">
-	function zTreeOnClick(event, treeId, treeNode) {
-		alert(treeNode.tId + ", " + treeNode.name);
-	};
+	function wiz(nodeID) {
+		alert(nodeID);
+	}
 	var setting = {
-		callback : {
-			onClick : zTreeOnClick
-		}
-	};
+			async : {
+				enable : true,
+				url : "/project/product/tree",
+				autoParam : [ "treeNodeID=parent_id" ],
+				otherParam: ["view_type", "0"],
+				contentType : "application/x-www-form-urlencoded",
+				dataType : 'json',
+				type : "post"
+			}
+		};
 	var zTreeModule;
 	var zTreeVersion;
-	// zTree 的参数配置，深入使用请参考 API 文档（setting 配置详解）
-	// var setting = {};
-	// zTree 的数据属性，深入使用请参考 API 文档（zTreeNode 节点数据详解）
-	var zNodes = [ {
-		name : "身份认证网关[phoenix]",
-		open : true,
-		children : [ {
-			name : "客户端",
-			children : [ {
-				name : "proxy"
-			}, {
-				name : "hook"
-			} ]
-		}, {
-			name : "服务器",
-			children : [ {
-				name : "GW"
-			}, {
-				name : "Core1"
-			} ]
-		} ]
-	}, {
-		name : "磐石终端",
-		open : true,
-		children : [ {
-			name : "test2_1"
-		}, {
-			name : "test2_2"
-		} ]
-	} ];
-	var zNodesv = [ {
-		name : "身份认证网关[phoenix]",
-		open : true,
-		children : [ {
-			name : "3.0.33.6",
-			children : [ {
-				name : "功能开发"
-			}, {
-				name : "缺陷"
-			}, {
-				name : "持续改进"
-			} ]
-		}, {
-			name : "3.0.34.1",
-			children : [ {
-				name : "功能开发"
-			}, {
-				name : "缺陷"
-			}, {
-				name : "持续改进"
-			} ]
-		} ]
-	}, {
-		name : "磐石终端",
-		open : true,
-		children : [ {
-			name : "2.0.16"
-		}, {
-			name : "2.0.20"
-		} ]
-	} ];
+	
 	$(document).ready(function() {
-		zTreeModule = $.fn.zTree.init($("#treeModule"), setting, zNodes);
-		zTreeVersion = $.fn.zTree.init($("#treeVersion"), setting, zNodesv);
+		zTreeModule = $.fn.zTree.init($("#treeModule"), setting);
+		zTreeVersion = $.fn.zTree.init($("#treeVersion"), setting);
 	});
 	$('#myTab a').click(function(e) {
 		e.preventDefault();
@@ -172,7 +118,7 @@
 				<fieldset>
 					<legend>
 						<span>
-							任务列表<a href="<%=path%>/mission/form" style="margin-left: 50px; color: white">+新建任务</a>
+							任务列表<a href="<%=path%>/mission/form" style="margin-left: 50px; color: white">新建任务</a>
 						</span>
 					</legend>
 				</fieldset>

@@ -22,12 +22,6 @@ public class UserService extends IdNameEntityService<User> {
 		return dao().insert(user);
 	}
 
-	public User fetch(String username, String password) {
-		User user = fetch(username);
-		
-		return user;
-	}
-
 	public void updatePassword(int userId, String password) {
 		User user = fetch(userId);
 		if (user == null) {

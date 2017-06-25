@@ -2,9 +2,9 @@ package com.jit.project.product.service;
 
 import java.util.List;
 
+import org.nutz.dao.Cnd;
 import org.nutz.dao.QueryResult;
 import org.nutz.dao.pager.Pager;
-import org.nutz.json.Json;
 import org.nutz.service.NameEntityService;
 
 import com.jit.project.product.bean.Product;
@@ -24,11 +24,13 @@ public class ProductService extends NameEntityService<Product> implements IProdu
 		return new QueryResult(list, pager);
 	}
 
+	public List<Product> tree(String parentID, String type) {
+		return this.dao().query(Product.class, Cnd.where("parent_id", "=", parentID));
+	}
+
 	@Override
 	public String loadTreeJson(String parentID, String type) {
 		// TODO Auto-generated method stub
-		Product p=new Product();
-		Json.toJson(p);
 		return null;
 	}
 }

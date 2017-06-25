@@ -1,36 +1,49 @@
 package com.jit.project.product.bean;
 
-import java.util.*;
+import java.util.Date;
 
 import org.nutz.dao.entity.annotation.Column;
 import org.nutz.dao.entity.annotation.Id;
 import org.nutz.dao.entity.annotation.Table;
+
+import com.jit.project.bean.AbstractTreeNode;
 
 /**
  * @author yanming_dai
  * @date 2017-06-02
  */
 @Table("t_product")
-public class Product {
+public class Product extends AbstractTreeNode {
 	@Id
 	@Column("product_id")
 	private int productID;
+
 	@Column("name")
 	private String productName;
+
 	@Column("code")
 	private String code;
+
 	@Column("release_version")
 	private String releaseVersion;
+
 	@Column("release_date")
 	private Date releaseDate;
+
 	@Column("product_mgr")
 	private String productMgr;
+
 	@Column("test_mgr")
 	private String testMgr;
+
 	@Column("dev_mgr")
 	private String devMgr;
+
 	@Column("intruduction")
 	private String desc;
+
+	@Column("parent_id")
+	private String parentID;
 
 	public int getProductID() {
 		return productID;
@@ -102,6 +115,34 @@ public class Product {
 
 	public void setReleaseDate(Date releaseDate) {
 		this.releaseDate = releaseDate;
+	}
+
+	@Override
+	public String getTreeNodeID() {
+		return productID + "";
+	}
+
+	@Override
+	public String getTreeNodeName() {
+		return productName;
+	}
+
+	@Override
+	public String getClick() {
+		return "wiz(" + productID + ");";
+	}
+
+	public String getParentID() {
+		return parentID;
+	}
+
+	public void setParentID(String parentID) {
+		this.parentID = parentID;
+	}
+
+	@Override
+	public boolean isParent() {
+		return true;
 	}
 
 }
