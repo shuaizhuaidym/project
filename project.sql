@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50527
 File Encoding         : 65001
 
-Date: 2017-06-24 22:23:52
+Date: 2017-06-25 21:37:53
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -1315,6 +1315,32 @@ INSERT INTO `t_mission` VALUES ('17', '河北某部队边防项目', '售前技�
 INSERT INTO `t_mission` VALUES ('18', '科工集团算法升级项目', '科研项目', '<p>\r\n	科工集团算法升级项目&nbsp;&nbsp;&nbsp;\r\n</p>\r\n<p>\r\n	科工集团算法升级项目&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n</p>', '科工集团算法升级项目', '2012-01-01 00:00:00', '1', '20', '8', '123', '3.0.25.3', '2012-01-02 00:00:00', '2012-01-03 00:00:00', '2012-01-03 00:00:00', '2012-01-04 00:00:00', '1103', '3.3.36.6', '0', '12300', '456', null, '科工集团算法升级项目', '李四', '22', '1104', '1', '科工集团算法升级项目');
 
 -- ----------------------------
+-- Table structure for `t_org`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_org`;
+CREATE TABLE `t_org` (
+  `org_id` int(11) NOT NULL AUTO_INCREMENT,
+  `org_name` varchar(64) DEFAULT NULL,
+  `alias` varchar(64) DEFAULT NULL,
+  `parent_id` int(11) DEFAULT NULL,
+  `introduction` varchar(255) DEFAULT NULL,
+  `path` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`org_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_org
+-- ----------------------------
+INSERT INTO `t_org` VALUES ('1', '吉大正元', 'jit', '-1', '无', '/');
+INSERT INTO `t_org` VALUES ('2', '研究院', 'r&d', '1', '无', '/jit');
+INSERT INTO `t_org` VALUES ('3', '长春公司', 'cc', '1', '无', '/jit');
+INSERT INTO `t_org` VALUES ('4', '东北公司', 'ne', '1', '无', '/jit');
+INSERT INTO `t_org` VALUES ('5', 'IPC产品部', 'ipc', '2', '...', '/jit/ipc');
+INSERT INTO `t_org` VALUES ('6', 'Sign', 'sign', '2', '...', '/jit/sign');
+INSERT INTO `t_org` VALUES ('7', 'Java组', 'java', '5', '...', '/jit/ipc/java');
+INSERT INTO `t_org` VALUES ('8', 'C组', 'c', '5', '...', '/jit/ipc/c');
+
+-- ----------------------------
 -- Table structure for `t_permission`
 -- ----------------------------
 DROP TABLE IF EXISTS `t_permission`;
@@ -1345,24 +1371,25 @@ CREATE TABLE `t_product` (
   `test_mgr` varchar(32) DEFAULT NULL,
   `dev_mgr` varchar(32) DEFAULT NULL,
   `intruduction` text,
+  `parent_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`product_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_product
 -- ----------------------------
-INSERT INTO `t_product` VALUES ('1', 'SM算法加密机', 'phoenix', '3.0.33.6', '2015-01-01', '刘亮', '张海', '张斌', 'SM算法加密机');
-INSERT INTO `t_product` VALUES ('2', 'PM算法客户端', 'MCLI', '3.0.25.1', '2015-01-01', '瑞军', '彩影', '王毅', '');
-INSERT INTO `t_product` VALUES ('3', '保密局一体化认证设备', 'COMBINE', '2.0.16', '2015-01-01', '索瑞军', '冯彩英', '朱虹宇', '<p>\r\n	保密局一体化认证设备，网关，磐石\r\n</p>\r\n<p>\r\n	客户端\r\n</p>');
-INSERT INTO `t_product` VALUES ('4', 'IOS版本MCTK', 'IMCTK', '2.0.1', '2015-01-01', '李志伟', '边贸强', '张海龙', '移动化失常份额<br />');
-INSERT INTO `t_product` VALUES ('5', 'Android版本MCTK', 'AMCTK', '2.0.1', '2015-01-01', '谢娜', '李玖', '章节', '开源失常占用');
-INSERT INTO `t_product` VALUES ('6', 'jkhkj', 'kljk', '3.0.21.4', '2015-01-01', 'jklj', 'jk', 'jklj', 'jkljkjl');
-INSERT INTO `t_product` VALUES ('7', 'lkjlkj', 'klj;lkjl', '9jjhkj', '2015-01-01', 'ljlkj', 'lkjklj', 'kljjlkj', 'jkhkjhkj');
-INSERT INTO `t_product` VALUES ('8', 'jkhkjhkj', 'hkjhkj', 'kjhkj', '2015-01-01', 'kjlh', 'kljh', 'kjhkj', 'kjhklhkj');
-INSERT INTO `t_product` VALUES ('9', 'kjhkj', 'kjlhkj', 'kjlhkjh', '2015-01-01', 'kjlh', 'kljhjk', 'jkhkj', 'kjhkjhkjh');
-INSERT INTO `t_product` VALUES ('10', 'bjhbhjbhjb kjhh', 'jkhkjh', 'kljh', '2015-01-01', 'hjk', 'hjkl', 'kljhjk', 'kljhj');
-INSERT INTO `t_product` VALUES ('11', 'jkhkjhkj', 'hjk', 'hkl', '2015-01-01', 'k', 'kh', 'kj', 'kjhkjhkjhklj');
-INSERT INTO `t_product` VALUES ('12', 'jkhjkh', 'kjhjk', '3.0.21.4', '2015-01-01', 'hj', 'kljh', 'kljh', '<p>\r\n	kjlhjkhjkhkljhkjkjkjkjkjkjkjkjl kljjjjjjjjjjjj\r\n</p>\r\n<p>\r\n	hjkhkjhk\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	kjhjhkjhkj\r\n</p>');
+INSERT INTO `t_product` VALUES ('0', '所有产品', 'root', '3.0.21.4', '2015-01-01', 'hj', 'kljh', 'kljh', '<p>\r\n	kjlhjkhjkhkljhkjkjkjkjkjkjkjkjl kljjjjjjjjjjjj\r\n</p>\r\n<p>\r\n	hjkhkjhk\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	kjhjhkjhkj\r\n</p>', '-1');
+INSERT INTO `t_product` VALUES ('1', 'SM算法加密机', 'phoenix', '3.0.33.6', '2015-01-01', '刘亮', '张海', '张斌', 'SM算法加密机', '0');
+INSERT INTO `t_product` VALUES ('2', 'PM算法客户端', 'MCLI', '3.0.25.1', '2015-01-01', '瑞军', '彩影', '王毅', '', '0');
+INSERT INTO `t_product` VALUES ('3', '保密局一体化认证设备', 'COMBINE', '2.0.16', '2015-01-01', '索瑞军', '冯彩英', '朱虹宇', '<p>\r\n	保密局一体化认证设备，网关，磐石\r\n</p>\r\n<p>\r\n	客户端\r\n</p>', '0');
+INSERT INTO `t_product` VALUES ('4', 'IOS版本MCTK', 'IMCTK', '2.0.1', '2015-01-01', '李志伟', '边贸强', '张海龙', '移动化失常份额<br />', '0');
+INSERT INTO `t_product` VALUES ('5', 'Android版本MCTK', 'AMCTK', '2.0.1', '2015-01-01', '谢娜', '李玖', '章节', '开源失常占用', '1');
+INSERT INTO `t_product` VALUES ('6', 'jkhkj', 'kljk', '3.0.21.4', '2015-01-01', 'jklj', 'jk', 'jklj', 'jkljkjl', '1');
+INSERT INTO `t_product` VALUES ('7', 'lkjlkj', 'klj;lkjl', '9jjhkj', '2015-01-01', 'ljlkj', 'lkjklj', 'kljjlkj', 'jkhkjhkj', '1');
+INSERT INTO `t_product` VALUES ('8', 'jkhkjhkj', 'hkjhkj', 'kjhkj', '2015-01-01', 'kjlh', 'kljh', 'kjhkj', 'kjhklhkj', '0');
+INSERT INTO `t_product` VALUES ('9', 'kjhkj', 'kjlhkj', 'kjlhkjh', '2015-01-01', 'kjlh', 'kljhjk', 'jkhkj', 'kjhkjhkjh', '0');
+INSERT INTO `t_product` VALUES ('10', 'bjhbhjbhjb kjhh', 'jkhkjh', 'kljh', '2015-01-01', 'hjk', 'hjkl', 'kljhjk', 'kljhj', '0');
+INSERT INTO `t_product` VALUES ('11', 'jkhkjhkj', 'hjk', 'hkl', '2015-01-01', 'k', 'kh', 'kj', 'kjhkjhkjhklj', '0');
 
 -- ----------------------------
 -- Table structure for `t_project`
