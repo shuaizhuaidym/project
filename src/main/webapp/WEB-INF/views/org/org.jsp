@@ -11,27 +11,50 @@
 
 <title>机构管理</title>
 
-<link href="<%=path %>/css/commom.css" rel="stylesheet">
-<link href="<%=path %>/css/bootstrap.min.css" rel="stylesheet">
-<link href="<%=path %>/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+<link href="<%=path%>/css/commom.css" rel="stylesheet">
+<link href="<%=path%>/css/bootstrap.min.css" rel="stylesheet">
 
-<link href="<%=path %>/zTree/zTreeStyle.css" rel="stylesheet">
+<link href="<%=path%>/zTree/zTreeStyle.css" rel="stylesheet">
 <style type="text/css">
 .tree-box {
 	border: 1px solid #ddd;
 	border-top: 0;
 }
+
+div#rMenu {
+	position: absolute;
+	visibility: hidden;
+	top: 0;
+	background-color: #f9f9f9;
+	text-align: left;
+	padding: 2px;
+}
+
+div#rMenu ul li {
+	margin: 1px 0;
+	padding: 0 5px;
+	cursor: pointer;
+	list-style: none outside none;
+	background-color: #DFDFDF;
+}
+
+ul,ol {
+	margin: 0;
+	padding: 0;
+}
 </style>
-<script type="text/javascript" src="<%=path %>/js/jquery/jquery-1.11.1.js"></script>
-<script type="text/javascript" src="<%=path %>/js/bootstrap-dropdown.js"></script>
-<script type="text/javascript" src="<%=path %>/zTree/jquery-ztree-core-min.js"></script>
+<script type="text/javascript" src="<%=path%>/js/jquery/jquery-1.11.1.js"></script>
+<script type="text/javascript" src="<%=path%>/js/bootstrap-dropdown.js"></script>
+<script type="text/javascript" src="<%=path%>/zTree/jquery-ztree-core-min.js"></script>
+<script type="text/javascript" src="<%=path%>/zTree/jquery.ztree.exedit.min.js"></script>
+<script type="text/javascript" src="<%=path%>/zTree/jquery.ztree.excheck.min.js"></script>
 <script type="text/javascript">
+	var zTreeObj;
+	var rMenu;
 	//根据结构查询人员
 	function wiz(nodeID) {
 		alert(nodeID);
 	}
-	var zTreeObj;
-	// zTree 的参数配置，深入使用请参考 API 文档（setting 配置详解）
 	var setting = {
 		async : {
 			enable : true,
@@ -40,11 +63,63 @@
 			contentType : "application/x-www-form-urlencoded",
 			dataType : 'json',
 			type : "post"
+		},
+		check: {
+			enable: true
+		},
+		view : {
+			dblClickExpand: false
+		},
+		callback: {
+			onRightClick: OnRightClick
 		}
 	};
+	function OnRightClick(event, treeId, treeNode) {
+		if (!treeNode && event.target.tagName.toLowerCase() != "button" && $(event.target).parents("a").length == 0) {
+			zTreeObj.cancelSelectedNode();
+			showRMenu("root", event.clientX, event.clientY);
+		} else if (treeNode && !treeNode.noR) {
+			zTreeObj.selectNode(treeNode);
+			showRMenu("node", event.clientX, event.clientY);
+		}
+	}
 
+	function showRMenu(type, x, y) {
+		$("#rMenu ul").show();
+		rMenu.css({"top":y+"px", "left":x+"px", "visibility":"visible"});
+
+		$("body").bind("mousedown", onBodyMouseDown);
+	}
+	function hideRMenu() {
+		if (rMenu) rMenu.css({"visibility": "hidden"});
+		$("body").unbind("mousedown", onBodyMouseDown);
+	}
+	function onBodyMouseDown(event){
+		if (!(event.target.id == "rMenu" || $(event.target).parents("#rMenu").length>0)) {
+			rMenu.css({"visibility" : "hidden"});
+		}
+	}
+	var addCount = 1;
+	function addTreeNode() {
+		hideRMenu();
+		
+		//TODO 异步提交,成功后刷新Tree
+		var newNode = { treeNodeName:"增加" + (addCount++)};
+		if (zTreeObj.getSelectedNodes()[0]) {
+			newNode.checked = zTreeObj.getSelectedNodes()[0].checked;
+			zTreeObj.addNodes(zTreeObj.getSelectedNodes()[0], newNode);
+		} else {
+			zTreeObj.addNodes(null, newNode);
+		}
+	}
+
+	function resetTree() {
+		hideRMenu();
+		$.fn.zTree.init($("#treeDemo"), setting);
+	}
 	$(document).ready(function() {
 		zTreeObj = $.fn.zTree.init($("#treeDemo"), setting);
+		rMenu = $("#rMenu");
 	});
 </script>
 
@@ -63,7 +138,9 @@
 				<div class="table-responsive">
 					<div>
 						<ul id="treeDemo" class="ztree"></ul>
-						<div><a>增加子节点</a></div>
+						<div>
+							<a>增加子节点</a>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -97,6 +174,13 @@
 				</div>
 			</div>
 		</div>
+	</div>
+
+	<div id="rMenu">
+		<ul>
+			<li id="m_add" onclick="addTreeNode();">增加节点</li>
+			<li id="m_reset" onclick="resetTree();">恢复zTree</li>
+		</ul>
 	</div>
 </body>
 </html>

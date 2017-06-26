@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.shiro.authz.annotation.RequiresUser;
 import org.nutz.dao.QueryResult;
@@ -65,10 +66,10 @@ public class DailyAction {
 	 */
 	@At("/daily/save")
 	@Ok("json:full")
-	public String save(@Param("::daily.") Daily daily) {
+	public String save(@Param("::daily.") Daily daily, HttpSession session) {
 		daily.setCreateDate(Calendar.getInstance().getTime());
-		daily.setOwnerName("刘宗恺");
-		
+		daily.setOwnerName((String) session.getAttribute("me"));
+
 		this.dailyService.saveWith(daily);
 		return success;
 	}

@@ -23,9 +23,8 @@
 					<li><a href="<%=path %>/chart">图表分析</a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">系统维护<b class="caret"></b></a>
 						<ul class="dropdown-menu">
-							<li><a href="<%=path %>/dic/list">字典设置</a></li>
 							<li><a href="<%=path %>/org/list">机构设置</a></li>
-							<%-- <li><a href="<%=path %>/dic/list">用户设置</a></li> --%>
+							<li><a href="<%=path %>/dic/list">字典设置</a></li>
 							<li><a href="<%=path %>/dic/list">角色设置</a></li>
 							<li><a href="<%=path %>/dic/list">权限设置</a></li>
 						</ul>
