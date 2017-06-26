@@ -5,6 +5,7 @@ import org.nutz.mvc.NutConfig;
 import org.nutz.mvc.Setup;
 
 import com.jit.project.auth.service.AuthorityService;
+import com.jit.project.org.bean.Org;
 import com.jit.project.project.bean.Project;
 import com.jit.project.user.bean.User;
 
@@ -14,6 +15,9 @@ public class MvcSetup implements Setup {
 		Dao dao = config.getIoc().get(Dao.class, "dao");
 		if (!dao.exists(Project.class)) {
 			dao.create(Project.class, false);
+		}
+		if (!dao.exists(Org.class)) {
+			dao.create(Org.class, false);
 		}
 		AuthorityService auth = config.getIoc().get(AuthorityService.class);
 		auth.initFormPackage("com.jit.project");
