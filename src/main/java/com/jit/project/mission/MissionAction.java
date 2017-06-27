@@ -19,6 +19,7 @@ import org.nutz.mvc.annotation.Param;
 import com.jit.project.daily.bean.DailyItem;
 import com.jit.project.daily.service.DailyItemServiceImpl;
 import com.jit.project.dictionary.service.IDicService;
+import com.jit.project.user.service.UserService;
 
 @InjectName("missionAction")
 public class MissionAction {
@@ -28,6 +29,7 @@ public class MissionAction {
 	private DailyItemServiceImpl dailyItemService;
 
 	private IDicService dicService;
+	private UserService userService;
 
 	/**
 	 * 任务列表
@@ -106,8 +108,9 @@ public class MissionAction {
 	 */
 	@At("/mission/loadForAssignAsync")
 	@Ok("jsp:views.mission.assign")
-	public Mission loadForAssignAsync(@Param("mission_id") final String missionID) {
-		
+	public Mission loadForAssignAsync(@Param("mission_id") final String missionID, HttpServletRequest request) {
+		Map<String, String> users = userService.asDic();
+		request.setAttribute("users", users);
 		Mission mission = this.missionService.fetch(missionID);
 		return mission;
 	}
@@ -149,6 +152,8 @@ public class MissionAction {
 		Map<String, String> types = this.dicService.service(IDicService.type_mission_type);
 		Map<String, String> status = this.dicService.service(IDicService.type_mission_status);
 		Map<String, String> classes = this.dicService.service(IDicService.type_mission_class);
+		Map<String, String> users = userService.asDic();
+		request.setAttribute("users", users);
 		request.setAttribute("types", types);
 		request.setAttribute("status", status);
 		request.setAttribute("classes", classes);
@@ -239,6 +244,14 @@ public class MissionAction {
 
 	public void setDicService(IDicService dicService) {
 		this.dicService = dicService;
+	}
+
+	public UserService getUserService() {
+		return userService;
+	}
+
+	public void setUserService(UserService userService) {
+		this.userService = userService;
 	}
 
 }

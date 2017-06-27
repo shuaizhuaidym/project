@@ -121,10 +121,9 @@ textarea {
 				</tr>
 				<tr>
 				<td><label class="control-label col-xs-2">指派给</label></td>
-					<td><select name="mission.assignTo">
-							<option value="张三">张三</option>
-							<option value="李四">李四</option>
-					</select></td>
+					<td>
+						<ui:select name="mission.assignTo" path="${obj.assignTo}" items="${users}" css="required"></ui:select>
+					</td>
 					
 					<td><label class="control-label col-xs-2">产品子类</label></td>
 					<td><input type="text" id="mission_name" name="mission.productSubType" value="${obj.productSubType}" class="required"></td>

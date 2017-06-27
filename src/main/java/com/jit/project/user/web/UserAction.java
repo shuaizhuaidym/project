@@ -69,7 +69,7 @@ public class UserAction {
 		} else {
 			String _pass = new Sha256Hash(password, user.getSalt()).toHex();
 			if (_pass.equalsIgnoreCase(user.getPassword())) {
-				logger.info(user.getName() + " loged in>>>>>>>>>>>>>>>>>>>>");
+				logger.info(user.getName() + " loged in>>>>>>>>>>>>>>>>>>>>!");
 				session.setAttribute("me", user.getRealName());
 				// 隐式依赖SimpleAuthorizingRealm
 				SecurityUtils.getSubject().login(new SimpleShiroToken(user));
@@ -86,7 +86,8 @@ public class UserAction {
 	 */
 	@At("/user/form")
 	@Ok("jsp:views.user.form")
-	public String form(HttpSession session) {
+	public String form(@Param("orgID") String orgID, HttpSession session) {
+		System.out.println(orgID);
 		return success;
 	}
 	

@@ -1,6 +1,9 @@
 package com.jit.project.user.service;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.nutz.ioc.loader.annotation.IocBean;
@@ -31,5 +34,18 @@ public class UserService extends IdNameEntityService<User> {
 		user.setPassword(new Sha256Hash(password, user.getSalt()).toHex());
 		user.setUpdateTime(new Date());
 		dao().update(user, "^(password|salt|updateTime)$");
+	}
+	
+	/**
+	 * 人不多，不用树，直接作为字典下拉选
+	 * @return
+	 */
+	public Map<String, String> asDic() {
+		Map<String, String> users = new HashMap<String, String>();
+		List<User> lou = this.query(null, null);
+		for (User u : lou) {
+			users.put(u.getName(), u.getName());
+		}
+		return users;
 	}
 }

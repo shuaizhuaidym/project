@@ -137,6 +137,9 @@ var ioc = {
 			},
 			dicService : {
 				refer : 'dicService'
+			},
+			userService : {
+				refer : 'userService'
 			}
 		}
 	},

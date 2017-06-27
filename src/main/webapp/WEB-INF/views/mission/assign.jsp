@@ -42,10 +42,9 @@
 			</tr>
 			<tr>
 				<th>指派给</th>
-				<td><select name="mission.assignTo">
-						<option value="田永健">田永健</option>
-						<option value="黄建华">黄建华</option>
-				</select></td>
+				<td>
+					<ui:select name="mission.assignTo" path="${obj.assignTo}" items="${users}" css="required"></ui:select>
+				</td>
 				<th>预计人天</th>
 				<td><input name="mission.totalHours" value="100" /></td>
 			</tr>

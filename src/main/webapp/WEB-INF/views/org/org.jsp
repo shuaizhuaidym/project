@@ -25,9 +25,11 @@ div#rMenu {
 	position: absolute;
 	visibility: hidden;
 	top: 0;
-	background-color: #f9f9f9;
+	background-color: #dfdfdf;
 	text-align: left;
 	padding: 2px;
+	border-radius: 5px;
+	background-color: rgba(0,0,0,0.5);
 }
 
 div#rMenu ul li {
@@ -35,12 +37,35 @@ div#rMenu ul li {
 	padding: 0 5px;
 	cursor: pointer;
 	list-style: none outside none;
-	background-color: #DFDFDF;
+	color:#fff
 }
 
 ul,ol {
-	margin: 0;
+	margin: 5px;
 	padding: 0;
+}
+
+.divider {
+	border-top: 1px white solid;
+	background-color: white;
+	margin: 1px
+}
+
+.arrow {
+	margin-top: -10px;
+	margin-left: -10px;
+	border-color: transparent;
+	border-bottom-color: #dfdfdf;
+	border-top-width: 0;
+	border-width: 10px;
+	border-style: solid;
+	display: block;
+	position: absolute;
+	height: 0;
+	width: 0;
+	left: 20%;
+	top: -10px;
+	content: "";
 }
 </style>
 <script type="text/javascript" src="<%=path%>/js/jquery/jquery-1.11.1.js"></script>
@@ -48,81 +73,7 @@ ul,ol {
 <script type="text/javascript" src="<%=path%>/zTree/jquery-ztree-core-min.js"></script>
 <script type="text/javascript" src="<%=path%>/zTree/jquery.ztree.exedit.min.js"></script>
 <script type="text/javascript" src="<%=path%>/zTree/jquery.ztree.excheck.min.js"></script>
-<script type="text/javascript">
-	var zTreeObj;
-	var rMenu;
-	//根据结构查询人员
-	function wiz(nodeID) {
-		alert(nodeID);
-	}
-	var setting = {
-		async : {
-			enable : true,
-			url : "/project/org/tree",
-			autoParam : [ "orgID=parent_id" ],
-			contentType : "application/x-www-form-urlencoded",
-			dataType : 'json',
-			type : "post"
-		},
-		check: {
-			enable: true
-		},
-		view : {
-			dblClickExpand: false
-		},
-		callback: {
-			onRightClick: OnRightClick
-		}
-	};
-	function OnRightClick(event, treeId, treeNode) {
-		if (!treeNode && event.target.tagName.toLowerCase() != "button" && $(event.target).parents("a").length == 0) {
-			zTreeObj.cancelSelectedNode();
-			showRMenu("root", event.clientX, event.clientY);
-		} else if (treeNode && !treeNode.noR) {
-			zTreeObj.selectNode(treeNode);
-			showRMenu("node", event.clientX, event.clientY);
-		}
-	}
-
-	function showRMenu(type, x, y) {
-		$("#rMenu ul").show();
-		rMenu.css({"top":y+"px", "left":x+"px", "visibility":"visible"});
-
-		$("body").bind("mousedown", onBodyMouseDown);
-	}
-	function hideRMenu() {
-		if (rMenu) rMenu.css({"visibility": "hidden"});
-		$("body").unbind("mousedown", onBodyMouseDown);
-	}
-	function onBodyMouseDown(event){
-		if (!(event.target.id == "rMenu" || $(event.target).parents("#rMenu").length>0)) {
-			rMenu.css({"visibility" : "hidden"});
-		}
-	}
-	var addCount = 1;
-	function addTreeNode() {
-		hideRMenu();
-		
-		//TODO 异步提交,成功后刷新Tree
-		var newNode = { treeNodeName:"增加" + (addCount++)};
-		if (zTreeObj.getSelectedNodes()[0]) {
-			newNode.checked = zTreeObj.getSelectedNodes()[0].checked;
-			zTreeObj.addNodes(zTreeObj.getSelectedNodes()[0], newNode);
-		} else {
-			zTreeObj.addNodes(null, newNode);
-		}
-	}
-
-	function resetTree() {
-		hideRMenu();
-		$.fn.zTree.init($("#treeDemo"), setting);
-	}
-	$(document).ready(function() {
-		zTreeObj = $.fn.zTree.init($("#treeDemo"), setting);
-		rMenu = $("#rMenu");
-	});
-</script>
-
+<script type="text/javascript" src="<%=path%>/js/org/org.js"></script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
@@ -177,9 +128,11 @@ ul,ol {
 	</div>
 
 	<div id="rMenu">
+	<div class="arrow"></div>
 		<ul>
-			<li id="m_add" onclick="addTreeNode();">增加节点</li>
-			<li id="m_reset" onclick="resetTree();">恢复zTree</li>
+			<li id="m_add" onclick="addTreeNode();">新增用户</li>
+			<li class="divider"></li>
+			<li id="m_reset" onclick="resetTree();">刷新</li>
 		</ul>
 	</div>
 </body>
