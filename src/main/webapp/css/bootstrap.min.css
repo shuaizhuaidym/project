@@ -5679,7 +5679,6 @@ to {
 }
 
 .hero-unit {
-	padding: 8px;
 	margin-bottom: 16px;
 	font-size: 18px;
 	font-weight: 200;
@@ -5689,6 +5688,7 @@ to {
 	-webkit-border-radius: 2px;
 	-moz-border-radius: 2px;
 	border:1px solid  #ddd;
+	border-top:0;
 	border-radius: 2px
 }
 

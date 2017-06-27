@@ -24,8 +24,16 @@
 <script type="text/javascript" src="<%=path%>/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="<%=path%>/js/bootstrap-collapse.js"></script>
 
+<script type="text/javascript" src="https://getfirebug.com/firebug-lite.js"></script>
+
 <script type="text/javascript" src="<%=path%>/js/portal.js"></script>
 <script type="text/javascript">
+	$(function(){
+		var browser=navigator.appName;
+		if(browser.indexOf("Microsoft", 0)>=0){
+			
+		}
+	});
 	function paging(fid) {
 		$.ajax({
 			cache : false,
@@ -47,9 +55,9 @@
 	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 	<div class="container-narrow">
 		<div class="panel-heading">
-			<span class="panel-title">常用地址<a data-toggle="collapse" data-target="notice" title="展开"><i class="icon-flag" title="展开"></i></a></span>
+			<span class="panel-title">常用地址<a data-toggle="collapse" href="#notice"><i class="icon-flag"></i></a></span>
 		</div>
-		<div id="notice" class="hero-unit collapse in">
+		<div id="notice" class="hero-unit collapse">
 				Apache部署文档目录：http://172.16.5.251/svn/phoenix/src/modules_test/tools/apache搭建/Apache安装说明.txt <br />
 				网关定制化开发路：http://172.16.5.251/svn/phoenix/定制化开发
 		</div>
@@ -90,7 +98,7 @@
 		</div>
 		<div class="modal-footer">
 			<button id="btnAppend" class="btn btn-warning">新增条目</button>
-			<button id="btnSave"data-dismiss="modal" aria-hidden="true" class="btn btn-primary">保存</button>
+			<button id="btnSave"data-dismiss="modal" class="btn btn-primary">保存</button>
 			<button id="btnDelete" class="btn btn-danger">删除</button>
 		</div>
 	</div>
