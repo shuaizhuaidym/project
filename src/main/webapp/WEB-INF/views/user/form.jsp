@@ -33,7 +33,10 @@
 				<div class="control-group">
 					<label class="control-label" for="dicType">部门</label>
 					<div class="controls">
-						<ui:select name="dic.dicType" path="${dic.dicType}" items="${mDicType}"></ui:select>
+						<%-- <ui:select name="user.name" path="${org.orgName}" items="${mDicType}"></ui:select> --%>
+						<select name="user.name">
+							<option value="${org.orgID}">${org.orgName}</option>
+						</select>
 					</div>
 				</div>
 				<div class="control-group">

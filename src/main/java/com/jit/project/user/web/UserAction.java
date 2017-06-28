@@ -2,6 +2,7 @@ package com.jit.project.user.web;
 
 import java.util.Date;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.LogManager;
@@ -25,6 +26,8 @@ import org.nutz.mvc.annotation.Ok;
 import org.nutz.mvc.annotation.POST;
 import org.nutz.mvc.annotation.Param;
 
+import com.jit.project.org.bean.Org;
+import com.jit.project.org.service.OrgServiceImple;
 import com.jit.project.user.bean.User;
 import com.jit.project.user.service.UserService;
 
@@ -35,6 +38,8 @@ public class UserAction {
 	Dao dao;
 
 	UserService userService;
+	
+	OrgServiceImple orgService;
 	
 	private String success = "SUCCESS";
 
@@ -86,8 +91,10 @@ public class UserAction {
 	 */
 	@At("/user/form")
 	@Ok("jsp:views.user.form")
-	public String form(@Param("orgID") String orgID, HttpSession session) {
-		System.out.println(orgID);
+	public String form(@Param("orgID") Long orgID, HttpServletRequest request) {
+		Org org = orgService.fetch(orgID);
+		request.setAttribute("org", org);
+		//TODO org tree 4 select
 		return success;
 	}
 	
@@ -190,5 +197,21 @@ public class UserAction {
 		if (user.getName() != null)
 			user.setName(user.getName().trim());
 		return null;
+	}
+
+	public OrgServiceImple getOrgService() {
+		return orgService;
+	}
+
+	public void setOrgService(OrgServiceImple orgService) {
+		this.orgService = orgService;
+	}
+
+	public UserService getUserService() {
+		return userService;
+	}
+
+	public void setUserService(UserService userService) {
+		this.userService = userService;
 	}
 }

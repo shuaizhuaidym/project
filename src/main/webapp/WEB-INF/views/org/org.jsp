@@ -71,7 +71,6 @@ ul,ol {
 <script type="text/javascript" src="<%=path%>/js/jquery/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="<%=path%>/js/bootstrap-dropdown.js"></script>
 <script type="text/javascript" src="<%=path%>/zTree/jquery-ztree-core-min.js"></script>
-<script type="text/javascript" src="<%=path%>/zTree/jquery.ztree.exedit.min.js"></script>
 <script type="text/javascript" src="<%=path%>/zTree/jquery.ztree.excheck.min.js"></script>
 <script type="text/javascript" src="<%=path%>/js/org/org.js"></script>
 </head>
@@ -90,7 +89,7 @@ ul,ol {
 					<div>
 						<ul id="treeDemo" class="ztree"></ul>
 						<div>
-							<a>新增部门</a><a>新增用户</a>
+							<a>[新增部门]</a><a>[新增用户]</a>
 						</div>
 					</div>
 				</div>
@@ -98,6 +97,7 @@ ul,ol {
 			<div class="span10">
 				<fieldset>
 					<legend>
+					<!-- 检查是否选择了部门 -->
 						<span> 机构列表<a href="<%=path%>/user/form" style="margin-left: 50px; color: white">新增人员</a>
 						</span>
 					</legend>
