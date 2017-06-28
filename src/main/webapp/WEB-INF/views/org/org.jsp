@@ -90,7 +90,7 @@ ul,ol {
 					<div>
 						<ul id="treeDemo" class="ztree"></ul>
 						<div>
-							<a>增加子节点</a>
+							<a>新增部门</a><a>新增用户</a>
 						</div>
 					</div>
 				</div>
@@ -131,6 +131,8 @@ ul,ol {
 	<div class="arrow"></div>
 		<ul>
 			<li id="m_add" onclick="addTreeNode();">新增用户</li>
+			<li class="divider"></li>
+			<li id="m_add" onclick="addTreeNode();">新增部门</li>
 			<li class="divider"></li>
 			<li id="m_reset" onclick="resetTree();">刷新</li>
 		</ul>
