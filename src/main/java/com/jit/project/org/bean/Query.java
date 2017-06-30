@@ -1,24 +1,32 @@
-package com.jit.project.mission;
+package com.jit.project.org.bean;
 
 import org.apache.commons.lang3.StringUtils;
 import org.nutz.dao.Condition;
 import org.nutz.dao.entity.Entity;
 
 public class Query implements Condition {
+
 	private Integer pageNumber = 1;
 
-	private Integer pageSize = 10;
-	
-	private String assignTo;
+	private Integer pageSize = 15;
+
+	private String orgID;
 
 	@Override
 	public String toSql(Entity<?> entity) {
 		StringBuilder buf = new StringBuilder("1=1");
-		if (StringUtils.isNoneEmpty(assignTo)) {
-			buf.append(" and assign_to='").append(assignTo).append("'");
+		if (StringUtils.isNoneEmpty(orgID)) {
+			buf.append(" and org_id=").append(orgID);
 		}
-		buf.append(" order by create_time desc");
 		return buf.toString();
+	}
+
+	public String getOrgID() {
+		return orgID;
+	}
+
+	public void setOrgID(String orgID) {
+		this.orgID = orgID;
 	}
 
 	public Integer getPageNumber() {
@@ -37,11 +45,4 @@ public class Query implements Condition {
 		this.pageSize = pageSize;
 	}
 
-	public String getAssignTo() {
-		return assignTo;
-	}
-
-	public void setAssignTo(String assignTo) {
-		this.assignTo = assignTo;
-	}
 }

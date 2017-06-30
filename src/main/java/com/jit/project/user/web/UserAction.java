@@ -74,12 +74,12 @@ public class UserAction {
 		} else {
 			String _pass = new Sha256Hash(password, user.getSalt()).toHex();
 			if (_pass.equalsIgnoreCase(user.getPassword())) {
-				logger.info(user.getName() + " loged in>>>>>>>>>>>>>>>>>>>>!");
+				logger.info(user.getName() + " loged in successful!");
 				session.setAttribute("me", user.getRealName());
 				// 隐式依赖SimpleAuthorizingRealm
 				SecurityUtils.getSubject().login(new SimpleShiroToken(user));
 				return re.setv("ok", true);
-			} else {
+			} else {//提示错误信息
 				return re.setv("ok", false).setv("msg", "密码错误");
 			}
 		}
@@ -99,18 +99,24 @@ public class UserAction {
 	}
 	
 	@At("/user/add")
+	@Ok("redirect:/org/list")
+	@Fail("http:500")
 	@RequiresPermissions("user:add")
-	public Object add(@Param("..") User user) { // 两个点号是按对象属性一一设置
+	public Object add(@Param("::user.") User user) { // 两个点号是按对象属性一一设置
 		NutMap re = new NutMap();
 		String msg = checkUser(user, true);
 		if (msg != null) {
 			return re.setv("ok", false).setv("msg", msg);
 		}
-		user = userService.add(user.getName(), user.getPassword());
+		user = userService.add(user);
 		return re.setv("ok", true).setv("data", user);
 	}
 
-	@At
+	/**
+	 * 注销会话
+	 * @param session
+	 */
+	@At("/user/logout")
 	@Ok(">>:/")
 	// 跟其他方法不同,这个方法完成后就跳转首页了
 	public void logout(HttpSession session) {
@@ -184,8 +190,7 @@ public class UserAction {
 		}
 		user.setPassword(passwd);
 		if (create) {
-			int count = dao.count(User.class,
-					Cnd.where("name", "=", user.getName()));
+			int count = userService.count(Cnd.where("name", "=", user.getName()));
 			if (count != 0) {
 				return "用户名已经存在";
 			}

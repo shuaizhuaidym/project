@@ -8,6 +8,7 @@ import com.jit.project.auth.service.AuthorityService;
 import com.jit.project.org.bean.Org;
 import com.jit.project.project.bean.Project;
 import com.jit.project.user.bean.User;
+import com.jit.project.user.bean.UserProfile;
 
 public class MvcSetup implements Setup {
 	public void init(NutConfig config) {
@@ -18,6 +19,9 @@ public class MvcSetup implements Setup {
 		}
 		if (!dao.exists(Org.class)) {
 			dao.create(Org.class, false);
+		}
+		if(!dao.exists(UserProfile.class)){
+			dao.create(UserProfile.class, false);
 		}
 		AuthorityService auth = config.getIoc().get(AuthorityService.class);
 		auth.initFormPackage("com.jit.project");

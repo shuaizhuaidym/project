@@ -1,4 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@taglib prefix="pg" uri="/WEB-INF/tags"%>
 <%
 	String path = request.getContextPath();
 %>
@@ -12,6 +15,7 @@
 <title>机构管理</title>
 
 <link href="<%=path%>/css/commom.css" rel="stylesheet">
+<link href="<%=path%>/css/list.css" rel="stylesheet">
 <link href="<%=path%>/css/bootstrap.min.css" rel="stylesheet">
 
 <link href="<%=path%>/zTree/zTreeStyle.css" rel="stylesheet">
@@ -29,7 +33,7 @@ div#rMenu {
 	text-align: left;
 	padding: 2px;
 	border-radius: 5px;
-	background-color: rgba(0,0,0,0.5);
+	background-color: rgba(0, 0, 0, 0.5);
 }
 
 div#rMenu ul li {
@@ -37,7 +41,7 @@ div#rMenu ul li {
 	padding: 0 5px;
 	cursor: pointer;
 	list-style: none outside none;
-	color:#fff
+	color: #fff
 }
 
 ul,ol {
@@ -97,8 +101,8 @@ ul,ol {
 			<div class="span10">
 				<fieldset>
 					<legend>
-					<!-- 检查是否选择了部门 -->
-						<span> 机构列表<a href="<%=path%>/user/form" style="margin-left: 50px; color: white">新增人员</a>
+						<!-- 检查是否选择了部门 -->
+						<span> 机构列表<a href="javascript:addDirectly(4);" style="margin-left: 50px; color: white">新增用户</a>
 						</span>
 					</legend>
 				</fieldset>
@@ -108,27 +112,36 @@ ul,ol {
 						<thead>
 							<tr>
 								<th class="w32px">序号</th>
-								<th class="w12">用户名[登录账号]</th>
-								<th class="w8">真实姓名</th>
-								<th class="w36">登录密码[星号展示]</th>
-								<th class="w6">是否锁定</th>
+								<th class="w32px">登录账号</th>
+								<th class="w72px">真实姓名</th>
+								<th>登录密码[已加密]</th>
+								<th class="w108px">部门</th>
+								<th class="w64px">是否锁定</th>
 							</tr>
 						</thead>
-						<tr>
-							<td>sfd</td>
-							<td>sdfg</td>
-							<td>sfd</td>
-							<td>sdfg</td>
-							<td>sdfg</td>
-						</tr>
+						<c:forEach varStatus="index" var="user" items="${obj.list}">
+							<tr>
+								<td>${index.count}</td>
+								<td>${user.name}</td>
+								<td>${user.realName}</td>
+								<td>${user.password}</td>
+								<td>${user.orgName}</td>
+								<td>${user.status}</td>
+							</tr>
+						</c:forEach>
 					</table>
+					<form id="queryForm" action="<%=path%>/org/list">
+						<pg:page id="queryForm" pageNo="${obj.pager.pageNumber}" currentClass="active" pageSize="${obj.pager.pageSize}"
+							totalCount="${obj.pager.recordCount}">
+						</pg:page>
+					</form>
 				</div>
 			</div>
 		</div>
 	</div>
 
 	<div id="rMenu">
-	<div class="arrow"></div>
+		<div class="arrow"></div>
 		<ul>
 			<li id="m_add" onclick="addTreeNode();">新增用户</li>
 			<li class="divider"></li>

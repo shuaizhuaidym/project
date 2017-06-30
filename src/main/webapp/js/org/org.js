@@ -63,6 +63,11 @@
 		window.location.href="/project/user/form?orgID="+cur.orgID;
 	}
 
+	//按钮事件
+	function addDirectly(orgID){
+		window.location.href="/project/user/form?orgID="+orgID;
+	}
+	
 	function resetTree() {
 		hideRMenu();
 		$.fn.zTree.init($("#treeDemo"), setting);

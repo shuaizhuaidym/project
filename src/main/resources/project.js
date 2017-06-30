@@ -115,6 +115,9 @@ var ioc = {
 		fields : {
 			orgService : {
 				refer : 'orgService'
+			},
+			userService : {
+				refer : 'userService'
 			}
 		}
 	},

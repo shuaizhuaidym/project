@@ -10,8 +10,10 @@ import java.util.Date;
 import org.nutz.dao.entity.annotation.Column;
 import org.nutz.dao.entity.annotation.Id;
 import org.nutz.dao.entity.annotation.Table;
+
+import com.jit.project.bean.BasePojo;
 @Table("t_mission")
-public class Mission {
+public class Mission extends BasePojo{
 	@Id
 	@Column("mission_id")
 	private Integer missionID;

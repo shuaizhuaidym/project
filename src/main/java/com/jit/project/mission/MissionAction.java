@@ -1,6 +1,8 @@
 package com.jit.project.mission;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +17,7 @@ import org.nutz.ioc.annotation.InjectName;
 import org.nutz.mvc.annotation.At;
 import org.nutz.mvc.annotation.Ok;
 import org.nutz.mvc.annotation.Param;
+import org.omg.CORBA.DATA_CONVERSION;
 
 import com.jit.project.daily.bean.DailyItem;
 import com.jit.project.daily.service.DailyItemServiceImpl;
@@ -30,6 +33,24 @@ public class MissionAction {
 
 	private IDicService dicService;
 	private UserService userService;
+
+	Map<String, String> types = new HashMap<String, String>();
+	Map<String, String> status = new HashMap<String, String>();
+	Map<String, String> classes = new HashMap<String, String>();
+	Map<String, String> users = new HashMap<String, String>();
+
+	private void prepareDic(HttpServletRequest request) {
+		if (types.isEmpty()) {
+			types = this.dicService.service(IDicService.type_mission_type);
+			status = this.dicService.service(IDicService.type_mission_status);
+			classes = this.dicService.service(IDicService.type_mission_class);
+			users = userService.asDic();
+		}
+		request.setAttribute("users", users);
+		request.setAttribute("types", types);
+		request.setAttribute("status", status);
+		request.setAttribute("classes", classes);
+	}
 
 	/**
 	 * 任务列表
@@ -51,8 +72,10 @@ public class MissionAction {
 	 */
 	@At("/mission/form")
 	@Ok("jsp:views.mission.form")
-	public String add() {
-		return SUCCESS;
+	public Mission add(HttpServletRequest request) {
+		prepareDic(request);
+		Mission mission=new Mission();
+		return mission;
 	}
 
 	/**
@@ -64,7 +87,8 @@ public class MissionAction {
 	@At("/mission/create")
 	@Ok("redirect:/mission/query")
 	public String create(@Param("::mission.") Mission mission) {
-		System.out.println(mission.toString());
+		mission.setCreateTime(new Date());
+		mission.setUpdateTime(new Date());
 		missionService.dao().insert(mission);
 		return SUCCESS;
 	}
@@ -108,9 +132,9 @@ public class MissionAction {
 	 */
 	@At("/mission/loadForAssignAsync")
 	@Ok("jsp:views.mission.assign")
-	public Mission loadForAssignAsync(@Param("mission_id") final String missionID, HttpServletRequest request) {
-		Map<String, String> users = userService.asDic();
-		request.setAttribute("users", users);
+	public Mission loadForAssignAsync(@Param("mission_id") final String missionID,
+			HttpServletRequest request) {
+		prepareDic(request);
 		Mission mission = this.missionService.fetch(missionID);
 		return mission;
 	}
@@ -149,14 +173,7 @@ public class MissionAction {
 	@At("/mission/edit")
 	@Ok("jsp:views.mission.edit")
 	public Mission edit(@Param("mission_id") final String mission_id, HttpServletRequest request) {
-		Map<String, String> types = this.dicService.service(IDicService.type_mission_type);
-		Map<String, String> status = this.dicService.service(IDicService.type_mission_status);
-		Map<String, String> classes = this.dicService.service(IDicService.type_mission_class);
-		Map<String, String> users = userService.asDic();
-		request.setAttribute("users", users);
-		request.setAttribute("types", types);
-		request.setAttribute("status", status);
-		request.setAttribute("classes", classes);
+		prepareDic(request);
 		if (mission_id == null) {
 			return null;
 		}

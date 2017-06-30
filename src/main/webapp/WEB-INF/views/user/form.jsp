@@ -29,50 +29,51 @@
 					<span>增加用户</span>
 				</legend>
 			</fieldset>
-			<form class="form-horizontal" action="<%=path%>/user/save" method="post">
+			<form class="form-horizontal" action="<%=path%>/user/add" method="post">
 				<div class="control-group">
-					<label class="control-label" for="dicType">部门</label>
+					<label class="control-label" for="org">部门</label>
 					<div class="controls">
 						<%-- <ui:select name="user.name" path="${org.orgName}" items="${mDicType}"></ui:select> --%>
-						<select name="user.name">
+						<select id="org" name="user.orgID">
 							<option value="${org.orgID}">${org.orgName}</option>
 						</select>
+						<input type="hidden" name="user.orgName" value="${org.orgName}"/>
 					</div>
 				</div>
 				<div class="control-group">
-					<label class="control-label" for="dicName">登录密码</label>
+					<label class="control-label" for="uname">账号</label>
 					<div class="controls">
-						<input type="text" id="dicName" name="dic.dicName">
+						<input type="text" id="uname" name="user.name">
 					</div>
 				</div>
 				<div class="control-group">
-					<label class="control-label" for="dicName">账号</label>
+					<label class="control-label" for="pwd">登录密码</label>
 					<div class="controls">
-						<input type="text" id="dicName" name="dic.dicName">
+						<input type="text" id="pwd" name="user.password">
 					</div>
 				</div>
 				<div class="control-group">
-					<label class="control-label" for="dicCode">真实姓名</label>
+					<label class="control-label" for="rname">真实姓名</label>
 					<div class="controls">
-						<input type="text" id="dicCode" name="dic.dicCode">
+						<input type="text" id="rname" name="user.realName">
 					</div>
 				</div>
-				<div class="control-group">
-					<label class="control-label" for="displayNumber">salt</label>
+				<!-- <div class="control-group">
+					<label class="control-label" for="salt">salt</label>
 					<div class="controls">
-						<input type="text" id="displayNumber" name="dic.displayNumber">
+						<input type="text" id="salt" name="user.salt">
 					</div>
-				</div>
+				</div> -->
 				<div class="control-group">
 					<div class="controls">
-						<label class="checkbox"> <input type="checkbox" checked="checked" id="available" name="dic.available">是否锁定
+						<label class="checkbox"> <input type="checkbox" id="available" name="user.locked">是否锁定
 						</label>
 					</div>
 				</div>
 				<div class="control-group">
 					<div class="controls">
 						<button type="submit" class="btn btn-primary">保存</button>
-						<a href="<%=path%>/dic/list" class="btn">返回列表</a>
+						<a href="<%=path%>/user/save" class="btn">返回列表</a>
 					</div>
 				</div>
 			</form>

@@ -20,22 +20,40 @@ public class User extends BasePojo {
 	@Id
 	@Column(value="user_id")
 	protected int id;
+	
 	@Name
 	@Column
 	protected String name;
+	
 	@Column("passwd")
 	@ColDefine(width = 128)
 	protected String password;
+	
 	@Column("real_name")
 	protected String realName;
+	
 	@Column
 	protected String salt;
+	
 	@Column
 	private boolean locked;
+	
+	public String getStatus() {
+		return this.locked ? "是" : "否";
+	}
+	
+	@Column("org_id")
+	private String orgID;
+	
+	@Column("org_name")
+	private String orgName;
+	
 	@ManyMany(from = "user_id", relation = "t_user_role", target = Role.class, to = "role_id")
 	protected List<Role> roles;
+	
 	@ManyMany(from = "user_id", relation = "t_user_permission", target = Permission.class, to = "permission_id")
 	protected List<Permission> permissions;
+	
 	@One(target = UserProfile.class, field = "id", key = "userId")
 	protected UserProfile profile;
 
@@ -109,6 +127,22 @@ public class User extends BasePojo {
 
 	public void setRealName(String realName) {
 		this.realName = realName;
+	}
+
+	public String getOrgID() {
+		return orgID;
+	}
+
+	public void setOrgID(String orgID) {
+		this.orgID = orgID;
+	}
+
+	public String getOrgName() {
+		return orgName;
+	}
+
+	public void setOrgName(String orgName) {
+		this.orgName = orgName;
 	}
 
 }
