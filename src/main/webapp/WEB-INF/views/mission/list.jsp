@@ -94,7 +94,7 @@
 				<!--Sidebar content-->
 				<fieldset>
 					<legend>
-						<span>产品导航 </a>
+						<span><a>产品导航 </a>
 						</span>
 					</legend>
 				</fieldset>

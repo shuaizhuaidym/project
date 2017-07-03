@@ -16,7 +16,7 @@ public class QcTask {
 
 	public void executeFixedRate() {
 		ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
-		// 五分钟同步一次数据
+		// 2分钟同步一次数据
 		executor.scheduleAtFixedRate(new QcSynchronizer(), 120, 120, TimeUnit.SECONDS);
 	}
 

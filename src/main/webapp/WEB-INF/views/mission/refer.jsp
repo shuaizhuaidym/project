@@ -27,7 +27,7 @@
 
 	function paging() {
 		$.ajax({
-			cache : true,
+			cache : false,
 			type : "POST",
 			url : "<%=path %>/mission/refer",
 			data : $('#ajaxForm').serialize(),
@@ -36,6 +36,7 @@
 				alert("Connection error");
 			},
 			success : function(data) {
+				alert($("#modal-body").attr("id"));
 				$("#modal-body").html(data);
 			}
 		});
