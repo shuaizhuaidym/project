@@ -14,14 +14,16 @@
 
 <link href="<%=path%>/css/bootstrap.min.css" rel="stylesheet">
 <link href="<%=path%>/css/list.css" rel="stylesheet">
+<link href="<%=path%>/css/commom.css" rel="stylesheet"/>
 <script type="text/javascript" src="<%=path%>/js/jquery/jquery-1.11.1.js"></script>
+
 <script type="text/javascript">
 	function confirm(box) {
 		if(window.opener){
 			window.opener.refer('${mission_index}',{id : box.id, name : box.name});
 			window.close();
 		}else{
-			$("#summary").val('${mission_index}',box.id + ":" + box.name);
+			$("#summary_"+$("#counter").val()).val(box.id + ":" + box.name);
 		}
 	}
 
@@ -36,7 +38,6 @@
 				alert("Connection error");
 			},
 			success : function(data) {
-				alert($("#modal-body").attr("id"));
 				$("#modal-body").html(data);
 			}
 		});
@@ -48,8 +49,8 @@
 		<div class="row-fluid">
 			<table class="table table-bordered table-striped">
 				<tr>
-					<th style="width: 16px">序号</th>
-					<th style="width: 16px">选择</th>
+					<th class="w32px">序号</th>
+					<th class="w32px">选择</th>
 					<th style="width: 128px">任务名称</th>
 					<th>任务摘要</th>
 				</tr>

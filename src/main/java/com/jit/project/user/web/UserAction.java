@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.nutz.dao.Cnd;
@@ -26,6 +27,7 @@ import org.nutz.mvc.annotation.Ok;
 import org.nutz.mvc.annotation.POST;
 import org.nutz.mvc.annotation.Param;
 
+import com.jit.project.base.OperationResult;
 import com.jit.project.org.bean.Org;
 import com.jit.project.org.service.OrgServiceImple;
 import com.jit.project.user.bean.User;
@@ -50,8 +52,8 @@ public class UserAction {
 	@GET
 	@At("/user/login")
 	@Ok("jsp:views.user.login")
-	public String loginPage() {
-		return success;
+	public OperationResult loginPage() {
+		return new OperationResult(200, "");
 	}
 
 	/**
@@ -64,13 +66,13 @@ public class UserAction {
 	@POST
 	@At("/user/authenticate")
 	@Ok("jsp:views.portal.portal")
-	@Fail("http:500")
-	public Object authenticate(@Param("account") String username, @Param("password") String password,
+	@Fail("jsp:views.user.login")
+	public OperationResult authenticate(@Param("account") String username, @Param("password") String password,
 			HttpSession session) {
-		NutMap re = new NutMap();
+		OperationResult map = new OperationResult();
 		User user = userService.fetch(username);
 		if (user == null) {
-			return re.setv("ok", false).setv("msg", "用户不存在");
+			throw new LockedAccountException("Account [" + username + "] 不存在.");
 		} else {
 			String _pass = new Sha256Hash(password, user.getSalt()).toHex();
 			if (_pass.equalsIgnoreCase(user.getPassword())) {
@@ -78,9 +80,9 @@ public class UserAction {
 				session.setAttribute("me", user.getRealName());
 				// 隐式依赖SimpleAuthorizingRealm
 				SecurityUtils.getSubject().login(new SimpleShiroToken(user));
-				return re.setv("ok", true);
-			} else {//提示错误信息
-				return re.setv("ok", false).setv("msg", "密码错误");
+				return map.setStatus(200);
+			} else {// 提示错误信息
+				throw new LockedAccountException("Account [" + username + "] 密码错误.");
 			}
 		}
 	}

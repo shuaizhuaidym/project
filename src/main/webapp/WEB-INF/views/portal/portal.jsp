@@ -72,9 +72,11 @@
 
 			<div class="span9">
 				<div class="panel-heading">
-					<span class="panel-title">我的任务&nbsp; <a data-toggle="modal" href="<%=path%>/daily/window" data-target="#dailyModal">
+					<span class="panel-title">我的任务&nbsp; 
+					<%-- <a data-toggle="modal" href="<%=path%>/daily/window" data-target="#dailyModal">
 							<i class=" icon-list-alt" title="写日报"></i>
-					</a> <a href="<%=path%>/daily/form"> <i class=" icon-list-alt" title="写日报"></i></a>
+					</a> --%>
+					<a href="<%=path%>/daily/form"> <i class=" icon-list-alt" title="写日报"></i></a>
 					</span>
 				</div>
 				<div id="missionForm-box">
@@ -89,7 +91,7 @@
 	<div id="dailyModal" class="modal hide fade" tabindex="-1">
 		<div class="modal-header form-title">
 			<button type="button" class="close" data-dismiss="modal">×</button>
-			<span id="myModalLabel">我的日报<f:formatDate value="<%=today%>" pattern="yyyy-MM-dd" /></span>
+			<span id="myModalLabel">我的任务<f:formatDate value="<%=today%>" pattern="yyyy-MM-dd" /></span>
 		</div>
 		<div class="modal-body">
 			<!-- 加载远端日报页面 -->

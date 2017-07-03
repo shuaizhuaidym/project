@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	String path = request.getContextPath();
 %>
@@ -30,13 +31,19 @@
 	width: 100%;
 	line-height: 30px;
 	padding: 7px 9px;
-	font-weight:bold
+	font-weight: bold
 }
-.last1{}
+
+.last1 {
+	
+}
 </style>
 </head>
 <body>
 	<form action="<%=path%>/user/authenticate" class="form-horizontal form-signin" method="post">
+		<div class="control-group">
+			<h3 style="color:red">${obj.message}</h3>
+		</div>
 		<div class="control-group">
 			<label class="control-label" for="inputEmail">账号</label>
 			<div class="controls">

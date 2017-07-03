@@ -16,7 +16,7 @@
 </head>
 <body>
 	<div class="row-fluid">
-		<form id="frm_daily" class="form-horizontal" action="<%=path%>/dic/create" method="post">
+		<form id="frm_daily" class="form-horizontal" action="<%=path%>/daily/create" method="post">
 			<div id="daily_item" class="div_with_divider">
 				<div class="control-group">
 					<label class="narrow-label">关联任务</label>

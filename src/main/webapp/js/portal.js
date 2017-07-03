@@ -16,10 +16,25 @@ $(document).ready(function() {
 		});
 		$('#frm_daily').append(item);
 		index++;
+		$("#counter").val(index);
 	});
 	// form window
 	$("#btnInsert").click(function() {
-		$("#daily_item").clone().insertBefore("#function_box");
+		var item = $("#daily_item").clone();
+		item.removeAttr("id");
+		item.find('.w-input').each(function(idx, ele) {
+			var newName = $(ele).attr('name').replace(/0/, index);
+			$(ele).attr('name', newName);
+			var nid = $(ele).attr('id').replace(/0/, index);
+			$(ele).attr('id', nid);
+		});
+		item.find('a').each(function(idx, ele) {
+			var newHref = $(ele).attr('href').replace(/0/, index);
+			$(ele).attr('href', newHref);
+		});
+		item.insertBefore("#function_box");
+		$("#counter").val(index);
+		index++;
 	});
 	// delete
 	$("#btnDelete").click(function() {
@@ -27,6 +42,7 @@ $(document).ready(function() {
 		if (items.length > 1) {
 			$(".div_with_divider:last").remove();
 		}
+		//TODO --index
 	});
 	// save
 	$("#btnSave").click(function() {
