@@ -4,27 +4,49 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.List;
+
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 import util.SQLServer;
 
 import com.jit.project.project.bean.Project;
 
 public class DBUtil {
+	static Logger logger = LogManager.getLogger(DBUtil.class);
+	
 	public static Connection conn = null;
 	public static PreparedStatement ps = null;
 
+	static String sqlTimestamp = "SELECT MAX(bg_last_modify) BG_LAST_MODIFY FROM T_BUG;";
+	static PreparedStatement psTimestamp = null;
+	
 	public static void main(String[] args) {
-		importBUG();
-	}
-
-	protected static void importBUG() {
+		// importBUG();
 		if (conn == null) {
 			connect();
 		}
-		List<String[]> bugs = SQLServer.queryQC();
-		System.out.println("Total get bugs:" + bugs.size());
+//		String stamp = getLastmodify();
+//		System.out.println(stamp);
+		importBUG();
+	}
+
+	/**
+	 *导入QC BUG数据
+	 */
+	public static void importBUG() {
+		if (conn == null) {
+			connect();
+		}
+		String stamp = getLastmodify();
+		logger.info("The last modify date is:" + stamp);
+		
+		List<String[]> bugs = SQLServer.queryQC(stamp);
+		logger.info("Total get bugs:" + bugs.size());
 
 		StringBuilder sql = new StringBuilder("INSERT INTO `t_bug` (");
 		sql.append("`BG_BUG_ID`,");
@@ -42,7 +64,8 @@ public class DBUtil {
 		sql.append("`BG_DETECTION_DATE`,");
 		sql.append("`BG_DETECTION_VERSION`,");
 		sql.append("`BG_PRODUCT`,");
-		sql.append("`BG_MODULE`");
+		sql.append("`BG_MODULE`,");
+		sql.append("`BG_LAST_MODIFY`");
 		sql.append(")");
 		sql.append("VALUES");
 		sql.append("(");
@@ -61,25 +84,33 @@ public class DBUtil {
 		sql.append("'%s',");// testdate
 		sql.append("'%s',");// version
 		sql.append("'Phoenix',");
-		sql.append("'Client'");
+		sql.append("'Client',");
+		sql.append("'%s'");
 		sql.append(");");
 		try {
 			int i = 0;
 			for (String[] b : bugs) {
-				String bql = String.format(sql.toString(), b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7]);
-
-//				System.out.println(++i +":"+ bql);
-
+				String bql = String.format(sql.toString(), b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7],
+						b[8]);
+//				logger.info(bql);
+				++i;
+				System.out.print(".");
+				if (i % 128 == 0) {
+					System.out.println();
+				}
 				ps = conn.prepareStatement(bql);
 				ps.execute();
 			}
-			System.out.println(i+" bugs Imported");
+			logger.info("Tocal " + i + " bugs Imported");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
 	}
 
+	/**
+	 * 历史数据迁移
+	 */
 	public static void importExcel() {
 		ExcelReader<Project> reader = new ExcelReader<Project>();
 		if (conn == null) {
@@ -109,13 +140,21 @@ public class DBUtil {
 		}
 	}
 
+	/**
+	 * 插入本地数据库
+	 * @param sql
+	 * @param p
+	 * @throws SQLException
+	 */
 	public static void insert(String sql, Project p) throws SQLException {
 		try {
 			ps = conn.prepareStatement(sql);
 
 			ps.setString(1, p.getPrjName());
 			ps.setString(2, p.getIndustry());
-			System.out.println(p.getPrudectVersion() + "vvvvvvvvvvvvvvvvv");
+			
+			System.out.println(p.getPrudectVersion() + "");
+			
 			ps.setString(3, p.getPrudectVersion());
 			ps.setString(4, p.getIssueType());
 			ps.setString(5, p.getDescribtion());
@@ -146,7 +185,33 @@ public class DBUtil {
 			ps.close();
 		}
 	}
+	
+	/**
+	 * 获取最后更新时间
+	 * @return
+	 */
+	static String getLastmodify() {
+		java.sql.Timestamp time = new Timestamp(System.currentTimeMillis());
+		if (psTimestamp == null) {
+			try {
+				psTimestamp = conn.prepareStatement(sqlTimestamp);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		try {
+			ResultSet rs = psTimestamp.executeQuery();
+			rs.next();
+			time = rs.getTimestamp("BG_LAST_MODIFY");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return time.toString();
+	}
 
+	/**
+	 * 获取连接
+	 */
 	public static void connect() {
 		try {
 			Class.forName(Const.DRIVER);

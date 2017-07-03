@@ -4,6 +4,8 @@ import org.nutz.dao.Dao;
 import org.nutz.mvc.NutConfig;
 import org.nutz.mvc.Setup;
 
+import task.QcTask;
+
 import com.jit.project.auth.service.AuthorityService;
 import com.jit.project.org.bean.Org;
 import com.jit.project.project.bean.Project;
@@ -26,6 +28,7 @@ public class MvcSetup implements Setup {
 		AuthorityService auth = config.getIoc().get(AuthorityService.class);
 		auth.initFormPackage("com.jit.project");
 		auth.checkBasicRoles(dao.fetch(User.class, "admin"));
+		new QcTask().executeFixedRate();
 	}
 
 	public void destroy(NutConfig config) {

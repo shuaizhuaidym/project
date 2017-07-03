@@ -7,16 +7,22 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
 /**
- * QC数据库测试类，已经测试通过，准备用户QC数据同步
+ * QC数据库数据同步
  * 
  * @author yanming_dai
  * @date 2017年6月20日
  */
 public class SQLServer {
+	static Logger logger = LogManager.getLogger(SQLServer.class);
+	static final String default_modify_date="2015-01-01 00:00:00";
 	/**
 	 * 获取连接
 	 * 
@@ -36,7 +42,7 @@ public class SQLServer {
 		}
 		try {
 			conn = DriverManager.getConnection(dbURL, userName, userPwd);
-			System.out.println("成功连接数据库！");
+			logger.info("成功连接QC数据库！");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -47,7 +53,8 @@ public class SQLServer {
 	public static void main(String[] args) {
 		Connection conn = SQLServer.getConnectionSqlServer();
 		// SQLServer.listTables(conn);
-		SQLServer.fetchBug(conn, false, false);
+		List<String[]> bgs = SQLServer.fetchBug(conn, false, false, "2017-06-20 12:20:23");
+		System.out.println(bgs);
 	}
 
 	/**
@@ -55,9 +62,9 @@ public class SQLServer {
 	 * 
 	 * @return
 	 */
-	public static List<String[]> queryQC() {
+	public static List<String[]> queryQC(String timeStamp) {
 		Connection conn = SQLServer.getConnectionSqlServer();
-		return SQLServer.fetchBug(conn, false, false);
+		return SQLServer.fetchBug(conn, false, false, timeStamp);
 	}
 
 	/**
@@ -65,14 +72,17 @@ public class SQLServer {
 	 * 
 	 * @param conn
 	 */
-	protected static List<String[]> fetchBug(Connection conn, boolean fullCol, boolean debug) {
-		String sql = "select * from td.BUG where BG_STATUS in('新建','打开','重新打开')";
-		PreparedStatement state;
+	protected static List<String[]> fetchBug(Connection conn, boolean fullCol, boolean debug,
+			String timeStamp) {
+		String sql = "select * from td.BUG where BG_STATUS in('新建','打开','重新打开') and (DATEDIFF([SECOND], bg_last_modify,'"
+				+ timeStamp + "')<0 )";
+		PreparedStatement preparedStatement;
 		List<String[]> columns = new LinkedList<String[]>();
 		try {
-			state = conn.prepareStatement(sql);
+			logger.info(sql);
+			preparedStatement = conn.prepareStatement(sql);
 
-			ResultSet rs = state.executeQuery();
+			ResultSet rs = preparedStatement.executeQuery();
 
 			List<String> cols = new LinkedList<String>();
 			List<Integer> types = new LinkedList<Integer>();
@@ -85,7 +95,7 @@ public class SQLServer {
 			StringBuilder row = null;
 			while (rs.next()) {// 判断是否还有下一个数据
 				row = new StringBuilder();
-				String[] column = new String[8];
+				String[] column = new String[9];
 				if (fullCol) {
 					for (int col = 0; col < cols.size(); col++) {
 						row.append(getVal(rs, cols.get(col), types.get(col)));
@@ -99,7 +109,8 @@ public class SQLServer {
 					column[5] = getVal(rs, "BG_DETECTED_BY", -12);
 					column[6] = getVal(rs, "BG_DETECTION_DATE", -151);
 					column[7] = getVal(rs, "BG_DETECTION_VERSION", -12);
-
+					column[8] = getVal(rs, "BG_LAST_MODIFY", -151);
+					
 					row.append(getVal(rs, "BG_BUG_ID", -4)).append(":");
 					row.append(getVal(rs, "BG_STATUS", -12)).append(":");
 					row.append(getVal(rs, "BG_RESPONSIBLE", -12)).append(":");
@@ -107,7 +118,8 @@ public class SQLServer {
 					row.append(getVal(rs, "BG_DESCRIPTION", -1)).append(":");
 					row.append(getVal(rs, "BG_DETECTED_BY", -12)).append(":");
 					row.append(getVal(rs, "BG_DETECTION_DATE", -151)).append(":");
-					row.append(getVal(rs, "BG_DETECTION_VERSION", -12));
+					row.append(getVal(rs, "BG_DETECTION_VERSION", -12)).append(":");
+					row.append(getVal(rs, "BG_LAST_MODIFY", -151));
 				}
 				columns.add(column);
 				if (debug) {
@@ -140,7 +152,8 @@ public class SQLServer {
 		case -1:
 			return filterChar(rs.getString(name));
 		case -151:
-			return rs.getDate(name) + "";
+			Timestamp dt = rs.getTimestamp(name);
+			return dt == null ? default_modify_date : dt.toString();
 		default:
 			return "";
 		}
