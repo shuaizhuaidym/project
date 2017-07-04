@@ -32,7 +32,7 @@
 	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 
 	<div class="container" style="width: 65%; margin: 0 auto; border: 1px #ddd solid">
-		<input type="hidden" id="counter" value="0">
+		<input type="hidden" id="share_counter" value="0"/>
 		<form id="frm_daily" action="<%=path%>/daily/create" method="post" class="form-horizontal">
 			<fieldset>
 				<legend>
@@ -45,7 +45,7 @@
 					<div class="controls">
 						<input type="text" id="summary_0" name="daily.items[0].missionSummary" class="w-input"> 
 						<input type="hidden" id="id_0" name="daily.items[0].missionID" class="w-input"/>
-						<a data-toggle="modal" href="<%=path%>/mission/refer?mission_index=0" data-target="#missionModal">[选择]</a>
+						<a data-toggle="modal" href="<%=path%>/mission/refer?mission_index=0" onclick="trig(0);" data-target="#missionModal">[选择]</a>
 					</div>
 				</div>
 				<div class="control-group">

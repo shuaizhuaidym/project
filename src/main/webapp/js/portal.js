@@ -16,7 +16,6 @@ $(document).ready(function() {
 		});
 		$('#frm_daily').append(item);
 		index++;
-		$("#counter").val(index);
 	});
 	// form window
 	$("#btnInsert").click(function() {
@@ -30,10 +29,11 @@ $(document).ready(function() {
 		});
 		item.find('a').each(function(idx, ele) {
 			var newHref = $(ele).attr('href').replace(/0/, index);
+			var clik = $(ele).attr('onclick').replace(/0/, index);
 			$(ele).attr('href', newHref);
+			$(ele).attr('onclick', clik);
 		});
 		item.insertBefore("#function_box");
-		$("#counter").val(index);
 		index++;
 	});
 	// delete
@@ -102,7 +102,9 @@ function refMission(index) {
 			+ "scrollbars=yes, resizable=no, " + "copyhistory=yes, "
 			+ "width=640, height=480");
 }
-
+function trig(index){
+	$("#share_counter").val(index);
+}
 function refer(index, msg) {
 	var summary = "summary_0".replace(/0/, index);
 	var idd = "id_0".replace(/0/, index);

@@ -19,11 +19,11 @@
 
 <script type="text/javascript">
 	function confirm(box) {
-		if(window.opener){
+		if(window.opener){//window style
 			window.opener.refer('${mission_index}',{id : box.id, name : box.name});
 			window.close();
-		}else{
-			$("#summary_"+$("#counter").val()).val(box.id + ":" + box.name);
+		}else{//form style
+			$("#summary_"+$("#share_counter").val()).val(box.id + ":" + box.name);
 		}
 	}
 
