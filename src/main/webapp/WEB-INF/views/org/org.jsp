@@ -59,7 +59,7 @@ ul,ol {
 	margin-top: -10px;
 	margin-left: -10px;
 	border-color: transparent;
-	border-bottom-color: #dfdfdf;
+	border-bottom-color: #888;
 	border-top-width: 0;
 	border-width: 10px;
 	border-style: solid;

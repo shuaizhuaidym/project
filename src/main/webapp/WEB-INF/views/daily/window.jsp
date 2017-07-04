@@ -6,8 +6,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href="<%=path%>/css/bootstrap.min.css" rel="stylesheet">
-<link href="<%=path%>/css/commom.css" rel="stylesheet">
+<link href="<%=path%>/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="<%=path%>/css/commom.css" rel="stylesheet"/>
 <style type="text/css">
 </style>
 <script type="text/javascript" src="<%=path%>/js/jquery/jquery-1.11.1.js"></script>

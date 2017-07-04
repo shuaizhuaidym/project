@@ -42,7 +42,6 @@ $(document).ready(function() {
 		if (items.length > 1) {
 			$(".div_with_divider:last").remove();
 		}
-		//TODO --index
 	});
 	// save
 	$("#btnSave").click(function() {

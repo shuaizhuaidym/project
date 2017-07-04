@@ -33,7 +33,7 @@
 
 	<div class="container" style="width: 65%; margin: 0 auto; border: 1px #ddd solid">
 		<input type="hidden" id="share_counter" value="0"/>
-		<form id="frm_daily" action="<%=path%>/daily/create" method="post" class="form-horizontal">
+		<form id="frm_daily" action="<%=path%>/daily/save" method="post" class="form-horizontal">
 			<fieldset>
 				<legend>
 					<span>写日报</span>
@@ -49,27 +49,36 @@
 					</div>
 				</div>
 				<div class="control-group">
-					<label class="control-label" for="devMgr">工作时间（小时）</label>
+					<label class="control-label" for="devMgr">工时（小时）</label>
 					<div class="controls">
-						<input type="text" id="devMgr" name="product.devMgr" class="w-input">
+						<input type="text" id="devMgr" name="daily.items[0].hours" class="w-input">
 					</div>
 				</div>
 				<div class="control-group">
-					<label class="control-label" for="productMgr">完成比例</label>
+					<label class="control-label" for="productMgr">完成比例%</label>
 					<div class="controls">
-						<input type="text" id="productMgr" name="product.productMgr" class="w-input">
+						<input type="text" id="productMgr" name="daily.items[0].percentage" class="w-input"/>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="desc">工作内容</label>
 					<div class="controls">
-						<textarea rows="3" id="desc" name="product.desc" class="w-input"></textarea>
+						<textarea rows="3" id="desc" name="daily.items[0].detail" class="w-input"></textarea>
 					</div>
 				</div>
+				<div class="control-group">
+					<label class="control-label" for="desc">疑难问题</label>
+					<div class="controls">
+						<input type="text" id="productMgr" name="daily.items[0].problerm" class="w-input"/>
+					</div>
+				</div>
+				
 			</div>
 			<div class="control-group" id="function_box">
 				<div class="controls">
-					<a href="#"  class="btn btn-warning" id="btnInsert">新增日志条目</a>
+					<a href="#" class="btn btn-warning" id="btnInsert">新增日报条目</a>
+					<input type="button" class="btn btn-inverse" id="btnDelete" value="删除"></input>
+					
 					<button type="submit" class="btn btn-success">保存</button>
 					<a href="<%=path%>/product/list" class="btn btn-primary">返回列表</a>
 				</div>

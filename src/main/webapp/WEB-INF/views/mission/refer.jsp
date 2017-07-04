@@ -24,6 +24,7 @@
 			window.close();
 		}else{//form style
 			$("#summary_"+$("#share_counter").val()).val(box.id + ":" + box.name);
+			$("#id_"+$("#share_counter").val()).val(box.id);
 		}
 	}
 

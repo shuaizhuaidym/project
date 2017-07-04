@@ -35,6 +35,9 @@ textarea {
 
 <script charset="utf-8" src="<%=path %>/kindediter/kindeditor-min.js"></script>
 <script charset="utf-8" src="<%=path %>/kindediter/lang/zh_CN.js"></script>
+
+<script charset="utf-8" src="<%=path %>/js/mission/form.js"></script>
+
 <script>
 	var editor;
 	KindEditor.ready(function(K) {	
@@ -75,8 +78,10 @@ textarea {
 							style="width: 92%; height: 100px; visibility: hidden;"></textarea></td>
 				</tr>
 				<tr>
-					<td><label class="control-label col-xs-2">所属项目</label></td>
-					<td colspan="3"><input type="text" id="mission_name" name="mission.projectName" class="required w-input"></td>
+					<td><label class="control-label col-xs-2">相关项目</label></td>
+					<td><input type="text" id="mission_name" name="mission.projectName" class="required"></td>
+					<td><label class="control-label col-xs-2">相关BUG</label></td>
+					<td><input type="text" id="mission_name" name="mission.projectName" class="required"></td>
 				</tr>
 				<tr>
 					<td><label class="control-label col-xs-2">所属产品</label></td>
@@ -127,7 +132,7 @@ textarea {
 					<td><label class="control-label col-xs-2">上级任务</label></td>
 					<td><input type="text" id="mission_name" name="mission.parentID" class="required"></td>
 					<td><label class="control-label col-xs-2">截止日期</label></td>
-					<td><input type="text" id="mission_name" name="mission.deadline" class="required"></td>
+					<td><input type="text" id="mission_name" name="mission.deadline" class="datetime"></td>
 				</tr>
 				<tr>
 					<td><label class="control-label col-xs-2">指派给</label></td>
@@ -146,15 +151,15 @@ textarea {
 				
 				<tr>
 					<td><label class="control-label col-xs-2">计划开始时间</label></td>
-					<td><input type="text" id="mission_name" name="mission.planStart" class="required"></td>
+					<td><input type="text" id="mission_name" name="mission.planStart" class="datetime"></td>
 					<td><label class="control-label col-xs-2">开始时间</label></td>
-					<td><input type="text" id="mission_name" name="mission.startDate" class="required"></td>
+					<td><input type="text" id="mission_name" name="mission.startDate" class="datetime"></td>
 				</tr>
 				<tr>
 					<td><label class="control-label col-xs-2">计划结束时间</label></td>
-					<td><input type="text" id="mission_name" name="mission.planEnd" class="required"></td>
+					<td><input type="text" id="mission_name" name="mission.planEnd" class="datetime"></td>
 					<td><label class="control-label col-xs-2">结束时间</label></td>
-					<td><input type="text" id="mission_name" name="mission.endDate" class="required"></td>
+					<td><input type="text" id="mission_name" name="mission.endDate" class="datetime"></td>
 				</tr>
 				<tr>
 					<td><label class="control-label col-xs-2">进展说明</label></td>

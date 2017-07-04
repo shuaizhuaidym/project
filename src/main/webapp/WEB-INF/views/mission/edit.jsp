@@ -72,14 +72,16 @@ textarea {
 							style="width: 92%; height: 100px;">${obj.summary}</textarea></td>
 				</tr>
 				<tr>
-					<td><label class="control-label col-xs-2">所属项目</label></td>
-					<td colspan="3">
+					<td><label class="control-label col-xs-2">相关项目</label></td>
+					<td>
 						<select>
 							<option value="山东财政">山东财政</option>
 							<option value="山西社保">山西社保</option>
 							<option value="沧州公安">沧州公安</option>
-						</select><span>要弹出窗口带搜索，因为项目会很多</span>
+						</select>
 					</td>
+					<td><label class="control-label col-xs-2">相关BUG</label></td>
+					<td><input type="text" id="mission_name" name="mission.projectName" class="required"></td>
 				</tr>
 				<tr>
 					<td><label class="control-label col-xs-2">所属产品</label></td>

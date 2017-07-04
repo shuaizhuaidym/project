@@ -31,10 +31,7 @@
 					</li>
 				</ul>
 				<form class="navbar-form pull-right" action="<%=path%>/user/authenticate" method="post">
-					<input type="text" name="account" class="span2" placeholder="Account"/>
-					<input type="password" name="password" class="span2" placeholder="Password"/>
-					<button type="submit" class="btn btn-success">登录</button>
-					<a href="<%=path%>/user/logout">注销</a>
+					<a href="<%=path%>/user/logout" class="btn btn-inverse">注销</a>
 				</form>
 			</div>
 			<!--/.nav-collapse -->

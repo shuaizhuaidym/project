@@ -21,7 +21,7 @@ import com.jit.project.daily.bean.Query;
 import com.jit.project.daily.service.IDailyItemService;
 import com.jit.project.daily.service.IDailyService;
 import com.jit.project.dictionary.service.DicService;
-import com.jit.project.dictionary.service.IDicService;
+import com.jit.project.user.service.UserService;
 
 @InjectName("dailyAction")
 public class DailyAction {
@@ -31,11 +31,13 @@ public class DailyAction {
 	private IDailyItemService dailyItemService;
 	
 	private DicService dicService;
+	
+	private UserService userService;
 
 	private static String success = "操作成功";
 
 	/**
-	 * 模态窗口
+	 * 写日报-模态窗口
 	 * 
 	 * @return
 	 */
@@ -47,7 +49,7 @@ public class DailyAction {
 	}
 
 	/**
-	 * 常规页面
+	 * 写日报-常规页面
 	 * 
 	 * @return
 	 */
@@ -65,7 +67,7 @@ public class DailyAction {
 	 * @return
 	 */
 	@At("/daily/save")
-	@Ok("json:full")
+	@Ok("redirect:/daily/search")
 	public String save(@Param("::daily.") Daily daily, HttpSession session) {
 		daily.setCreateDate(Calendar.getInstance().getTime());
 		daily.setOwnerName((String) session.getAttribute("me"));
@@ -85,7 +87,7 @@ public class DailyAction {
 		if (query == null) {
 			query = new Query();
 		}
-		Map<String, String> owners = this.dicService.service(IDicService.type_engineer);
+		Map<String, String> owners = this.userService.asDic();
 		request.setAttribute("owners", owners);
 		request.setAttribute("query", query);
 		QueryResult result = this.dailyService.search(query);
@@ -140,5 +142,13 @@ public class DailyAction {
 
 	public void setDicService(DicService dicService) {
 		this.dicService = dicService;
+	}
+
+	public UserService getUserService() {
+		return userService;
+	}
+
+	public void setUserService(UserService userService) {
+		this.userService = userService;
 	}
 }

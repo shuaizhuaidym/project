@@ -19,8 +19,10 @@ public class Mission extends BasePojo{
 	private Integer missionID;
 	@Column("mission_name")
 	private String missionName;
+	//任务类型
 	@Column("type")
 	private String type;
+	//任务内容
 	@Column("content")
 	private String content;
 	@Column("summary")
@@ -31,6 +33,7 @@ public class Mission extends BasePojo{
 	private String status;
 	@Column("progress")
 	private int progress;
+	//任务类别
 	@Column("task_class")
 	private String taskClass;
 	@Column("parent_id")
@@ -45,14 +48,18 @@ public class Mission extends BasePojo{
 	private Date planEnd;
 	@Column("end_date")
 	private Date endDate;
+	//产品子类
 	@Column("product_sub_type")
 	private int productSubType;
+	//基线版本
 	@Column("product_base_version")
 	private String productBaseVersion;
+	//相关项目
 	@Column("project_id")
 	private int projectID;
 	@Column("project_name")
 	private int projectName;//冗余字段
+	//相关产品
 	@Column("product_id")
 	private int productID;
 	@Column("product_name")
@@ -61,8 +68,10 @@ public class Mission extends BasePojo{
 	private String progressDetail;
 	@Column("module")
 	private int module;
+	//任务负责人
 	@Column("assign_to")
 	private String assignTo;
+	//总投入人力*小时
 	@Column("total_hours")
 	private String totalHours;
 	@Column("team_id")

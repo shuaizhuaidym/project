@@ -2320,11 +2320,11 @@ table td[class*="span"],table th[class*="span"],.row-fluid table td[class*="span
 }
 
 .icon-arrow-left {
-	background-position: -240px -96px
+	background-position: -360px -146px
 }
 
 .icon-arrow-right {
-	background-position: -264px -96px
+	background-position: -396px -146px
 }
 
 .icon-arrow-up {
