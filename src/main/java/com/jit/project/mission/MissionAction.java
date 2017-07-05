@@ -21,6 +21,7 @@ import org.nutz.mvc.annotation.Param;
 import com.jit.project.daily.bean.DailyItem;
 import com.jit.project.daily.service.DailyItemServiceImpl;
 import com.jit.project.dictionary.service.IDicService;
+import com.jit.project.product.service.ProductService;
 import com.jit.project.user.service.UserService;
 
 @InjectName("missionAction")
@@ -32,23 +33,28 @@ public class MissionAction {
 
 	private IDicService dicService;
 	private UserService userService;
+	
+	private ProductService prdtService; 
 
 	Map<String, String> types = new HashMap<String, String>();
 	Map<String, String> status = new HashMap<String, String>();
 	Map<String, String> classes = new HashMap<String, String>();
 	Map<String, String> users = new HashMap<String, String>();
+	Map<String, String> products = new HashMap<String, String>();
 
 	private void prepareDic(HttpServletRequest request) {
 		if (types.isEmpty()) {
 			types = this.dicService.service(IDicService.type_mission_type);
 			status = this.dicService.service(IDicService.type_mission_status);
 			classes = this.dicService.service(IDicService.type_mission_class);
-			users = userService.asDic();
+			users = this.userService.asDic();
+			products=this.prdtService.asDic();
 		}
 		request.setAttribute("users", users);
 		request.setAttribute("types", types);
 		request.setAttribute("status", status);
 		request.setAttribute("classes", classes);
+		request.setAttribute("products", products);
 	}
 
 	/**
@@ -268,6 +274,14 @@ public class MissionAction {
 
 	public void setUserService(UserService userService) {
 		this.userService = userService;
+	}
+
+	public ProductService getPrdtService() {
+		return prdtService;
+	}
+
+	public void setPrdtService(ProductService prdtService) {
+		this.prdtService = prdtService;
 	}
 
 }

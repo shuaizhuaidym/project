@@ -85,7 +85,8 @@ textarea {
 				</tr>
 				<tr>
 					<td><label class="control-label col-xs-2">所属产品</label></td>
-					<td><input type="text" id="mission_name" name="mission.productID" class="required"></td>
+					<td>
+						<ui:select name="mission.productName" path="${mission.productName}" items="${products}" css="required"></ui:select>
 					<td><label class="control-label col-xs-2">任务类型</label></td>
 					<td><select name="mission.type">
 							<option value="科研项目">科研项目</option>

@@ -2585,7 +2585,7 @@ table td[class*="span"],table th[class*="span"],.row-fluid table td[class*="span
 .dropdown-menu .divider {
 	*width: 100%;
 	height: 1px;
-	margin: 9px 1px;
+	margin: 1px 1px;
 	*margin: -5px 0 5px;
 	overflow: hidden;
 	background-color: #e5e5e5;

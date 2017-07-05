@@ -20,7 +20,14 @@
 					<li><a href="<%=path %>/mission/query">任务管理</a></li>
 					<li><a href="<%=path %>/product/list">产品维护</a></li>
 					<li><a href="<%=path %>/daily/search">日报检索</a></li>
-					<li><a href="<%=path %>/chart">图表分析</a></li>
+					
+					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">统计分析<b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="<%=path %>/mission/statistics">报表统计</a></li>
+							<li class="divider"></li>
+							<li><a href="<%=path %>/chart">图表分析</a></li>
+						</ul>
+					</li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">系统维护<b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li><a href="<%=path %>/org/list">机构设置</a></li>

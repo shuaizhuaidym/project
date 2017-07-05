@@ -143,6 +143,9 @@ var ioc = {
 			},
 			userService : {
 				refer : 'userService'
+			},
+			prdtService : {
+				refer : 'prdtService'
 			}
 		}
 	},

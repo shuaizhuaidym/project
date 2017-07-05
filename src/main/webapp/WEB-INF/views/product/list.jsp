@@ -65,30 +65,30 @@
 	var setting = {};
 	// zTree 的数据属性，深入使用请参考 API 文档（zTreeNode 节点数据详解）
 	var zNodes = [ {
-		name : "身份认证网关[phoenix]",
+		treeNodeName : "身份认证网关[phoenix]",
 		open : true,
 		children : [ {
-			name : "客户端",
+			treeNodeName : "客户端",
 			children : [ {
-				name : "proxy"
+				treeNodeName : "proxy"
 			}, {
-				name : "hook"
+				treeNodeName : "hook"
 			} ]
 		}, {
-			name : "服务器",
+			treeNodeName : "服务器",
 			children : [ {
-				name : "GW"
+				treeNodeName : "GW"
 			}, {
-				name : "Core1"
+				treeNodeName : "Core1"
 			} ]
 		} ]
 	}, {
-		name : "磐石终端",
+		treeNodeName : "磐石终端",
 		open : true,
 		children : [ {
-			name : "test2_1"
+			treeNodeName : "test2_1"
 		}, {
-			name : "test2_2"
+			treeNodeName : "test2_2"
 		} ]
 	} ];
 	$(document).ready(function() {
@@ -149,8 +149,9 @@
 								<td>${prd.testMgr}</td>
 								<td>${prd.releaseVersion}</td>
 								<td><f:formatDate value="${prd.releaseDate}" pattern="yyyy-MM-dd" /></td>
-								<td><a href="<%=path%>/product/edit?product_id=${prd.productID}"><i class="icon-pencil" title="编辑"></i></a> <a
-									href="#"><i class=" icon-remove" title="删除"></i></a></td>
+								<td><a href="<%=path%>/product/edit?product_id=${prd.productID}"><i class="icon-pencil" title="编辑"></i></a>
+									<a href="<%=path%>/product/delete?product_id=${prd.productID}"><i class=" icon-remove" title="删除"></i></a>
+								</td>
 							</tr>
 						</c:forEach>
 					</table>

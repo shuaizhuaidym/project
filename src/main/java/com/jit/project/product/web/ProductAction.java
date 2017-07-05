@@ -114,6 +114,17 @@ public class ProductAction {
 		return nodes;
 	}
 
+	/**
+	 * 删除产品
+	 * @param product_id
+	 */
+	@At("/product/delete")
+	@Ok("redirect:/product/list")
+	public void delete(@Param("product_id") Long product_id) {
+		//TODO 校验
+		this.prdtService.delete(product_id);
+	}
+	
 	public ProductService getPrdtService() {
 		return prdtService;
 	}

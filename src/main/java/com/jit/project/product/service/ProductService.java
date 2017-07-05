@@ -1,16 +1,18 @@
 package com.jit.project.product.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.nutz.dao.Cnd;
 import org.nutz.dao.QueryResult;
 import org.nutz.dao.pager.Pager;
-import org.nutz.service.NameEntityService;
+import org.nutz.service.IdEntityService;
 
 import com.jit.project.product.bean.Product;
 import com.jit.project.product.bean.Query;
 
-public class ProductService extends NameEntityService<Product> implements IProductService {
+public class ProductService extends IdEntityService<Product> implements IProductService {
 
 	public void create(Product p) {
 		dao().insert(p);
@@ -28,9 +30,21 @@ public class ProductService extends NameEntityService<Product> implements IProdu
 		return this.dao().query(Product.class, Cnd.where("parent_id", "=", parentID));
 	}
 
+	/**
+	 * 展现为下拉选字典
+	 * @return
+	 */
+	public Map<String, String> asDic() {
+		Map<String, String> products = new HashMap<String, String>();
+		List<Product> lprd = this.query(null, null);
+		for (Product p : lprd) {
+			products.put(p.getProductName(), p.getProductName());
+		}
+		return products;
+	}
+	
 	@Override
 	public String loadTreeJson(String parentID, String type) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }
