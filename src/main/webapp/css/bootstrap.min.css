@@ -3545,7 +3545,7 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini {
 }
 
 .nav {
-	margin-bottom: 20px;
+	/*margin-bottom: 20px;*/
 	margin-left: 0;
 	list-style: none
 }
@@ -3655,12 +3655,12 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini {
 .nav-tabs>li>a {
 	padding-top: 8px;
 	padding-bottom: 8px;
-	line-height: 20px;
+	/*line-height: 20px;*/
 	border: 1px solid transparent;
 	-webkit-border-radius: 4px 4px 0 0;
 	-moz-border-radius: 4px 4px 0 0;
 	border-radius: 4px 4px 0 0;
-	background-color: #a4c9f6;
+	background-color: #ddd;/*#a4c9f6*/
 	border-width: 1 1 0 1;
 	border-style: solid;
 	border-color: #ddd

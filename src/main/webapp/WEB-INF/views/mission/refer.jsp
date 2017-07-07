@@ -14,7 +14,16 @@
 
 <link href="<%=path%>/css/bootstrap.min.css" rel="stylesheet">
 <link href="<%=path%>/css/list.css" rel="stylesheet">
-<link href="<%=path%>/css/commom.css" rel="stylesheet"/>
+<link href="<%=path%>/css/commom.css" rel="stylesheet" />
+<style type="text/css">
+.pagination {
+	margin: 0
+}
+
+.table th,.table td {
+	padding: 5px
+}
+</style>
 <script type="text/javascript" src="<%=path%>/js/jquery/jquery-1.11.1.js"></script>
 
 <script type="text/javascript">
@@ -32,7 +41,7 @@
 		$.ajax({
 			cache : false,
 			type : "POST",
-			url : "<%=path %>/mission/refer",
+			url : "<%=path%>/mission/refer",
 			data : $('#ajaxForm').serialize(),
 			async : false,
 			error : function(request) {
@@ -47,29 +56,37 @@
 </head>
 <body>
 	<div class="container-fluid">
-		<div class="row-fluid">
-			<table class="table table-bordered table-striped">
-				<tr>
-					<th class="w32px">序号</th>
-					<th class="w32px">选择</th>
-					<th style="width: 128px">任务名称</th>
-					<th>任务摘要</th>
-				</tr>
-				<c:forEach var="mission" items="${obj.list}" varStatus="index">
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="#mission" data-toggle="tab">任务</a></li>
+			<li><a href="#prj-support" data-toggle="tab">项目支持</a></li>
+			<li><a href="#bug-fix" data-toggle="tab">BUG</a></li>
+		</ul>
+		<div class="tab-content">
+			<div class="tab-pane active" id="mission">
+				<table class="table table-bordered table-striped">
 					<tr>
-						<td>${index.count}</td>
-						<td><input type="checkbox" id="${mission.missionID}" name="${mission.missionName}" onclick="confirm(this)" data-dismiss="modal"/></td>
-						<td>${mission.missionName}</td>
-						<td>${mission.summary}</td>
+						<th class="w32px">序号</th>
+						<th class="w32px">选择</th>
+						<th>任务名称</th>
 					</tr>
-				</c:forEach>
-			</table>
-		</div>
-		<form action="<%=path %>/mission/refer" id="ajaxForm">
-			<pg:page id="ajaxForm" async="true" pageNo="${obj.pager.pageNumber}" currentClass="active" pageSize="${obj.pager.pageSize}"
-				totalCount="${obj.pager.recordCount}">
-			</pg:page>
-		</form>
-	</div>
+					<c:forEach var="mission" items="${obj.list}" varStatus="index">
+						<tr>
+							<td>${index.count}</td>
+							<td><input type="checkbox" id="${mission.missionID}" name="${mission.missionName}" onclick="confirm(this)"
+								data-dismiss="modal" /></td>
+							<td>${mission.missionName}</td>
+						</tr>
+					</c:forEach>
+				</table>
+				<form action="<%=path%>/mission/refer" id="ajaxForm">
+					<pg:page id="ajaxForm" async="true" pageNo="${obj.pager.pageNumber}" currentClass="active" pageSize="${obj.pager.pageSize}"
+						totalCount="${obj.pager.recordCount}">
+					</pg:page>
+				</form>
+			</div>
+			<div class="tab-pane" id="prj-support">...</div>
+			<div class="tab-pane" id="bug-fix">...</div>
+		</div><!-- tab-content -->
+	</div><!-- container-fluid -->
 </body>
 </html>

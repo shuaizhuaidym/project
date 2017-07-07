@@ -24,6 +24,7 @@
 <script type="text/javascript" src="<%=path%>/js/jquery/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="<%=path%>/js/bootstrap-dropdown.js"></script>
 <script type="text/javascript" src="<%=path%>/js/bootstrap-modal.js"></script>
+<script type="text/javascript" src="<%=path%>/js/bootstrap-tab.js"></script>
 <script type="text/javascript" src="<%=path%>/js/jquery-validation-1.9.0/jquery.validate.js"></script>
 <script type="text/javascript" src="<%=path%>/js/portal.js"></script>
 
@@ -93,7 +94,7 @@
 	<div id="missionModal" class="modal hide fade" tabindex="-1">
 		<div class="modal-header form-title">
 			<button type="button" class="close" data-dismiss="modal">×</button>
-			<span id="myModalLabel">我的任务${today}</span>
+			<span id="myModalLabel">我的任务/项目/bug${today}</span>
 		</div>
 		<div id="modal-body" class="modal-body">
 			<!-- 加载远端 -->
