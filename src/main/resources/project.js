@@ -28,6 +28,9 @@ var ioc = {
 		fields : {
 			prjService : {
 				refer : 'prjService'
+			},
+			userService : {
+				refer : 'userService'
 			}
 		}
 	},
@@ -146,6 +149,12 @@ var ioc = {
 			},
 			prdtService : {
 				refer : 'prdtService'
+			},
+			prjService : {
+				refer : 'prjService'
+			},
+			bugService : {
+				refer : 'bugService'
 			}
 		}
 	},
@@ -227,6 +236,13 @@ var ioc = {
 				refer : 'dao'
 			}
 		}
+	},
+	bugAction : {
+		type : "com.jit.project.bug.web.BugAction",
+		fields : {
+			bugService : {
+				refer : 'bugService'
+			}
+		}
 	}
-	
 };

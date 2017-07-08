@@ -16,8 +16,8 @@ import org.nutz.mvc.annotation.Param;
 
 import com.jit.project.auth.bean.Permission;
 import com.jit.project.auth.bean.Role;
+import com.jit.project.base.web.BaseAction;
 import com.jit.project.user.bean.User;
-import com.jit.project.web.BaseAction;
 
 @At("/admin/authority")
 @IocBean

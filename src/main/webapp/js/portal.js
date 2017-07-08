@@ -28,9 +28,9 @@ $(document).ready(function() {
 			$(ele).attr('id', nid);
 		});
 		item.find('a').each(function(idx, ele) {
-			var newHref = $(ele).attr('href').replace(/0/, index);
+//			var newHref = $(ele).attr('href').replace(/0/, index);
 			var clik = $(ele).attr('onclick').replace(/0/, index);
-			$(ele).attr('href', newHref);
+//			$(ele).attr('href', newHref);
 			$(ele).attr('onclick', clik);
 		});
 		item.insertBefore("#function_box");

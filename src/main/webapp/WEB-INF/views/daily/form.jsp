@@ -78,9 +78,10 @@
 			<div class="control-group" id="function_box">
 				<div class="controls">
 					<a href="#" class="btn btn-warning" id="btnInsert">新增日报条目</a>
-					<input type="button" class="btn btn-inverse" id="btnDelete" value="删除"></input>
 					
-					<button type="submit" class="btn btn-success">保存</button>
+					<input type="button" class="btn btn-inverse" id="btnDelete" value="删除"></input>
+					<input type="submit" class="btn btn-success" value="保存"></input>
+					
 					<a href="<%=path%>/product/list" class="btn btn-primary">返回列表</a>
 				</div>
 			</div>

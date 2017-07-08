@@ -7,6 +7,7 @@ import org.nutz.mvc.annotation.SessionBy;
 import org.nutz.mvc.annotation.SetupBy;
 import org.nutz.mvc.ioc.provider.JsonIocProvider;
 
+import com.jit.project.bug.web.BugAction;
 import com.jit.project.daily.web.DailyAction;
 import com.jit.project.dictionary.web.DicAction;
 import com.jit.project.mission.MissionAction;
@@ -24,7 +25,8 @@ import com.jit.project.user.web.UserAction;
 	MissionAction.class, 
 	DailyAction.class, 
 	PortalAction.class, 
-	UserAction.class })
+	UserAction.class, 
+	BugAction.class})
 @IocBy(type = JsonIocProvider.class, args = { "project.js" })
 @SetupBy(MvcSetup.class)
 @SessionBy(ShiroSessionProvider.class)

@@ -39,8 +39,8 @@ import org.nutz.mvc.upload.TempFile;
 import org.nutz.mvc.upload.UploadAdaptor;
 
 import com.jit.project.auth.Toolkit;
+import com.jit.project.base.web.BaseAction;
 import com.jit.project.user.bean.UserProfile;
-import com.jit.project.web.BaseAction;
 
 @IocBean
 @At("/user/profile")

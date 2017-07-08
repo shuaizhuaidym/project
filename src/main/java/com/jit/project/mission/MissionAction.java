@@ -18,10 +18,12 @@ import org.nutz.mvc.annotation.At;
 import org.nutz.mvc.annotation.Ok;
 import org.nutz.mvc.annotation.Param;
 
+import com.jit.project.bug.service.BugServiceImpl;
 import com.jit.project.daily.bean.DailyItem;
 import com.jit.project.daily.service.DailyItemServiceImpl;
 import com.jit.project.dictionary.service.IDicService;
 import com.jit.project.product.service.ProductService;
+import com.jit.project.project.service.PrjService;
 import com.jit.project.user.service.UserService;
 
 @InjectName("missionAction")
@@ -35,6 +37,10 @@ public class MissionAction {
 	private UserService userService;
 	
 	private ProductService prdtService; 
+	
+	private PrjService prjService;
+	
+	private BugServiceImpl bugService;
 
 	Map<String, String> types = new HashMap<String, String>();
 	Map<String, String> status = new HashMap<String, String>();
@@ -239,8 +245,13 @@ public class MissionAction {
 		if (query == null) {
 			query = new com.jit.project.mission.Query();
 		}
-		QueryResult result = this.missionService.query(query);
-		request.setAttribute("mission_index", request.getParameter("mission_index"));
+		QueryResult result = this.missionService.query(query);// TODO 当前用户的任务
+		// request.setAttribute("mission_index", request.getParameter("mission_index"));
+		QueryResult projects = this.prjService.query(new com.jit.project.bean.Query());
+		request.setAttribute("projects", projects);
+		
+		QueryResult bugs = this.bugService.query(new com.jit.project.bug.bean.Query());
+		request.setAttribute("bugs", bugs);
 		return result;
 	}
 
@@ -282,6 +293,22 @@ public class MissionAction {
 
 	public void setPrdtService(ProductService prdtService) {
 		this.prdtService = prdtService;
+	}
+
+	public PrjService getPrjService() {
+		return prjService;
+	}
+
+	public void setPrjService(PrjService prjService) {
+		this.prjService = prjService;
+	}
+
+	public BugServiceImpl getBugService() {
+		return bugService;
+	}
+
+	public void setBugService(BugServiceImpl bugService) {
+		this.bugService = bugService;
 	}
 
 }

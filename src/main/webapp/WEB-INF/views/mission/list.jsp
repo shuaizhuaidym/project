@@ -139,14 +139,16 @@
 						<c:forEach var="mission" items="${obj.list}" varStatus="index">
 							<tr>
 								<td>${index.count}</td>
-								<td>${mission.missionName}</td>
+								<td><a href="<%=path %>/mission/edit?mission_id=${mission.missionID}">
+										${mission.missionName}
+									</a>
+								</td>
 								<td>${mission.type}</td>
 								<td>${mission.summary}</td>
 								<td>${mission.assignTo}</td>
 								<td>${mission.status}</td>
 								<td>
 									<a href="<%=path %>/mission/loadForAssignAsync?mission_id=${mission.missionID}" data-toggle="modal" data-target="#assignModal"><i class="icon-hand-right" title="指派"></i></a>
-									<a href="<%=path %>/mission/edit?mission_id=${mission.missionID}"><i class="icon-pencil" title="编辑"></i></a>
 									<a href="<%=path %>/mission/history?mission_id=${mission.missionID}"><i class="icon-time" title="任务历史"></i></a></td>
 
 							</tr>

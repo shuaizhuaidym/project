@@ -63,7 +63,7 @@
 		<div class="row-fluid marketing">
 			<div class="span3">
 				<div class="panel-heading">
-					<span class="panel-title">我的缺陷<a href="<%=path%>/defeat/claim" title="认领缺陷"><i class="icon-flag" title="写日报"></i></a></span>
+					<span class="panel-title">我的缺陷</span>
 				</div>
 				<div id="bugForm-box">
 					<!-- BUG列表 -->

@@ -17,23 +17,33 @@ import org.nutz.mvc.annotation.Param;
 import com.jit.project.bean.Query;
 import com.jit.project.project.bean.Project;
 import com.jit.project.project.service.PrjService;
+import com.jit.project.user.service.UserService;
 
 @InjectName("prjAction")
 public class PrjAction {
 	
-	Map<String, String> mpIndustry = new LinkedHashMap<String, String>();
-	Map<String, String> mpIssueType = new LinkedHashMap<String, String>();
-	Map<String, String> mpStatus = new LinkedHashMap<String, String>();
-	Map<String, String> mpEngineer = new LinkedHashMap<String, String>();
-	
 	@Inject("prjService")
 	private PrjService prjService;
+	
+	private UserService userService;
 
 	private Project project;
 
+	Map<String, String> mpIndustry = new LinkedHashMap<String, String>();
+	Map<String, String> mpIssueType = new LinkedHashMap<String, String>();
+	Map<String, String> mpStatus = new LinkedHashMap<String, String>();
+	Map<String, String> users = new LinkedHashMap<String, String>();
+	
 	public PrjAction() {
 		super();
 		initIndustry();
+	}
+	
+	private void prepareDic(HttpServletRequest request) {
+		if (users.isEmpty()) {
+			users = this.userService.asDic();
+		}
+		request.setAttribute("mpEngineer", users);
 	}
 	/**
 	 * 首页
@@ -45,7 +55,7 @@ public class PrjAction {
 		QueryResult qResult = new QueryResult(new ArrayList<Project>(), new Pager());
 		request.setAttribute("query", new Query());
 		request.setAttribute("result", qResult);
-		request.setAttribute("mpEngineer", mpEngineer);
+		request.setAttribute("mpEngineer", users);
 	}
 
 	@At("/form")
@@ -54,7 +64,7 @@ public class PrjAction {
 		request.setAttribute("mpIndustry", mpIndustry);
 		request.setAttribute("mpIssueType", mpIssueType);
 		request.setAttribute("mpStatus", mpStatus);
-		request.setAttribute("mpEngineer", mpEngineer);
+		prepareDic(request);
 	}
 
 	/** 新建 */
@@ -80,7 +90,7 @@ public class PrjAction {
 		QueryResult qResult = prjService.query(query);
 		request.setAttribute("result", qResult);
 		request.setAttribute("query", query);// 查询条件
-		request.setAttribute("mpEngineer", mpEngineer);
+		request.setAttribute("mpEngineer", users);
 		return qResult;
 	}
 
@@ -94,7 +104,7 @@ public class PrjAction {
 		request.setAttribute("mpIndustry", mpIndustry);
 		request.setAttribute("mpIssueType", mpIssueType);
 		request.setAttribute("mpStatus", mpStatus);
-		request.setAttribute("mpEngineer", mpEngineer);
+		prepareDic(request);
 		
 		return "EDIT";
 	}
@@ -107,6 +117,20 @@ public class PrjAction {
 		project.setLastResponse(new java.sql.Date(System.currentTimeMillis()));
 		prjService.update(project);
 		return "SUCCESS";
+	}
+	
+	/**
+	 * 日报关联引用项目
+	 * @param query
+	 * @return
+	 */
+	@At("/project/refer")
+	@Ok("jsp:views.project.refer-widget")
+	public QueryResult refer(@Param("::query.") Query query) {
+		if (query == null) {
+			query = new Query();
+		}
+		return this.prjService.query(query);//TODO 当前用户的项目
 	}
 
 	/**
@@ -142,35 +166,35 @@ public class PrjAction {
 			mpStatus.put("暂停", "暂停");
 			mpStatus.put("已完成", "已完成");
 		}
-		if (mpEngineer.isEmpty()) {
-			mpEngineer.put("", "");
-			mpEngineer.put("索瑞军", "索瑞军");
-			mpEngineer.put("代艳明", "代艳明");
-			mpEngineer.put("刘志钢", "刘志钢");
-			mpEngineer.put("何金龙", "何金龙");
-			mpEngineer.put("史志伟", "史志伟");
-			mpEngineer.put("丁为厂", "丁为厂");
-			mpEngineer.put("朱虹宇", "朱虹宇");
-			mpEngineer.put("王毅", "王毅");
-			mpEngineer.put("邢世宇", "邢世宇");
-			mpEngineer.put("祝连海", "祝连海");
-			mpEngineer.put("胡闯闯", "胡闯闯");
-			mpEngineer.put("梁杰", "梁杰");
-			mpEngineer.put("刘莎", "刘莎");
-			mpEngineer.put("袁春旭", "袁春旭");
-			mpEngineer.put("王建平", "王建平");
-			mpEngineer.put("刘宗凯", "刘宗凯");
-			mpEngineer.put("王会彦", "王会彦");
-			mpEngineer.put("邓佳佳", "邓佳佳");
-			mpEngineer.put("都保星", "都保星");
-			mpEngineer.put("闫晋忠", "闫晋忠");
-			mpEngineer.put("曾宇波", "曾宇波");
-			mpEngineer.put("吴畏", "吴畏");
-			mpEngineer.put("张杰文", "张杰文");
-			mpEngineer.put("丛哲", "丛哲");
-			mpEngineer.put("李红义", "李红义");
-			mpEngineer.put("杜俊杰", "杜俊杰");
-		}
+//		if (users.isEmpty()) {
+//			users.put("", "");
+//			users.put("索瑞军", "索瑞军");
+//			users.put("代艳明", "代艳明");
+//			users.put("刘志钢", "刘志钢");
+//			users.put("何金龙", "何金龙");
+//			users.put("史志伟", "史志伟");
+//			users.put("丁为厂", "丁为厂");
+//			users.put("朱虹宇", "朱虹宇");
+//			users.put("王毅", "王毅");
+//			users.put("邢世宇", "邢世宇");
+//			users.put("祝连海", "祝连海");
+//			users.put("胡闯闯", "胡闯闯");
+//			users.put("梁杰", "梁杰");
+//			users.put("刘莎", "刘莎");
+//			users.put("袁春旭", "袁春旭");
+//			users.put("王建平", "王建平");
+//			users.put("刘宗凯", "刘宗凯");
+//			users.put("王会彦", "王会彦");
+//			users.put("邓佳佳", "邓佳佳");
+//			users.put("都保星", "都保星");
+//			users.put("闫晋忠", "闫晋忠");
+//			users.put("曾宇波", "曾宇波");
+//			users.put("吴畏", "吴畏");
+//			users.put("张杰文", "张杰文");
+//			users.put("丛哲", "丛哲");
+//			users.put("李红义", "李红义");
+//			users.put("杜俊杰", "杜俊杰");
+//		}
 	}
 
 	protected PrjService getPrjService() {
@@ -187,5 +211,13 @@ public class PrjAction {
 
 	protected void setProject(Project project) {
 		this.project = project;
+	}
+
+	public UserService getUserService() {
+		return userService;
+	}
+
+	public void setUserService(UserService userService) {
+		this.userService = userService;
 	}
 }
