@@ -113,13 +113,14 @@ public class DailyAction {
 	 */
 	@At("/daily/items")
 	@Ok("jsp:views.daily.items")
-	public Daily items(@Param("daily_id")String dailyID){
+	public Daily items(@Param("daily_id") String dailyID, HttpServletRequest request, HttpSession session) {
 		
-		Daily daily=this.dailyService.fetch(dailyID);		
+		Daily daily=this.dailyService.fetch(dailyID);
 		this.dailyService.fetchLinks(daily, "items");
 		return daily;
 	}
 	
+	//TODO 统计总投入人力
 	public IDailyService getDailyService() {
 		return dailyService;
 	}

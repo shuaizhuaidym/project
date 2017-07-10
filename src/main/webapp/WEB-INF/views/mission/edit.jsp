@@ -71,7 +71,8 @@ textarea {
 					<td colspan="3"><textarea id="mission_desc" name="mission.content"
 							style="width: 92%; height: 100px;">${obj.summary}</textarea></td>
 				</tr>
-				<tr>
+				
+				<!-- <tr>
 					<td><label class="control-label col-xs-2">相关项目</label></td>
 					<td>
 						<select>
@@ -82,7 +83,8 @@ textarea {
 					</td>
 					<td><label class="control-label col-xs-2">相关BUG</label></td>
 					<td><input type="text" id="mission_name" name="mission.projectName" class="required"></td>
-				</tr>
+				</tr> -->
+				
 				<tr>
 					<td><label class="control-label col-xs-2">所属产品</label></td>
 					<td>

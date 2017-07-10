@@ -54,7 +54,7 @@ textarea {
 			<fieldset>
 				<legend><span>编辑产品信息</span></legend>
 			</fieldset>
-			<form class="form-horizontal" action="<%=path%>/product/create" method="post">
+			<form class="form-horizontal" action="<%=path%>/product/update" method="post">
 				<input type="hidden" name="product.productID" value="${obj.productID}"/>
 				<div class="control-group">
 					<label class="control-label" for="productName">产品名称</label>

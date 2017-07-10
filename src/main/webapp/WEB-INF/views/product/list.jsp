@@ -58,43 +58,7 @@
 <script type="text/javascript" src="<%=path%>/zTree/jquery-ztree-core-min.js"></script>
 
 <script type="text/javascript" src="<%=path%>/js/bootstrap-modal.js"></script>
-<script type="text/javascript" src="<%=path%>/js/bootstrap-tab.js"></script>
-<script type="text/javascript">
-	var zTreeModule;
-	// zTree 的参数配置，深入使用请参考 API 文档（setting 配置详解）
-	var setting = {};
-	// zTree 的数据属性，深入使用请参考 API 文档（zTreeNode 节点数据详解）
-	var zNodes = [ {
-		treeNodeName : "身份认证网关[phoenix]",
-		open : true,
-		children : [ {
-			treeNodeName : "客户端",
-			children : [ {
-				treeNodeName : "proxy"
-			}, {
-				treeNodeName : "hook"
-			} ]
-		}, {
-			treeNodeName : "服务器",
-			children : [ {
-				treeNodeName : "GW"
-			}, {
-				treeNodeName : "Core1"
-			} ]
-		} ]
-	}, {
-		treeNodeName : "磐石终端",
-		open : true,
-		children : [ {
-			treeNodeName : "test2_1"
-		}, {
-			treeNodeName : "test2_2"
-		} ]
-	} ];
-	$(document).ready(function() {
-		zTreeModule = $.fn.zTree.init($("#treeModule"), setting, zNodes);
-	});
-</script>
+<script type="text/javascript" src="<%=path%>/js/product/product.js"></script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
@@ -104,14 +68,14 @@
 				<!--Sidebar content-->
 				<fieldset>
 					<legend>
-						<span>产品列表 <a href="#orgModal" class="white-pointer" data-toggle="modal">[+]</a>
+						<span>产品列表 <a href="<%=path%>/product/add" class="white-pointer">[+]</a>
 						</span>
 					</legend>
 				</fieldset>
 				<div class="table-responsive">
 					<div class="tab-content">
 						<div class="tab-pane tree-box active" id="cmodule">
-							<ul id="treeModule" class="ztree"></ul>
+							<ul id="treeProduct" class="ztree"></ul>
 						</div>
 					</div>
 				</div>
@@ -119,7 +83,7 @@
 			<div class="span10">
 				<fieldset>
 					<legend>
-						<span>产品模块<a href="<%=path%>/product/add" style="margin-left: 50px; color: white">增加产品</a>
+						<span>产品模块<a href="#orgModal" data-toggle="modal" style="margin-left: 50px; color: white">+增加模块</a>
 						</span>
 					</legend>
 				</fieldset>
@@ -176,19 +140,19 @@
 			<form action="#">
 				<table>
 					<tr>
-						<td>所属产品</td>
+						<th>所属产品</th>
 						<td><input value="身份认证网关" /></td>
-						<td>上级模块</td>
+						<th>上级模块</th>
 						<td><input /></td>
 					</tr>
 					<tr>
-						<td>产品发布版本</td>
+						<th>产品发布版本</th>
 						<td><input /></td>
-						<td>产品迭代版本</td>
+						<th>产品迭代版本</th>
 						<td><select></select></td>
 					</tr>
 					<tr>
-						<td>备注</td>
+						<th>备注</th>
 						<td colspan="3"><textarea rows="6" cols="128" style="width: 93%"></textarea></td>
 					</tr>
 				</table>

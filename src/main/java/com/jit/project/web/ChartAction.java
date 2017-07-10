@@ -186,6 +186,17 @@ public class ChartAction {
 		ChartUtil.drawRangeLine("时间段统计图","2014-03-24——2016-05-01","项目数量", dataset, stream);
 		return stream;
 	}
+	
+	/**
+	 * 管理维度报表
+	 * @param type
+	 * @return
+	 */
+	@At("/statistics")
+	@Ok("jsp:views.chart.report")
+	public String statistics(@Param("aspect") String aspect) {
+		return "SUCCESS";
+	}
 
 	protected PrjService getPrjService() {
 		return prjService;

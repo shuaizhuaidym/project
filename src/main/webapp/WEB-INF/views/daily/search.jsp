@@ -64,7 +64,7 @@
 						<td>${index.count}</td>
 						<td>${daily.ownerName}</td>
 						<td><f:formatDate value="${daily.createDate}" pattern="yyyy-MM-dd" /></td>
-						<td><a href="#"><i class="icon-list" title="预览"></i></a></td>
+						<td><a href="<%=path%>/daily/items?daily_id=${daily.dailyID}"><i class="icon-list" title="日报预览"></i></a></td>
 						<td>${daily.itemLinks}</td>
 					</tr>
 				</c:forEach>

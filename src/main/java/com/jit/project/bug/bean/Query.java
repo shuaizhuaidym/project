@@ -1,5 +1,6 @@
 package com.jit.project.bug.bean;
 
+import org.apache.commons.lang3.StringUtils;
 import org.nutz.dao.Condition;
 import org.nutz.dao.entity.Entity;
 
@@ -14,8 +15,11 @@ public class Query implements Condition {
 
 	@Override
 	public String toSql(Entity<?> entity) {
-		StringBuilder builder=new StringBuilder("1=1 and BG_RESPONSIBLE = ");
-		builder.append("'").append(responsible).append("'");
+		StringBuilder builder=new StringBuilder("1=1");
+		if(StringUtils.isNoneEmpty(responsible)){
+			builder.append(" and BG_RESPONSIBLE = ");
+			builder.append("'").append(responsible).append("'");
+		}
 		builder.append(" and BG_STATUS in");
 		builder.append(status);
 		return builder.toString();

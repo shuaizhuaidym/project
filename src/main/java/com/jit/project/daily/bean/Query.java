@@ -29,6 +29,7 @@ public class Query extends AbstractQuery implements Condition {
 		if (StringUtils.isNoneBlank(missionName)) {
 			buf.append(SQLUtil.varchar("mission_name", missionName));
 		}
+		buf.append(" order by  create_date desc ");
 		return buf.toString();
 	}
 

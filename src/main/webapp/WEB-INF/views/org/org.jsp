@@ -38,7 +38,7 @@ div#rMenu {
 
 div#rMenu ul li {
 	margin: 1px 0;
-	padding: 0 5px;
+	padding: 0px 20px;
 	cursor: pointer;
 	list-style: none outside none;
 	color: #fff

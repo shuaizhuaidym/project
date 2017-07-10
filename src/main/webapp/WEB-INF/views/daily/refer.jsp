@@ -12,7 +12,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>请选择关联任务</title>
 
+<link href="<%=path%>/css/bootstrap.min.css" rel="stylesheet">
 <link href="<%=path%>/css/list.css" rel="stylesheet">
+<link href="<%=path%>/css/commom.css" rel="stylesheet" />
 <style type="text/css">
 .pagination {
 	margin: 0
@@ -22,6 +24,8 @@
 	padding: 5px
 }
 </style>
+<script type="text/javascript" src="<%=path%>/js/jquery/jquery-1.11.1.js"></script>
+
 <script type="text/javascript">
 	function confirm(box) {
 		if(window.opener){//window style
@@ -33,25 +37,18 @@
 		}
 	}
 
-	function paging(formID) {
+	function paging() {
 		$.ajax({
 			cache : false,
 			type : "POST",
-			url : $("#"+formID).attr('action'),
-			data : $('#'+formID).serialize(),
+			url : "<%=path%>/mission/refer",
+			data : $('#ajaxForm').serialize(),
 			async : false,
 			error : function(request) {
 				alert("Connection error");
 			},
 			success : function(data) {
-				//TODO
-				if (formID == 'missionForm') {
-					$("#modal-body").html(data);
-				} else if(formID=='projectForm'){
-					$("#project-box").html(data);
-				}else{
-					$("#bug-box").html(data);
-				}
+				$("#modal-body").html(data);
 			}
 		});
 	}
@@ -61,11 +58,10 @@
 	<div class="container-fluid">
 		<ul class="nav nav-tabs">
 			<li class="active"><a href="#mission" data-toggle="tab">任务</a></li>
-			<li><a href="#project-box" data-toggle="tab">项目支持</a></li>
-			<li><a href="#bug-box" data-toggle="tab">BUG</a></li>
+			<li><a href="#prj-support" data-toggle="tab">项目支持</a></li>
+			<li><a href="#bug-fix" data-toggle="tab">BUG</a></li>
 		</ul>
 		<div class="tab-content">
-			<!-- 任务 -->
 			<div class="tab-pane active" id="mission">
 				<table class="table table-bordered table-striped">
 					<tr>
@@ -82,65 +78,32 @@
 						</tr>
 					</c:forEach>
 				</table>
-				<form action="<%=path%>/mission/refer" id="missionForm">
-					<pg:page id="missionForm" async="true" pageNo="${obj.pager.pageNumber}" currentClass="active" pageSize="${obj.pager.pageSize}"
+				<form action="<%=path%>/mission/refer" id="ajaxForm">
+					<pg:page id="ajaxForm" async="true" pageNo="${obj.pager.pageNumber}" currentClass="active" pageSize="${obj.pager.pageSize}"
 						totalCount="${obj.pager.recordCount}">
 					</pg:page>
 				</form>
 			</div>
-			<!-- 项目 -->
-			<div class="tab-pane" id="project-box">
+			<div class="tab-pane" id="prj-support">
 				<table class="table table-bordered table-striped">
 					<tr>
 						<th class="w32px">序号</th>
 						<th class="w32px">选择</th>
 						<th>项目名称</th>
 					</tr>
-					<c:forEach var="project" items="${projects.list}" varStatus="index">
-						<tr>
-							<td>${index.count}</td>
-							<td>
-								<input type="checkbox" id="${project.prjID}" name="${project.prjName}" onclick="confirm(this)"
-								data-dismiss="modal" />
-							</td>
-							<td>${project.prjName}</td>
-						</tr>
-					</c:forEach>
 				</table>
-				<form action="<%=path%>/project/refer" id="projectForm">
-					<pg:page id="projectForm" async="true" pageNo="${projects.pager.pageNumber}" currentClass="active" pageSize="${projects.pager.pageSize}"
-						totalCount="${projects.pager.recordCount}">
-					</pg:page>
-				</form>
 			</div>
-			<!-- BUG -->
-			<div class="tab-pane" id="bug-box">
+			<div class="tab-pane" id="bug-fix">
 				<table class="table table-bordered table-striped">
 					<tr>
 						<th class="w32px">序号</th>
 						<th class="w32px">选择</th>
 						<th class="w64px">BUG编号</th>
-						<th>BUG摘要</th>
+						<th>BUG名称</th>
 					</tr>
-					<c:forEach var="bug" items="${bugs.list}" varStatus="index">
-						<tr>
-							<td>${index.count}</td>
-							<td><input type="checkbox" id="${bug.bg_bug_id}" name="${bug.bg_summary}" onclick="confirm(this)" data-dismiss="modal" />
-							</td>
-							<td>${bug.bg_bug_id}</td>
-							<td>${bug.bg_summary}</td>
-						</tr>
-					</c:forEach>
 				</table>
-				<form action="<%=path%>/bug/refer" id="bugForm">
-					<pg:page id="bugForm" async="true" pageNo="${bugs.pager.pageNumber}" currentClass="active"
-						pageSize="${bugs.pager.pageSize}" totalCount="${bugs.pager.recordCount}">
-					</pg:page>
-				</form>
 			</div>
-		</div>
-		<!-- tab-content -->
-	</div>
-	<!-- container-fluid -->
+		</div><!-- tab-content -->
+	</div><!-- container-fluid -->
 </body>
 </html>

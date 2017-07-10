@@ -57,6 +57,7 @@ public class UserService extends IdNameEntityService<User> {
 	 */
 	public Map<String, String> asDic() {
 		Map<String, String> users = new HashMap<String, String>();
+		users.put("", "");
 		List<User> lou = this.query(null, null);
 		for (User u : lou) {
 			users.put(u.getRealName(), u.getRealName());

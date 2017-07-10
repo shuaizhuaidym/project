@@ -11,6 +11,10 @@ form td:nth-child(odd) {
 	text-align: right;
 	/* width:12%; */
 }
+form th:nth-child(odd) {
+	text-align: right;
+	width:15%;
+}
 .form-title {
 	color: #333;
 	font-size: 21px;
