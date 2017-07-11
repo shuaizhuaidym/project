@@ -54,6 +54,7 @@ textarea {
 				<legend><span>新增产品</span></legend>
 			</fieldset>
 			<form class="form-horizontal" action="<%=path%>/product/create" method="post">
+				<input type="hidden" name="product.parentID" value="0"/>
 				<div class="control-group">
 					<label class="control-label" for="productName">产品名称</label>
 					<div class="controls">

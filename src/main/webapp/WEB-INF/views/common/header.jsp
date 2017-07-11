@@ -10,7 +10,8 @@
 			<div class="nav-collapse collapse">
 				<ul class="nav">
 					<li class="active"><a href="${path}/project/portal">首页</a></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">项目管理 <b class="caret"></b></a>
+					<li class="dropdown" id="menu_project">
+						<a data-target="menu_project" href="#" class="dropdown-toggle" data-toggle="dropdown">项目管理 <b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li><a href="<%=path%>/form">项目新建</a></li>
 							<li class="divider"></li>
@@ -21,14 +22,16 @@
 					<li><a href="<%=path %>/product/list">产品维护</a></li>
 					<li><a href="<%=path %>/daily/search">日报检索</a></li>
 					
-					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">统计分析<b class="caret"></b></a>
+					<li class="dropdown" id="menu_statistics">
+						<a data-target="menu_project" href="menu_statistics" class="dropdown-toggle" data-toggle="dropdown">统计分析<b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li><a href="<%=path %>/statistics">报表统计</a></li>
 							<li class="divider"></li>
 							<li><a href="<%=path %>/chart">图表分析</a></li>
 						</ul>
 					</li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">系统维护<b class="caret"></b></a>
+					<li class="dropdown" id="menu_system">
+						<a data-target="menu_system" href="#" class="dropdown-toggle" data-toggle="dropdown">系统维护<b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li><a href="<%=path %>/org/list">机构设置</a></li>
 							<li class="divider"></li>

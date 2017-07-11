@@ -26,17 +26,17 @@
  /* DROPDOWN CLASS DEFINITION
   * ========================= */
 
-  var toggle = '[data-toggle=dropdown]'
-    , Dropdown = function (element) {
-        var $el = $(element).on('click.dropdown.data-api', this.toggle)
-        $('html').on('click.dropdown.data-api', function () {
-          $el.parent().removeClass('open')
-        })
-      }
+	var toggle = '[data-toggle=dropdown]';
+	var Dropdown = function(element) {
+		var $el = $(element).on('click.dropdown.data-api', this.toggle)
+		$('html').on('click.dropdown.data-api', function() {
+			$el.parent().removeClass('open')
+		})
+	}
 
-  Dropdown.prototype = {
+	Dropdown.prototype = {
 
-    constructor: Dropdown
+	constructor : Dropdown
 
   , toggle: function (e) {
       var $this = $(this)
@@ -53,7 +53,7 @@
 
       if (!isActive) {
         if ('ontouchstart' in document.documentElement) {
-          // if mobile we we use a backdrop because click events don't delegate
+          // if mobile we use a backdrop because click events don't delegate
           $('<div class="dropdown-backdrop"/>').insertBefore($(this)).on('click', clearMenus)
         }
         $parent.toggleClass('open')

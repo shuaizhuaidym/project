@@ -51,6 +51,34 @@
 .table td,th {
 	padding: 2px 5px 8px 5px
 }
+
+#menuContent {
+	position: absolute;
+/* 	left: 59px;
+	top: 132px; */
+	display: none;
+}
+
+ul.ztree {
+	overflow-x: auto;
+	overflow-y: auto;
+}
+
+.outstand {
+	color: #333;
+	margin: 0;
+	background: #f1f1f1 none repeat scroll 0 0;
+	border: 1px solid #ddd;
+	width: 228px;
+	min-height: 108px;
+	margin-top: 10px;
+	overflow-x: auto;
+	overflow-y: scroll;
+	filter: alpha(opacity = 80);
+	-moz-opacity: 0.8;
+	-khtml-opacity: 0.8;
+	opacity: 0.8;
+}
 </style>
 
 <script type="text/javascript" src="<%=path%>/js/jquery/jquery-1.11.1.js"></script>
@@ -73,6 +101,7 @@
 					</legend>
 				</fieldset>
 				<div class="table-responsive">
+					<!-- 组织机构树 -->
 					<div class="tab-content">
 						<div class="tab-pane tree-box active" id="cmodule">
 							<ul id="treeProduct" class="ztree"></ul>
@@ -83,7 +112,7 @@
 			<div class="span10">
 				<fieldset>
 					<legend>
-						<span>产品模块<a href="#orgModal" data-toggle="modal" style="margin-left: 50px; color: white">+增加模块</a>
+						<span>产品模块<a href="#productModal" data-toggle="modal" style="margin-left: 50px; color: white">+增加模块</a>
 						</span>
 					</legend>
 				</fieldset>
@@ -113,9 +142,8 @@
 								<td>${prd.testMgr}</td>
 								<td>${prd.releaseVersion}</td>
 								<td><f:formatDate value="${prd.releaseDate}" pattern="yyyy-MM-dd" /></td>
-								<td><a href="<%=path%>/product/edit?product_id=${prd.productID}"><i class="icon-pencil" title="编辑"></i></a>
-									<a href="<%=path%>/product/delete?product_id=${prd.productID}"><i class=" icon-remove" title="删除"></i></a>
-								</td>
+								<td><a href="<%=path%>/product/edit?product_id=${prd.productID}"><i class="icon-pencil" title="编辑"></i></a> <a
+									href="<%=path%>/product/delete?product_id=${prd.productID}"><i class=" icon-remove" title="删除"></i></a></td>
 							</tr>
 						</c:forEach>
 					</table>
@@ -128,10 +156,11 @@
 			</div>
 		</div>
 		<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
-	</div><!-- end container-fluid -->
-	
+	</div>
+	<!-- end container-fluid -->
+
 	<!-- modal dialog add product module -->
-	<div id="orgModal" class="modal hide fade" tabindex="-1">
+	<div id="productModal" class="modal hide fade" tabindex="-1">
 		<div class="modal-header form-title">
 			<button type="button" class="close" data-dismiss="modal">×</button>
 			<span id="myModalLabel">新建模块</span>
@@ -143,7 +172,10 @@
 						<th>所属产品</th>
 						<td><input value="身份认证网关" /></td>
 						<th>上级模块</th>
-						<td><input /></td>
+						<td>
+							<input type="text" id="parentModule" name="product.parentID" />
+							<a id="menuBtn" style="cursor:pointer" onclick="showMenu(); return false;">选择</a>
+						</td>
 					</tr>
 					<tr>
 						<th>产品发布版本</th>
@@ -158,10 +190,13 @@
 				</table>
 			</form>
 		</div>
-
 		<div class="modal-footer">
 			<button class="btn" data-dismiss="modal">关闭</button>
 			<button class="btn btn-primary">保存</button>
+		</div>
+		<!-- 下拉菜单树 -->
+		<div id="menuContent" class="menuContent">
+			<ul id="treeParentModule" class="ztree outstand"></ul>
 		</div>
 	</div>
 </body>
