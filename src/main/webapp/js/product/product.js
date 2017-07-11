@@ -22,18 +22,13 @@ var zTreeObj;
 		}
 	};
 	function showMenu() {
-		var parentInput = $("#parentModule");
-		var offset = parentInput.offset();
-		$("#menuContent").css({top:104+'px',left:769+'px'}).slideDown();
-		console.log(offset.left+":"+offset.top);
-		console.log($("#menuContent").css('left')+":"+$("#menuContent").css('top'));
-		
+		$('#combo-tree').addClass('open');
 	}
 	function hideMenu() {
-		$("#menuContent").fadeOut();
+		$('#combo-tree').removeClass('open');
 	}
 	function onBodyDown(event) {
-		if (!(event.target.id == "menuBtn" || event.target.id == "menuContent" || $(event.target).parents("#menuContent").length>0)) {
+		if (!(event.target.id == "combo-tree" || event.target.id == "combo-tree" || $(event.target).parents("#combo-tree").length>0)) {
 			hideMenu();
 		}
 	}

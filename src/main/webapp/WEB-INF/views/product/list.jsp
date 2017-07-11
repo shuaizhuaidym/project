@@ -43,25 +43,19 @@
 	border-top: 0
 }
 
-.modal-body form input,select {
+.modal-body form input{
 	width: 80%;
 	height: 22px
 }
-
+.modal-body form select {width: 80%;}
 .table td,th {
 	padding: 2px 5px 8px 5px
-}
-
-#menuContent {
-	position: absolute;
-/* 	left: 59px;
-	top: 132px; */
-	display: none;
 }
 
 ul.ztree {
 	overflow-x: auto;
 	overflow-y: auto;
+	min-height:129px
 }
 
 .outstand {
@@ -69,9 +63,7 @@ ul.ztree {
 	margin: 0;
 	background: #f1f1f1 none repeat scroll 0 0;
 	border: 1px solid #ddd;
-	width: 228px;
-	min-height: 108px;
-	margin-top: 10px;
+	width: 215px;
 	overflow-x: auto;
 	overflow-y: scroll;
 	filter: alpha(opacity = 80);
@@ -79,6 +71,13 @@ ul.ztree {
 	-khtml-opacity: 0.8;
 	opacity: 0.8;
 }
+.suffix-btn{
+	border-bottom-left-radius: 0;
+	border-top-left-radius: 0;
+	margin-left:-5px;
+	padding: 4px 4px;
+}
+#combo-tree input{ width:73%}
 </style>
 
 <script type="text/javascript" src="<%=path%>/js/jquery/jquery-1.11.1.js"></script>
@@ -173,15 +172,20 @@ ul.ztree {
 						<td><input value="身份认证网关" /></td>
 						<th>上级模块</th>
 						<td>
-							<input type="text" id="parentModule" name="product.parentID" />
-							<a id="menuBtn" style="cursor:pointer" onclick="showMenu(); return false;">选择</a>
+							<div id="combo-tree" class="dropdown">
+								<input type="text" id="parentModule" name="product.parentID" />
+								<a id="parentModuleBtn" onclick="showMenu();" href="#" class='btn suffix-btn'><b class="caret"></b></a>
+								<ul id="treeParentModule" class="ztree outstand dropdown-menu"></ul>
+							</div>
 						</td>
 					</tr>
 					<tr>
 						<th>产品发布版本</th>
 						<td><input /></td>
 						<th>产品迭代版本</th>
-						<td><select></select></td>
+						<td><select>
+							<option>sssssssss</option>
+						</select></td>
 					</tr>
 					<tr>
 						<th>备注</th>
@@ -193,10 +197,6 @@ ul.ztree {
 		<div class="modal-footer">
 			<button class="btn" data-dismiss="modal">关闭</button>
 			<button class="btn btn-primary">保存</button>
-		</div>
-		<!-- 下拉菜单树 -->
-		<div id="menuContent" class="menuContent">
-			<ul id="treeParentModule" class="ztree outstand"></ul>
 		</div>
 	</div>
 </body>

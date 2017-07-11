@@ -20,7 +20,7 @@
 
 !function ($) {
 
-  "use strict"; // jshint ;_;
+	"use strict"; // jshint ;_;
 
 
  /* DROPDOWN CLASS DEFINITION
@@ -28,62 +28,55 @@
 
 	var toggle = '[data-toggle=dropdown]';
 	var Dropdown = function(element) {
-		var $el = $(element).on('click.dropdown.data-api', this.toggle)
-		$('html').on('click.dropdown.data-api', function() {
+		var $el = $(element).on('click.dropdown.data-api', this.toggle);
+		$('html').on('click.dropdown.data-api', function(event) {
+			alert(event.target.id)
 			$el.parent().removeClass('open')
 		})
 	}
 
 	Dropdown.prototype = {
 
-	constructor : Dropdown
+	constructor : Dropdown,
+	toggle: function (e) {
+		var $this = $(this);
+		var $parent;
+		var isActive;
+		if ($this.is('.disabled, :disabled')) return;
+		$parent = getParent($this);
+		isActive = $parent.hasClass('open');
 
-  , toggle: function (e) {
-      var $this = $(this)
-        , $parent
-        , isActive
+		clearMenus();
 
-      if ($this.is('.disabled, :disabled')) return
+		if (!isActive) {
+			if ('ontouchstart' in document.documentElement) {
+				// if mobile we use a backdrop because click events don't delegate
+				$('<div class="dropdown-backdrop"/>').insertBefore($(this)).on('click', clearMenus)
+			}
+			$parent.toggleClass('open');
+		}
+		$this.focus()
+		return false
+	},
+	keydown: function (e) {
+		var $this
+		, $items
+		, $active
+		, $parent
+		, isActive
+		, index
 
-      $parent = getParent($this)
+		if (!/(38|40|27)/.test(e.keyCode)) return;
 
-      isActive = $parent.hasClass('open')
+		$this = $(this);
 
-      clearMenus()
+		e.preventDefault();
+		e.stopPropagation();
 
-      if (!isActive) {
-        if ('ontouchstart' in document.documentElement) {
-          // if mobile we use a backdrop because click events don't delegate
-          $('<div class="dropdown-backdrop"/>').insertBefore($(this)).on('click', clearMenus)
-        }
-        $parent.toggleClass('open')
-      }
+		if ($this.is('.disabled, :disabled')) return;
 
-      $this.focus()
-
-      return false
-    }
-
-  , keydown: function (e) {
-      var $this
-        , $items
-        , $active
-        , $parent
-        , isActive
-        , index
-
-      if (!/(38|40|27)/.test(e.keyCode)) return
-
-      $this = $(this)
-
-      e.preventDefault()
-      e.stopPropagation()
-
-      if ($this.is('.disabled, :disabled')) return
-
-      $parent = getParent($this)
-
-      isActive = $parent.hasClass('open')
+		$parent = getParent($this);
+		isActive = $parent.hasClass('open');
 
       if (!isActive || (isActive && e.keyCode == 27)) {
         if (e.which == 27) $parent.find(toggle).focus()
@@ -114,21 +107,18 @@
     })
   }
 
-  function getParent($this) {
-    var selector = $this.attr('data-target')
-      , $parent
+	function getParent($this) {
+		var selector = $this.attr('data-target');
+		var $parent;
 
-    if (!selector) {
-      selector = $this.attr('href')
-      selector = selector && /#/.test(selector) && selector.replace(/.*(?=#[^\s]*$)/, '') //strip for ie7
-    }
-
-    $parent = selector && $(selector)
-
-    if (!$parent || !$parent.length) $parent = $this.parent()
-
-    return $parent
-  }
+		if (!selector) {
+			selector = $this.attr('href');
+			selector = selector && /#/.test(selector) && selector.replace(/.*(?=#[^\s]*$)/, ''); // strip for ie7
+		}
+		$parent = selector && $(selector)
+		if (!$parent || !$parent.length) $parent = $this.parent()
+		return $parent
+	}
 
 
   /* DROPDOWN PLUGIN DEFINITION
