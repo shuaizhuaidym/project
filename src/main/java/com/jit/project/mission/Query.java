@@ -10,12 +10,18 @@ public class Query implements Condition {
 	private Integer pageSize = 15;
 	
 	private String assignTo;
+	
+	private String module;
 
 	@Override
 	public String toSql(Entity<?> entity) {
 		StringBuilder buf = new StringBuilder("1=1");
 		if (StringUtils.isNoneEmpty(assignTo)) {
 			buf.append(" and assign_to='").append(assignTo).append("'");
+		}
+		if(StringUtils.isNoneEmpty(module)){
+			buf.append(" and (module='").append(module).append("'");
+			buf.append(" or product_name='").append(module).append("')");
 		}
 		buf.append(" order by create_time desc");
 		return buf.toString();
@@ -43,5 +49,13 @@ public class Query implements Condition {
 
 	public void setAssignTo(String assignTo) {
 		this.assignTo = assignTo;
+	}
+
+	public String getModule() {
+		return module;
+	}
+
+	public void setModule(String module) {
+		this.module = module;
 	}
 }

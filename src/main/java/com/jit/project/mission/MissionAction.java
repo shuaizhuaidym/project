@@ -15,6 +15,7 @@ import org.nutz.dao.entity.Entity;
 import org.nutz.dao.pager.Pager;
 import org.nutz.ioc.annotation.InjectName;
 import org.nutz.mvc.annotation.At;
+import org.nutz.mvc.annotation.Encoding;
 import org.nutz.mvc.annotation.Ok;
 import org.nutz.mvc.annotation.Param;
 
@@ -111,6 +112,7 @@ public class MissionAction {
 	 */
 	@At("/mission/query")
 	@Ok("jsp:views.mission.list")
+	@Encoding(input = "UTF-8", output = "UTF-8")
 	public QueryResult queryPage(HttpServletRequest request,
 			@Param("::query.") com.jit.project.mission.Query query) {
 		if (query == null) {

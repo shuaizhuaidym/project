@@ -28,6 +28,7 @@ public class MvcSetup implements Setup {
 		AuthorityService auth = config.getIoc().get(AuthorityService.class);
 		auth.initFormPackage("com.jit.project");
 		auth.checkBasicRoles(dao.fetch(User.class, "admin"));
+		//启动QC同步定时任务
 		new QcTask().executeFixedRate();
 	}
 

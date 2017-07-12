@@ -1,9 +1,14 @@
 	var zTreeModule;
 	var zTreeVersion;
 	
-	function wiz(nodeID) {
+	function wiz(nodeID,nodeName) {
 		//TODO 查询本节点相关的任务
-		alert(nodeID);
+		try{
+			$("#module").val(nodeName);
+			goPagequeryForm(1);
+		}catch(e){
+			$("#queryForm").submit();
+		}
 	}
 	
 	var setting = {

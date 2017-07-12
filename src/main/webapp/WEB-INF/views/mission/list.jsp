@@ -125,7 +125,7 @@
 							</tr>
 						</c:forEach>
 					</table>
-					<form id="queryForm" action="<%=path%>/mission/query">
+					<form id="queryForm" action="<%=path%>/mission/query" method="post">
 						<input type="hidden" id="module" name="query.module"/>
 						<pg:page id="queryForm" pageNo="${obj.pager.pageNumber}" currentClass="active" pageSize="${obj.pager.pageSize}"
 							totalCount="${obj.pager.recordCount}">

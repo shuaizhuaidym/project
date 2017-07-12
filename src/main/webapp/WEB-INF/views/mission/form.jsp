@@ -108,9 +108,9 @@ textarea {
 					</td>
 					<td><label class="control-label col-xs-2">任务类别</label></td>
 					<td><select name="mission.taskClass" class="required">
-							<option value="8">新功能</option>
-							<option value="8">缺陷修复</option>
-							<option value="8">产品改进</option>
+							<option value="新功能">新功能</option>
+							<option value="缺陷修复">缺陷修复</option>
+							<option value="产品改进">产品改进</option>
 					</select></td>
 				</tr>
 				<tr>
