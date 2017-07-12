@@ -11,7 +11,7 @@ import com.mysql.jdbc.StringUtils;
 public class Query implements Condition {
 
 	private int pageNumber = 1;
-	private int pageSize = 10;
+	private int pageSize = 15;
 
 	private String prjName;
 	private String industry;

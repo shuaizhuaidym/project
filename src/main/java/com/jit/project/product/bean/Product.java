@@ -29,6 +29,9 @@ public class Product extends AbstractTreeNode {
 
 	@Column("release_date")
 	private Date releaseDate;
+	
+	@Column("inner_version")
+	private String innerVersion;
 
 	@Column("product_mgr")
 	private String productMgr;
@@ -44,6 +47,9 @@ public class Product extends AbstractTreeNode {
 
 	@Column("parent_id")
 	private String parentID;
+	
+	@Column("parent_name")
+	private String parentName;
 
 	public int getProductID() {
 		return productID;
@@ -129,7 +135,7 @@ public class Product extends AbstractTreeNode {
 
 	@Override
 	public String getClick() {
-		return "wiz(" + productID + ");";
+		return "wiz(" + productID + ",'"+productName+"');";
 	}
 
 	public String getParentID() {
@@ -143,6 +149,22 @@ public class Product extends AbstractTreeNode {
 	@Override
 	public boolean isParent() {
 		return true;
+	}
+
+	public String getInnerVersion() {
+		return innerVersion;
+	}
+
+	public void setInnerVersion(String innerVersion) {
+		this.innerVersion = innerVersion;
+	}
+
+	public String getParentName() {
+		return parentName;
+	}
+
+	public void setParentName(String parentName) {
+		this.parentName = parentName;
 	}
 
 }

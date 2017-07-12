@@ -88,11 +88,7 @@ textarea {
 				<tr>
 					<td><label class="control-label col-xs-2">所属产品</label></td>
 					<td>
-						<select>
-							<option value="网关">网关</option>
-							<option value="磐石">磐石</option>
-							<option value="MCTK">MCTK</option>
-						</select>
+						<ui:select name="mission.productName" path="${mission.productName}" items="${products}" css="required"></ui:select>
 					</td>
 					<td><label class="control-label col-xs-2">任务类型</label></td>
 					<td>
@@ -101,9 +97,9 @@ textarea {
 				</tr>
 				<tr>
 					<td><label class="control-label col-xs-2">所属模块</label></td>
-					<td><select name="mission.module">
-							<option value="1">客户端/UI</option>
-					</select></td>
+					<td>
+						<ui:select name="mission.module" path="${mission.module}" items="${products}" css="required"></ui:select>
+					</td>
 					<td><label class="control-label col-xs-2">任务类别</label></td>
 					<td>
 						<ui:select name="mission.taskClass" path="${obj.taskClass}" items="${classes}" css="required"></ui:select>

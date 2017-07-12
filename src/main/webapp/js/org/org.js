@@ -8,7 +8,7 @@
 		async : {
 			enable : true,
 			url : "/project/org/tree",
-			autoParam : [ "orgID=parent_id" ],
+			autoParam : ["treeNodeID=parent_id","level"],
 			contentType : "application/x-www-form-urlencoded",
 			dataType : 'json',
 			type : "post"

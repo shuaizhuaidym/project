@@ -37,35 +37,7 @@
 
 <script type="text/javascript" src="<%=path%>/js/bootstrap-modal.js"></script>
 <script type="text/javascript" src="<%=path%>/js/bootstrap-tab.js"></script>
-
-
-<script type="text/javascript">
-	function wiz(nodeID) {
-		alert(nodeID);
-	}
-	var setting = {
-			async : {
-				enable : true,
-				url : "/project/product/tree",
-				autoParam : [ "treeNodeID=parent_id" ],
-				otherParam: ["view_type", "0"],
-				contentType : "application/x-www-form-urlencoded",
-				dataType : 'json',
-				type : "post"
-			}
-		};
-	var zTreeModule;
-	var zTreeVersion;
-	
-	$(document).ready(function() {
-		zTreeModule = $.fn.zTree.init($("#treeModule"), setting);
-		zTreeVersion = $.fn.zTree.init($("#treeVersion"), setting);
-	});
-	$('#myTab a').click(function(e) {
-		e.preventDefault();
-		$(this).tab('show');
-	});
-</script>
+<script type="text/javascript" src="<%=path%>/js/mission/list.js"></script>
 
 <link rel="stylesheet" href="<%=path%>/kindediter/themes/default/default.css" />
 <script charset="utf-8" src="<%=path%>/kindediter/kindeditor-min.js"></script>
@@ -154,6 +126,7 @@
 						</c:forEach>
 					</table>
 					<form id="queryForm" action="<%=path%>/mission/query">
+						<input type="hidden" id="module" name="query.module"/>
 						<pg:page id="queryForm" pageNo="${obj.pager.pageNumber}" currentClass="active" pageSize="${obj.pager.pageSize}"
 							totalCount="${obj.pager.recordCount}">
 						</pg:page>

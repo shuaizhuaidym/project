@@ -67,13 +67,13 @@ public class Mission extends BasePojo{
 	@Column("progress_detail")
 	private String progressDetail;
 	@Column("module")
-	private int module;
+	private String module;
 	//任务负责人
 	@Column("assign_to")
 	private String assignTo;
 	//总投入人力*小时
 	@Column("total_hours")
-	private String totalHours;
+	private String totalHours = "0";
 	@Column("team_id")
 	private int teamID;
 	@Column("comments")
@@ -260,11 +260,11 @@ public class Mission extends BasePojo{
 		this.progressDetail = progressDetail;
 	}
 
-	public int getModule() {
+	public String getModule() {
 		return module;
 	}
 
-	public void setModule(int module) {
+	public void setModule(String module) {
 		this.module = module;
 	}
 

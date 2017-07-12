@@ -103,9 +103,9 @@ textarea {
 				</tr>
 				<tr>
 					<td><label class="control-label col-xs-2">所属模块</label></td>
-					<td><select name="mission.module">
-							<option value="1">客户端/UI</option>
-					</select></td>
+					<td>
+						<ui:select name="mission.module" path="${mission.module}" items="${products}" css="required"></ui:select>
+					</td>
 					<td><label class="control-label col-xs-2">任务类别</label></td>
 					<td><select name="mission.taskClass" class="required">
 							<option value="8">新功能</option>

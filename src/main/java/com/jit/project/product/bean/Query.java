@@ -6,7 +6,7 @@ import org.nutz.dao.entity.Entity;
 public class Query implements Condition {
 
 	private Integer pageNumber = 1;
-	private Integer pageSize = 10;
+	private Integer pageSize = 15;
 	@Override
 	public String toSql(Entity<?> entity) {
 		// TODO Auto-generated method stub
