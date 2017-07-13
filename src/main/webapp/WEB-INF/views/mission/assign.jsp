@@ -50,7 +50,7 @@
 			</tr>
 			<tr>
 				<th>任务内容</th>
-				<td colspan="3"><textarea id="assignContent" disabled="disabled" rows="8" cols="128" style="width: 93%; height: 108px">${obj.content}</textarea></td>
+				<td colspan="3"><textarea id="assignContent" rows="8" cols="128" style="width: 93%; height: 108px">${obj.content}</textarea></td>
 			</tr>
 			<tr>
 				<th>备注信息</th>

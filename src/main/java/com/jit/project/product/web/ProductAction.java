@@ -98,7 +98,7 @@ public class ProductAction {
 	/**
 	 * 展示产品树状结构
 	 * @param parent_id 上级节点
-	 * @param view_type 视图[模块/版本]
+	 * @param view_type 视图[模块:0/版本:1]
 	 * @return
 	 */
 	@At("/product/tree")
@@ -108,7 +108,7 @@ public class ProductAction {
 			parent_id = "-1";
 		}
 		if(StringUtils.isEmpty(view_type)){
-			view_type="module";
+			view_type="0";
 		}
 		List<Product> nodes = this.prdtService.tree(parent_id, view_type);
 		return nodes;

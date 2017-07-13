@@ -2,7 +2,6 @@
 	var zTreeVersion;
 	
 	function wiz(nodeID,nodeName) {
-		//TODO 查询本节点相关的任务
 		try{
 			$("#module").val(nodeName);
 			goPagequeryForm(1);
@@ -30,7 +29,26 @@
 				}
 			}
 		};
-
+	var versionSetting = {
+			async : {
+				enable : true,
+				url : "/project/product/tree",
+				autoParam : [ "treeNodeID=parent_id" ],
+				otherParam: ["view_type", "1"],
+				contentType : "application/x-www-form-urlencoded",
+				dataType : 'json',
+				type : "post"
+			},
+			callback: {
+				onAsyncSuccess : function (event, treeId, treeNode, msg){
+					var tree = $.fn.zTree.getZTreeObj(treeId);
+					if (tree.getNodes().length > 0) {
+						tree.expandNode(tree.getNodes()[0], true);
+					}
+				}
+			}
+		};
+	
 	$(document).ready(function() {
 		zTreeModule = $.fn.zTree.init($("#treeModule"), setting);
 		zTreeVersion = $.fn.zTree.init($("#treeVersion"), setting);
