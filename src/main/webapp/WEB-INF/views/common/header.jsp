@@ -11,7 +11,7 @@
 				<ul class="nav">
 					<li class="active"><a href="${path}/project/portal">首页</a></li>
 					<li class="dropdown" id="menu_project">
-						<a data-target="menu_project" href="#" class="dropdown-toggle" data-toggle="dropdown">项目管理 <b class="caret"></b></a>
+						<a data-target="menu_project" href="menu_project" class="dropdown-toggle" data-toggle="dropdown">项目管理 <b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li><a href="<%=path%>/form">项目新建</a></li>
 							<li class="divider"></li>
@@ -19,7 +19,14 @@
 						</ul>
 					</li>
 					<li><a href="<%=path %>/mission/query">任务管理</a></li>
-					<li><a href="<%=path %>/product/list">产品维护</a></li>
+					<li class="dropdown" id="menu_product">
+						<a data-target="menu_product" href="menu_product" class="dropdown-toggle" data-toggle="dropdown">产品管理<b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="<%=path %>/product/list">产品维护</a></li>
+							<li class="divider"></li>
+							<li><a href="<%=path %>/product/version">版本维护</a></li>
+						</ul>
+					</li>
 					<li><a href="<%=path %>/daily/search">日报检索</a></li>
 					
 					<li class="dropdown" id="menu_statistics">

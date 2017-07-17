@@ -229,7 +229,7 @@ var ioc = {
 			}
 		}
 	},
-	userService:{
+	userService : {
 		type : 'com.jit.project.user.service.UserService',
 		fields : {
 			dao : {
@@ -242,6 +242,22 @@ var ioc = {
 		fields : {
 			bugService : {
 				refer : 'bugService'
+			}
+		}
+	},
+	versionService : {
+		type : 'com.jit.project.version.service.VersionService',
+		fields : {
+			dao : {
+				refer : 'dao'
+			}
+		}
+	},
+	versionAction : {
+		type : "com.jit.project.version.web.VersionAction",
+		fields : {
+			versionService : {
+				refer : 'versionService'
 			}
 		}
 	}
