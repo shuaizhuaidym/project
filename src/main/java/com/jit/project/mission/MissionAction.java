@@ -257,6 +257,18 @@ public class MissionAction {
 		return result;
 	}
 
+	/**
+	 * 统计任务工作量
+	 * @param mission_id
+	 * @return
+	 */
+	@At("/mission/count_hours")
+	@Ok("raw:html")
+	public String countHours(@Param("mission_id") Integer mission_id){
+		Integer hrs = missionService.countHourse(mission_id);
+		return hrs.toString();
+	}
+	
 	public MissionServiceImpl getMissionService() {
 		return missionService;
 	}

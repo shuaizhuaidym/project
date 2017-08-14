@@ -22,10 +22,10 @@
 }
 </style>
 <script type="text/javascript" src="<%=path%>/js/jquery/jquery-1.11.1.js"></script>
+<script type="text/javascript" src="<%=path%>/js/jquery-validation-1.9.0/jquery.validate-1.17.0.js"></script>
 <script type="text/javascript" src="<%=path%>/js/bootstrap-dropdown.js"></script>
 <script type="text/javascript" src="<%=path%>/js/bootstrap-modal.js"></script>
 <script type="text/javascript" src="<%=path%>/js/bootstrap-tab.js"></script>
-<script type="text/javascript" src="<%=path%>/js/jquery-validation-1.9.0/jquery.validate.js"></script>
 <script type="text/javascript" src="<%=path%>/js/portal.js"></script>
 
 </head>
@@ -44,7 +44,7 @@
 				<div class="control-group">
 					<label class="control-label" for="code">关联任务</label>
 					<div class="controls">
-						<input type="text" id="summary_0" name="daily.items[0].missionSummary" class="w-input"> 
+						<input type="text" id="summary_0" name="daily.items[0].missionSummary" class="required w-input"> 
 						<input type="hidden" id="id_0" name="daily.items[0].missionID" class="w-input"/>
 						<a data-toggle="modal" href="<%=path%>/mission/refer?mission_index=0" onclick="trig(0);" data-target="#missionModal">[选择]</a>
 					</div>
@@ -52,19 +52,19 @@
 				<div class="control-group">
 					<label class="control-label" for="devMgr">工时（小时）</label>
 					<div class="controls">
-						<input type="text" id="devMgr" name="daily.items[0].hours" class="w-input">
+						<input type="text" id="devMgr" name="daily.items[0].hours" class="required number w-input">
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="productMgr">完成比例%</label>
 					<div class="controls">
-						<input type="text" id="productMgr" name="daily.items[0].percentage" class="w-input"/>
+						<input type="text" id="productMgr" name="daily.items[0].percentage" class="required number w-input"/>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="desc">工作内容</label>
 					<div class="controls">
-						<textarea rows="3" id="desc" name="daily.items[0].detail" class="w-input"></textarea>
+						<textarea rows="3" id="desc" name="daily.items[0].detail" class="required w-input"></textarea>
 					</div>
 				</div>
 				<div class="control-group">
@@ -107,11 +107,7 @@
 </body>
 <script type="text/javascript">
 	$(function() {
-		$("#frm_project").validate({
-			errorPlacement : function(error, element) {
-				//error.addClass( "ui red pointing label transition" );
-				//error.insertAfter( element.parent() );
-			},
+		$("#frm_daily").validate({
 			highlight : function(element, errorClass, validClass) {
 				$(element).css("border-color", "red");
 			},
