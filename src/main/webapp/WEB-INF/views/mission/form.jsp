@@ -29,8 +29,9 @@ textarea {
 <link rel="stylesheet" href="<%=path %>/kindediter/themes/default/default.css" />
 
 <script type="text/javascript" src="<%=path%>/js/jquery/jquery-1.11.1.js"></script>
+<script type="text/javascript" src="<%=path %>/js/jquery-validation-1.9.0/jquery.validate-1.17.0.js"></script>
+
 <script type="text/javascript" src="<%=path %>/js/bootstrap-datetimepicker.js"></script>
-<script type="text/javascript" src="<%=path %>/js/jquery-validation-1.9.0/jquery.validate.js"></script>
 <script type="text/javascript" src="<%=path%>/js/bootstrap-dropdown.js"></script>
 
 <script charset="utf-8" src="<%=path %>/kindediter/kindeditor-min.js"></script>
@@ -39,7 +40,7 @@ textarea {
 <script charset="utf-8" src="<%=path %>/js/mission/form.js"></script>
 
 <script>
-	var editor;
+	/* var editor;
 	KindEditor.ready(function(K) {	
 		editor = K.create('textarea[name="mission.content"]', {
 			resizeType : 0,
@@ -50,7 +51,7 @@ textarea {
 				'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
 				'insertunorderedlist', '|', 'emoticons', 'image', 'link']
 		});
-	});
+	}); */
 </script>
 </head>
 <body>
@@ -88,7 +89,7 @@ textarea {
 				<tr>
 					<td><label class="control-label col-xs-2">所属产品</label></td>
 					<td>
-						<ui:select name="mission.productName" path="${mission.productName}" items="${products}" css="required"></ui:select>
+						<ui:select name="mission.productName" path="${mission.productName}" items="${products}"></ui:select>
 					<td><label class="control-label col-xs-2">任务类型</label></td>
 					<td><select name="mission.type">
 							<option value="科研项目">科研项目</option>
@@ -188,5 +189,33 @@ textarea {
 	</div>
 	<!-- /container -->
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
+	
+	<script type="text/javascript">
+		$(function() {
+			$( "#frm_mission" ).validate( {
+				highlight : function(element, errorClass, validClass) {
+					$(element).css("border-color", "red");
+				},
+				unhighlight : function(element, errorClass, validClass) {
+					$(element).css("border-color", "#ccc");
+				}
+			});
+		});
+		$(function() {
+			var datePks=$("#frm_mission").find("input.datetime");
+			datePks.each(function(){
+				$(this).datetimepicker({
+					weekStart : 1,
+					todayBtn : 1,
+					autoclose : 1,
+					todayHighlight : 1,
+					startView : 2,
+					minView : 2,
+					forceParse : 0,
+					format:"yyyy-mm-dd"
+				});
+			});
+		});
+	</script>
 </body>
 </html>

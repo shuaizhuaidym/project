@@ -2,6 +2,9 @@
 <%@ page import="com.jit.project.project.bean.Project"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="ui" uri="/WEB-INF/tags/select"%>
+<%
+	String path = request.getContextPath();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +23,7 @@
 <script type="text/javascript" src="js/bootstrap-dropdown.js"></script>
 <script type="text/javascript" src="js/Util.js"></script>
 
-<script type="text/javascript" src="js/jquery-validation-1.9.0/jquery.validate.js"></script>
+<script type="text/javascript" src="<%=path %>/js/jquery-validation-1.9.0/jquery.validate-1.17.0.js"></script>
 <script type="text/javascript">
 	$(function() {
 		var datePks=$("#frm_project").find("input.datetime");
@@ -67,7 +70,7 @@
 			<table class="table table-striped table-bordered">
 				<tr>
 					<td><label class="control-label col-xs-2">项目名称</label></td>
-					<td><input type="text" name="project.prjName" class="form-control" value="${prj.prjName}"></td>
+					<td><input type="text" name="project.prjName" class="required form-control" value="${prj.prjName}"></td>
 					<td><label class="control-label col-xs-2">所属行业</label></td>
 					<td>
 						<ui:select name="project.industry" path="${prj.industry}" items="${mpIndustry}" css="required"></ui:select>

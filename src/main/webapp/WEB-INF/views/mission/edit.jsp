@@ -24,15 +24,16 @@ textarea {
 }
 </style>
 <script type="text/javascript" src="<%=path%>/js/jquery/jquery-1.11.1.js"></script>
+<script type="text/javascript" src="<%=path %>/js/jquery-validation-1.9.0/jquery.validate-1.17.0.js"></script>
+
 <script type="text/javascript" src="<%=path%>/js/bootstrap-dropdown.js"></script>
 <script type="text/javascript" src="<%=path %>/js/bootstrap-datetimepicker.js"></script>
-<script type="text/javascript" src="<%=path %>/js/jquery-validation-1.9.0/jquery.validate.js"></script>
 
 <link rel="stylesheet" href="<%=path %>/kindediter/themes/default/default.css" />
 <script charset="utf-8" src="<%=path %>/kindediter/kindeditor-min.js"></script>
 <script charset="utf-8" src="<%=path %>/kindediter/lang/zh_CN.js"></script>
 <script>
-	var editor;
+	/* var editor;
 	KindEditor.ready(function(K) {	
 		editor = K.create('textarea[name="mission.content"]', {
 			resizeType : 0,
@@ -43,7 +44,7 @@ textarea {
 				'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
 				'insertunorderedlist', '|', 'emoticons', 'image', 'link']
 		});
-	});
+	}); */
 </script>
 </head>
 <body>
@@ -106,23 +107,23 @@ textarea {
 					</td>
 				</tr>
 				<tr><td><label class="control-label col-xs-2">产品版本</label></td>
-					<td><input type="text" id="prj_version" name="mission.productVersion" value="${obj.productVersion}" class="required"></td>
+					<td><input type="text" id="prj_version" name="mission.productVersion" value="${obj.productVersion}"></td>
 					<td><label class="control-label col-xs-2">当前状态</label></td>
 					<td>
-						<ui:select name="mission.status" path="${obj.status}" items="${status}" css="required"></ui:select>
+						<ui:select name="mission.status" path="${obj.status}" items="${status}"></ui:select>
 					</td>
 				</tr>
 				<tr>
 					<td><label class="control-label col-xs-2">上级任务</label></td>
-					<td><input type="text" id="mission_name" name="mission.parentID" value="${obj.parentID}" class="required"></td>
+					<td><input type="text" id="mission_name" name="mission.parentID" value="${obj.parentID}"></td>
 					<td><label class="control-label col-xs-2">截止日期</label></td>
 					<td><input type="text" id="mission_name" name="mission.deadline" 
-					value="<f:formatDate value="${obj.deadline}" pattern="yyyy-MM-dd" />" class="required"></td>
+					value="<f:formatDate value="${obj.deadline}" pattern="yyyy-MM-dd" />" class="datetime"></td>
 				</tr>
 				<tr>
 				<td><label class="control-label col-xs-2">指派给</label></td>
 					<td>
-						<ui:select name="mission.assignTo" path="${obj.assignTo}" items="${users}" css="required"></ui:select>
+						<ui:select name="mission.assignTo" path="${obj.assignTo}" items="${users}"></ui:select>
 					</td>
 					
 					<td><label class="control-label col-xs-2">产品子类</label></td>
@@ -130,7 +131,7 @@ textarea {
 				</tr>
 				<tr>
 					<td><label class="control-label col-xs-2">基线版本</label></td>
-					<td><input type="text" id="prj_version" name="mission.productBaseVersion" value="${obj.productBaseVersion}" class="required"></td>
+					<td><input type="text" id="prj_version" name="mission.productBaseVersion" value="${obj.productBaseVersion}"></td>
 					<td><label class="control-label col-xs-2">负责团队</label></td>
 					<td><input type="text" id="mission_name" name="mission.teamID" value="${obj.teamID}" class="required"></td>
 				</tr>
@@ -138,18 +139,18 @@ textarea {
 				<tr>
 					<td><label class="control-label col-xs-2">计划开始时间</label></td>
 					<td><input type="text" id="mission_name" name="mission.planStart" 
-					value="<f:formatDate value="${obj.planStart}" pattern="yyyy-MM-dd" />" class="required"></td>
+					value="<f:formatDate value="${obj.planStart}" pattern="yyyy-MM-dd" />" class="datetime"></td>
 					<td><label class="control-label col-xs-2">开始时间</label></td>
 					<td><input type="text" id="mission_name" name="mission.startDate" 
-					value="<f:formatDate value="${obj.startDate}" pattern="yyyy-MM-dd" />" class="required"></td>
+					value="<f:formatDate value="${obj.startDate}" pattern="yyyy-MM-dd" />" class="datetime"></td>
 				</tr>
 				<tr>
 					<td><label class="control-label col-xs-2">计划结束时间</label></td>
 					<td><input type="text" id="mission_name" name="mission.planEnd" 
-					value="<f:formatDate value="${obj.planEnd}" pattern="yyyy-MM-dd" />" class="required"></td>
+					value="<f:formatDate value="${obj.planEnd}" pattern="yyyy-MM-dd" />" class="datetime"></td>
 					<td><label class="control-label col-xs-2">结束时间</label></td>
 					<td><input type="text" id="mission_name" name="mission.endDate" 
-					value="<f:formatDate value="${obj.endDate}" pattern="yyyy-MM-dd" />" class="required"></td>
+					value="<f:formatDate value="${obj.endDate}" pattern="yyyy-MM-dd" />" class="datetime"></td>
 				</tr>
 				<tr>
 					<td><label class="control-label col-xs-2">进展说明</label></td>
@@ -175,5 +176,34 @@ textarea {
 	</div>
 	<!-- /container -->
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
+	
+	<script type="text/javascript">
+		$(function() {
+			$( "#frm_mission" ).validate( {
+				highlight : function(element, errorClass, validClass) {
+					$(element).css("border-color", "red");
+				},
+				unhighlight : function(element, errorClass, validClass) {
+					$(element).css("border-color", "#ccc");
+				}
+			});
+		});
+		$(function() {
+			var datePks=$("#frm_mission").find("input.datetime");
+			datePks.each(function(){
+				$(this).datetimepicker({
+					weekStart : 1,
+					todayBtn : 1,
+					autoclose : 1,
+					todayHighlight : 1,
+					startView : 2,
+					minView : 2,
+					forceParse : 0,
+					format:"yyyy-mm-dd"
+				});
+			});
+		});
+	</script>
+	
 </body>
 </html>

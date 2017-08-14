@@ -15,9 +15,9 @@
 <link href="<%=path %>/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 
 <script type="text/javascript" src="<%=path %>/js/jquery/jquery-1.11.1.js"></script>
+<script type="text/javascript" src="<%=path %>/js/jquery-validation-1.9.0/jquery.validate-1.17.0.js"></script>
 <script type="text/javascript" src="<%=path %>/js/bootstrap-dropdown.js"></script>
 <script type="text/javascript" src="<%=path %>/js/bootstrap-datetimepicker.js"></script>
-<script type="text/javascript" src="<%=path %>/js/jquery-validation-1.9.0/jquery.validate.js"></script>
 
 <script type="text/javascript">
 	$(function() {

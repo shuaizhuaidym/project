@@ -17,8 +17,8 @@ public class DailyServiceImpl extends NameEntityService<Daily> implements IDaily
 	@Override
 	public void saveWith(Daily daily) {
 		StringBuilder links = new StringBuilder();
-		for (DailyItem i : daily.getItems()) {
-			links.append("<a href='/project/daily/item?item_id=").append(i.getItemID()).append("'>");
+		for (DailyItem i : daily.getItems()) {///project/daily/item?item_id=
+			links.append("<a ").append(i.getItemID()).append(">");
 			links.append(i.getDetail());
 			links.append("</a>").append("|");
 		}
