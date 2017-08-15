@@ -164,7 +164,7 @@ textarea {
 					<td><label class="control-label col-xs-2">完成百分比</label></td>
 					<td><input type="text" id="prj_name" name="mission.progress" value="${obj.progress}" class="required">%</td>
 					<td><label class="control-label col-xs-2">已投入人力(小时)</label></td>
-					<td><input type="text" name="mission.totalHours" value="${obj.totalHours}" class="number" /></td>
+					<td><input type="text" id="mission_totalHours" value="${obj.totalHours}" class="number" readonly="readonly"/></td>
 				</tr>
 			</table>
 			<div style="text-align: left; margin-right: 80px">
@@ -202,6 +202,11 @@ textarea {
 					format:"yyyy-mm-dd"
 				});
 			});
+		});
+		
+		$.post("<%=path%>/mission/count_hours?mission_id=${obj.missionID}", 
+				function(data) {
+			$("#mission_totalHours").val(data);
 		});
 	</script>
 	

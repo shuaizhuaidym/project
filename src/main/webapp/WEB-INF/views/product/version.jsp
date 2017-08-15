@@ -26,10 +26,12 @@
 
 .form-horizontal .controls {
 	margin-left: 8px;
-	float:left
+	float: left
 }
 
-.form-horizontal input{width:64px}
+.form-horizontal input {
+	width: 64px
+}
 </style>
 
 <script type="text/javascript" src="<%=path%>/js/jquery/jquery-1.11.1.js"></script>
@@ -78,10 +80,47 @@
 						</div>
 						<label class="control-label" for="displayNumber">路径</label>
 						<div class="controls">
-							<input type="text" id="displayNumber" name="dic.displayNumber" value="" style="width:132px">
+							<input type="text" id="displayNumber" name="dic.displayNumber" value="" style="width: 132px">
 						</div>
 						<div class="controls">
-							<label class="checkbox"> <input type="checkbox" id="available" name="dic.available"> 启用</label>
+							<label class="checkbox"> <input type="checkbox" id="available" name="dic.available"> 启用
+							</label>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="small-label control-label" for="dicName">版本号</label>
+						<div class="controls">
+							<input type="text" id="dicName" name="dic.dicName" value="">
+						</div>
+						<label class="control-label small-label " for="dicCode">别名</label>
+						<div class="controls">
+							<input type="text" id="dicCode" name="dic.dicCode" value="">
+						</div>
+						<label class="control-label" for="displayNumber">路径</label>
+						<div class="controls">
+							<input type="text" id="displayNumber" name="dic.displayNumber" value="" style="width: 132px">
+						</div>
+						<div class="controls">
+							<label class="checkbox"> <input type="checkbox" id="available" name="dic.available"> 启用
+							</label>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="small-label control-label" for="dicName">版本号</label>
+						<div class="controls">
+							<input type="text" id="dicName" name="dic.dicName" value="">
+						</div>
+						<label class="control-label small-label " for="dicCode">别名</label>
+						<div class="controls">
+							<input type="text" id="dicCode" name="dic.dicCode" value="">
+						</div>
+						<label class="control-label" for="displayNumber">路径</label>
+						<div class="controls">
+							<input type="text" id="displayNumber" name="dic.displayNumber" value="" style="width: 132px">
+						</div>
+						<div class="controls">
+							<label class="checkbox"> <input type="checkbox" id="available" name="dic.available"> 启用
+							</label>
 						</div>
 					</div>
 					<div class="control-group">
@@ -93,6 +132,7 @@
 				</form>
 			</div>
 		</div>
-		<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
+	</div>
+	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 </body>
 </html>

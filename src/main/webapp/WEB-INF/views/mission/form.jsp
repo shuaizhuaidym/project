@@ -76,7 +76,7 @@ textarea {
 				<tr>
 					<td><label class="control-label col-xs-2">任务内容</label></td>
 					<td colspan="3"><textarea id="mission_desc" name="mission.content"
-							style="width: 92%; height: 100px; visibility: hidden;"></textarea></td>
+							style="width: 92%; height: 100px;"></textarea></td>
 				</tr>
 				
 				<!-- <tr>
@@ -175,7 +175,7 @@ textarea {
 				</tr>
 				<tr>
 					<td><label class="control-label col-xs-2">完成百分比</label></td>
-					<td><input type="text" id="prj_name" name="mission.progress" class="required">%</td>
+					<td><input type="text" id="prj_name" name="mission.progress" class="required number">%</td>
 					<td><label class="control-label col-xs-2">已投入人力(小时)</label></td>
 					<td><input type="text" name="mission.totalHours" class="number" /></td>
 				</tr>
@@ -190,32 +190,5 @@ textarea {
 	<!-- /container -->
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 	
-	<script type="text/javascript">
-		$(function() {
-			$( "#frm_mission" ).validate( {
-				highlight : function(element, errorClass, validClass) {
-					$(element).css("border-color", "red");
-				},
-				unhighlight : function(element, errorClass, validClass) {
-					$(element).css("border-color", "#ccc");
-				}
-			});
-		});
-		$(function() {
-			var datePks=$("#frm_mission").find("input.datetime");
-			datePks.each(function(){
-				$(this).datetimepicker({
-					weekStart : 1,
-					todayBtn : 1,
-					autoclose : 1,
-					todayHighlight : 1,
-					startView : 2,
-					minView : 2,
-					forceParse : 0,
-					format:"yyyy-mm-dd"
-				});
-			});
-		});
-	</script>
 </body>
 </html>

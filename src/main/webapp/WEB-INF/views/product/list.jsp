@@ -46,7 +46,6 @@
 
 .modal-body form input{
 	width: 80%;
-	height: 22px
 }
 .modal-body form select {width: 80%;}
 .table td,th {
@@ -82,6 +81,7 @@ ul.ztree {
 </style>
 
 <script type="text/javascript" src="<%=path%>/js/jquery/jquery-1.11.1.js"></script>
+<script type="text/javascript" src="<%=path %>/js/jquery-validation-1.9.0/jquery.validate-1.17.0.js"></script>
 <script type="text/javascript" src="<%=path%>/js/bootstrap-dropdown.js"></script>
 <script type="text/javascript" src="<%=path%>/zTree/jquery-ztree-core-min.js"></script>
 
@@ -171,12 +171,12 @@ ul.ztree {
 					<tr>
 						<th>模块名称</th>
 						<td>
-							<input name="product.productName"/></td>
+							<input type="text" name="product.productName" class="required"/></td>
 						<th>上级模块</th>
 						<td>
 							<div id="combo-tree" class="dropdown">
-								<input type="text" id="parentModule" name="product.parentName" />
-								<input type="hidden" id="parentID" name="product.parentID"/>
+								<input type="text" id="parentModule" name="product.parentName" class="required"/>
+								<input type="hidden" id="parentID" name="product.parentID" class="required"/>
 								<a id="parentModuleBtn" onclick="showMenu();" href="#" class='btn suffix-btn'><b class="caret"></b></a>
 								<ul id="treeParentModule" class="ztree outstand dropdown-menu"></ul>
 							</div>
@@ -188,7 +188,7 @@ ul.ztree {
 							<input type="text" name="product.releaseVersion"/>
 						</td>
 						<th>迭代版本</th>
-						<td><input name="product.innerVersion"/></td>
+						<td><input type="text" name="product.innerVersion"/></td>
 					</tr>
 					<tr>
 						<th>产品介绍</th>
@@ -203,4 +203,20 @@ ul.ztree {
 		</div>
 	</div>
 </body>
+<script type="text/javascript">
+$(function() {
+	$("#moduleForm").validate({
+			errorPlacement : function(error, element) {
+				//error.addClass( "ui red pointing label transition" );
+				//error.insertAfter( element.parent() );
+			},
+			highlight : function(element, errorClass, validClass) {
+				$(element).css("border-color", "red");
+			},
+			unhighlight : function(element, errorClass, validClass) {
+				$(element).css("border-color", "#ccc");
+			}
+		});
+	});
+</script>
 </html>

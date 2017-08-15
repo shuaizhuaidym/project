@@ -1,36 +1,6 @@
-//选择模块节点
-function wiz(nodeID,nodeName) {
-	$("#parentModule").val(nodeName);
-	$("#parentID").val(nodeID);
-	hideMenu();
-}
-var setting = {
-	async : {
-		enable : true,
-		url : "/project/product/tree",
-		autoParam : ["treeNodeID=parent_id","level"],
-		contentType : "application/x-www-form-urlencoded",
-		dataType : 'json',
-		type : "post"
-	},
-	check: {
-		enable: false
-	},
-	view : {
-		dblClickExpand: false
-	}
-};
-function showMenu() {
-	$('#combo-tree').addClass('open');
-}
-function hideMenu() {
-	$('#combo-tree').removeClass('open');
-}
-function onBodyDown(event) {
-	if (!(event.target.id == "combo-tree" || event.target.id == "combo-tree" || $(event.target).parents("#combo-tree").length>0)) {
-		hideMenu();
-	}
-}
+/**
+ * 日期控件初始化
+ */
 $(function() {
 	var datePks = $("#frm_mission").find("input.datetime");
 	datePks.each(function() {
@@ -45,11 +15,13 @@ $(function() {
 			format : "yyyy-mm-dd"
 		});
 	});
-	$.fn.zTree.init($("#treeParentModule"), setting);
-	$("body").bind("mousedown", onBodyDown);
+
 });
+/**
+ * 表单校验
+ */
 $(function() {
-	$("#frm_project").validate({
+	$("#frm_mission").validate({
 		errorPlacement : function(error, element) {
 			//error.addClass( "ui red pointing label transition" );
 			//error.insertAfter( element.parent() );

@@ -32,10 +32,18 @@
 			<li><a href="#settings" data-toggle="tab">行业人力投入统计</a></li>
 		</ul>
 		<div class="tab-content">
-			<div class="tab-pane active" id="home">售前人力统计</div>
-			<div class="tab-pane" id="profile">售后人力统计</div>
-			<div class="tab-pane" id="messages">持续改进人力统计</div>
-			<div class="tab-pane" id="settings">行业人力投入统计</div>
+			<div class="tab-pane active" id="home">
+				售前人力统计
+			</div>
+			<div class="tab-pane" id="profile">
+				售后人力统计
+			</div>
+			<div class="tab-pane" id="messages">
+				持续改进人力统计
+			</div>
+			<div class="tab-pane" id="settings">
+				行业人力投入统计
+			</div>
 		</div>
 	</div>
 </body>
