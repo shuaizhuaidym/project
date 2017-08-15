@@ -17,7 +17,7 @@
 <script type="text/javascript" src="<%=path%>/js/jquery/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="<%=path%>/js/bootstrap-dropdown.js"></script>
 
-<script type="text/javascript" src="<%=path%>/js/jquery-validation-1.9.0/jquery.validate.js"></script>
+<script type="text/javascript" src="<%=path %>/js/jquery-validation-1.9.0/jquery.validate-1.17.0.js"></script>
 
 </head>
 <body>
@@ -29,7 +29,7 @@
 					<span>增加用户</span>
 				</legend>
 			</fieldset>
-			<form class="form-horizontal" action="<%=path%>/user/add" method="post">
+			<form id="frm_user" class="form-horizontal" action="<%=path%>/user/add" method="post">
 				<div class="control-group">
 					<label class="control-label" for="org">部门</label>
 					<div class="controls">
@@ -43,19 +43,19 @@
 				<div class="control-group">
 					<label class="control-label" for="uname">账号</label>
 					<div class="controls">
-						<input type="text" id="uname" name="user.name">
+						<input type="text" id="uname" name="user.name" class="required"/>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="pwd">登录密码</label>
 					<div class="controls">
-						<input type="text" id="pwd" name="user.password">
+						<input type="text" id="pwd" name="user.password" class="required"/>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="rname">真实姓名</label>
 					<div class="controls">
-						<input type="text" id="rname" name="user.realName">
+						<input type="text" id="rname" name="user.realName" class="required"/>
 					</div>
 				</div>
 				<!-- <div class="control-group">
@@ -81,4 +81,16 @@
 	</div>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 </body>
+	<script type="text/javascript">
+		$(function() {
+			$( "#frm_user" ).validate( {
+				highlight : function(element, errorClass, validClass) {
+					$(element).css("border-color", "red");
+				},
+				unhighlight : function(element, errorClass, validClass) {
+					$(element).css("border-color", "#ccc");
+				}
+			});
+		});
+	</script>
 </html>
