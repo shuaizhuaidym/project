@@ -192,9 +192,10 @@ public class ChartAction {
 	 * @param type
 	 * @return
 	 */
-	@At("/statistics")
+	@At("/labor_count")
 	@Ok("jsp:views.chart.report")
 	public String statistics(@Param("aspect") String aspect) {
+		
 		return "SUCCESS";
 	}
 

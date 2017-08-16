@@ -91,16 +91,9 @@ textarea {
 					<td>
 						<ui:select name="mission.productName" path="${mission.productName}" items="${products}"></ui:select>
 					<td><label class="control-label col-xs-2">任务类型</label></td>
-					<td><select name="mission.type">
-							<option value="科研项目">科研项目</option>
-							<option value="售前技术支持">售前技术支持</option>
-							<option value="售后技术支持">售后技术支持</option>
-							<option value="持续改进">持续改进</option>
-							<option value="售后需求开发">售后需求开发</option>
-							<option value="售前需求开发">售前需求开发</option>
-							<option value="售前定制开发">售前定制开发</option>
-							<option value="售后定制开发">售后定制开发</option>
-					</select></td>
+					<td>
+						<ui:select name="mission.type" path="${obj.type}" items="${types}" css="required"></ui:select>
+					</td>
 				</tr>
 				<tr>
 					<td><label class="control-label col-xs-2">所属模块</label></td>
@@ -108,29 +101,18 @@ textarea {
 						<ui:select name="mission.module" path="${mission.module}" items="${products}" css="required"></ui:select>
 					</td>
 					<td><label class="control-label col-xs-2">任务类别</label></td>
-					<td><select name="mission.taskClass" class="required">
-							<option value="新功能">新功能</option>
-							<option value="缺陷修复">缺陷修复</option>
-							<option value="产品改进">产品改进</option>
-					</select></td>
+					<td>
+						<ui:select name="mission.taskClass" path="${obj.taskClass}" items="${classes}" css="required"></ui:select>
+					</td>
 				</tr>
 				<tr>
 					<td><label class="control-label col-xs-2">产品版本</label></td>
 					<td><input type="text" id="prj_version" name="mission.productVersion" class="required"></td>
 					
 					<td><label class="control-label col-xs-2">当前状态</label></td>
-					<td><select name="mission.status" class="required">
-							<option value="1">未启动</option>
-							<option value="2">进行中_需求分析中</option>
-							<option value="3">进行中_设计中</option>
-
-							<option value="4">进行中_开发中</option>
-							<option value="5">进行中_测试中</option>
-							<option value="6">延期进行中</option>
-							<option value="7">完成</option>
-							<option value="8">暂停</option>
-							<option value="9">等待反馈</option>
-					</select></td>
+					<td>
+						<ui:select name="mission.status" path="${obj.status}" items="${status}"></ui:select>
+					</td>
 				</tr>
 				<tr>
 					<td><label class="control-label col-xs-2">上级任务</label></td>
@@ -152,7 +134,15 @@ textarea {
 					<td><label class="control-label col-xs-2">负责团队</label></td>
 					<td><input type="text" id="mission_name" name="mission.teamID" class="required"></td>
 				</tr>
-				
+				<!-- publish version,industry -->
+				<tr>
+					<td><label class="control-label col-xs-2">实际发布版本</label></td>
+					<td><input type="text" id="p_version" name="mission.publishVersion"></td>
+					<td><label class="control-label col-xs-2">发起行业</label></td>
+					<td><input type="text" id="mission_name" name="mission.industryName" class="required">
+					<input type="hidden" id="industryID" name="industryID"/>
+					</td>
+				</tr>
 				<tr>
 					<td><label class="control-label col-xs-2">计划开始时间</label></td>
 					<td><input type="text" id="mission_name" name="mission.planStart" class="datetime"></td>

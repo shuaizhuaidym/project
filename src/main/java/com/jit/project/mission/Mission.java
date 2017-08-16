@@ -38,6 +38,7 @@ public class Mission extends BasePojo{
 	private String taskClass;
 	@Column("parent_id")
 	private String parentID;
+	//产品迭代版本
 	@Column("product_version")
 	private String productVersion;
 	@Column("plan_start")
@@ -78,13 +79,20 @@ public class Mission extends BasePojo{
 	private int teamID;
 	@Column("comments")
 	private String comments;
+	//实际发布版本
+	@Column("publish_version")
+	private String publishVersion;
+	//任务发起行业
+	@Column("industry_id")
+	private String industryID;
+	@Column("industry_name")
+	private String industryName;
 
 	public String getFormatDeadline(){
 		return deadline == null ? "" : new SimpleDateFormat("yyyy-MM-dd").format(deadline);
 	}
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
 		return super.toString();
 	}	
 
@@ -304,6 +312,24 @@ public class Mission extends BasePojo{
 	}
 	public void setTotalHours(String totalHours) {
 		this.totalHours = totalHours;
+	}
+	public String getPublishVersion() {
+		return publishVersion;
+	}
+	public void setPublishVersion(String publishVersion) {
+		this.publishVersion = publishVersion;
+	}
+	public String getIndustryID() {
+		return industryID;
+	}
+	public void setIndustryID(String industryID) {
+		this.industryID = industryID;
+	}
+	public String getIndustryName() {
+		return industryName;
+	}
+	public void setIndustryName(String industryName) {
+		this.industryName = industryName;
 	}
 	
 }

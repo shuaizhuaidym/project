@@ -30,8 +30,10 @@ textarea {
 <script type="text/javascript" src="<%=path %>/js/bootstrap-datetimepicker.js"></script>
 
 <link rel="stylesheet" href="<%=path %>/kindediter/themes/default/default.css" />
-<script charset="utf-8" src="<%=path %>/kindediter/kindeditor-min.js"></script>
-<script charset="utf-8" src="<%=path %>/kindediter/lang/zh_CN.js"></script>
+<script type="text/javascript" charset="utf-8" src="<%=path %>/kindediter/kindeditor-min.js"></script>
+<script type="text/javascript" charset="utf-8" src="<%=path %>/kindediter/lang/zh_CN.js"></script>
+
+<script type="text/javascript" charset="utf-8" src="<%=path %>/js/mission/form.js"></script>
 <script>
 	/* var editor;
 	KindEditor.ready(function(K) {	
@@ -135,7 +137,15 @@ textarea {
 					<td><label class="control-label col-xs-2">负责团队</label></td>
 					<td><input type="text" id="mission_name" name="mission.teamID" value="${obj.teamID}" class="required"></td>
 				</tr>
-				
+				<!-- publish version,industry -->
+				<tr>
+					<td><label class="control-label col-xs-2">实际发布版本</label></td>
+					<td><input type="text" id="p_version" name="mission.publishVersion"></td>
+					<td><label class="control-label col-xs-2">发起行业</label></td>
+					<td><input type="text" id="mission_name" name="mission.industryName" class="required">
+					<input type="hidden" id="industryID" name="industryID"/>
+					</td>
+				</tr>				
 				<tr>
 					<td><label class="control-label col-xs-2">计划开始时间</label></td>
 					<td><input type="text" id="mission_name" name="mission.planStart" 
@@ -178,32 +188,6 @@ textarea {
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 	
 	<script type="text/javascript">
-		$(function() {
-			$( "#frm_mission" ).validate( {
-				highlight : function(element, errorClass, validClass) {
-					$(element).css("border-color", "red");
-				},
-				unhighlight : function(element, errorClass, validClass) {
-					$(element).css("border-color", "#ccc");
-				}
-			});
-		});
-		$(function() {
-			var datePks=$("#frm_mission").find("input.datetime");
-			datePks.each(function(){
-				$(this).datetimepicker({
-					weekStart : 1,
-					todayBtn : 1,
-					autoclose : 1,
-					todayHighlight : 1,
-					startView : 2,
-					minView : 2,
-					forceParse : 0,
-					format:"yyyy-mm-dd"
-				});
-			});
-		});
-		
 		$.post("<%=path%>/mission/count_hours?mission_id=${obj.missionID}", 
 				function(data) {
 			$("#mission_totalHours").val(data);
