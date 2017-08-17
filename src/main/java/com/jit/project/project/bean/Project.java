@@ -8,13 +8,15 @@ import org.nutz.dao.entity.annotation.Column;
 import org.nutz.dao.entity.annotation.Id;
 import org.nutz.dao.entity.annotation.Name;
 import org.nutz.dao.entity.annotation.Table;
+
+import com.jit.project.bean.BasePojo;
 /**
  * 项目问题
  * @author yanming_dai
  * @date 2016年4月16日
  */
 @Table("t_project")
-public class Project {
+public class Project extends BasePojo{
 
 	@Id
 	@Column("prj_id")
@@ -68,9 +70,7 @@ public class Project {
 	//备注
 	@Column("comments")
 	private String comments;
-	//最后响应日期
-	@Column("last_response")
-	private Date lastResponse=new Date(System.currentTimeMillis());
+	
 	//操作人，记录当前操作者IP，然后根据对应关系可以找到人
 	@Column("operator_ip")
 	private String operatorIP;
@@ -235,14 +235,6 @@ public class Project {
 		this.engineerTel = engineerTel;
 	}
 
-	public Date getLastResponse() {
-		return lastResponse;
-	}
-
-	public void setLastResponse(Date lastResponse) {
-		this.lastResponse = lastResponse;
-	}
-
 	public String getShortDesc(){
 		if(describtion==null||describtion.length()<64){
 			return describtion;
@@ -256,7 +248,7 @@ public class Project {
 	}
 	public String getLocalLastResponse(){
 		SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
-		return submitDate == null ? "" : ft.format(lastResponse);
+		return submitDate == null ? "" : ft.format(updateTime);
 	}
 
 	public String getLocalFinishDate() {

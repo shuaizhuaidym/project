@@ -69,6 +69,9 @@ public class Mission extends BasePojo{
 	private String progressDetail;
 	@Column("module")
 	private String module;
+	//项目经理
+	@Column("project_manager")
+	private String projectManager;
 	//任务负责人
 	@Column("assign_to")
 	private String assignTo;
@@ -87,6 +90,10 @@ public class Mission extends BasePojo{
 	private String industryID;
 	@Column("industry_name")
 	private String industryName;
+	
+	private Date lastModify;
+	
+	private Integer version;
 
 	public String getFormatDeadline(){
 		return deadline == null ? "" : new SimpleDateFormat("yyyy-MM-dd").format(deadline);
@@ -330,6 +337,24 @@ public class Mission extends BasePojo{
 	}
 	public void setIndustryName(String industryName) {
 		this.industryName = industryName;
+	}
+	public Date getLastModify() {
+		return lastModify;
+	}
+	public void setLastModify(Date lastModify) {
+		this.lastModify = lastModify;
+	}
+	public Integer getVersion() {
+		return version;
+	}
+	public void setVersion(Integer version) {
+		this.version = version;
+	}
+	public String getProjectManager() {
+		return projectManager;
+	}
+	public void setProjectManager(String projectManager) {
+		this.projectManager = projectManager;
 	}
 	
 }

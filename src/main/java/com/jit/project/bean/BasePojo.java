@@ -11,6 +11,8 @@ public class BasePojo {
 	protected Date createTime;
 	@Column("update_time")
 	protected Date updateTime;
+	@Column("version")
+	protected Integer version;
 
 	public String toString() {
 		return String.format("/*%s*/%s", super.toString(), Json.toJson(this, JsonFormat.compact()));

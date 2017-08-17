@@ -16,9 +16,12 @@ import org.nutz.service.NameEntityService;
 import com.jit.project.bean.ChartBar;
 import com.jit.project.bean.ChartPie;
 import com.jit.project.project.bean.Project;
+import com.jit.project.report.bean.Report;
 
 public class ChartService extends NameEntityService<Project> implements IChartService {
 
+	private static final String STATE_RUN = "进行中";
+	private static final String STATE_END = "完成";
 	/**
 	 * 按负责人统计柱状图数据集
 	 * 
@@ -143,5 +146,43 @@ public class ChartService extends NameEntityService<Project> implements IChartSe
 			dataset.addValue(bar.getData(), "", bar.getEngineer());
 		}
 		return dataset;
+	}
+	
+	/**
+	 * 人力统计
+	 * 默认以周为单位，统计状态为 进行中的|已完成&完成时间 between(本周一&&本周末)
+	 */
+	public List<Report> labor_count(String begin, String end) {
+		Sql sql = Sqls.create("SELECT work_name,industry,work_type,work_content,engineer,state,"
+				+ "process,hours,finish_date FROM labor_statistics WHERE "
+				+ "instr(state, @state_run) > 0 AND update_time BETWEEN '2017-01-01' AND '2017-08-01' "
+				+ "OR state = @state_end AND finish_date BETWEEN @monday AND @sunday");
+		
+		sql.params().set("state_run", STATE_RUN);
+		sql.params().set("state_end", STATE_END);
+		sql.params().set("monday", begin);
+		sql.params().set("sunday", end);
+		
+		// 数据处理
+		final List<Report> list = new LinkedList<Report>();
+		sql.setCallback(new SqlCallback() {
+			public Object invoke(Connection conn, ResultSet rs, Sql sql) throws SQLException {
+				while (rs.next()) {
+					Report r = new Report(rs.getString("work_name"), rs.getString("industry"), rs
+							.getString("work_type"), rs.getString("manager"), rs.getString("state"), rs
+							.getString("product"), rs.getString("module"), rs.getString("baseVersion"), rs
+							.getString("publishVersion"), rs.getString("function"), rs
+							.getString("engineer"), rs.getString("planStartDate"), rs
+							.getString("startDate"), rs.getString("planEndDate"), rs.getString("endDate"),
+							rs.getString("arrangedInvestment"), rs.getString("investment"), rs
+									.getString("process"));
+					list.add(r);
+				}
+				return list;
+			}
+		});
+		dao().execute(sql);
+
+		return list;
 	}
 }

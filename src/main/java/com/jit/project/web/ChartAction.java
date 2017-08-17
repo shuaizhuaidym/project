@@ -25,6 +25,7 @@ import util.ReportUtil;
 import com.jit.project.bean.Query;
 import com.jit.project.project.bean.Project;
 import com.jit.project.project.service.PrjService;
+import com.jit.project.report.bean.Report;
 import com.jit.project.service.ChartService;
 
 /**
@@ -194,9 +195,9 @@ public class ChartAction {
 	 */
 	@At("/labor_count")
 	@Ok("jsp:views.chart.report")
-	public String statistics(@Param("aspect") String aspect) {
-		
-		return "SUCCESS";
+	public List<Report> statistics(@Param("aspect") String aspect) {
+		List<Report> tab=chartService.labor_count("2017-01-01", "2017-08-01");
+		return tab;
 	}
 
 	protected PrjService getPrjService() {

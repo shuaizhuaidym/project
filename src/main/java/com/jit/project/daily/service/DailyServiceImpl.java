@@ -15,15 +15,22 @@ import com.jit.project.daily.bean.Query;
 public class DailyServiceImpl extends NameEntityService<Daily> implements IDailyService {
 
 	@Override
-	public void saveWith(Daily daily) {
+	public void saveWith(final Daily daily) {
 		StringBuilder links = new StringBuilder();
-		for (DailyItem i : daily.getItems()) {///project/daily/item?item_id=
+		for (DailyItem i : daily.getItems()) {// /project/daily/item?item_id=
 			links.append("<a ").append(i.getItemID()).append(">");
 			links.append(i.getDetail());
 			links.append("</a>").append("|");
 		}
 		daily.setItemLinks(links.toString());
-		this.dao().insertWith(daily, "items");
+
+		dao().insertWith(daily, "items");
+		// TODO update mission's labor cost in transaction
+//		Trans.exec(Connection.TRANSACTION_SERIALIZABLE, new Atom() {
+//			public void run() {
+//				dao().update(CCC);
+//			}
+//		});
 	}
 
 	@Override
@@ -51,5 +58,9 @@ public class DailyServiceImpl extends NameEntityService<Daily> implements IDaily
 	@Override
 	public Daily fetchLinks(Daily daily, String manyReg) {
 		return this.dao().fetchLinks(daily, manyReg);
+	}
+	//TODO
+	public int udateLaborCost(List<DailyItem> items){
+		return 0;
 	}
 }
