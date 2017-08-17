@@ -28,6 +28,14 @@ public class Project extends BasePojo{
 	//所属行业
 	@Column("industry")
 	private String industry;
+	//项目类型:售前开发/售中/售后..
+	@Column("project_type")
+	private String projectType;
+	//相关产品
+	@Column("product_id")
+	private int productID;
+	@Column("product_name")
+	private String productName;
 	//产品版本
 	@Column("product_version")
 	private String prudectVersion;
@@ -295,5 +303,21 @@ public class Project extends BasePojo{
 	public int diff(java.util.Date late, java.util.Date earler) {
 		int pass = (int) (late.getTime() - earler.getTime()) / 1000 / 3600 / 24;
 		return pass;
+	}
+
+	public int getProductID() {
+		return productID;
+	}
+
+	public void setProductID(int productID) {
+		this.productID = productID;
+	}
+
+	public String getProductName() {
+		return productName;
+	}
+
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
 }

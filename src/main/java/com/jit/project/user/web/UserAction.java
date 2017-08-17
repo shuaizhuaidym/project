@@ -1,6 +1,6 @@
 package com.jit.project.user.web;
 
-import java.util.Date;
+import java.sql.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -135,7 +135,7 @@ public class UserAction {
 		}
 		user.setName(null);// 不允许更新用户名
 		user.setCreateTime(null);// 也不允许更新创建时间
-		user.setUpdateTime(new Date());// 设置正确的更新时间
+		user.setUpdateTime(new Date(System.currentTimeMillis()));// 设置正确的更新时间
 		dao.updateIgnoreNull(user);// 真正更新的其实只有password和salt
 		return re.setv("ok", true);
 	}

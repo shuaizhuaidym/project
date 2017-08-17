@@ -172,7 +172,7 @@ public class DBUtil {
 			ps.setString(15, p.getImprovement());
 
 			ps.setString(16, p.getComments());
-			ps.setDate(17, p.getLastResponse());
+			ps.setDate(17, p.getUpdateTime());
 			ps.setString(18, p.getOperatorIP());
 
 			boolean flag = ps.execute();

@@ -1,6 +1,6 @@
 package com.jit.project.bean;
 
-import java.util.Date;
+import java.sql.Date;
 
 import org.nutz.dao.entity.annotation.Column;
 import org.nutz.json.Json;

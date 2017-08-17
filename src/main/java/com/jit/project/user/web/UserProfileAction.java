@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.sql.SQLException;
-import java.util.Date;
+import java.sql.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -57,8 +57,8 @@ public class UserProfileAction extends BaseAction {
 		if (profile == null) {
 			profile = new UserProfile();
 			profile.setUserId(userId);
-			profile.setCreateTime(new Date());
-			profile.setUpdateTime(new Date());
+			profile.setCreateTime(new Date(System.currentTimeMillis()));
+			profile.setUpdateTime(new Date(System.currentTimeMillis()));
 			dao.insert(profile);
 		}
 		return profile;
@@ -72,7 +72,7 @@ public class UserProfileAction extends BaseAction {
 		if (profile == null)
 			return;
 		profile.setUserId(userId);// 修正userId,防止恶意修改其他用户的信息
-		profile.setUpdateTime(new Date());
+		profile.setUpdateTime(new Date(System.currentTimeMillis()));
 		profile.setAvatar(null); // 不准通过这个方法更新
 		UserProfile old = get(userId);
 		// 检查email相关的更新

@@ -1,6 +1,6 @@
 package com.jit.project.user.service;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,8 +23,8 @@ public class UserService extends IdNameEntityService<User> {
 		user.setName(name.trim());
 		user.setSalt(R.UU16());
 		user.setPassword(new Sha256Hash(password, user.getSalt()).toHex());
-		user.setCreateTime(new Date());
-		user.setUpdateTime(new Date());
+		user.setCreateTime(new Date(System.currentTimeMillis()));
+		user.setUpdateTime(new Date(System.currentTimeMillis()));
 		return dao().insert(user);
 	}
 
@@ -34,8 +34,8 @@ public class UserService extends IdNameEntityService<User> {
 		}
 		user.setSalt(R.UU16());
 		user.setPassword(new Sha256Hash(user.getPassword(), user.getSalt()).toHex());
-		user.setCreateTime(new Date());
-		user.setUpdateTime(new Date());
+		user.setCreateTime(new Date(System.currentTimeMillis()));
+		user.setUpdateTime(new Date(System.currentTimeMillis()));
 		return dao().insert(user);
 	}
 
@@ -46,7 +46,7 @@ public class UserService extends IdNameEntityService<User> {
 		}
 		user.setSalt(R.UU16());
 		user.setPassword(new Sha256Hash(password, user.getSalt()).toHex());
-		user.setUpdateTime(new Date());
+		user.setUpdateTime(new Date(System.currentTimeMillis()));
 		dao().update(user, "^(password|salt|updateTime)$");
 	}
 

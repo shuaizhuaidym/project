@@ -1,7 +1,7 @@
 package com.jit.project.mission;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -99,8 +99,8 @@ public class MissionAction {
 	@At("/mission/create")
 	@Ok("redirect:/mission/query")
 	public String create(@Param("::mission.") Mission mission) {
-		mission.setCreateTime(new Date());
-		mission.setUpdateTime(new Date());
+		mission.setCreateTime(new Date(System.currentTimeMillis()));
+		mission.setUpdateTime(new Date(System.currentTimeMillis()));
 		missionService.dao().insert(mission);
 		return SUCCESS;
 	}

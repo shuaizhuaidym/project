@@ -153,9 +153,11 @@ public class ChartService extends NameEntityService<Project> implements IChartSe
 	 * 默认以周为单位，统计状态为 进行中的|已完成&完成时间 between(本周一&&本周末)
 	 */
 	public List<Report> labor_count(String begin, String end) {
-		Sql sql = Sqls.create("SELECT work_name,industry,work_type,work_content,engineer,state,"
-				+ "process,hours,finish_date FROM labor_statistics WHERE "
-				+ "instr(state, @state_run) > 0 AND update_time BETWEEN '2017-01-01' AND '2017-08-01' "
+		Sql sql = Sqls.create("SELECT work_name,industry,work_type,work_content,manager,engineer,state,"
+				+ "process,hours,finish_date,product,module,baseVersion,"
+				+ "publishVersion,function,planStartDate,startDate,planEndDate,endDate,"
+				+ "arrangedInvestment,investment,work_content " + "FROM labor_statistics WHERE "
+				+ "instr(state, @state_run) > 0 AND update_time BETWEEN @monday AND @sunday "
 				+ "OR state = @state_end AND finish_date BETWEEN @monday AND @sunday");
 		
 		sql.params().set("state_run", STATE_RUN);
@@ -171,11 +173,10 @@ public class ChartService extends NameEntityService<Project> implements IChartSe
 					Report r = new Report(rs.getString("work_name"), rs.getString("industry"), rs
 							.getString("work_type"), rs.getString("manager"), rs.getString("state"), rs
 							.getString("product"), rs.getString("module"), rs.getString("baseVersion"), rs
-							.getString("publishVersion"), rs.getString("function"), rs
-							.getString("engineer"), rs.getString("planStartDate"), rs
-							.getString("startDate"), rs.getString("planEndDate"), rs.getString("endDate"),
-							rs.getString("arrangedInvestment"), rs.getString("investment"), rs
-									.getString("process"));
+							.getString("publishVersion"), rs.getString("function"), rs.getString("engineer"), rs
+							.getString("planStartDate"), rs.getString("startDate"), rs.getString("planEndDate"), rs
+							.getString("endDate"), rs.getString("arrangedInvestment"), rs.getString("investment"), rs
+							.getString("process"), rs.getString("work_content"));
 					list.add(r);
 				}
 				return list;
