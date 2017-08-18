@@ -1,6 +1,7 @@
 package com.jit.project.project.web;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -15,6 +16,8 @@ import org.nutz.mvc.annotation.Ok;
 import org.nutz.mvc.annotation.Param;
 
 import com.jit.project.bean.Query;
+import com.jit.project.dictionary.service.IDicService;
+import com.jit.project.product.service.ProductService;
 import com.jit.project.project.bean.Project;
 import com.jit.project.project.service.PrjService;
 import com.jit.project.user.service.UserService;
@@ -26,6 +29,9 @@ public class PrjAction {
 	private PrjService prjService;
 	
 	private UserService userService;
+	
+	private IDicService dicService;
+	private ProductService prdtService;
 
 	private Project project;
 
@@ -33,6 +39,9 @@ public class PrjAction {
 	Map<String, String> mpIssueType = new LinkedHashMap<String, String>();
 	Map<String, String> mpStatus = new LinkedHashMap<String, String>();
 	Map<String, String> users = new LinkedHashMap<String, String>();
+	Map<String, String> products = new HashMap<String, String>();
+	Map<String, String> prjTypes = new HashMap<String, String>();
+	
 	
 	public PrjAction() {
 		super();
@@ -64,6 +73,11 @@ public class PrjAction {
 		request.setAttribute("mpIndustry", mpIndustry);
 		request.setAttribute("mpIssueType", mpIssueType);
 		request.setAttribute("mpStatus", mpStatus);
+		
+		products=this.prdtService.asDic();
+		prjTypes = this.dicService.service(IDicService.type_mission_type);
+		request.setAttribute("products", products);
+		request.setAttribute("prjTypes", prjTypes);
 		prepareDic(request);
 	}
 
@@ -72,6 +86,7 @@ public class PrjAction {
 	@Ok("redirect:/query")
 	public String createProject(@Param("::project.") Project project) {
 		try {
+			project.setUpdateTime(new java.sql.Date(System.currentTimeMillis()));
 			prjService.add(project);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -104,6 +119,11 @@ public class PrjAction {
 		request.setAttribute("mpIndustry", mpIndustry);
 		request.setAttribute("mpIssueType", mpIssueType);
 		request.setAttribute("mpStatus", mpStatus);
+		
+		products=this.prdtService.asDic();
+		prjTypes = this.dicService.service(IDicService.type_mission_type);
+		request.setAttribute("products", products);
+		request.setAttribute("prjTypes", prjTypes);
 		prepareDic(request);
 		
 		return "EDIT";

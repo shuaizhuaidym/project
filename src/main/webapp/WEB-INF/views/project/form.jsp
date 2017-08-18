@@ -13,7 +13,10 @@
 <link href="<%=path %>/css/commom.css" rel="stylesheet">
 <link href="<%=path %>/css/bootstrap.min.css" rel="stylesheet">
 <link href="<%=path %>/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
-
+<style type="text/css">
+	<!-- 表单外层容器，统一尺寸 字体等 -->
+	.container_frm{width: 65%; margin: 0 auto}
+</style>
 <script type="text/javascript" src="<%=path %>/js/jquery/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="<%=path %>/js/jquery-validation-1.9.0/jquery.validate-1.17.0.js"></script>
 <script type="text/javascript" src="<%=path %>/js/bootstrap-dropdown.js"></script>
@@ -40,7 +43,7 @@
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 
-	<div class="container" style="width: 65%; margin: 0 auto">
+	<div class="container container_frm">
 		<form id="frm_project" action="create" method="post">
 			<fieldset>
 				<legend><span>新建项目</span></legend>
@@ -56,7 +59,17 @@
 					</td>
 				</tr>
 				<tr>
-					<td><label class="control-label col-xs-2">问题类型</label></td>
+					<td><label class="control-label col-xs-2">项目类型</label></td>
+					<td>
+						<ui:select name="project.prjType" path="${obj.type}" items="${prjTypes}" css="required"></ui:select>
+					</td>
+					<td><label class="control-label col-xs-2">相关产品</label></td>
+					<td>
+						<ui:select name="mission.productName" path="${project.productName}" items="${products}" css="required"></ui:select>
+					</td>
+				</tr>
+				<tr>
+					<td><label class="control-label col-xs-2">产品模块</label></td>
 					<td>
 						<ui:select name="project.issueType" path="${prj.issueType}" items="${mpIssueType}" css="required"></ui:select>
 					</td>
@@ -79,12 +92,6 @@
 					<td><label class="control-label col-xs-2">报告人</label></td>
 					<td>
 						<input type="text" name="project.reporter" class="required"/>
-					<!-- <select id="disabledSelect" name="project.reporter" class="form-control">
-							<option>魏孝宇</option>
-							<option>李云龙</option>
-							<option>郭靖</option>
-							<option>李白</option>
-					</select> -->
 					</td>
 					<td><label class="control-label col-xs-2">联系方式</label></td>
 					<td><input type="text" name="project.contact" class="required"></td>

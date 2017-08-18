@@ -19,20 +19,23 @@ public class DailyItem {
 	private int dailyID;
 	
 	@Column("mission_id")
-	public String missionID;
+	private String missionID;
+	
+	@Column("mission_name")
+	private String missionName;
 	
 	@Column("mission_summary")
 	private String missionSummary;
-	
+	//工时
 	@Column("hours")
 	private int hours;
-	
+	//完成百分比
 	@Column("percentage")
 	private int percentage;
-	
+	//处理过程（工作内容）
 	@Column("progress_detail")
 	private String detail;
-	
+	//遇到的问题
 	@Column("problerm")
 	private String problerm;
 
@@ -98,6 +101,14 @@ public class DailyItem {
 
 	public void setPercentage(int percentage) {
 		this.percentage = percentage;
+	}
+
+	public String getMissionName() {
+		return missionName;
+	}
+
+	public void setMissionName(String missionName) {
+		this.missionName = missionName;
 	}
 
 }

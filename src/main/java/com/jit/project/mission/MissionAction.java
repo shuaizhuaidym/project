@@ -48,6 +48,8 @@ public class MissionAction {
 	Map<String, String> classes = new HashMap<String, String>();
 	Map<String, String> users = new HashMap<String, String>();
 	Map<String, String> products = new HashMap<String, String>();
+	
+	Map<String, String> industry = new HashMap<String, String>();
 
 	private void prepareDic(HttpServletRequest request) {
 		if (types.isEmpty()) {
@@ -56,12 +58,14 @@ public class MissionAction {
 			classes = this.dicService.service(IDicService.type_mission_class);
 			users = this.userService.asDic();
 			products=this.prdtService.asDic();
+			industry=this.dicService.service(IDicService.type_industry);
 		}
 		request.setAttribute("users", users);
 		request.setAttribute("types", types);
 		request.setAttribute("status", status);
 		request.setAttribute("classes", classes);
 		request.setAttribute("products", products);
+		request.setAttribute("industry", industry);
 	}
 
 	/**

@@ -18,6 +18,11 @@
 <link href="css/commom.css" rel="stylesheet">
 <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 
+<style type="text/css">
+	<!-- 表单外层容器，统一尺寸 字体等 -->
+	.container_frm{width: 65%; margin: 0 auto}
+</style>
+
 <script type="text/javascript" src="js/jquery/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="js/bootstrap-datetimepicker.js"></script>
 <script type="text/javascript" src="js/bootstrap-dropdown.js"></script>
@@ -60,11 +65,11 @@
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 
-	<div class="container" style="width: 65%; margin: 0 auto">
+	<div class="container container_frm">
 		<form id="frm_project" action="update" method="post">
 			<input type="hidden" name="project.prjID" value="${prj.prjID}" />
 			<fieldset>
-				<legend><span>更新项目进展</span></legend>
+				<legend><span>更新项目</span></legend>
 			</fieldset>
 
 			<table class="table table-striped table-bordered">
@@ -74,6 +79,16 @@
 					<td><label class="control-label col-xs-2">所属行业</label></td>
 					<td>
 						<ui:select name="project.industry" path="${prj.industry}" items="${mpIndustry}" css="required"></ui:select>
+					</td>
+				</tr>
+				<tr>
+					<td><label class="control-label col-xs-2">项目类型</label></td>
+					<td>
+						<ui:select name="project.prjType" path="${prj.prjType}" items="${prjTypes}" css="required"></ui:select>
+					</td>
+					<td><label class="control-label col-xs-2">相关产品</label></td>
+					<td>
+						<ui:select name="mission.productName" path="${prj.productName}" items="${products}" css="required"></ui:select>
 					</td>
 				</tr>
 				<tr>

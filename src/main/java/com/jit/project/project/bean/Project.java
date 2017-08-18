@@ -30,7 +30,7 @@ public class Project extends BasePojo{
 	private String industry;
 	//项目类型:售前开发/售中/售后..
 	@Column("project_type")
-	private String projectType;
+	private String prjType;
 	//相关产品
 	@Column("product_id")
 	private int productID;
@@ -319,5 +319,13 @@ public class Project extends BasePojo{
 
 	public void setProductName(String productName) {
 		this.productName = productName;
+	}
+
+	public String getPrjType() {
+		return prjType;
+	}
+
+	public void setPrjType(String prjType) {
+		this.prjType = prjType;
 	}
 }

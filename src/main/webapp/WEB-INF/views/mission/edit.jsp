@@ -142,8 +142,9 @@ textarea {
 					<td><label class="control-label col-xs-2">实际发布版本</label></td>
 					<td><input type="text" id="p_version" name="mission.publishVersion"></td>
 					<td><label class="control-label col-xs-2">发起行业</label></td>
-					<td><input type="text" id="mission_name" name="mission.industryName" class="required">
-					<input type="hidden" id="industryID" name="industryID"/>
+					<td>
+					<ui:select name="mission.industryName" path="${obj.industryName}" items="${industry}" css="required"></ui:select>
+					<input type="hidden" id="industryID" name="industryID" value="${obj.industryName}"/>
 					</td>
 				</tr>				
 				<tr>

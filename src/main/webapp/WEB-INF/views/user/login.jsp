@@ -11,8 +11,11 @@
 <link href="<%=path%>/css/bootstrap.min.css" rel="stylesheet">
 <link href="<%=path%>/css/commom.css" rel="stylesheet">
 <style type="text/css">
+body{
+	background: #FFFFFF url(<%=path%>/images/land-rover.jpg) no-repeat;
+}
 .form-signin {
-	background-color: #fff;
+	background: rgba(130, 110, 100, 0.5) none repeat scroll 0 0;
 	border: 1px solid #e5e5e5;
 	border-radius: 5px;
 	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
@@ -40,6 +43,7 @@
 </style>
 </head>
 <body>
+
 	<form action="<%=path%>/user/authenticate" class="form-horizontal form-signin" method="post">
 		<div class="control-group">
 			<h3 style="color:red">${obj.message}</h3>

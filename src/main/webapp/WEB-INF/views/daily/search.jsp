@@ -18,14 +18,33 @@
 <link href="<%=path%>/css/bootstrap.min.css" rel="stylesheet" />
 <link href="<%=path%>/css/list.css" rel="stylesheet" />
 <link href="<%=path%>/css/commom.css" rel="stylesheet">
+<link href="<%=path%>/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 <style type="text/css">
 .table td,th {
 	padding: 2px 5px 8px;
 }
 </style>
 <script type="text/javascript" src="<%=path%>/js/jquery/jquery-1.11.1.js"></script>
+<script type="text/javascript" src="<%=path %>/js/jquery-validation-1.9.0/jquery.validate-1.17.0.js"></script>
 <script type="text/javascript" src="<%=path%>/js/bootstrap-dropdown.js"></script>
-
+<script type="text/javascript" src="<%=path%>/js/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript">
+$(function() {
+	var datePks=$("#queryForm").find("input.datetime");
+	datePks.each(function(){
+		$(this).datetimepicker({
+			weekStart : 1,
+			todayBtn : 1,
+			autoclose : 1,
+			todayHighlight : 1,
+			startView : 2,
+			minView : 2,
+			forceParse : 0,
+			format:"yyyy-mm-dd"
+		});
+	});
+});
+</script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
@@ -42,7 +61,7 @@
 						<th>人员名称</th>
 						<th><ui:select name="query.ownerName" path="${query.ownerName}" items="${owners}"></ui:select></th>
 						<th>发送日期</th>
-						<th><input type="text" name="query.createDate" value="${query.createDate}" /></th>
+						<th><input type="text" name="query.createDate" value="${query.createDate}" class="datetime"/></th>
 						<th style="text-align: center">
 							<button id="btnQuery" class="btn btn-primary">查询</button>
 						</th>

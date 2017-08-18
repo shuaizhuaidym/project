@@ -108,6 +108,10 @@
 <script type="text/javascript">
 	$(function() {
 		$("#frm_daily").validate({
+			errorPlacement : function(error, element) {
+				//error.addClass( "ui red pointing label transition" );
+				//error.insertAfter( element.parent() );
+			},
 			highlight : function(element, errorClass, validClass) {
 				$(element).css("border-color", "red");
 			},

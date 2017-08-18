@@ -31,7 +31,13 @@ var ioc = {
 			},
 			userService : {
 				refer : 'userService'
-			}
+			},
+			dicService : {
+				refer : 'dicService'
+			},
+			prdtService : {
+				refer : 'prdtService'
+			},
 		}
 	},
 	dao : {

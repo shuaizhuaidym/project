@@ -25,6 +25,8 @@ public class MissionServiceImpl extends NameEntityService<Mission> implements IM
 
 	public Mission fetch(final String id) {
 		Condition cnd = new Condition() {
+			private static final long serialVersionUID = -5219476242036743695L;
+
 			@Override
 			public String toSql(Entity<?> entity) {
 				String sql = "where mission_id = " + id;
