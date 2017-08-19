@@ -152,6 +152,7 @@ public class ChartService extends NameEntityService<Project> implements IChartSe
 	 * 人力统计
 	 * 默认以周为单位，统计状态为 进行中的|已完成&完成时间 between(本周一&&本周末)
 	 */
+	//TODO 通过任务名称和ID共同关联任务,避免项目支持和开发任务主键重复
 	public List<Report> labor_count(String begin, String end) {
 		Sql sql = Sqls.create("SELECT work_name,industry,work_type,work_content,manager,engineer,state,"
 				+ "process,hours,finish_date,product,module,baseVersion,"

@@ -195,8 +195,8 @@ public class ChartAction {
 	 */
 	@At("/labor_count")
 	@Ok("jsp:views.chart.report")
-	public List<Report> statistics(@Param("aspect") String aspect) {
-		List<Report> tab=chartService.labor_count("2017-01-01", "2017-08-01");
+	public List<Report> labor_count(@Param("aspect") String aspect) {
+		List<Report> tab=chartService.labor_count("2017-01-01", "2017-09-01");
 		return tab;
 	}
 

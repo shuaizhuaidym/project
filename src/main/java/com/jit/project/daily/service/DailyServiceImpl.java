@@ -28,10 +28,12 @@ public class DailyServiceImpl extends NameEntityService<Daily> implements IDaily
 			links.append("</a>").append("|");
 		}
 		daily.setItemLinks(links.toString());
+		dao().insertWith(daily, "items");
 
 		// TODO update mission's and project's labor cost in transaction and process update time
 		/**
 		 * TODO 写日报时候更新OR统计时候联合查询？？？
+		 * TODO 完成比例需要更新，写日报时回显，知道昨天的进度是多少
 		 * 每个日报有多个条目即对应多个任务，每个任务都要更新，更新流程：
 		 * update t_mission where mission=@mid 
 		 * set hours= select sum(hours) from t_daily_item where mission_id=@mid 
@@ -40,7 +42,6 @@ public class DailyServiceImpl extends NameEntityService<Daily> implements IDaily
 //		
 //		Trans.exec(Connection.TRANSACTION_SERIALIZABLE, new Atom() {
 //			public void run() {
-//				dao().insertWith(daily, "items");
 //				dao().updateWithVersion(arg0, arg1);
 //			}
 //		});
