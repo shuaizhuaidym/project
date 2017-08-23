@@ -5,6 +5,8 @@ import org.nutz.dao.Condition;
 import org.nutz.dao.entity.Entity;
 
 public class Query implements Condition {
+	private static final long serialVersionUID = -3977871610355356816L;
+
 	private Integer pageNumber = 1;
 
 	private Integer pageSize = 10;
@@ -12,6 +14,15 @@ public class Query implements Condition {
 	private String responsible;
 	//状态
 	private String status = "('打开','重新打开','新建')";
+	
+	public Query() {
+		super();
+	}
+
+	public Query(String responsible) {
+		super();
+		this.responsible = responsible;
+	}
 
 	@Override
 	public String toSql(Entity<?> entity) {

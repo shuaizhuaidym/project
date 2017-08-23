@@ -98,7 +98,7 @@ public class Query implements Condition {
 			sqlBuilder.append(" and UNIX_TIMESTAMP(last_response) <= UNIX_TIMESTAMP('");
 			sqlBuilder.append(format.format(lastRespDate2)).append("')");
 		}
-		sqlBuilder.append(" order by dic_type");
+		sqlBuilder.append(" order by display_number");
 		return sqlBuilder.toString();
 	}
 

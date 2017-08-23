@@ -9,6 +9,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.log4j.Logger;
 import org.nutz.dao.Condition;
 import org.nutz.dao.QueryResult;
 import org.nutz.dao.entity.Entity;
@@ -29,6 +30,9 @@ import com.jit.project.user.service.UserService;
 
 @InjectName("missionAction")
 public class MissionAction {
+
+	Logger log = Logger.getLogger(MissionAction.class);
+	
 	private String SUCCESS = "SUCCESS";
 
 	private MissionServiceImpl missionService;
@@ -57,15 +61,15 @@ public class MissionAction {
 			status = this.dicService.service(IDicService.type_mission_status);
 			classes = this.dicService.service(IDicService.type_mission_class);
 			users = this.userService.asDic();
-			products=this.prdtService.asDic();
 			industry=this.dicService.service(IDicService.type_industry);
 		}
 		request.setAttribute("users", users);
 		request.setAttribute("types", types);
 		request.setAttribute("status", status);
 		request.setAttribute("classes", classes);
-		request.setAttribute("products", products);
-		request.setAttribute("industry", industry);
+		request.setAttribute("industry", this.dicService.service(IDicService.type_industry));
+		request.setAttribute("products", this.prdtService.asDic(true));
+		request.setAttribute("modules", this.prdtService.asDic(false));
 	}
 
 	/**
@@ -248,15 +252,17 @@ public class MissionAction {
 	@At("/mission/refer")
 	@Ok("jsp:views.mission.refer")
 	public QueryResult refer(HttpServletRequest request, @Param("::query.") Query query) {
+		String user = (String) request.getSession(true).getAttribute("me");
+		log.info(user);
 		if (query == null) {
-			query = new com.jit.project.mission.Query();
+			query = new com.jit.project.mission.Query(user);
 		}
-		QueryResult result = this.missionService.query(query);// TODO 当前用户的任务
+		QueryResult result = this.missionService.query(query);
 		// request.setAttribute("mission_index", request.getParameter("mission_index"));
 		QueryResult projects = this.prjService.query(new com.jit.project.bean.Query());
 		request.setAttribute("projects", projects);
 		
-		QueryResult bugs = this.bugService.query(new com.jit.project.bug.bean.Query());
+		QueryResult bugs = this.bugService.query(new com.jit.project.bug.bean.Query(user));
 		request.setAttribute("bugs", bugs);
 		return result;
 	}

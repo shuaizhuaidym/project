@@ -28,9 +28,6 @@
 	<div class="container-fluid">
 		<ul class="nav nav-tabs">
 			<li class="active"><a href="#home" data-toggle="tab">售前人力统计</a></li>
-			<li><a href="#profile" data-toggle="tab">售后人力统计</a></li>
-			<li><a href="#messages" data-toggle="tab">持续改进人力统计</a></li>
-			<li><a href="#settings" data-toggle="tab">行业人力投入统计</a></li>
 		</ul>
 		<div class="tab-content">
 			<div class="tab-pane active" id="home">
@@ -72,9 +69,6 @@
 					</table>
 				</div>
 			</div>
-			<div class="tab-pane" id="profile">售后人力统计</div>
-			<div class="tab-pane" id="messages">持续改进人力统计</div>
-			<div class="tab-pane" id="settings">行业人力投入统计</div>
 		</div>
 	</div>
 </body>

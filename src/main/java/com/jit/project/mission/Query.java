@@ -5,6 +5,9 @@ import org.nutz.dao.Condition;
 import org.nutz.dao.entity.Entity;
 
 public class Query implements Condition {
+
+	private static final long serialVersionUID = -3996470065266548962L;
+
 	private Integer pageNumber = 1;
 
 	private Integer pageSize = 15;
@@ -12,6 +15,15 @@ public class Query implements Condition {
 	private String assignTo;
 	
 	private String module;
+	
+	public Query() {
+		super();
+	}
+
+	public Query(String assignTo) {
+		super();
+		this.assignTo = assignTo;
+	}
 
 	@Override
 	public String toSql(Entity<?> entity) {

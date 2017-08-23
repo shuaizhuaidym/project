@@ -90,7 +90,7 @@ textarea {
 				<tr>
 					<td><label class="control-label col-xs-2">所属模块</label></td>
 					<td>
-						<ui:select name="mission.module" path="${mission.module}" items="${products}" css="required"></ui:select>
+						<ui:select name="mission.module" path="${mission.module}" items="${modules}" css="required"></ui:select>
 					</td>
 					<td><label class="control-label col-xs-2">任务类别</label></td>
 					<td>

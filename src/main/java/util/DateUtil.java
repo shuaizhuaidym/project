@@ -1,6 +1,7 @@
 package util;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -37,11 +38,34 @@ public class DateUtil {
 		return diff;
 	}
 
+	public static String getDateOfMonday() {
+		Calendar c = Calendar.getInstance();
+		SimpleDateFormat ft=new SimpleDateFormat("yyyy-MM-dd");
+		int day_of_week = c.get(Calendar.DAY_OF_WEEK) - 1;
+		if (day_of_week == 0){
+			day_of_week = 7;
+		}
+		c.add(Calendar.DATE, -day_of_week + 1);
+		return ft.format(c.getTime());
+	}
+
+	public static String getDateOfSunnday() {
+		Calendar c = Calendar.getInstance();
+		SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
+		int day_of_week = c.get(Calendar.DAY_OF_WEEK) - 1;
+		if (day_of_week == 0)
+			day_of_week = 7;
+		c.add(Calendar.DATE, -day_of_week + 7);
+		return ft.format(c.getTime());
+	}
+
 	public static void main(String[] args) throws ParseException {
 		Date e = org.apache.commons.lang3.time.DateUtils.parseDate("2016-07-29 13:01:25",
 				"yyyy-MM-dd hh:mm:ss");
 		Date l = org.apache.commons.lang3.time.DateUtils.parseDate("2016-07-30 13:02:25",
 				"yyyy-MM-dd hh:mm:ss");
 		System.out.println(dateDiff(e, l, Calendar.MINUTE));
+		
+		System.out.println(getDateOfMonday()+"--"+getDateOfSunnday());
 	}
 }

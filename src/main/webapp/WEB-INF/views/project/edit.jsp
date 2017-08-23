@@ -56,8 +56,8 @@
 			}
 		});
 		$("#dateX").click(function(){
-			alert(getNowFormatDate());
-			$("#ta_proc").append(getNowFormatDate());
+			var origin=$("#ta_proc").val();
+			$("#ta_proc").val(origin+"\r\n"+getNowFormatDate()+"\r\n");
 		});
 	});
 </script>

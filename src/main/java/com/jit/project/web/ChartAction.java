@@ -3,11 +3,13 @@ package com.jit.project.web;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.time.DateUtils;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
@@ -20,6 +22,7 @@ import org.nutz.mvc.annotation.Param;
 
 import util.ChartUtil;
 import util.Const;
+import util.DateUtil;
 import util.ReportUtil;
 
 import com.jit.project.bean.Query;
@@ -196,7 +199,7 @@ public class ChartAction {
 	@At("/labor_count")
 	@Ok("jsp:views.chart.report")
 	public List<Report> labor_count(@Param("aspect") String aspect) {
-		List<Report> tab=chartService.labor_count("2017-01-01", "2017-09-01");
+		List<Report> tab=chartService.labor_count(DateUtil.getDateOfMonday(), DateUtil.getDateOfSunnday());
 		return tab;
 	}
 

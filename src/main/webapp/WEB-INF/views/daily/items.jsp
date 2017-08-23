@@ -3,6 +3,7 @@
 <%@taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%
 	String path = request.getContextPath();
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -15,39 +16,54 @@
 
 <link href="<%=path%>/css/commom.css" rel="stylesheet">
 <link href="<%=path%>/css/bootstrap.min.css" rel="stylesheet">
+<style type="text/css">
+	table{border:1px #000000 solid}
+</style>
 <script type="text/javascript" src="<%=path%>/js/jquery/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="<%=path%>/js/bootstrap-dropdown.js"></script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
-	<div class="container" style="width: 65%; margin: 0 auto">
+	<div class="container-fluid">
 		<fieldset>
 			<legend>
-				<span>日报预览</span>
+				<span>研发日报明细</span>
 			</legend>
 		</fieldset>
-		<form>
-			<table class="table table-bordered table-striped">
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<td colspan="8">
+						工作日报_<f:formatDate value="${obj.createDate}" pattern="yyyy/MM/dd" /> ${obj.ownerName}
+					</td>
+				</tr>
+				<tr>
+					<th class="w20p">任务名称</th>
+					<th class="w5p">开始时间</th>
+					<th class="w5p font10">计划完成时间</th>
+					<th class="w5p font10">实际完成时间</th>
+					<th class="w30p">工作内容</th>
+					<th class="w5p">工时</th>
+					<th class="w5p">完成比例</th>
+					<th class="w5p">状态</th>
+					<th class="w5p">备注</th>
+				</tr>
+			</thead>
 			<c:forEach var="item" items="${obj.items}">
 				<tr>
-					<th><label class="control-label col-xs-2">任务内容</label></th>
-					<td colspan="3"><input type="text" value="${item.missionSummary}" class="w-input"></td>
+					<td>${item.missionName}</td>
+					<td><f:formatDate value="${obj.createDate}" pattern="yyyy-MM-dd" /></td>
+					<td><f:formatDate value="${obj.createDate}" pattern="yyyy-MM-dd" /></td>
+					<td><f:formatDate value="${obj.createDate}" pattern="yyyy-MM-dd" /></td>
+					<td>${item.detail}</td>
+					<td>${item.hours}</td>
+					<td>${item.percentage} %</td>
+					<td>状态</td>
+					<td>备注</td>
 				</tr>
-				<tr>
-					<th><label class="control-label col-xs-2">开始时间</label></th>
-					<td colspan="3"><input type="text" value="<f:formatDate value="${obj.createDate}" pattern="yyyy-MM-dd" />" class="w-input"></td>
-				</tr>
-				<tr>
-					<th><label class="control-label col-xs-2">完成比例%</label></th>
-					<td colspan="3"><input type="text" value="${item.percentage}" class="w-input"></td>
-				</tr>
-				<tr>
-					<th><label class="control-label col-xs-2">工作内容</label></th>
-					<td colspan="3"><textarea style="width: 92%; height: 100px;">${item.detail}</textarea></td>
-				</tr>
+
 			</c:forEach>
-			</table>
-		</form>
+		</table>
 		<!-- /container -->
 		<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 	</div>

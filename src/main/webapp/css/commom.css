@@ -44,6 +44,15 @@ input {
 .w96px{width:96px}
 .w108px{width:108px}
 .w128px{width:128px}
+
+.w5p{width:5%}
+.w6p{width:6%}
+.w8p{width:8%}
+.w10p{width:10%}
+.w20p{width:20%}
+.w30p{width:30%}
+.w50p{width:50%}
+
 .bordered{border:1px #ddd solid}
 
 .font10{font-size:10px}

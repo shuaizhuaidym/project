@@ -12,7 +12,7 @@
 <link href="<%=path%>/css/commom.css" rel="stylesheet">
 <style type="text/css">
 body{
-	background: #FFFFFF url(<%=path%>/images/land-rover.jpg) no-repeat;
+	background: #FFFFFF url(<%=path%>/images/skey-lake.jpg) no-repeat;
 }
 .form-signin {
 	background: rgba(130, 110, 100, 0.5) none repeat scroll 0 0;

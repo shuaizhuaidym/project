@@ -32,11 +32,17 @@ public class ProductService extends IdEntityService<Product> implements IProduct
 
 	/**
 	 * 展现为下拉选字典
+	 * @param top 是否是产品，如果是产品，统计parent_id=0（全部产品的子节点）
 	 * @return
 	 */
-	public Map<String, String> asDic() {
+	public Map<String, String> asDic(boolean top) {
 		Map<String, String> products = new HashMap<String, String>();
-		List<Product> lprd = this.query(null, null);
+		List<Product> lprd;
+		if(top){
+			lprd = this.query(Cnd.where("parent_id", "=", 0), null);
+		}else{
+			lprd = this.query(Cnd.where("parent_id", "!=", 0).and("parent_id", "!=", -1), null);
+		}
 		for (Product p : lprd) {
 			products.put(p.getProductName(), p.getProductName());
 		}

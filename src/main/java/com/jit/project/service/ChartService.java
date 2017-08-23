@@ -21,7 +21,7 @@ import com.jit.project.report.bean.Report;
 public class ChartService extends NameEntityService<Project> implements IChartService {
 
 	private static final String STATE_RUN = "进行中";
-	private static final String STATE_END = "完成";
+	private static final String STATE_END = "已完成";
 	/**
 	 * 按负责人统计柱状图数据集
 	 * 
@@ -158,8 +158,9 @@ public class ChartService extends NameEntityService<Project> implements IChartSe
 				+ "process,hours,finish_date,product,module,baseVersion,"
 				+ "publishVersion,function,planStartDate,startDate,planEndDate,endDate,"
 				+ "arrangedInvestment,investment,work_content " + "FROM labor_statistics WHERE "
-				+ "instr(state, @state_run) > 0 AND update_time BETWEEN @monday AND @sunday "
-				+ "OR state = @state_end AND finish_date BETWEEN @monday AND @sunday");
+				+ "instr(state, @state_run) > 0 AND update_time "
+				+ "BETWEEN @monday AND DATE_ADD(@sunday,INTERVAL 1 DAY) "
+				+ "OR state = @state_end AND finish_date BETWEEN @monday AND DATE_ADD(@sunday,INTERVAL 1 DAY)");
 		
 		sql.params().set("state_run", STATE_RUN);
 		sql.params().set("state_end", STATE_END);

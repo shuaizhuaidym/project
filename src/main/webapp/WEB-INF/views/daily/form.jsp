@@ -80,7 +80,7 @@
 					<a href="#" class="btn btn-warning" id="btnInsert">新增日报条目</a>
 					
 					<input type="button" class="btn btn-inverse" id="btnDelete" value="删除"></input>
-					<input type="submit" class="btn btn-success" value="保存"></input>
+					<input type="submit" id="btn_save" class="btn btn-success" value="保存"></input>
 					
 					<a href="<%=path%>/product/list" class="btn btn-primary">返回列表</a>
 				</div>
@@ -107,10 +107,19 @@
 </body>
 <script type="text/javascript">
 	$(function() {
+		$("#btn_save").click(function() {
+			var hours = $("[name$='.hours']");
+			var total8 = parseInt(0);
+			hours.each(function(i, e) {
+				total8 = total8 + parseInt(e.value);
+			});
+			if (8 != total8) {
+				alert("总工作时间不等于8小时，请修改后再提交。");
+				return false
+			}
+		});
 		$("#frm_daily").validate({
 			errorPlacement : function(error, element) {
-				//error.addClass( "ui red pointing label transition" );
-				//error.insertAfter( element.parent() );
 			},
 			highlight : function(element, errorClass, validClass) {
 				$(element).css("border-color", "red");

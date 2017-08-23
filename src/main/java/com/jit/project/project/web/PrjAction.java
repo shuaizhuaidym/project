@@ -40,6 +40,7 @@ public class PrjAction {
 	Map<String, String> mpStatus = new LinkedHashMap<String, String>();
 	Map<String, String> users = new LinkedHashMap<String, String>();
 	Map<String, String> products = new HashMap<String, String>();
+	Map<String, String> modules = new HashMap<String, String>();
 	Map<String, String> prjTypes = new HashMap<String, String>();
 	
 	
@@ -74,10 +75,9 @@ public class PrjAction {
 		request.setAttribute("mpIssueType", mpIssueType);
 		request.setAttribute("mpStatus", mpStatus);
 		
-		products=this.prdtService.asDic();
-		prjTypes = this.dicService.service(IDicService.type_mission_type);
-		request.setAttribute("products", products);
-		request.setAttribute("prjTypes", prjTypes);
+		request.setAttribute("products", this.prdtService.asDic(true));
+		request.setAttribute("modules", this.prdtService.asDic(false));
+		request.setAttribute("prjTypes", this.dicService.service(IDicService.type_mission_type));
 		prepareDic(request);
 	}
 
@@ -119,11 +119,9 @@ public class PrjAction {
 		request.setAttribute("mpIndustry", mpIndustry);
 		request.setAttribute("mpIssueType", mpIssueType);
 		request.setAttribute("mpStatus", mpStatus);
-		
-		products=this.prdtService.asDic();
-		prjTypes = this.dicService.service(IDicService.type_mission_type);
-		request.setAttribute("products", products);
-		request.setAttribute("prjTypes", prjTypes);
+		request.setAttribute("products", this.prdtService.asDic(true));
+		request.setAttribute("modules", this.prdtService.asDic(false));
+		request.setAttribute("prjTypes", this.dicService.service(IDicService.type_mission_type));
 		prepareDic(request);
 		
 		return "EDIT";
