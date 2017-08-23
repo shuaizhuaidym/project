@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50527
 File Encoding         : 65001
 
-Date: 2017-08-23 17:33:42
+Date: 2017-08-23 18:20:51
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -749,10 +749,34 @@ CREATE TABLE `t_version` (
 -- ----------------------------
 
 -- ----------------------------
--- View structure for labor_statistics
+-- View structure for v_daily_list
 -- ----------------------------
-DROP VIEW IF EXISTS `labor_statistics`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER  VIEW `labor_statistics` AS SELECT
+DROP VIEW IF EXISTS `v_daily_list`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost`  VIEW `v_daily_list` AS SELECT
+	itm.*, prj.create_time AS plan_start,
+	prj.create_time AS start_date,
+	'-' AS plan_end,
+	finish_date AS end_date,
+	prj.`status` AS state
+FROM
+	t_daily_item itm
+LEFT JOIN t_project prj ON itm.mission_id = prj.prj_id
+UNION
+	SELECT
+		itm2.*, msn.plan_start AS plan_start,
+		msn.start_date AS start_date,
+		msn.plan_end AS plan_end,
+		msn.end_date AS end_date,
+		msn.`status` AS state
+	FROM
+		t_daily_item itm2
+	LEFT JOIN t_mission msn ON itm2.mission_id = msn.mission_id ;
+
+-- ----------------------------
+-- View structure for v_labor_count
+-- ----------------------------
+DROP VIEW IF EXISTS `v_labor_count`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER  VIEW `v_labor_count` AS SELECT
 	`p`.`prj_name` AS `work_name`,
 	`p`.`industry` AS `industry`,
 	`p`.`issue_type` AS `module`,

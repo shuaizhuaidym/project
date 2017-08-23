@@ -114,7 +114,7 @@ public class DailyAction {
 	@At("/daily/items")
 	@Ok("jsp:views.daily.items")
 	public Daily items(@Param("daily_id") String dailyID, HttpServletRequest request, HttpSession session) {
-		
+		//TODO 重新定义查询方法，返回vdailyitem集合
 		Daily daily=this.dailyService.fetch(dailyID);
 		this.dailyService.fetchLinks(daily, "items");
 		return daily;
