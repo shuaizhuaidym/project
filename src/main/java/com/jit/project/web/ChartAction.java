@@ -3,13 +3,11 @@ package com.jit.project.web;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang3.time.DateUtils;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
@@ -28,6 +26,7 @@ import util.ReportUtil;
 import com.jit.project.bean.Query;
 import com.jit.project.project.bean.Project;
 import com.jit.project.project.service.PrjService;
+import com.jit.project.report.bean.DeptReport;
 import com.jit.project.report.bean.Report;
 import com.jit.project.service.ChartService;
 
@@ -192,7 +191,7 @@ public class ChartAction {
 	}
 	
 	/**
-	 * 管理维度报表
+	 * 部门任务明细报表
 	 * @param type
 	 * @return
 	 */
@@ -201,6 +200,10 @@ public class ChartAction {
 	public List<Report> labor_count(@Param("aspect") String aspect) {
 		List<Report> tab=chartService.labor_count(DateUtil.getDateOfMonday(), DateUtil.getDateOfSunnday());
 		return tab;
+	}
+	
+	public List<DeptReport>deptCount(){
+		return null;
 	}
 
 	protected PrjService getPrjService() {

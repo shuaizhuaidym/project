@@ -15,10 +15,10 @@ body{
 	background: #FFFFFF url(<%=path%>/images/skey-lake.jpg) no-repeat;
 }
 .form-signin {
-	background: rgba(130, 110, 100, 0.5) none repeat scroll 0 0;
-	border: 1px solid #e5e5e5;
+	background: rgba(255, 255, 255, 0.5) none repeat scroll 0 0;
+	/* border: 1px solid #e5e5e5; */
+	box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.5);
 	border-radius: 5px;
-	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 	margin: 0 auto 20px;
 	max-width: 480px;
 	padding: 19px 29px 29px;

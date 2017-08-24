@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50527
 File Encoding         : 65001
 
-Date: 2017-08-23 18:20:51
+Date: 2017-08-24 18:17:06
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -379,7 +379,7 @@ INSERT INTO `t_daily_item` VALUES ('26', '32', '32', '公安部辅警项目定�
 INSERT INTO `t_daily_item` VALUES ('27', '33', '1710', '甘肃公安I网关集群扩容', null, '3', '60', '提供最新版本3.0.34.10升级包，满足测试要求。', '无');
 INSERT INTO `t_daily_item` VALUES ('28', '34', '1711', '航天科工三院301所网关采购项目', null, '3', '80', '1、在项目管理平台中搜索历史记录，3.0.27X版本问题是因为数据库字段过短，发现通过shell有解决办法。\r\n2、shell提供给工程验证。', '无');
 INSERT INTO `t_daily_item` VALUES ('29', '35', '1711', '航天科工三院301所网关采购项目', null, '5', '90', '配合现场测试', '');
-INSERT INTO `t_daily_item` VALUES ('30', '35', '31', '标准Agent扩展', null, '3', '59', '指导应用开发。', '');
+INSERT INTO `t_daily_item` VALUES ('30', '35', '31', '标准Agent扩展', null, '3', '59', '指导应用开发。', 'no');
 
 -- ----------------------------
 -- Table structure for t_dictionary
@@ -394,7 +394,7 @@ CREATE TABLE `t_dictionary` (
   `display_number` int(11) DEFAULT NULL,
   `dic_code` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`dic_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_dictionary
@@ -424,6 +424,7 @@ INSERT INTO `t_dictionary` VALUES ('34', '所属行业', '财政', '', '1', '1',
 INSERT INTO `t_dictionary` VALUES ('35', '所属行业', '公安', '', '1', null, '公安 2');
 INSERT INTO `t_dictionary` VALUES ('36', '所属行业', '军工', '', '1', '3', '军工');
 INSERT INTO `t_dictionary` VALUES ('37', '任务状态', '进行中-设计评审中', '', '1', '4', '进行中-设计评审中');
+INSERT INTO `t_dictionary` VALUES ('38', '所属行业', '政府/渠道', '', '1', '5', '政府/渠道');
 
 -- ----------------------------
 -- Table structure for t_mission
@@ -473,7 +474,7 @@ CREATE TABLE `t_mission` (
 -- ----------------------------
 INSERT INTO `t_mission` VALUES ('29', '测试主键1', '科研项目', '测试主键', '测试主键dddddddd', '2017-08-19 00:00:00', '进行中-需求分析中', '1', '新功能', '', '1.0', null, null, null, null, '0', '', '', '0', '0', null, '0', 'IOS版本MCTK', 'IOS版本MCTK', '', '杜俊杰', '', '0', '', '2017-08-19 00:00:00', '2017-08-19 12:43:36', null, '财政', null);
 INSERT INTO `t_mission` VALUES ('30', '琐琐碎碎s', '科研项目', 'ss', 'ss', '2017-08-04 00:00:00', '进行中-开发中', '1', '新功能', '', '1.0', null, null, null, null, '0', '', '', '0', '0', null, '0', 'IOS版本MCTK', 'IOS版本MCTK', '', '何金龙', '', '0', '', '2017-08-19 00:00:00', '2017-08-01 00:00:00', null, '财政', null);
-INSERT INTO `t_mission` VALUES ('31', '标准Agent扩展', '售前定制开发', '标准Agent扩展', '标准Agent扩展', '2017-08-23 00:00:00', '进行中-测试中', '0', '新功能', '', '2.3.0', null, '2017-08-21 00:00:00', null, '2017-08-22 00:00:00', '0', '', '', '0', '0', null, '0', 'IOS版本MCTK', 'IOS版本MCTK', '', '代艳明', '', '0', '', '2017-08-22 00:00:00', '2017-08-23 10:58:23', null, '公安', null);
+INSERT INTO `t_mission` VALUES ('31', '标准Agent扩展', '售前定制开发', '标准Agent扩展', '标准Agent扩展', '2017-08-23 00:00:00', '进行中-测试中', '0', '新功能', '', '2.3.0', null, '2017-08-21 00:00:00', '2017-08-23 11:24:57', '2017-08-22 00:00:00', '0', '', '', '0', '0', null, '0', 'IOS版本MCTK', 'IOS版本MCTK', '', '代艳明', '', '0', '', '2017-08-22 00:00:00', '2017-08-23 10:58:23', null, '公安', null);
 INSERT INTO `t_mission` VALUES ('32', '公安部辅警项目定制Agent改进', '售后定制开发', '公安部辅警项目定制Agent改进', '公安部辅警项目定制Agent改进', '2017-08-22 00:00:00', '已完成', '100', '新功能', '', '3.0.34.9', null, '2017-08-21 00:00:00', null, '2017-08-22 00:00:00', '0', '', '', '0', '0', null, '0', '身份认证网关E系列', 'gateway服务', '', '代艳明', '12', '0', '', '2017-08-22 00:00:00', '2017-08-22 15:05:08', null, '公安', null);
 
 -- ----------------------------
@@ -536,12 +537,11 @@ CREATE TABLE `t_product` (
   `parent_name` varchar(64) DEFAULT NULL,
   `inner_version` varchar(16) DEFAULT NULL,
   PRIMARY KEY (`product_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_product
 -- ----------------------------
-INSERT INTO `t_product` VALUES ('0', '全部产品', 'root', '0.1.1', '2017-06-26', 'Tomcat', 'Jetty', 'Jetty', 'Jetty', '-1', null, null);
 INSERT INTO `t_product` VALUES ('3', '保密局一体化认证设备', 'COMBINE', '2.0.16', '2015-01-01', '索瑞军', '冯彩英', '朱虹宇', '<p>\r\n	保密局一体化认证设备，网关，磐石\r\n</p>\r\n<p>\r\n	客户端\r\n</p>', '0', null, null);
 INSERT INTO `t_product` VALUES ('4', 'IOS版本MCTK', 'IMCTK', '2.0.1', '2015-01-01', '李志伟', '边贸强', '张海龙', '移动化失常份额<br />', '25', null, null);
 INSERT INTO `t_product` VALUES ('5', 'Android版本MCTK', 'AMCTK', '2.0.1', '2015-01-01', '谢娜', '李玖', '章节', '开源失常占用', '25', null, null);
@@ -557,6 +557,7 @@ INSERT INTO `t_product` VALUES ('24', 'windows客户端', null, '3.0.0', null, n
 INSERT INTO `t_product` VALUES ('25', '密码运算控件', 'MCTK_S', '1.121.2', '2015-01-01', '王强', '关鹏', '陈哲', '', '0', null, null);
 INSERT INTO `t_product` VALUES ('27', '身份认证网关I系列', 'cinas', '24.7beta1', '2015-01-01', '杨红英', '马亚辉', '刘飞宇', '旁路网关', '0', null, null);
 INSERT INTO `t_product` VALUES ('28', '签名服务器', 'SIGN', '3.0.21.4', '2015-01-01', '刘飞宇', '韩雪梅', '徐龙', 'PKI产品', '0', null, null);
+INSERT INTO `t_product` VALUES ('31', '全部产品', 'root', '0.1.1', '2017-06-26', 'Tomcat', 'Jetty', 'Jetty', 'Jetty', '-1', null, null);
 
 -- ----------------------------
 -- Table structure for t_project
@@ -589,7 +590,7 @@ CREATE TABLE `t_project` (
   `operator_ip` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`prj_id`),
   KEY `prj_name` (`prj_name`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=1712 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1713 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_project
@@ -597,7 +598,8 @@ CREATE TABLE `t_project` (
 INSERT INTO `t_project` VALUES ('1708', '河南财政多CA体系共存项目', '财政', '售前需求开发', '0', null, '3.0.25.1', '网关_服务器', '河南财政多CA体系共存项目.', '2017-08-19 00:00:00', '进行中', '何金龙', null, '2017-08-19 00:00:00', '0', '刘渊', '13590870989', '河南财政多CA体系共存项目.\r\n技术预研.', '无', 'NO', null, '2017-08-19 12:46:23', null, null);
 INSERT INTO `t_project` VALUES ('1709', '四川公安多CA体系共存项目', '公安', '科研项目', '0', null, '3.0.25.1', '网关_客户端', '四川公安多CA体系共存项目', '2017-08-19 00:00:00', '已完成', '刘志钢', null, '2017-08-03 00:00:00', '9', '刘渊', '13590870989', '四川公安多CA体系共存项目', '无', 'NO', null, '2017-08-19 00:00:00', null, null);
 INSERT INTO `t_project` VALUES ('1710', '甘肃公安I网关集群扩容', '公安', '售后技术支持', '0', null, '3.0.32.12', '网关_服务器', '甘肃公安I网关集群扩容，I、E网关共存。', '2017-08-18 00:00:00', '进行中', '代艳明', null, null, '3', '高军波', '13632124589', '甘肃公安I网关集群扩容，I、E网关共存。\r\n2017-08-22 15:12:16\r\n提供最新版本3.0.34.10升级包，满足测试要求。', '', '', null, '2017-08-22 15:14:43', null, null);
-INSERT INTO `t_project` VALUES ('1711', '航天科工三院301所网关采购项目', '军工', '售后技术支持', '0', null, '3.0.32.10', '网关_服务器', '网关服务器从26.9升级为版本28.5，服务器端业务日志中无记录用户使用记录.', '2017-08-18 00:00:00', '已完成', '代艳明', null, '2017-08-22 00:00:00', '0.2', '林章水', '13632124589', '1、在项目管理平台中搜索历史记录，3.0.27X版本问题是因为数据库字段过短，发现通过shell有解决办法。\r\n2、shell提供给工程验证。', '无', '无', null, '2017-08-23 10:58:23', null, null);
+INSERT INTO `t_project` VALUES ('1711', '航天科工三院301所网关采购项目', '军工', '售后技术支持', '0', null, '3.0.32.10', '网关_服务器', '网关服务器从26.9升级为版本28.5，服务器端业务日志中无记录用户使用记录.', '2017-08-18 00:00:00', '已完成', '代艳明', null, '2017-08-22 00:00:00', '0.2', '林章水', '13632124589', '1、在项目管理平台中搜索历史记录，3.0.27X版本问题是因为数据库字段过短，发现通过shell有解决办法。\r\n2、shell提供给工程验证。', '无', '无', '2017-08-16 10:13:25', '2017-08-23 10:58:23', null, null);
+INSERT INTO `t_project` VALUES ('1712', '江苏淮安辅警项目', '公安', '售后技术支持', '0', null, '3.0.32.10', '网关_旁路_Agent', '认证时提示404，找不到error.jsp', '2017-08-24 00:00:00', '进行中', '代艳明', null, '2017-08-22 00:00:00', '0.2', '王艺', '13632124589', '校正网关时间。', '无', '无', null, '2017-08-24 00:00:00', null, null);
 
 -- ----------------------------
 -- Table structure for t_role
@@ -752,25 +754,24 @@ CREATE TABLE `t_version` (
 -- View structure for v_daily_list
 -- ----------------------------
 DROP VIEW IF EXISTS `v_daily_list`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost`  VIEW `v_daily_list` AS SELECT
-	itm.*, prj.create_time AS plan_start,
-	prj.create_time AS start_date,
-	'-' AS plan_end,
-	finish_date AS end_date,
-	prj.`status` AS state
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER  VIEW `v_daily_list` AS SELECT
+	dly.daily_id,
+	dly.create_date AS report_date,
+	dly.owner_name AS reporter,
+	itm.mission_name,
+	itm.hours,
+	itm.percentage,
+	itm.progress_detail,
+	itm.problerm,
+	prj.plan_start AS plan_start,
+	prj.start_date AS start_date,
+	prj.plan_end AS plan_end,
+	prj.end_date AS end_date,
+	prj.state AS state
 FROM
 	t_daily_item itm
-LEFT JOIN t_project prj ON itm.mission_id = prj.prj_id
-UNION
-	SELECT
-		itm2.*, msn.plan_start AS plan_start,
-		msn.start_date AS start_date,
-		msn.plan_end AS plan_end,
-		msn.end_date AS end_date,
-		msn.`status` AS state
-	FROM
-		t_daily_item itm2
-	LEFT JOIN t_mission msn ON itm2.mission_id = msn.mission_id ;
+JOIN t_daily dly ON itm.daily_id = dly.daily_id
+LEFT JOIN v_mission prj ON itm.mission_id = prj.mission_id ;
 
 -- ----------------------------
 -- View structure for v_labor_count
@@ -857,6 +858,32 @@ UNION
 		)
 	GROUP BY
 		`m`.`mission_name` ;
+
+-- ----------------------------
+-- View structure for v_mission
+-- ----------------------------
+DROP VIEW IF EXISTS `v_mission`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER  VIEW `v_mission` AS SELECT
+	p.prj_id AS mission_id,
+	p.prj_name AS mission_name,
+	p.create_time AS plan_start,
+	p.create_time AS start_date,
+	'' AS plan_end,
+	p.finish_date AS end_date,
+	p.`status` AS state
+FROM
+	t_project p
+UNION
+	SELECT
+		m.mission_id AS mission_id,
+		m.mission_name AS mission_name,
+		m.plan_start AS plan_start,
+		m.start_date AS start_date,
+		m.plan_end AS plan_end,
+		m.end_date AS end_date,
+		m.`status` AS state
+	FROM
+		t_mission m ;
 
 -- ----------------------------
 -- View structure for v_product_tree
