@@ -12,7 +12,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>${me}[<f:formatDate value="${obj.createDate}" pattern="yyyy-MM-dd" />]</title>
+<title>${reporter}[<f:formatDate value="${report_date}" pattern="yyyy-MM-dd" />]</title>
 
 <link href="<%=path%>/css/commom.css" rel="stylesheet">
 <link href="<%=path%>/css/bootstrap.min.css" rel="stylesheet">
@@ -34,32 +34,32 @@
 			<thead>
 				<tr>
 					<td colspan="8">
-						工作日报_<f:formatDate value="${obj.createDate}" pattern="yyyy/MM/dd" /> ${obj.ownerName}
+						工作日报_<f:formatDate value="${report_date}" pattern="yyyy/MM/dd" /> ${reporter}
 					</td>
 				</tr>
 				<tr>
 					<th class="w20p">任务名称</th>
 					<th class="w5p">开始时间</th>
-					<th class="w5p font10">计划完成时间</th>
-					<th class="w5p font10">实际完成时间</th>
+					<th class="w5p font12">计划完成时间</th>
+					<th class="w5p font12">实际完成时间</th>
 					<th class="w30p">工作内容</th>
 					<th class="w5p">工时</th>
 					<th class="w5p">完成比例</th>
-					<th class="w5p">状态</th>
+					<th class="w10p">状态</th>
 					<th class="w5p">备注</th>
 				</tr>
 			</thead>
-			<c:forEach var="item" items="${obj.items}">
+			<c:forEach var="item" items="${obj}">
 				<tr>
-					<td>${item.missionName}</td>
-					<td><f:formatDate value="${obj.createDate}" pattern="yyyy-MM-dd" /></td>
-					<td><f:formatDate value="${obj.createDate}" pattern="yyyy-MM-dd" /></td>
-					<td><f:formatDate value="${obj.createDate}" pattern="yyyy-MM-dd" /></td>
-					<td>${item.detail}</td>
+					<td>${item.mission_name}</td>
+					<td><f:formatDate value="${item.start_date}" pattern="yyyy-MM-dd" /></td>
+					<td><f:formatDate value="${item.plan_end}" pattern="yyyy-MM-dd" /></td>
+					<td><f:formatDate value="${item.end_date}" pattern="yyyy-MM-dd" /></td>
+					<td>${item.progress_detail}</td>
 					<td>${item.hours}</td>
 					<td>${item.percentage} %</td>
-					<td>状态</td>
-					<td>备注</td>
+					<td>${item.state}</td>
+					<td>${item.problerm}</td>
 				</tr>
 
 			</c:forEach>

@@ -28,6 +28,12 @@
 	<div class="container-fluid">
 		<ul class="nav nav-tabs">
 			<li class="active"><a href="#home" data-toggle="tab">售前人力统计</a></li>
+			<li><a href="#profile" data-toggle="tab"></a></li>
+
+
+			<li><a href="#messages" data-toggle="tab"> </a></li>
+			<li><a href="#settings" data-toggle="tab"> </a></li>
+
 		</ul>
 		<div class="tab-content">
 			<div class="tab-pane active" id="home">
@@ -59,7 +65,7 @@
 									<td>${msn.content}</td>
 									<td>${msn.state}</td>
 									<td>${msn.engineer}</td>
-									
+
 									<td>${msn.startDate}</td>
 									<td>${msn.endDate}</td>
 									<td>${msn.investment}</td>
@@ -68,6 +74,13 @@
 						</tbody>
 					</table>
 				</div>
+			</div>
+			<div class="tab-pane" id="profile">
+
+			<div class="tab-pane" id="messages">
+
+			<div class="tab-pane" id="settings"></div>
+			</div>
 			</div>
 		</div>
 	</div>

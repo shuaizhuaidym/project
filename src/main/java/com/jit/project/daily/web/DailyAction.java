@@ -3,6 +3,7 @@ package com.jit.project.daily.web;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +19,7 @@ import org.nutz.mvc.annotation.Param;
 import com.jit.project.daily.bean.Daily;
 import com.jit.project.daily.bean.DailyItem;
 import com.jit.project.daily.bean.Query;
+import com.jit.project.daily.bean.VDailyItem;
 import com.jit.project.daily.service.IDailyItemService;
 import com.jit.project.daily.service.IDailyService;
 import com.jit.project.dictionary.service.DicService;
@@ -113,14 +115,16 @@ public class DailyAction {
 	 */
 	@At("/daily/items")
 	@Ok("jsp:views.daily.items")
-	public Daily items(@Param("daily_id") String dailyID, HttpServletRequest request, HttpSession session) {
-		//TODO 重新定义查询方法，返回vdailyitem集合
-		Daily daily=this.dailyService.fetch(dailyID);
-		this.dailyService.fetchLinks(daily, "items");
-		return daily;
+	public List<com.jit.project.daily.bean.VDailyItem> items(@Param("daily_id") String dailyID,
+			HttpServletRequest request, HttpSession session) {
+		// Daily daily=this.dailyService.fetch(dailyID);
+		// this.dailyService.fetchLinks(daily, "items");
+		List<VDailyItem> items = this.dailyService.queryDailyDetail(dailyID);
+		request.setAttribute("report_date", items.get(0).getReport_date());
+		request.setAttribute("reporter", items.get(0).getReporter());
+		return items;
 	}
 	
-	//TODO 统计总投入人力
 	public IDailyService getDailyService() {
 		return dailyService;
 	}

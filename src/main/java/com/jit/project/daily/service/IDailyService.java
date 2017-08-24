@@ -1,5 +1,7 @@
 package com.jit.project.daily.service;
 
+import java.util.List;
+
 import org.nutz.dao.QueryResult;
 
 import com.jit.project.daily.bean.Daily;
@@ -35,4 +37,12 @@ public interface IDailyService {
 	 * @return
 	 */
 	public Daily fetchLinks(Daily daily, String manyReg);
+	
+	/**
+	 * 获取条目列表，展现日报详情
+	 * @param dailyID
+	 * @return
+	 */
+	public List<com.jit.project.daily.bean.VDailyItem> queryDailyDetail(String dailyID);
+	
 }

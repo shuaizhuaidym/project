@@ -157,7 +157,7 @@ public class ChartService extends NameEntityService<Project> implements IChartSe
 		Sql sql = Sqls.create("SELECT work_name,industry,work_type,work_content,manager,engineer,state,"
 				+ "process,hours,finish_date,product,module,baseVersion,"
 				+ "publishVersion,function,planStartDate,startDate,planEndDate,endDate,"
-				+ "arrangedInvestment,investment,work_content " + "FROM labor_statistics WHERE "
+				+ "arrangedInvestment,investment,work_content " + "FROM v_labor_count WHERE "
 				+ "instr(state, @state_run) > 0 AND update_time "
 				+ "BETWEEN @monday AND DATE_ADD(@sunday,INTERVAL 1 DAY) "
 				+ "OR state = @state_end AND finish_date BETWEEN @monday AND DATE_ADD(@sunday,INTERVAL 1 DAY)");
