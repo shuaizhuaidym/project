@@ -3,6 +3,7 @@ package com.jit.project.service;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -16,6 +17,7 @@ import org.nutz.service.NameEntityService;
 import com.jit.project.bean.ChartBar;
 import com.jit.project.bean.ChartPie;
 import com.jit.project.project.bean.Project;
+import com.jit.project.report.bean.DeptReport;
 import com.jit.project.report.bean.Report;
 
 public class ChartService extends NameEntityService<Project> implements IChartService {
@@ -152,7 +154,7 @@ public class ChartService extends NameEntityService<Project> implements IChartSe
 	 * 人力统计
 	 * 默认以周为单位，统计状态为 进行中的|已完成&完成时间 between(本周一&&本周末)
 	 */
-	//TODO 通过任务名称和ID共同关联任务,避免项目支持和开发任务主键重复
+	//TODO 过滤不在时间段内的日报条目，排除工作量
 	public List<Report> labor_count(String begin, String end) {
 		Sql sql = Sqls.create("SELECT work_name,industry,work_type,work_content,manager,engineer,state,"
 				+ "process,hours,finish_date,product,module,baseVersion,"
@@ -187,5 +189,41 @@ public class ChartService extends NameEntityService<Project> implements IChartSe
 		dao().execute(sql);
 
 		return list;
+	}
+	
+	/**
+	 * 工作类型统计
+	 * @param begin
+	 * @param end
+	 * @param groupType分组类型即统计类型（工作类型/行业），动态参数
+	 * @return
+	 */
+	public List<DeptReport> typeCount(String begin,String end,final String groupType){
+		Sql sql = Sqls.create("SELECT msn.$title as count_type, "
+				+ " COUNT(DISTINCT msn.mission_name) AS mission_count, "
+				+ " SUM(msn.hours) AS hours "
+				+ " FROM v_mission_detail msn "
+				+ " WHERE DATE_FORMAT(msn.create_date ,'%Y-%m-%d')BETWEEN "
+				+ " DATE_FORMAT(@begin,'%Y-%m-%d')AND DATE_FORMAT(@end,'%Y-%m-%d')"
+				+ " GROUP BY msn.$groupType");
+		sql.params().set("begin", begin);
+		sql.params().set("end", end);
+		
+		sql.vars().set("title", groupType);
+		sql.vars().set("groupType", groupType);
+		final List<DeptReport> work_type_count = new ArrayList<DeptReport>();
+		
+		sql.setCallback(new SqlCallback() {
+			public Object invoke(Connection conn, ResultSet rs, Sql sql) throws SQLException {
+				while (rs.next()) {
+					DeptReport r = new DeptReport(rs.getString("count_type"), rs
+							.getString("mission_count"), rs.getString("hours"));
+					work_type_count.add(r);
+				}
+				return work_type_count;
+			}
+		});
+		dao().execute(sql);
+		return work_type_count;
 	}
 }

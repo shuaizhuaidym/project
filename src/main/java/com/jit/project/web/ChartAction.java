@@ -38,6 +38,10 @@ import com.jit.project.service.ChartService;
  */
 @InjectName("chartAction")
 public class ChartAction {
+	//工作类型统计
+	final String count_type = "mission_type";
+	//行业统计
+	final String count_industry = "industry";
 
 	@Inject("prjService")
 	private PrjService prjService;
@@ -191,16 +195,26 @@ public class ChartAction {
 	}
 	
 	/**
-	 * 部门任务明细报表
+	 * 部门周报表
+	 * 包含：任务明细表，工作类型统计，行业统计 三个报表一起加载
+	 * 
 	 * @param type
 	 * @return
 	 */
 	@At("/labor_count")
 	@Ok("jsp:views.chart.report")
-	public List<Report> labor_count(@Param("aspect") String aspect) {
-		List<Report> tab=chartService.labor_count(DateUtil.getDateOfMonday(), DateUtil.getDateOfSunnday());
-		return tab;
+	public List<Report> labor_count(@Param("begin") String begin, @Param("end") String end,
+			@Param("count_type") String countType, HttpServletRequest request) {
+		List<Report> count_detail = chartService.labor_count(DateUtil.getDateOfMonday(),
+				DateUtil.getDateOfSunnday());
+		List<DeptReport> reportType = chartService.typeCount(begin, end, this.count_type);
+		List<DeptReport> reportIndustry = chartService.typeCount(begin, end, this.count_industry);
+		
+		request.setAttribute("count_type", reportType);
+		request.setAttribute("count_industry", reportIndustry);
+		return count_detail;
 	}
+	
 	
 	public List<DeptReport>deptCount(){
 		return null;
