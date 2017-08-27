@@ -3,6 +3,7 @@ package com.jit.project.web;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -205,6 +206,7 @@ public class ChartAction {
 	@Ok("jsp:views.chart.report")
 	public List<Report> labor_count(@Param("begin") String begin, @Param("end") String end,
 			@Param("count_type") String countType, HttpServletRequest request) {
+		//TODO count_detail 要包含BUG
 		List<Report> count_detail = chartService.labor_count(DateUtil.getDateOfMonday(),
 				DateUtil.getDateOfSunnday());
 		List<DeptReport> reportType = chartService.typeCount(begin, end, this.count_type);
@@ -215,6 +217,17 @@ public class ChartAction {
 		return count_detail;
 	}
 	
+	@At("/labor_count_index")
+	@Ok("jsp:views.chart.report")
+	public List<Report> labor_count_index(HttpServletRequest request){
+		List<Report> count_detail = new ArrayList<Report>();
+		List<DeptReport> reportType = new ArrayList<DeptReport>();
+		List<DeptReport> reportIndustry = new ArrayList<DeptReport>();
+		
+		request.setAttribute("count_type", reportType);
+		request.setAttribute("count_industry", reportIndustry);
+		return count_detail;
+	}
 	
 	public List<DeptReport>deptCount(){
 		return null;

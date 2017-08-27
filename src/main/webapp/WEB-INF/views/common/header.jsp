@@ -32,7 +32,7 @@
 					<li class="dropdown" id="menu_statistics">
 						<a data-target="menu_project" href="menu_statistics" class="dropdown-toggle" data-toggle="dropdown">统计分析<b class="caret"></b></a>
 						<ul class="dropdown-menu">
-							<li><a href="<%=path %>/labor_count">报表统计</a></li>
+							<li><a href="<%=path %>/labor_count_index">报表统计</a></li>
 							<li class="divider"></li>
 							<li><a href="<%=path %>/chart">图表分析</a></li>
 						</ul>

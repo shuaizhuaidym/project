@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50527
 File Encoding         : 65001
 
-Date: 2017-08-25 18:03:28
+Date: 2017-08-27 21:40:47
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -648,6 +648,62 @@ UNION
 			t_bug bg ;
 
 -- ----------------------------
+-- View structure for v_mission_4_dept
+-- ----------------------------
+DROP VIEW IF EXISTS `v_mission_4_dept`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER  VIEW `v_mission_4_dept` AS /*序号 	项目名称 	行业 	工作类型 	项目经理 	工作内容 	负责人 	当前状态 	开始日期 	结束日期 	工时(h)*/
+/**
+ *部门工作统计,项目支持+研发+BUG,包含工作内容等详细信息,查询效率相会会慢些
+ */
+SELECT
+	p.prj_id AS mission_id,
+	p.prj_name AS mission_name,
+	p.create_time AS plan_start,
+	p.create_time AS start_date,
+	'' AS plan_end,
+	p.finish_date AS end_date,
+	p.`status` AS state,
+	p.industry AS industry,
+	p.project_type AS mission_type,
+	p.reporter AS manager,
+	p.describtion AS work_content,
+	p.engineer AS responsible
+FROM
+	t_project p
+UNION
+	SELECT
+		m.mission_id AS mission_id,
+		m.mission_name AS mission_name,
+		m.plan_start AS plan_start,
+		m.start_date AS start_date,
+		m.plan_end AS plan_end,
+		m.end_date AS end_date,
+		m.`status` AS state,
+		m.industry_name AS industry,
+		m.type AS mission_type,
+		m.project_manager AS manager,
+		m.content AS work_content,
+		m.assign_to AS responsible
+	FROM
+		t_mission m
+	UNION
+		SELECT
+			bg.BG_BUG_ID AS mission_id,
+			bg.BG_SUMMARY AS mission_name,
+			bg.BG_DETECTION_DATE AS plan_start,
+			bg.BG_DETECTION_DATE AS start_date,
+			'' AS plan_end,
+			'' AS end_date,
+			'' AS industry,
+			'进行中' AS state,
+			'持续改进' AS mission_type,
+			bg.BG_DETECTED_BY AS manager,
+			bg.BG_SUMMARY AS work_content,
+			bg.BG_RESPONSIBLE AS responsible
+		FROM
+			t_bug bg ;
+
+-- ----------------------------
 -- View structure for v_mission_detail
 -- ----------------------------
 DROP VIEW IF EXISTS `v_mission_detail`;
@@ -661,6 +717,28 @@ SELECT
 FROM
 	v_mission msn
 LEFT JOIN t_daily_item itm ON msn.mission_id = itm.mission_id
+LEFT JOIN t_daily dly ON itm.daily_id = dly.daily_id ;
+
+-- ----------------------------
+-- View structure for v_mission_detail_4_dept
+-- ----------------------------
+DROP VIEW IF EXISTS `v_mission_detail_4_dept`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost`  VIEW `v_mission_detail_4_dept` AS SELECT
+	m.mission_name,
+	m.industry,
+	m.mission_type,
+	m.manager,
+	m.work_content,
+	m.responsible,
+	m.state,
+	m.start_date,
+	m.end_date,
+	itm.hours,
+	dly.create_date
+FROM
+	v_mission_4_dept m
+LEFT JOIN t_daily_item itm ON m.mission_id = itm.mission_id
+AND m.mission_name = itm.mission_name
 LEFT JOIN t_daily dly ON itm.daily_id = dly.daily_id ;
 
 -- ----------------------------
@@ -682,13 +760,3 @@ UNION ALL
 		`t_version`.`parent_version` AS `parent_version`
 	FROM
 		`t_version` ;
-DROP TRIGGER IF EXISTS `tgr_mission_udtt`;
-DELIMITER ;;
-CREATE TRIGGER `tgr_mission_udtt` AFTER INSERT ON `t_daily_item` FOR EACH ROW begin
-
-	update t_project set update_time = now() where prj_id = new.mission_id and prj_name=new.mission_name;
-	update t_mission set update_time = now() where mission_id = new.mission_id and mission_name=new.mission_name;
-
-end
-;;
-DELIMITER ;

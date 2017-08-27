@@ -38,10 +38,10 @@ $(document).ready(function(){
 		var result = validate(begin,end);
 		if(result == 1){
 			alert("请输入正确的开始日期和结束日期。");
-			return;
+			return false;
 		}else if(result == 2){
 			alert("开始日期不能大于结束日期。");
-			return;
+			return false;
 		}
 		var type=$("#myTab").find("li.active a:first").attr("title");
 		if("engineer"==type){
