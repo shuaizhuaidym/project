@@ -12,6 +12,8 @@ public class Query implements Condition {
 
 	private Integer pageSize = 15;
 	
+	private String missionName;
+	
 	private String assignTo;
 	
 	private String module;
@@ -29,6 +31,9 @@ public class Query implements Condition {
 	public String toSql(Entity<?> entity) {
 		StringBuilder buf = new StringBuilder("1=1");
 		if (StringUtils.isNoneEmpty(assignTo)) {
+			buf.append(" and missionName instr'").append(assignTo).append("'");
+		}
+		if(StringUtils.isNoneEmpty(missionName)){
 			buf.append(" and assign_to='").append(assignTo).append("'");
 		}
 		if(StringUtils.isNoneEmpty(module)){
@@ -69,5 +74,13 @@ public class Query implements Condition {
 
 	public void setModule(String module) {
 		this.module = module;
+	}
+
+	public String getMissionName() {
+		return missionName;
+	}
+
+	public void setMissionName(String missionName) {
+		this.missionName = missionName;
 	}
 }

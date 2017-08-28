@@ -28,7 +28,7 @@
 	margin-bottom: 0px;
 }
 
-.table td,th{padding:2px 5px 8px 5px}
+.table td,th{padding:5px 5px 5px 5px}
 </style>
 
 <script type="text/javascript" src="<%=path%>/js/jquery/jquery-1.11.1.js"></script>
@@ -95,6 +95,17 @@
 				</fieldset>
 				<!--Body content-->
 				<div class="table-responsive">
+				<form action="">
+					<table class="table table-bordered table-striped">
+						<thead>
+							<tr>
+							<th>任务名称</th><td><input type="text" name="query.mission_name"/></td>
+							<th>负责人</th><td><input type="text" name="query.assignTo"/></td>
+							<td style="text-align: center"><input type="button" value="查&nbsp;询" class="btn btn-primary"/></td>
+							</tr>
+						</thead>
+					</table>
+					</form>
 					<table class="table table-bordered table-striped">
 						<thead>
 							<tr>
