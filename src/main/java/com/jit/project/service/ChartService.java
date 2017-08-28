@@ -151,18 +151,18 @@ public class ChartService extends NameEntityService<Project> implements IChartSe
 	}
 	
 	/**
-	 * 人力统计
+	 * 人力统计，对应任务明细列表标签
 	 * 默认以周为单位，统计状态为 进行中的|已完成&完成时间 between(本周一&&本周末)
 	 */
-	//TODO 过滤不在时间段内的日报条目，排除工作量
 	public List<Report> labor_count(String begin, String end) {
-		Sql sql = Sqls.create("SELECT work_name,industry,work_type,work_content,manager,engineer,state,"
-				+ "process,hours,finish_date,product,module,baseVersion,"
-				+ "publishVersion,function,planStartDate,startDate,planEndDate,endDate,"
-				+ "arrangedInvestment,investment,work_content " + "FROM v_labor_count WHERE "
-				+ "instr(state, @state_run) > 0 AND update_time "
-				+ "BETWEEN @monday AND DATE_ADD(@sunday,INTERVAL 1 DAY) "
-				+ "OR state = @state_end AND finish_date BETWEEN @monday AND DATE_ADD(@sunday,INTERVAL 1 DAY)");
+		Sql sql = Sqls.create("SELECT mission_name,industry,mission_type,manager,work_content,responsible,"
+				+ "state,start_date,end_date,daily_date, SUM(hours) AS hours"
+				+" FROM	v_mission_detail_4_dept msn WHERE"
+				+" msn.daily_date BETWEEN @monday AND DATE_ADD(@sunday, INTERVAL 1 DAY)"
+				+" AND ("
+				+" instr(state, @state_run) > 0	"
+				+" OR (msn.state = '已完成' AND end_date BETWEEN @monday AND DATE_ADD(@sunday, INTERVAL 1 DAY))"
+				+") GROUP BY mission_name");
 		
 		sql.params().set("state_run", STATE_RUN);
 		sql.params().set("state_end", STATE_END);
@@ -174,13 +174,9 @@ public class ChartService extends NameEntityService<Project> implements IChartSe
 		sql.setCallback(new SqlCallback() {
 			public Object invoke(Connection conn, ResultSet rs, Sql sql) throws SQLException {
 				while (rs.next()) {
-					Report r = new Report(rs.getString("work_name"), rs.getString("industry"), rs
-							.getString("work_type"), rs.getString("manager"), rs.getString("state"), rs
-							.getString("product"), rs.getString("module"), rs.getString("baseVersion"), rs
-							.getString("publishVersion"), rs.getString("function"), rs.getString("engineer"), rs
-							.getString("planStartDate"), rs.getString("startDate"), rs.getString("planEndDate"), rs
-							.getString("endDate"), rs.getString("arrangedInvestment"), rs.getString("investment"), rs
-							.getString("process"), rs.getString("work_content"));
+					Report r = new Report(rs.getString("mission_name"), rs.getString("industry"), rs.getString("mission_type"), 
+							rs.getString("manager"), rs.getString("work_content"), rs.getString("responsible"), 
+							rs.getString("state"), rs.getString("start_date"), rs.getString("end_date"), rs.getString("hours"));
 					list.add(r);
 				}
 				return list;
@@ -192,7 +188,7 @@ public class ChartService extends NameEntityService<Project> implements IChartSe
 	}
 	
 	/**
-	 * 工作类型统计
+	 * 工作类型统计，对应行业统计和工作类型统计标签
 	 * @param begin
 	 * @param end
 	 * @param groupType分组类型即统计类型（工作类型/行业），动态参数

@@ -35,6 +35,23 @@ public class Report {
 		super();
 	}
 
+	
+	public Report(String mission, String industry, String type, String manager, String content,
+			String engineer, String state, String startDate, String endDate, String investment) {
+		super();
+		this.mission = mission;
+		this.industry = industry;
+		this.type = type;
+		this.manager = manager;
+		this.state = state;
+		this.engineer = engineer;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.investment = investment;
+		this.content = content;
+	}
+
+
 	public Report(String mission, String industry, String type, String manager, String state,
 			String product, String module, String baseVersion, String publishVersion, String function,
 			String engineer, String planStartDate, String startDate, String planEndDate, String endDate,

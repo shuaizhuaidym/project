@@ -21,7 +21,6 @@ import org.nutz.mvc.annotation.Param;
 
 import util.ChartUtil;
 import util.Const;
-import util.DateUtil;
 import util.ReportUtil;
 
 import com.jit.project.bean.Query;
@@ -207,8 +206,7 @@ public class ChartAction {
 	public List<Report> labor_count(@Param("begin") String begin, @Param("end") String end,
 			@Param("count_type") String countType, HttpServletRequest request) {
 		//TODO count_detail 要包含BUG
-		List<Report> count_detail = chartService.labor_count(DateUtil.getDateOfMonday(),
-				DateUtil.getDateOfSunnday());
+		List<Report> count_detail = chartService.labor_count(begin, end);
 		List<DeptReport> reportType = chartService.typeCount(begin, end, this.count_type);
 		List<DeptReport> reportIndustry = chartService.typeCount(begin, end, this.count_industry);
 		

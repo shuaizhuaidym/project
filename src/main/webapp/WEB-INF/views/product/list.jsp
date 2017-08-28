@@ -96,7 +96,7 @@ ul.ztree {
 				<!--Sidebar content-->
 				<fieldset>
 					<legend>
-						<span>产品列表 <a href="<%=path%>/product/add" class="white-pointer">[+]</a>
+						<span>产品列表 
 						</span>
 					</legend>
 				</fieldset>
@@ -112,7 +112,9 @@ ul.ztree {
 			<div class="span10">
 				<fieldset>
 					<legend>
-						<span>产品模块<a href="#productModal" data-toggle="modal" style="margin-left: 50px; color: white">+增加模块</a>
+						<span>产品模块
+						<a href="<%=path%>/product/add" class="white-pointer">+增加产品</a>
+						<a href="#productModal" data-toggle="modal" style="margin-left: 20px; color: white">+增加模块</a>
 						</span>
 					</legend>
 				</fieldset>
@@ -142,8 +144,9 @@ ul.ztree {
 								<td>${prd.testMgr}</td>
 								<td>${prd.releaseVersion}</td>
 								<td><f:formatDate value="${prd.releaseDate}" pattern="yyyy-MM-dd" /></td>
-								<td><a href="<%=path%>/product/edit?product_id=${prd.productID}"><i class="icon-pencil" title="编辑"></i></a> <a
-									href="#" onclick="delProduct(${prd.productID});"><i class=" icon-remove" title="删除"></i></a></td>
+								<td><a href="<%=path%>/product/edit?product_id=${prd.productID}"><i class="icon-pencil" title="编辑"></i></a> 
+								<a href="#" onclick="delProduct(${prd.productID});"><i class=" icon-remove" title="删除"></i></a>
+								</td>
 							</tr>
 						</c:forEach>
 					</table>
