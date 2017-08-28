@@ -172,6 +172,8 @@ public class MissionAction {
 			return null;
 		}
 		Condition cnd = new Condition() {
+			private static final long serialVersionUID = 2506662999560543656L;
+
 			@Override
 			public String toSql(Entity<?> entity) {
 				String sql = "where mission_id = " + mission.getMissionID();
@@ -199,6 +201,8 @@ public class MissionAction {
 			return null;
 		}
 		Condition cnd = new Condition() {
+			private static final long serialVersionUID = 835931499208726402L;
+
 			@Override
 			public String toSql(Entity<?> entity) {
 				String sql = "where mission_id = " + mission_id;
@@ -234,6 +238,8 @@ public class MissionAction {
 	public List<DailyItem> history(@Param("mission_id") final String missionID) {
 		List<DailyItem> history = new LinkedList<DailyItem>();
 		Condition cnd = new Condition() {
+			private static final long serialVersionUID = -5008936350700407152L;
+
 			@Override
 			public String toSql(Entity<?> entity) {
 				String sql = "where mission_id = " + missionID;

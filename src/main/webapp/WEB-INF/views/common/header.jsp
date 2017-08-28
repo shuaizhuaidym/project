@@ -22,7 +22,7 @@
 					<li class="dropdown" id="menu_product">
 						<a data-target="menu_product" href="menu_product" class="dropdown-toggle" data-toggle="dropdown">产品管理<b class="caret"></b></a>
 						<ul class="dropdown-menu">
-							<li><a href="<%=path %>/product/list">产品维护</a></li>
+							<li><a href="<%=path %>/product/list?query.parentID=-1">产品维护</a></li>
 							<li class="divider"></li>
 							<li><a href="<%=path %>/product/version">版本维护</a></li>
 						</ul>

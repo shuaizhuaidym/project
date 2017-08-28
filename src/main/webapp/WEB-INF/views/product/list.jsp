@@ -134,7 +134,7 @@ ul.ztree {
 								<th class="w6">操作</th>
 							</tr>
 						</thead>
-						<c:forEach var="prd" items="${obj.list}" varStatus="index">
+						<c:forEach var="prd" items="${obj.list}" varStatus="index" >
 							<tr>
 								<td>${index.count}</td>
 								<td>${prd.productName}</td>
@@ -178,7 +178,7 @@ ul.ztree {
 						<th>上级模块</th>
 						<td>
 							<div id="combo-tree" class="dropdown">
-								<input type="text" id="parentModule" name="product.parentName" class="required"/>
+								<input type="text" id="parentModule" name="product.parentName" class="required" readonly="readonly"/>
 								<input type="hidden" id="parentID" name="product.parentID" class="required"/>
 								<a id="parentModuleBtn" onclick="showMenu();" href="#" class='btn suffix-btn'><b class="caret"></b></a>
 								<ul id="treeParentModule" class="ztree outstand dropdown-menu"></ul>

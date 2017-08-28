@@ -34,7 +34,7 @@ public class ProductAction {
 	@Ok("jsp:views.product.list")
 	public QueryResult query(@Param("::query.") Query cnd) {
 		if (cnd == null) {
-			cnd = new Query();
+			cnd = new Query("-1");
 		}
 		QueryResult products = this.prdtService.query(cnd);
 
@@ -75,6 +75,8 @@ public class ProductAction {
 	public Product edit(@Param("product_id") final String productID) {
 
 		Product p = this.prdtService.fetch(new Condition() {
+			private static final long serialVersionUID = 6632037025480298793L;
+
 			@Override
 			public String toSql(Entity<?> entity) {
 				return "where product_id=" + productID;
