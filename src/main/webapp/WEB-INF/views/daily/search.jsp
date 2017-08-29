@@ -51,7 +51,9 @@ $(function() {
 	<div class="container-fluid">
 		<fieldset>
 			<legend>
-				<span>日报列表</span>
+				<span>日报列表
+				<a href="<%=path%>/daily/form" class="white-pointer">+写日报</a>
+				</span>
 			</legend>
 		</fieldset>
 		<div class="table-responsive">

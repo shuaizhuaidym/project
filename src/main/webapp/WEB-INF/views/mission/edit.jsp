@@ -149,7 +149,7 @@ textarea {
 				</tr>				
 				<tr>
 					<td><label class="control-label col-xs-2">计划开始时间</label></td>
-					<td><input type="text" id="mission_name" name="mission.planStart" 
+					<td><input type="text" id="mission_name" name="mission.planStart" readonly="readonly"
 					value="<f:formatDate value="${obj.planStart}" pattern="yyyy-MM-dd" />" class="datetime"></td>
 					<td><label class="control-label col-xs-2">开始时间</label></td>
 					<td><input type="text" id="mission_name" name="mission.startDate" 
@@ -163,10 +163,10 @@ textarea {
 					<td><input type="text" id="mission_name" name="mission.endDate" 
 					value="<f:formatDate value="${obj.endDate}" pattern="yyyy-MM-dd" />" class="datetime"></td>
 				</tr>
-				<tr>
+				<%-- <tr>
 					<td><label class="control-label col-xs-2">进展说明</label></td>
 					<td colspan="3"><textarea name="mission.progressDetail" class="w-input" rows="8">${obj.progressDetail}</textarea></td>
-				</tr>
+				</tr> --%>
 				<tr>
 					<td><label class="control-label col-xs-2">备注</label></td>
 					<td colspan="3"><input type="text" id="prj_comm" name="mission.comments" value="${obj.comments}" class="w-input" /></td>

@@ -60,6 +60,7 @@ input {
 .white-pointer {
 	cursor: pointer;
 	color: white;
+	margin-left: 20px;
 }
 .tree-box {
 	border: 1px solid #ddd;

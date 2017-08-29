@@ -148,10 +148,10 @@ textarea {
 					<td><label class="control-label col-xs-2">结束时间</label></td>
 					<td><input type="text" id="mission_name" name="mission.endDate" class="datetime"></td>
 				</tr>
-				<tr>
+				<!-- <tr>
 					<td><label class="control-label col-xs-2">进展说明</label></td>
 					<td colspan="3"><textarea name="mission.progressDetail" class="w-input" rows="8"></textarea></td>
-				</tr>
+				</tr> -->
 				<tr>
 					<td><label class="control-label col-xs-2">备注</label></td>
 					<td colspan="3"><input type="text" id="prj_comm" name="mission.comments" class="w-input" /></td>

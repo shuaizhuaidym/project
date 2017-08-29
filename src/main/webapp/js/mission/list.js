@@ -57,3 +57,22 @@
 		e.preventDefault();
 		$(this).tab('show');
 	});
+	/**
+	 * 日期控件初始化
+	 */
+	$(function() {
+		var datePks = $("#mission_query_form").find("input.datetime");
+		datePks.each(function() {
+			$(this).datetimepicker({
+				weekStart : 1,
+				todayBtn : 1,
+				autoclose : 1,
+				todayHighlight : 1,
+				startView : 2,
+				minView : 2,
+				forceParse : 0,
+				format : "yyyy-mm-dd"
+			});
+		});
+
+	});

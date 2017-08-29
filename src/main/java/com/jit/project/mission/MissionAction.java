@@ -126,6 +126,11 @@ public class MissionAction {
 		if (query == null) {
 			query = new com.jit.project.mission.Query();
 		}
+		if (types.isEmpty()) {
+			status = this.dicService.service(IDicService.type_mission_status);
+		}
+		request.setAttribute("status", status);
+		request.setAttribute("query", query);
 		QueryResult result = this.missionService.query(query);
 		return result;
 	}
@@ -234,19 +239,11 @@ public class MissionAction {
 	 * @return
 	 */
 	@At("/mission/history")
-	@Ok("json:full")
-	public List<DailyItem> history(@Param("mission_id") final String missionID) {
-		List<DailyItem> history = new LinkedList<DailyItem>();
-		Condition cnd = new Condition() {
-			private static final long serialVersionUID = -5008936350700407152L;
-
-			@Override
-			public String toSql(Entity<?> entity) {
-				String sql = "where mission_id = " + missionID;
-				return sql;
-			}
-		};
-		this.dailyItemService.fetch(cnd);
+	@Ok("jsp:views.mission.history")
+	public List<DailyItem> history(@Param("mission_id") final String missionID, HttpServletRequest request) {
+		Mission mission=this.missionService.fetch(missionID);
+		List<DailyItem> history = this.dailyItemService.queryByMissionID(missionID);
+		request.setAttribute("mission", mission);
 		return history;
 	}
 

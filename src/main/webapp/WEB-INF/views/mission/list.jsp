@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="ui" uri="/WEB-INF/tags/select"%>
 <%@taglib prefix="pg" uri="/WEB-INF/tags"%>
 <%
 	String path = request.getContextPath();
@@ -9,6 +10,8 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>任务管理</title>
@@ -22,7 +25,9 @@
 <link href="<%=path%>/zTree/zTreeStyle.css" rel="stylesheet">
 
 <style type="text/css">
-
+#search_box input,#search_box select{
+	width:145px;
+}
 
 .top0 {
 	margin-bottom: 0px;
@@ -34,6 +39,7 @@
 <script type="text/javascript" src="<%=path%>/js/jquery/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="<%=path%>/js/bootstrap-dropdown.js"></script>
 <script type="text/javascript" src="<%=path%>/zTree/jquery-ztree-core-min.js"></script>
+<script type="text/javascript" src="<%=path %>/js/bootstrap-datetimepicker.js"></script>
 
 <script type="text/javascript" src="<%=path%>/js/bootstrap-modal.js"></script>
 <script type="text/javascript" src="<%=path%>/js/bootstrap-tab.js"></script>
@@ -72,7 +78,7 @@
 				<div class="table-responsive">
 					<ul id="myTab" class="nav nav-tabs top0">
 						<li class="active"><a href="#cmodule" data-toggle="tab">模块视图</a></li>
-						<li><a href="#cversion" data-toggle="tab">版本视图</a></li>
+						<!-- <li><a href="#cversion" data-toggle="tab">版本视图</a></li> -->
 					</ul>
 
 					<div class="tab-content">
@@ -95,13 +101,18 @@
 				</fieldset>
 				<!--Body content-->
 				<div class="table-responsive">
-				<form action="">
-					<table class="table table-bordered table-striped">
+				<form id="mission_query_form" action="<%=path%>/mission/query" method="post">
+					<table id="search_box" class="table table-bordered table-striped">
 						<thead>
 							<tr>
-							<th>任务名称</th><td><input type="text" name="query.mission_name"/></td>
+							<th>任务名称</th><td><input type="text" name="query.missionName"/></td>
+							<th>创建时间</th><td><input type="text" name="query.createTime" class="datetime"/></td>
 							<th>负责人</th><td><input type="text" name="query.assignTo"/></td>
-							<td style="text-align: center"><input type="button" value="查&nbsp;询" class="btn btn-primary"/></td>
+							<th>任务状态</th><td>
+								<ui:select name="query.status" path="${query.status}" items="${status}"></ui:select>
+							</td>
+							<td style="text-align: center">
+								<input type="submit" value="查&nbsp;询" class="btn btn-primary"/></td>
 							</tr>
 						</thead>
 					</table>

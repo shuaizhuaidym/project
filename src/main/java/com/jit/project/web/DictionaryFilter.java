@@ -10,10 +10,13 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.log4j.Logger;
+
 /**
  * 根据请求URI设置字典到request中
  */
 public class DictionaryFilter implements Filter {
+	Logger log = Logger.getLogger(DictionaryFilter.class);
 
 	public DictionaryFilter() {
 		// TODO Auto-generated constructor stub
@@ -34,7 +37,7 @@ public class DictionaryFilter implements Filter {
 		if(http.getContextPath().indexOf("mission")>=0){
 			//TODO
 		}
-		System.out.println("字典已设置");
+		log.info("字典已设置");
 		chain.doFilter(request, response);
 	}
 

@@ -18,6 +18,10 @@ public class Query implements Condition {
 	
 	private String module;
 	
+	private String status;
+	
+	private String createTime;
+	
 	public Query() {
 		super();
 	}
@@ -31,13 +35,19 @@ public class Query implements Condition {
 	public String toSql(Entity<?> entity) {
 		StringBuilder buf = new StringBuilder("1=1");
 		if (StringUtils.isNoneEmpty(assignTo)) {
-			buf.append(" and missionName instr'").append(assignTo).append("'");
+			buf.append(" and assign_to ='").append(assignTo).append("'");
 		}
 		if(StringUtils.isNoneEmpty(missionName)){
-			buf.append(" and assign_to='").append(assignTo).append("'");
+			buf.append(" and instr(mission_name, '").append(missionName).append("')>0");
+		}
+		if(StringUtils.isNoneBlank(createTime)){
+			buf.append(" and DATEDIFF(create_time,'").append(createTime).append("')>=0");
+		}
+		if(StringUtils.isNoneBlank(status)){
+			buf.append(" and status = '").append(status).append("'");
 		}
 		if(StringUtils.isNoneEmpty(module)){
-			buf.append(" and (module='").append(module).append("'");
+			buf.append(" and (module ='").append(module).append("'");
 			buf.append(" or product_name='").append(module).append("')");
 		}
 		buf.append(" order by create_time desc");
@@ -82,5 +92,21 @@ public class Query implements Condition {
 
 	public void setMissionName(String missionName) {
 		this.missionName = missionName;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(String createTime) {
+		this.createTime = createTime;
 	}
 }

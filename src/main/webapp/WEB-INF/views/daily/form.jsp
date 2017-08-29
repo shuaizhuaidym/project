@@ -82,7 +82,7 @@
 					<input type="button" class="btn btn-inverse" id="btnDelete" value="删除"></input>
 					<input type="submit" id="btn_save" class="btn btn-success" value="保存"></input>
 					
-					<a href="<%=path%>/product/list" class="btn btn-primary">返回列表</a>
+					<a href="<%=path%>/daily/search" class="btn btn-primary">返回列表</a>
 				</div>
 			</div>
 		</form>
