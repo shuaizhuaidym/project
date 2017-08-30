@@ -22,9 +22,6 @@
 	width: 92%
 }
 
-textarea {
-	display: block;
-}
 </style>
 <link rel="stylesheet" href="<%=path %>/kindediter/themes/default/default.css" />
 

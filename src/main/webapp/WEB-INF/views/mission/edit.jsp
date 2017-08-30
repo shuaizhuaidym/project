@@ -149,7 +149,7 @@ textarea {
 				</tr>				
 				<tr>
 					<td><label class="control-label col-xs-2">计划开始时间</label></td>
-					<td><input type="text" id="mission_name" name="mission.planStart" readonly="readonly"
+					<td><input type="text" id="mission_name" name="mission.planStart"
 					value="<f:formatDate value="${obj.planStart}" pattern="yyyy-MM-dd" />" class="datetime"></td>
 					<td><label class="control-label col-xs-2">开始时间</label></td>
 					<td><input type="text" id="mission_name" name="mission.startDate" 

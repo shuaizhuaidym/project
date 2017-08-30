@@ -14,6 +14,8 @@ $(function() {
 			forceParse : 0,
 			format : "yyyy-mm-dd"
 		});
+		//避免和浏览器的记忆下拉冲突
+		$(this).attr("readonly","readonly");
 	});
 
 });

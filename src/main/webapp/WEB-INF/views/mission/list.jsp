@@ -142,7 +142,7 @@
 								<td>${mission.status}</td>
 								<td>
 									<a href="<%=path %>/mission/loadForAssignAsync?mission_id=${mission.missionID}" data-toggle="modal" data-target="#assignModal"><i class="icon-hand-right" title="指派"></i></a>
-									<a href="<%=path %>/mission/history?mission_id=${mission.missionID}"><i class="icon-time" title="任务历史"></i></a></td>
+									&nbsp;<a href="<%=path %>/mission/history?mission_id=${mission.missionID}"><i class="icon-time" title="任务历史"></i></a></td>
 
 							</tr>
 						</c:forEach>

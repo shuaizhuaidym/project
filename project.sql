@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50527
 File Encoding         : 65001
 
-Date: 2017-08-28 12:38:46
+Date: 2017-08-30 12:41:30
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -47,7 +47,7 @@ INSERT INTO `t_bug` VALUES ('3824', '新建', '王毅', 'TECH', 'DEV', '在工�
 INSERT INTO `t_bug` VALUES ('3825', '打开', '丁为厂', 'TECH', 'DEV', 'IP地址修改IP时，修改已有的IP时不提示IP冲突，修改后导致已经存在的IP无法访问。', '<html><body>操作步骤：<br>1、使用系统管理员访问网关管理页面<br>2、点击【系统设置-网络设置-IP地址】进入IP地址页面<br>3、选择9网段IP进行修改，修改成已经存在的IP，如将：192.168.9.98修改为192.168.9.130（IP已经存在）<br>预期结果;<br>在保存时提示用户IP冲突无法修改<br>实际结果：<br>1、可以正常保存，并且保存成功后可以通过9.130IP访问网关，发现此时的9.130是之前的9.98<br>2、将IP修改为原始IP，此时发现原9.130设备无法访问。</body></html>', 'dev-commonts', '1', 'serity', 'priority', '于凯', '2017-08-02 00:00:00', '3.0.34.9', 'Phoenix', 'Client', '2017-08-08 13:13:46');
 INSERT INTO `t_bug` VALUES ('3826', '新建', '王毅', 'TECH', 'DEV', '导出大于1万条日志，添加后台任务成功的提示内容不够直观明了', '<html><body>预置条件：<br>1.业务日志已超过1万条<br>操作步骤：<br>1.登录网关服务端，选择【审计日志】【业务日志查询】<br>2.查询出所有日志，点击&quot;导出&quot;--选择&quot;导出全部查询结果&quot;--选择&quot;使用EXCEL格式&quot;或&quot;使用ACCESS格式&quot;<br>3.弹出添加后台任务提示框，点击&quot;确定&quot;<br><br>预期结果：<br>弹出提示框，提示&quot;添加后台任务[业务日志导出_20170821153956_ACCESS]成功,请到系统维护-任务管理模块下查看&quot;<br><br>实际结果：<br>弹出提示框，提示添加后台任务[tb_option_log导出_20170821153956_ACCESS]成功,请到系统维护-任务管理模块下查看<br><br>备注：<br>1.导出大于1万条管理日志、错误日志、客户端环境检查日志、流量日志和系统日志也有上述问题</body></html>', 'dev-commonts', '1', 'serity', 'priority', '霍成义', '2017-08-03 05:59:01', '3.0.34.9', 'Phoenix', 'Client', '2017-08-25 16:06:36');
 INSERT INTO `t_bug` VALUES ('3829', '新建', '王毅', 'TECH', 'DEV', '网关在会话配置页面，每会话最大连接数输入栏经常出现无法输入内容的情况，该问题非必现但复现几率较大', '<html><body>操作步骤：<br>1、使用系统管理员访问网关管理页面<br>2、点击【系统设置-会话配置】进入会话配置页面<br>3、在会话配置进行操作，包括输入错误的信息，使页面保存等操作<br>4、在选择每会话最大连接数时输入内容<br>预期结果：<br>可以正常输入<br>实际结果：<br>无法正常输入，将光标切换到其他栏可以正常输入，在切换到每会话最大连接数依然无法输入<br>备注：<br>1、该问题复现给世宇看过<br>2、经过多次测试复现几次其中复现几率较大的方法就是在页面输入内容时使其报错后在进行输入每会话最大连接数</body></html>', 'dev-commonts', '1', 'serity', 'priority', '于凯', '2017-08-09 00:00:00', '3.0.34.9', 'Phoenix', 'Client', '2017-08-09 10:14:01');
-INSERT INTO `t_bug` VALUES ('3830', '打开', '吴畏', 'TECH', 'DEV', '报文应用认证，使用网关不信任的证书进行认证，可以正常认证通过。', '<html><body>前提条件：<br>PC中安装有两张主题相同颁发者不同的证书A，如JIT CA和DemoCa，且网关可信CA中只上传了JIT CA的根证<br>网关中已经添加报文应用<br>操作步骤：<br>1、访问报文应用--先使用网关信任的证书A进行认证--可以正常认证<br>2、再次访问报文应用--使用网关不信任的证书A进行认证--查看是否可以认证通过<br>预期结果：<br>无法认证用过，提示&quot;没有上传可信CA证书&quot;<br>实际结果：<br>使用不受信任的证书A进行报文认证，仍然可以认证通过。<br>备注：<br>如果先使用不信任的证书A进行报文认证，是无法认证的，会提示没有上传可信CA。<br>如果先使用信任的证书A认证通过，再使用不信任的证书A进行认证，仍然可以认证通过。</body></html>', 'dev-commonts', '1', 'serity', 'priority', '张敬兵', '2017-08-09 00:00:00', '3.0.34.10', 'Phoenix', 'Client', '2017-08-10 16:04:48');
+INSERT INTO `t_bug` VALUES ('3830', '打开', '代艳明', 'TECH', 'DEV', '报文应用认证，使用网关不信任的证书进行认证，可以正常认证通过。', '<html><body>前提条件：<br>PC中安装有两张主题相同颁发者不同的证书A，如JIT CA和DemoCa，且网关可信CA中只上传了JIT CA的根证<br>网关中已经添加报文应用<br>操作步骤：<br>1、访问报文应用--先使用网关信任的证书A进行认证--可以正常认证<br>2、再次访问报文应用--使用网关不信任的证书A进行认证--查看是否可以认证通过<br>预期结果：<br>无法认证用过，提示&quot;没有上传可信CA证书&quot;<br>实际结果：<br>使用不受信任的证书A进行报文认证，仍然可以认证通过。<br>备注：<br>如果先使用不信任的证书A进行报文认证，是无法认证的，会提示没有上传可信CA。<br>如果先使用信任的证书A认证通过，再使用不信任的证书A进行认证，仍然可以认证通过。</body></html>', 'dev-commonts', '1', 'serity', 'priority', '张敬兵', '2017-08-09 00:00:00', '3.0.34.10', 'Phoenix', 'Client', '2017-08-29 13:16:30');
 INSERT INTO `t_bug` VALUES ('3831', '新建', '王毅', 'TECH', 'DEV', '网关配置透明代理免路由模式可以正常使用，重启客户端PC机后，透明代理不能正常使用', '<html><body>操作步骤：<br>1.在【应用管理】配置透明代理应用（服务器地址段：192.168.12.230）<br>2.在【透明代理配置】开启透明代理--免路由模式--设备网关eht1--虚拟IP192.168.12.10-192.168.12.20<br>3.客户端登录网关，可以正常ping 192.168.12.230<br>4.重启电脑，等待客户端自动登录后，再ping 192.168.12.230<br><br>预期结果：<br>可以正常ping通<br><br>实际结果：<br>ping不通<br><br>相关排查：<br>1.刷新客户端，ping不通<br>2.客户端重新登录网关，ping不通</body></html>', 'dev-commonts', '1', 'serity', 'priority', '霍成义', '2017-08-09 00:00:00', '3.0.34.10', 'Phoenix', 'Client', '2017-08-09 16:50:48');
 INSERT INTO `t_bug` VALUES ('3832', '新建', '王毅', 'TECH', 'DEV', '做完网关镜像初始化完成后，登录网关查看调试日志存在垃圾日志', '<html><body>操作步骤：<br>1.重做网关镜像<br>2.初始化网关后，登录网关服务端<br>3.在【系统维护】【辅助工具】【调试日志下载】，查询所有调试日志<br><br>预期结果：<br>只能查询到做镜像以后时间的调试日志<br><br>实际结果：<br>查询到做镜像之前时间的调试日志</body></html>', 'dev-commonts', '1', 'serity', 'priority', '霍成义', '2017-08-10 00:00:00', '3.0.34.10', 'Phoenix', 'Client', '2017-08-11 14:56:03');
 INSERT INTO `t_bug` VALUES ('3833', '新建', '王毅', 'TECH', 'DEV', '管理员管理在上传证书时未校验证书生效时间，导致在上传完成后证书无法访问网关管理页', '<html><body>操作步骤：<br>1、使用管理员访问网关管理页面<br>2、点击管理员管理页面上传管理员证书<br>3、上传一个有效期在当前网关时间以后生效的证书，如当前网关时间2013-08-10 上传一个证书有效期为2017-08-10到2018-08-10的证书<br>预期结果：<br>提示用户当前证书未生效，是否继续任命管理员<br>实际结果：<br>没有任何提示信息，在上传完成后无法访问网关管理页面</body></html>', 'dev-commonts', '1', 'serity', 'priority', '于凯', '2017-08-10 00:00:00', '3.0.34.10', 'Phoenix', 'Client', '2017-08-11 15:28:05');
@@ -69,13 +69,14 @@ CREATE TABLE `t_daily` (
   `mail_to` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `item_links` text,
   PRIMARY KEY (`daily_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_daily
 -- ----------------------------
 INSERT INTO `t_daily` VALUES ('37', '2017-08-25 11:10:15', '0', '代艳明', '0', '<a 0>1、阅读HTTP协议，了解可能遇到的问题\r\n2、修改标准Agent，响应头增加属性\r\n3、测试</a>|');
 INSERT INTO `t_daily` VALUES ('38', '2017-08-28 11:12:52', '0', '代艳明', '0', '<a 0>用户和相关人员培训</a>|');
+INSERT INTO `t_daily` VALUES ('39', '2017-08-29 16:04:12', '0', '代艳明', '0', '<a 0>补充开发文档，用户手册</a>|');
 
 -- ----------------------------
 -- Table structure for t_daily_item
@@ -92,13 +93,14 @@ CREATE TABLE `t_daily_item` (
   `progress_detail` text,
   `problerm` varchar(254) DEFAULT NULL,
   PRIMARY KEY (`item_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_daily_item
 -- ----------------------------
 INSERT INTO `t_daily_item` VALUES ('33', '37', '31', '标准Agent扩展', null, '8', '80', '1、阅读HTTP协议，了解可能遇到的问题\r\n2、修改标准Agent，响应头增加属性\r\n3、测试', '中文编码');
 INSERT INTO `t_daily_item` VALUES ('34', '38', '32', '公安部辅警项目定制Agent改进', null, '8', '100', '用户和相关人员培训', '无');
+INSERT INTO `t_daily_item` VALUES ('35', '39', '31', '标准Agent扩展', null, '8', '91', '补充开发文档，用户手册', '无');
 
 -- ----------------------------
 -- Table structure for t_dictionary
@@ -186,13 +188,14 @@ CREATE TABLE `t_mission` (
   `version` int(11) DEFAULT NULL,
   PRIMARY KEY (`mission_id`),
   UNIQUE KEY `dx_mission_id` (`mission_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8 COMMENT='task_class:任务类别，产品研发，缺陷，改进\r\ntask_type:任务类型，科研项目，售前技术支持，';
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8 COMMENT='task_class:任务类别，产品研发，缺陷，改进\r\ntask_type:任务类型，科研项目，售前技术支持，';
 
 -- ----------------------------
 -- Records of t_mission
 -- ----------------------------
-INSERT INTO `t_mission` VALUES ('31', '标准Agent扩展', '售前定制开发', '标准Agent扩展', '标准Agent扩展', '2017-08-23 00:00:00', '进行中-测试中', '0', '新功能', '', '2.3.0', null, '2017-08-21 00:00:00', '2017-08-23 11:24:57', '2017-08-22 00:00:00', '0', '', '', '0', '0', null, '0', 'IOS版本MCTK', 'IOS版本MCTK', '', '代艳明', '', '0', '', '2017-08-22 00:00:00', '2017-08-28 11:10:15', null, '公安', null);
+INSERT INTO `t_mission` VALUES ('31', '标准Agent扩展', '售前定制开发', '标准Agent扩展', '标准Agent扩展', '2017-08-23 00:00:00', '进行中-测试中', '0', '新功能', '', '2.3.0', null, '2017-08-21 00:00:00', '2017-08-23 00:00:00', '2017-08-22 00:00:00', '0', '', '', '0', '0', null, '0', '身份认证网关E系列', '网关客户端', '', '代艳明', '100', '0', '', '2017-08-22 00:00:00', '2017-08-29 16:04:12', null, '公安', null);
 INSERT INTO `t_mission` VALUES ('32', '公安部辅警项目定制Agent改进', '售后定制开发', '公安部辅警项目定制Agent改进', '公安部辅警项目定制Agent改进', '2017-08-22 00:00:00', '已完成', '100', '新功能', '', '3.0.34.9', null, '2017-08-21 00:00:00', null, '2017-08-22 00:00:00', '0', '', '', '0', '0', null, '0', '身份认证网关E系列', 'gateway服务', '', '代艳明', '12', '0', '', '2017-08-22 00:00:00', '2017-08-28 11:12:52', null, '公安', null);
+INSERT INTO `t_mission` VALUES ('33', '教育部CA推广定制化开发', '售前定制开发', '教育部CA推广定制化开发', '教育部CA推广定制化开发', '2017-08-30 00:00:00', '延期-开发中', '0', '新功能', '', '3.0.34.10', null, null, null, null, '0', '3.0.33.6', '', '0', '0', null, '0', '身份认证网关E系列', 'gateway服务', '', '代艳明', '', '0', '', '2017-08-29 00:00:00', '2017-08-29 00:00:00', null, '政府/渠道', null);
 
 -- ----------------------------
 -- Table structure for t_org
@@ -477,6 +480,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER  VIEW
 	dly.daily_id,
 	dly.create_date AS report_date,
 	dly.owner_name AS reporter,
+	itm.mission_id,
 	itm.mission_name,
 	itm.hours,
 	itm.percentage,

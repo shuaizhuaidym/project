@@ -39,60 +39,16 @@
 }
 </style>
 
+<script type="text/javascript">
+	var old="<%=query.getStatus()%>";
+	var export_url = "<%=path%>/prj_export";
+	var query_url = "<%=path%>/query";
+</script>
 <script type="text/javascript" src="<%=path %>/js/jquery/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="<%=path %>/js/bootstrap-dropdown.js"></script>
 
 <script type="text/javascript" src="<%=path %>/js/bootstrap-datetimepicker.js"></script>
-<script type="text/javascript">
-	$(function() {
-		var datePks=$("#queryForm").find("input.datetime");
-		datePks.each(function(){
-			$(this).datetimepicker({
-				weekStart : 1,
-				todayBtn : 1,
-				autoclose : 1,
-				todayHighlight : 1,
-				startView : 2,
-				minView : 2,
-				forceParse : 0,
-				format:"yyyy-mm-dd"
-			});
-		});
-		$("#btnExport").click(function(){
-			$("#queryForm").attr("action","<%=path%>/prj_export");
-			$("#queryForm").submit();
-		});
-		$("#btnQuery").click(function(){
-			$("#queryForm").attr("action","<%=path%>/query");
-			$("#queryForm").submit();
-		});
-		
-		var old="<%=query.getStatus()%>";
-		setBtnText(old);
-		$("label.checkbox > input").click(function(e) {
-			e.stopPropagation();//实现多选
-			var chkd="";
-			var cbx = $("input[type=checkbox]");
-			cbx.each(function() {
-				if(this.checked)
-					chkd += this.value+",";
-			});
-			setBtnText(chkd);
-		});
-		$("label.checkbox > input").each(function() {
-			if (old.indexOf(this.value) >= 0) {
-				this.checked = "checked";
-			}
-		});
-	});
-	function setBtnText(txt){
-		if(txt && txt!="null"){
-			$("span.multiselect-selected-text").html(txt.length>10?txt.substring(0,9)+"...":txt);//represent
-		}else{
-			$("span.multiselect-selected-text").html("当前状态");//represent
-		}
-	}
-</script>
+<script type="text/javascript" src="<%=path %>/js/project/list.js"></script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>

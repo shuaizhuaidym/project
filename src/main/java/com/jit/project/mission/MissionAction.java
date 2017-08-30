@@ -1,9 +1,8 @@
 package com.jit.project.mission;
 
-import java.util.ArrayList;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -21,7 +20,6 @@ import org.nutz.mvc.annotation.Ok;
 import org.nutz.mvc.annotation.Param;
 
 import com.jit.project.bug.service.BugServiceImpl;
-import com.jit.project.daily.bean.DailyItem;
 import com.jit.project.daily.service.DailyItemServiceImpl;
 import com.jit.project.dictionary.service.IDicService;
 import com.jit.project.product.service.ProductService;
@@ -240,9 +238,9 @@ public class MissionAction {
 	 */
 	@At("/mission/history")
 	@Ok("jsp:views.mission.history")
-	public List<DailyItem> history(@Param("mission_id") final String missionID, HttpServletRequest request) {
+	public List<History> history(@Param("mission_id") final String missionID, HttpServletRequest request) {
 		Mission mission=this.missionService.fetch(missionID);
-		List<DailyItem> history = this.dailyItemService.queryByMissionID(missionID);
+		List<History> history = this.dailyItemService.queryByMissionID(missionID);
 		request.setAttribute("mission", mission);
 		return history;
 	}

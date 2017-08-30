@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%
 	String path = request.getContextPath();
 %>
@@ -16,10 +17,24 @@
 <link href="<%=path%>/css/commom.css" rel="stylesheet">
 <link href="<%=path%>/css/bootstrap.min.css" rel="stylesheet">
 <style type="text/css">
-table {
+.item_summary {
+	background: #fafafa none;
 	border: 1px #ddd solid;
-	width:100%;
-	margin-bottom:8px
+	width: 100%;
+	margin-bottom: 8px
+}
+
+.item_summary td{
+	line-height: 15px;
+	padding: 8px;
+	text-align: left;
+	vertical-align: bottom;
+}
+
+.item_summary th {
+	text-align: right;
+	padding-right: 32px;
+	width: 20%;
 }
 </style>
 <script type="text/javascript" src="<%=path%>/js/jquery/jquery-1.11.1.js"></script>
@@ -33,18 +48,18 @@ table {
 				<span>任务研发历史</span>
 			</legend>
 		</fieldset>
-		<table>
+		<table class="item_summary">
 			<thead>
 				<tr>
-					<td>任务名称</td>
+					<th>任务名称</th>
 					<td>${mission.missionName}</td>
-					<td>任务状态</td>
+					<th>任务状态</th>
 					<td>${mission.status}</td>
 				</tr>
 				<tr>
-					<td>开始时间</td>
+					<th>开始时间</th>
 					<td><f:formatDate value="${mission.startDate}" pattern="yyyy-MM-dd" /></td>
-					<td>计划结束时间</td>
+					<th>计划结束时间</th>
 					<td><f:formatDate value="${mission.planEnd}" pattern="yyyy-MM-dd" /></td>
 				</tr>
 			<thead>
@@ -52,33 +67,29 @@ table {
 		<table class="table table-bordered table-striped">
 			<thead>
 				<tr>
-					<td colspan="4">研发过程</td>
+					<th colspan="4">研发过程</th>
 				</tr>
 				<tr>
 					<th class="w20px">序号</th>
 					<th>工作内容</th>
-					<!-- <th class="w5p">开始时间</th> -->
-					<!-- <th class="w5p font12">计划完成时间</th>
-					<th class="w5p font12">实际完成时间</th> -->
-					<!-- <th class="w30p">工作内容</th> -->
+					<th>负责人</th>
+					<th class="w108px">日期</th>
 					<th class="w20px">工时</th>
-					<th class="w128px">当前完成比例</th>
-					<!-- <th class="w10p">状态</th> -->
+					<th class="w108px">当前完成比例</th>
 					<th class="w5p">备注</th>
 				</tr>
 			</thead>
 			<c:forEach var="item" items="${obj}" varStatus="ndx">
 				<tr>
 				<td>${ndx.count}</td>
-					<td>${item.detail}</td>
-					<%-- <td><f:formatDate value="${item.start_date}" pattern="yyyy-MM-dd" /></td>
-					<td><f:formatDate value="${item.plan_end}" pattern="yyyy-MM-dd" /></td>
-					<td><f:formatDate value="${item.end_date}" pattern="yyyy-MM-dd" /></td> --%>
-					<%-- <td>${item.detail}</td> --%>
+					<td>${item.progress_detail}</td>
+					<td>${item.reporter}</td>
+					
+					<td>${fn:substring(item.report_date, 0, 10)}</td>
 					<td>${item.hours}</td>
 					<td>${item.percentage}%</td>
 					<%-- <td>${item.state}</td> --%>
-					<td>${item.problerm}</td>
+					<td>${item.problem}</td>
 				</tr>
 
 			</c:forEach>

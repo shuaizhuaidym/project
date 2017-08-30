@@ -24,43 +24,13 @@
 </style>
 
 <script type="text/javascript" src="js/jquery/jquery-1.11.1.js"></script>
+<script type="text/javascript" src="<%=path %>/js/jquery-validation-1.9.0/jquery.validate-1.17.0.js"></script>
 <script type="text/javascript" src="js/bootstrap-datetimepicker.js"></script>
 <script type="text/javascript" src="js/bootstrap-dropdown.js"></script>
 <script type="text/javascript" src="js/Util.js"></script>
 
-<script type="text/javascript" src="<%=path %>/js/jquery-validation-1.9.0/jquery.validate-1.17.0.js"></script>
-<script type="text/javascript">
-	$(function() {
-		var datePks=$("#frm_project").find("input.datetime");
-		datePks.each(function(){
-			$(this).datetimepicker({
-				weekStart : 1,
-				todayBtn : 1,
-				autoclose : 1,
-				todayHighlight : 1,
-				startView : 2,
-				minView : 2,
-				forceParse : 0,
-				format:"yyyy-mm-dd"
-			});
-		});
-		$("#slt_state").change(function(){
-			if ("已完成" == $(this).val()){
-				$("#ta_proc").addClass("required");
-				$("#txt_lc").addClass("required");
-				$("#txt_fd").addClass("required");
-			}else{
-				$("#ta_proc").removeClass("required");
-				$("#txt_lc").removeClass("required");
-				$("#txt_fd").removeClass("required");
-			}
-		});
-		$("#dateX").click(function(){
-			var origin=$("#ta_proc").val();
-			$("#ta_proc").val(origin+"\r\n"+getNowFormatDate()+"\r\n");
-		});
-	});
-</script>
+<script type="text/javascript" src="<%=path %>/js/project/form.js"></script>
+
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
@@ -157,21 +127,5 @@
 	</div>
 	<!-- /container -->
 </body>
-<script type="text/javascript">
-$(function() {
-	$("#frm_project" ).validate( {
-			errorPlacement : function(error, element) {
-				//error.addClass( "ui red pointing label transition" );
-				//error.insertAfter( element.parent() );
-			},
-			highlight : function(element, errorClass, validClass) {
-				$(element).css("border-color", "red");
-			},
-			unhighlight : function(element, errorClass, validClass) {
-				$(element).css("border-color", "#ccc");
-			}
-		});
 
-	});
-</script>
 </html>

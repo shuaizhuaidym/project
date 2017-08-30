@@ -21,30 +21,14 @@
 <script type="text/javascript" src="<%=path %>/js/jquery-validation-1.9.0/jquery.validate-1.17.0.js"></script>
 <script type="text/javascript" src="<%=path %>/js/bootstrap-dropdown.js"></script>
 <script type="text/javascript" src="<%=path %>/js/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript" src="<%=path %>/js/project/form.js"></script>
 
-<script type="text/javascript">
-	$(function() {
-		var datePks=$("#frm_project").find("input.datetime");
-		datePks.each(function(){
-			$(this).datetimepicker({
-				weekStart : 1,
-				todayBtn : 1,
-				autoclose : 1,
-				todayHighlight : 1,
-				startView : 2,
-				minView : 2,
-				forceParse : 0,
-				format:"yyyy-mm-dd"
-			});
-		});
-	});
-</script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 
 	<div class="container container_frm">
-		<form id="frm_project" action="create" method="post">
+		<form id="frm_project" action="<%=path %>/create" method="post">
 			<fieldset>
 				<legend><span>新建项目</span></legend>
 			</fieldset>
@@ -131,20 +115,5 @@
 	</div>
 	<!-- /container -->
 </body>
-<script type="text/javascript">
-$(function() {
-	$( "#frm_project" ).validate( {
-			errorPlacement : function(error, element) {
-				//error.addClass( "ui red pointing label transition" );
-				//error.insertAfter( element.parent() );
-			},
-			highlight : function(element, errorClass, validClass) {
-				$(element).css("border-color", "red");
-			},
-			unhighlight : function(element, errorClass, validClass) {
-				$(element).css("border-color", "#ccc");
-			}
-		});
-	});
-</script>
+
 </html>

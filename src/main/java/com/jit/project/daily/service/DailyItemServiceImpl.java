@@ -8,6 +8,7 @@ import org.nutz.dao.entity.Entity;
 import org.nutz.service.NameEntityService;
 
 import com.jit.project.daily.bean.DailyItem;
+import com.jit.project.mission.History;
 
 public class DailyItemServiceImpl extends NameEntityService<DailyItem> implements IDailyItemService {
 
@@ -25,7 +26,7 @@ public class DailyItemServiceImpl extends NameEntityService<DailyItem> implement
 		return item;
 	}
 	
-	public List<DailyItem> queryByMissionID(String missionID){
-		return dao().query(DailyItem.class, Cnd.where("mission_id", "=", missionID));
+	public List<History> queryByMissionID(String missionID){
+		return dao().query(History.class, Cnd.where("mission_id", "=", missionID));
 	}
 }
