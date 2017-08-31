@@ -18,11 +18,7 @@
 <link href="<%=path %>/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 
 <link href="<%=path %>/zTree/zTreeStyle.css" rel="stylesheet">
-<style type="text/css">
-textarea {
-	display: block;
-}
-</style>
+
 <script type="text/javascript" src="<%=path%>/js/jquery/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="<%=path %>/js/jquery-validation-1.9.0/jquery.validate-1.17.0.js"></script>
 
@@ -51,7 +47,7 @@ textarea {
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
-	<div class="container" style="width: 65%; margin: 0 auto">
+	<div class="container">
 		<form id="frm_mission" action="update" method="post">
 			<input type="hidden" name="mission.missionID" value="${obj.missionID}"/>
 			<fieldset>

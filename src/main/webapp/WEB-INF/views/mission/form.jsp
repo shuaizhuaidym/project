@@ -53,7 +53,7 @@
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
-	<div class="container" style="width: 65%; margin: 0 auto">
+	<div class="container">
 		<form id="frm_mission" action="create" method="post">
 			<fieldset>
 				<legend>
