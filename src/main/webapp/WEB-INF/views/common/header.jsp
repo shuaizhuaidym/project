@@ -51,9 +51,10 @@
 						</ul>
 					</li>
 				</ul>
-				<form class="navbar-form pull-right" action="<%=path%>/user/authenticate" method="post">
-					<a href="<%=path%>/user/logout" class="btn btn-inverse">注销</a>
-				</form>
+				<p class="navbar-text pull-right">
+					<a class="navbar-link" href="#"><i class="icon-user"></i>${me}</a>
+					<a href="<%=path%>/user/logout">注销</a>
+				</p>
 			</div>
 			<!--/.nav-collapse -->
 		<!-- </div> -->

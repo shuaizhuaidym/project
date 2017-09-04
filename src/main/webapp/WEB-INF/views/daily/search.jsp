@@ -64,8 +64,10 @@ $(function() {
 					<tr>
 						<th>人员名称</th>
 						<th><ui:select name="query.ownerName" path="${query.ownerName}" items="${owners}"></ui:select></th>
-						<th>发送日期</th>
+						<th>发送日期起</th>
 						<th><input type="text" name="query.createDate" value="${query.createDate}" class="datetime"/></th>
+						<th>发送日期止</th>
+						<th><input type="text" name="query.createDate2" value="${query.createDate}" class="datetime"/></th>
 						<th style="text-align: center">
 							<button id="btnQuery" class="btn btn-primary">查询</button>
 						</th>

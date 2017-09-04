@@ -66,3 +66,6 @@ input {
 	border: 1px solid #ddd;
 	border-top: 0
 }
+.hid{
+	display:none;
+}

@@ -76,7 +76,7 @@
 					<%-- <a data-toggle="modal" href="<%=path%>/daily/window" data-target="#dailyModal">
 							<i class=" icon-list-alt" title="写日报"></i>
 					</a> --%>
-					<a href="<%=path%>/daily/form"> <!-- <i class=" icon-list-alt" title="写日报"></i> -->+写日报</a>
+					<a href="<%=path%>/daily/form"> <i class="icon-calendar" title="写日报"></i>写日报</a>
 					</span>
 				</div>
 				<div id="missionForm-box">

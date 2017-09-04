@@ -1988,7 +1988,7 @@ table td[class*="span"],table th[class*="span"],.row-fluid table td[class*="span
 }
 
 .icon-user {
-	background-position: -168px 0
+	background-position: -254px -6px
 }
 
 .icon-film {
@@ -2392,7 +2392,7 @@ table td[class*="span"],table th[class*="span"],.row-fluid table td[class*="span
 }
 
 .icon-calendar {
-	background-position: -192px -120px
+	background-position: -290px -185px
 }
 
 .icon-random {
@@ -3998,7 +3998,7 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini {
 }
 
 .navbar-link {
-	color: #777
+	color: #d1e4f2
 }
 
 .navbar-link:hover,.navbar-link:focus {
@@ -4376,7 +4376,7 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini {
 }
 
 .navbar-inverse .navbar-link {
-	color: #999
+	color: #d1e4f2
 }
 
 .navbar-inverse .navbar-link:hover,.navbar-inverse .navbar-link:focus {

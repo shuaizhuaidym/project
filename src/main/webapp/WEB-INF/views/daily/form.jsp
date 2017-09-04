@@ -40,13 +40,14 @@
 					<span>写日报</span>
 				</legend>
 			</fieldset>
-			<div id="daily_item" class="div_with_divider">
+			<div id="daily_item" class="div_with_divider" lang="daily_item_0">
 				<div class="control-group">
 					<label class="control-label" for="code">任务名称</label>
 					<div class="controls">
 						<input type="text" id="summary_0" name="daily.items[0].missionName" class="required w-input"> 
 						<input type="hidden" id="id_0" name="daily.items[0].missionID" class="w-input"/>
 						<a data-toggle="modal" href="<%=path%>/mission/refer?mission_index=0" onclick="trig(0);" data-target="#missionModal">[选择]</a>
+						
 					</div>
 				</div>
 				<div class="control-group">
@@ -71,6 +72,7 @@
 					<label class="control-label" for="desc">疑难问题</label>
 					<div class="controls">
 						<input type="text" id="productMgr" name="daily.items[0].problerm" class="w-input"/>
+						<a id="btnDel_0" href="#" onclick="delDailyItem(0);" class="hid"> [删除]</a>
 					</div>
 				</div>
 				

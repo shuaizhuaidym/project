@@ -21,21 +21,28 @@ $(document).ready(function() {
 	$("#btnInsert").click(function() {
 		var item = $("#daily_item").clone();
 		item.removeAttr("id");
+		item.attr("lang", "daily_item_" + index);
 		item.find('.w-input').each(function(idx, ele) {
 			var newName = $(ele).attr('name').replace(/0/, index);
 			$(ele).attr('name', newName);
 			var nid = $(ele).attr('id').replace(/0/, index);
 			$(ele).attr('id', nid);
 		});
-		item.find('a').each(function(idx, ele) {
+		item.find('a[data-toggle="modal"]').each(function(idx, ele) {
 //			var newHref = $(ele).attr('href').replace(/0/, index);
 			var clik = $(ele).attr('onclick').replace(/0/, index);
 //			$(ele).attr('href', newHref);
 			$(ele).attr('onclick', clik);
 		});
+		item.find('a.hid').each(function(idx, ele) {
+			$(ele).css("display","inline");
+			var clik = $(ele).attr('onclick').replace(/0/, index);
+			$(ele).attr('onclick', clik);
+		});
 		item.insertBefore("#function_box");
 		index++;
 	});
+
 	// delete
 	$("#btnDelete").click(function() {
 		var items = $(".div_with_divider");
@@ -109,4 +116,8 @@ function refer(index, msg) {
 	var idd = "id_0".replace(/0/, index);
 	$("#"+summary).val(msg.name);
 	$("#"+idd).val(msg.id);
+}
+//删除单条记录
+function delDailyItem(divID){
+	$("div[lang=daily_item_" + divID +"]").remove();
 }

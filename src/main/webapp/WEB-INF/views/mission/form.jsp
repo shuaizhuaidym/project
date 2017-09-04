@@ -118,7 +118,7 @@
 					<td><input type="text" id="mission_name" name="mission.productSubType"></td>
 				</tr>
 				<tr>
-					<td><label class="control-label col-xs-2">基线版本</label></td>
+					<td><label class="control-label col-xs-2">已发布版本</label></td>
 					<td><input type="text" id="prj_version" name="mission.productBaseVersion"></td>
 					<td><label class="control-label col-xs-2">负责团队</label></td>
 					<td><input type="text" id="mission_name" name="mission.teamID"></td>
