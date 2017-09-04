@@ -60,12 +60,12 @@ body{
 				<input type="password" name="password" placeholder="Password" class="text-full">
 			</div>
 		</div>
-		<div class="control-group" style="margin-bottom: 6px;">
+		<!-- <div class="control-group" style="margin-bottom: 6px;">
 			<label class="control-label" for="inputPassword">记住登录</label>
 			<div class="controls">
 				<input type="checkbox">
 			</div>
-		</div>
+		</div> -->
 		<div class="control-group">
 			<label class="control-label" for="inputPassword"></label>
 			<div class="controls">

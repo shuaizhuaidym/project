@@ -17,7 +17,7 @@
 
 <link href="<%=path%>/css/bootstrap.min.css" rel="stylesheet" />
 <link href="<%=path%>/css/list.css" rel="stylesheet" />
-<%-- <link href="<%=path%>/css/commom.css" rel="stylesheet"> --%>
+<link href="<%=path%>/css/commom.css" rel="stylesheet">
 <link href="<%=path%>/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 <style type="text/css">
 .table td,th {
@@ -58,7 +58,7 @@
 			</legend>
 		</fieldset>
 		<div class="table-responsive">
-			<form id="queryForm" action="<%=path%>/daily/search" method="post" class="frm">
+			<form id="queryForm" action="<%=path%>/daily/search" method="post">
 				<table class="table table-bordered table-condensed">
 					<tr>
 						<th>人员名称</th>
