@@ -75,7 +75,8 @@ ul.ztree {
 	border-bottom-left-radius: 0;
 	border-top-left-radius: 0;
 	margin-left:-5px;
-	padding: 4px 4px;
+	padding: 3px 4px;
+	width:12px
 }
 #combo-tree input{ width:73%}
 </style>
