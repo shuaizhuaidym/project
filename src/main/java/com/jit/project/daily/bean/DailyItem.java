@@ -16,7 +16,7 @@ public class DailyItem {
 	private int itemID;
 	
 	@Column("daily_id")
-	private int dailyID;
+	private int dailyID = -1;
 	
 	@Column("mission_id")
 	private String missionID;

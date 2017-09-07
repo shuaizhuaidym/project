@@ -100,6 +100,15 @@ public class DailyServiceImpl extends IdNameEntityService<Daily> implements IDai
 	 */
 	@Override
 	public void upateWith(Daily daily) {
+		StringBuilder links = new StringBuilder();
+		for (DailyItem i : daily.getItems()) {
+			if (i.getDailyID() <= 0){//新建的条目
+				i.setDailyID(daily.getDailyID());
+			}
+			links.append(i.getDetail());
+			links.append("<br/>");
+		}
+		daily.setItemLinks(links.toString());
 		this.dao().updateWith(daily, "items");
 	}
 }

@@ -39,6 +39,7 @@ $(document).ready(function() {
 			var clik = $(ele).attr('onclick').replace(/0/, index);
 			$(ele).attr('onclick', clik);
 		});
+		item.removeClass("item_template");
 		item.insertBefore("#function_box");
 		index++;
 	});

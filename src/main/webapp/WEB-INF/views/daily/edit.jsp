@@ -66,8 +66,10 @@
 						<label class="control-label" for="code">任务名称</label>
 						<div class="controls">
 							<input type="text" id="summary_${sts.index}" name="daily.items[${sts.index}].missionName" value="${item.missionName}" readonly="readonly" class="required w-input"/>
-							<input type="hidden" id="id_${sts.index}" name="daily.items[${sts.index}].missionID" value="${item.missionID}" class="w-input" />
 							<a data-toggle="modal" href="<%=path%>/mission/refer?mission_index=0" onclick="trig(${sts.index});" data-target="#missionModal">[选择]</a>
+							<input type="hidden" name="daily.items[${sts.index}].itemID" value="${item.itemID}"/>
+							<input type="hidden" name="daily.items[${sts.index}].dailyID" value="${item.dailyID}"/>
+							<input type="hidden" id="id_${sts.index}" name="daily.items[${sts.index}].missionID" value="${item.missionID}"/>
 						</div>
 					</div>
 					<div class="control-group">
@@ -99,7 +101,7 @@
 			</c:forEach>
 			<div class="control-group" id="function_box">
 				<div class="controls">
-					<a href="#" class="btn btn-warning" id="btnInsert">新增日报条目</a>
+					<input type="button" class="btn btn-warning" id="btnInsert" value="新增日报条目"></input>
 					<input type="button" id="btn_save_draft" class="btn btn btn-info" value="暂存"></input>
 					<input type="submit" id="btn_save" class="btn btn-success" value="提交"></input> 
 					<a href="<%=path%>/daily/search" class="btn btn-primary">返回列表</a>
@@ -129,16 +131,16 @@
 		<div class="control-group">
 			<label class="control-label" for="code">任务名称</label>
 			<div class="controls">
-				<input type="text" id="summary_0" name="daily.items[0].missionName" readonly="readonly" class="required w-input"> 
+				<input type="text" id="summary_0" name="daily.items[0].missionName" value="" readonly="readonly" class="required w-input"> 
 				<input type="hidden" id="id_0" name="daily.items[0].missionID" class="w-input"/>
 				<a data-toggle="modal" href="<%=path%>/mission/refer?mission_index=0" onclick="trig(0);" data-target="#missionModal">[选择]</a>
 				
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label" for="devMgr">工时（小时）</label>
+			<label class="control-label" for="hr">工时（小时）</label>
 			<div class="controls">
-				<input type="text" id="devMgr" name="daily.items[0].hours" class="required number w-input">
+				<input type="text" id="hr" name="daily.items[0].hours" value="0" class="required number w-input">
 			</div>
 		</div>
 		<div class="control-group">
