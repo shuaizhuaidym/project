@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="ui" uri="/WEB-INF/tags/select"%>
 <%
 	String path = request.getContextPath();
@@ -26,7 +27,9 @@
 <script type="text/javascript" src="<%=path%>/js/bootstrap-dropdown.js"></script>
 <script type="text/javascript" src="<%=path%>/js/bootstrap-modal.js"></script>
 <script type="text/javascript" src="<%=path%>/js/bootstrap-tab.js"></script>
+<script type="text/javascript" src="<%=path%>/js/bootstrap-datetimepicker.js"></script>
 <script type="text/javascript" src="<%=path%>/js/portal.js"></script>
+<script type="text/javascript" src="<%=path%>/js/daily/form.js"></script>
 
 </head>
 <body>
@@ -40,16 +43,25 @@
 					<span>写日报</span>
 				</legend>
 			</fieldset>
+			
+			<div class="control-group">
+				<label class="control-label" for="report_date">日期</label>
+				<div class="controls">
+					<input type="text" id="report_date" name="daily.createDate" value="${obj}" class="required datetime w-input" readonly="readonly"/>
+				</div>
+				<input type="hidden" id="daily_status" name="daily.status" value="1"/>
+			</div>
 			<div id="daily_item" class="div_with_divider" lang="daily_item_0">
 				<div class="control-group">
 					<label class="control-label" for="code">任务名称</label>
 					<div class="controls">
-						<input type="text" id="summary_0" name="daily.items[0].missionName" class="required w-input"> 
+						<input type="text" id="summary_0" name="daily.items[0].missionName" readonly="readonly" class="required w-input"> 
 						<input type="hidden" id="id_0" name="daily.items[0].missionID" class="w-input"/>
 						<a data-toggle="modal" href="<%=path%>/mission/refer?mission_index=0" onclick="trig(0);" data-target="#missionModal">[选择]</a>
 						
 					</div>
 				</div>
+
 				<div class="control-group">
 					<label class="control-label" for="devMgr">工时（小时）</label>
 					<div class="controls">
@@ -72,7 +84,7 @@
 					<label class="control-label" for="desc">疑难问题</label>
 					<div class="controls">
 						<input type="text" id="productMgr" name="daily.items[0].problerm" class="w-input"/>
-						<a id="btnDel_0" href="#" onclick="delDailyItem(0);" class="hid"> [删除]</a>
+						<a id="btnDel_0" href="#" onclick="delDailyItem(0);" class="hid"><i class="icon-remove"></i></a>
 					</div>
 				</div>
 				
@@ -81,9 +93,9 @@
 				<div class="controls">
 					<a href="#" class="btn btn-warning" id="btnInsert">新增日报条目</a>
 					
-					<input type="button" class="btn btn-inverse" id="btnDelete" value="删除"></input>
-					<input type="submit" id="btn_save" class="btn btn-success" value="保存"></input>
-					
+					<!-- <input type="button" class="btn btn-inverse" id="btnDelete" value="删除"></input> -->
+					<input type="button" id="btn_save_draft" class="btn btn btn-info" value="暂存"></input>
+					<input type="submit" id="btn_save" class="btn btn-success" value="提交"></input>
 					<a href="<%=path%>/daily/search" class="btn btn-primary">返回列表</a>
 				</div>
 			</div>
@@ -107,29 +119,5 @@
 		</div>
 	</div>
 </body>
-<script type="text/javascript">
-	$(function() {
-		$("#btn_save").click(function() {
-			var hours = $("[name$='.hours']");
-			var total8 = parseInt(0);
-			hours.each(function(i, e) {
-				total8 = total8 + parseInt(e.value);
-			});
-			if (8 != total8) {
-				alert("总工作时间不等于8小时，请修改后再提交。");
-				return false
-			}
-		});
-		$("#frm_daily").validate({
-			errorPlacement : function(error, element) {
-			},
-			highlight : function(element, errorClass, validClass) {
-				$(element).css("border-color", "red");
-			},
-			unhighlight : function(element, errorClass, validClass) {
-				$(element).css("border-color", "#ccc");
-			}
-		});
-	});
-</script>
+
 </html>

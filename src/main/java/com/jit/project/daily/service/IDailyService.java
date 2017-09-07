@@ -45,4 +45,9 @@ public interface IDailyService {
 	 */
 	public List<com.jit.project.daily.bean.VDailyItem> queryDailyDetail(String dailyID);
 	
+	/**
+	 * 更新日报
+	 */
+	public void upateWith(Daily daily);
+	
 }

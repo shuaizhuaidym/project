@@ -28,25 +28,7 @@
 <script type="text/javascript" src="<%=path%>/js/jquery-validation-1.9.0/jquery.validate-1.17.0.js"></script>
 <script type="text/javascript" src="<%=path%>/js/bootstrap-dropdown.js"></script>
 <script type="text/javascript" src="<%=path%>/js/bootstrap-datetimepicker.js"></script>
-<script type="text/javascript">
-	$(function() {
-		var datePks = $("#queryForm").find("input.datetime");
-		datePks.each(function() {
-			$(this).datetimepicker({
-				weekStart : 1,
-				todayBtn : 1,
-				autoclose : 1,
-				todayHighlight : 1,
-				startView : 2,
-				minView : 2,
-				forceParse : 0,
-				format : "yyyy-mm-dd"
-			});
-			//避免和浏览器的记忆下拉冲突
-			$(this).attr("readonly", "readonly");
-		});
-	});
-</script>
+<script type="text/javascript" src="<%=path%>/js/daily/search.js"></script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
@@ -89,7 +71,17 @@
 							<td>${daily.ownerName}</td>
 							<td><f:formatDate value="${daily.createDate}" pattern="yyyy-MM-dd" /></td>
 							<td><a href="<%=path%>/daily/items?daily_id=${daily.dailyID}"><i class="icon-list" title="日报预览"></i></a></td>
-							<td>${daily.itemLinks}</td>
+							<td>
+								<c:choose>
+									<%-- <c:when test="${sessionScope.USERTYPE == 'inner'}"> --%>
+									<c:when test="${(daily.ownerName eq me) and (0 eq daily.status)}">
+										<a href="<%=path%>/daily/edit?daily_id=${daily.dailyID}">${daily.itemLinks}</a>
+									</c:when>
+									<c:otherwise>
+										${daily.itemLinks}
+									</c:otherwise>
+								</c:choose>
+							</td>
 						</tr>
 					</c:forEach>
 				</table>

@@ -19,16 +19,14 @@ public class DailyServiceImpl extends IdNameEntityService<Daily> implements IDai
 	@Override
 	public void saveWith(final Daily daily) {
 		StringBuilder links = new StringBuilder();
-		for (DailyItem i : daily.getItems()) {// /project/daily/item?item_id=
-			links.append("<a ").append(i.getItemID()).append(">");
+		for (DailyItem i : daily.getItems()) {
 			links.append(i.getDetail());
-			links.append("</a>").append("|");
+			links.append("<br/>");
 		}
 		daily.setItemLinks(links.toString());
 		dao().insertWith(daily, "items");
 
 		// TODO update mission's and project's labor cost in transaction and
-		// process update time
 		/**
 		 * TODO 写日报时候更新OR统计时候联合查询？？？ TODO 完成比例需要更新，写日报时回显，知道昨天的进度是多少
 		 * 每个日报有多个条目即对应多个任务，每个任务都要更新，更新流程： update t_mission where mission=@mid
@@ -96,5 +94,12 @@ public class DailyServiceImpl extends IdNameEntityService<Daily> implements IDai
 	// TODO
 	public int udateLaborCost(List<DailyItem> items) {
 		return 0;
+	}
+	/**
+	 * 更新日报
+	 */
+	@Override
+	public void upateWith(Daily daily) {
+		this.dao().updateWith(daily, "items");
 	}
 }

@@ -6,8 +6,6 @@ import org.nutz.dao.Condition;
 import org.nutz.dao.entity.Entity;
 import org.nutz.dao.sql.Criteria;
 
-import util.SQLUtil;
-
 import com.jit.project.base.AbstractQuery;
 
 public class Query extends AbstractQuery implements Condition {

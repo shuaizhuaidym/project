@@ -83,7 +83,7 @@
 								<th class="w64px">项目经理</th>
 								<th class="w36">工作内容</th>
 								<th class="w48px">负责人</th>
-								<th class="w6">当前状态</th>
+								<th class="w48px">当前状态</th>
 								<th class="w8">开始日期</th>
 								<th class="w8">结束日期</th>
 								<th class="w64px">工时(h)</th>

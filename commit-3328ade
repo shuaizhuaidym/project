@@ -1,0 +1,279 @@
+commit 3328adecd3155d1ed265e156ad53c37dda05010d
+Author: shuaizhuaidym <shuaizhuaidym@sina.com>
+Date:   Mon Sep 4 17:00:07 2017 +0800
+
+    1,add login user info in portal;2,adjust delete login in daily form
+
+diff --git a/src/main/java/com/jit/project/daily/bean/Query.java b/src/main/java/com/jit/project/daily/bean/Query.java
+index 7d21727..dab0698 100644
+--- a/src/main/java/com/jit/project/daily/bean/Query.java
++++ b/src/main/java/com/jit/project/daily/bean/Query.java
+@@ -1,36 +1,49 @@
+ package com.jit.project.daily.bean;
+ 
+ import org.apache.commons.lang3.StringUtils;
++import org.nutz.dao.Cnd;
+ import org.nutz.dao.Condition;
+ import org.nutz.dao.entity.Entity;
+-
+-import com.jit.project.base.AbstractQuery;
++import org.nutz.dao.sql.Criteria;
+ 
+ import util.SQLUtil;
+ 
++import com.jit.project.base.AbstractQuery;
++
+ public class Query extends AbstractQuery implements Condition {
+ 
++	private static final long serialVersionUID = 8887767994742296510L;
++
+ 	private String ownerName;
+ 
+ 	private String createDate;
++	
++	private String createDate2;
+ 
+ 	private String missionName;
+ 
+ 	@Override
+ 	public String toSql(Entity<?> entity) {
+-		StringBuilder buf = new StringBuilder("1=1");
++//		StringBuilder buf = new StringBuilder("1=1");
++		Criteria cri = Cnd.cri();
+ 		if (StringUtils.isNoneBlank(ownerName)) {
+-			buf.append(SQLUtil.varchar("owner_name", ownerName));
++			cri.where().andEquals("owner_name", ownerName);
+ 		}
+ 		if (StringUtils.isNoneBlank(createDate)) {
+-			buf.append(SQLUtil.varchar("create_date", createDate));
++			cri.where().and(Cnd.exp("DATEDIFF(create_date,'" + createDate + "')", ">=", 0));
++//			buf.append(SQLUtil.varchar("create_date", createDate));
++		}
++		if (StringUtils.isNoneBlank(createDate2)) {
++			cri.where().and(Cnd.exp("DATEDIFF(create_date,'" + createDate2 + "')", "<=", 0));
++//			buf.append(SQLUtil.varchar("create_date", createDate));
+ 		}
+ 		// TODO precision
+ 		if (StringUtils.isNoneBlank(missionName)) {
+-			buf.append(SQLUtil.varchar("mission_name", missionName));
++//			buf.append(SQLUtil.varchar("mission_name", missionName));
+ 		}
+-		buf.append(" order by  create_date desc ");
+-		return buf.toString();
++		cri.getOrderBy().desc("create_date");
++//		buf.append(" order by  create_date desc ");
++		return cri.toSql(null);//buf.toString();
+ 	}
+ 
+ 	public String getOwnerName() {
+@@ -56,4 +69,12 @@ public class Query extends AbstractQuery implements Condition {
+ 	public void setMissionName(String missionName) {
+ 		this.missionName = missionName;
+ 	}
++
++	public String getCreateDate2() {
++		return createDate2;
++	}
++
++	public void setCreateDate2(String createDate2) {
++		this.createDate2 = createDate2;
++	}
+ }
+diff --git a/src/main/webapp/WEB-INF/views/common/header.jsp b/src/main/webapp/WEB-INF/views/common/header.jsp
+index 6e61d5f..4878e5f 100644
+--- a/src/main/webapp/WEB-INF/views/common/header.jsp
++++ b/src/main/webapp/WEB-INF/views/common/header.jsp
+@@ -51,9 +51,10 @@
+ 						</ul>
+ 					</li>
+ 				</ul>
+-				<form class="navbar-form pull-right" action="<%=path%>/user/authenticate" method="post">
+-					<a href="<%=path%>/user/logout" class="btn btn-inverse">注销</a>
+-				</form>
++				<p class="navbar-text pull-right">
++					<a class="navbar-link" href="#"><i class="icon-user"></i>${me}</a>
++					<a href="<%=path%>/user/logout">注销</a>
++				</p>
+ 			</div>
+ 			<!--/.nav-collapse -->
+ 		<!-- </div> -->
+diff --git a/src/main/webapp/WEB-INF/views/daily/form.jsp b/src/main/webapp/WEB-INF/views/daily/form.jsp
+index d4194a6..6643f79 100644
+--- a/src/main/webapp/WEB-INF/views/daily/form.jsp
++++ b/src/main/webapp/WEB-INF/views/daily/form.jsp
+@@ -40,13 +40,14 @@
+ 					<span>写日报</span>
+ 				</legend>
+ 			</fieldset>
+-			<div id="daily_item" class="div_with_divider">
++			<div id="daily_item" class="div_with_divider" lang="daily_item_0">
+ 				<div class="control-group">
+ 					<label class="control-label" for="code">任务名称</label>
+ 					<div class="controls">
+ 						<input type="text" id="summary_0" name="daily.items[0].missionName" class="required w-input"> 
+ 						<input type="hidden" id="id_0" name="daily.items[0].missionID" class="w-input"/>
+ 						<a data-toggle="modal" href="<%=path%>/mission/refer?mission_index=0" onclick="trig(0);" data-target="#missionModal">[选择]</a>
++						
+ 					</div>
+ 				</div>
+ 				<div class="control-group">
+@@ -71,6 +72,7 @@
+ 					<label class="control-label" for="desc">疑难问题</label>
+ 					<div class="controls">
+ 						<input type="text" id="productMgr" name="daily.items[0].problerm" class="w-input"/>
++						<a id="btnDel_0" href="#" onclick="delDailyItem(0);" class="hid"> [删除]</a>
+ 					</div>
+ 				</div>
+ 				
+diff --git a/src/main/webapp/WEB-INF/views/daily/search.jsp b/src/main/webapp/WEB-INF/views/daily/search.jsp
+index c432d28..771e5d6 100644
+--- a/src/main/webapp/WEB-INF/views/daily/search.jsp
++++ b/src/main/webapp/WEB-INF/views/daily/search.jsp
+@@ -64,8 +64,10 @@ $(function() {
+ 					<tr>
+ 						<th>人员名称</th>
+ 						<th><ui:select name="query.ownerName" path="${query.ownerName}" items="${owners}"></ui:select></th>
+-						<th>发送日期</th>
++						<th>发送日期起</th>
+ 						<th><input type="text" name="query.createDate" value="${query.createDate}" class="datetime"/></th>
++						<th>发送日期止</th>
++						<th><input type="text" name="query.createDate2" value="${query.createDate}" class="datetime"/></th>
+ 						<th style="text-align: center">
+ 							<button id="btnQuery" class="btn btn-primary">查询</button>
+ 						</th>
+diff --git a/src/main/webapp/WEB-INF/views/mission/edit.jsp b/src/main/webapp/WEB-INF/views/mission/edit.jsp
+index f89f34e..f7839af 100644
+--- a/src/main/webapp/WEB-INF/views/mission/edit.jsp
++++ b/src/main/webapp/WEB-INF/views/mission/edit.jsp
+@@ -132,7 +132,7 @@ textarea {
+ 					<td><input type="text" id="mission_name" name="mission.productSubType" value="${obj.productSubType}" class="required"></td>
+ 				</tr>
+ 				<tr>
+-					<td><label class="control-label col-xs-2">基线版本</label></td>
++					<td><label class="control-label col-xs-2">已发布版本</label></td>
+ 					<td><input type="text" id="prj_version" name="mission.productBaseVersion" value="${obj.productBaseVersion}"></td>
+ 					<td><label class="control-label col-xs-2">负责团队</label></td>
+ 					<td><input type="text" id="mission_name" name="mission.teamID" value="${obj.teamID}" class="required"></td>
+diff --git a/src/main/webapp/WEB-INF/views/mission/form.jsp b/src/main/webapp/WEB-INF/views/mission/form.jsp
+index 910d95d..1e3f5d0 100644
+--- a/src/main/webapp/WEB-INF/views/mission/form.jsp
++++ b/src/main/webapp/WEB-INF/views/mission/form.jsp
+@@ -118,7 +118,7 @@
+ 					<td><input type="text" id="mission_name" name="mission.productSubType"></td>
+ 				</tr>
+ 				<tr>
+-					<td><label class="control-label col-xs-2">基线版本</label></td>
++					<td><label class="control-label col-xs-2">已发布版本</label></td>
+ 					<td><input type="text" id="prj_version" name="mission.productBaseVersion"></td>
+ 					<td><label class="control-label col-xs-2">负责团队</label></td>
+ 					<td><input type="text" id="mission_name" name="mission.teamID"></td>
+diff --git a/src/main/webapp/WEB-INF/views/portal/portal.jsp b/src/main/webapp/WEB-INF/views/portal/portal.jsp
+index 61ca67c..96113e0 100644
+--- a/src/main/webapp/WEB-INF/views/portal/portal.jsp
++++ b/src/main/webapp/WEB-INF/views/portal/portal.jsp
+@@ -76,7 +76,7 @@
+ 					<%-- <a data-toggle="modal" href="<%=path%>/daily/window" data-target="#dailyModal">
+ 							<i class=" icon-list-alt" title="写日报"></i>
+ 					</a> --%>
+-					<a href="<%=path%>/daily/form"> <!-- <i class=" icon-list-alt" title="写日报"></i> -->+写日报</a>
++					<a href="<%=path%>/daily/form"> <i class="icon-calendar" title="写日报"></i>写日报</a>
+ 					</span>
+ 				</div>
+ 				<div id="missionForm-box">
+diff --git a/src/main/webapp/css/bootstrap.min.css b/src/main/webapp/css/bootstrap.min.css
+index 015499e..b907118 100644
+--- a/src/main/webapp/css/bootstrap.min.css
++++ b/src/main/webapp/css/bootstrap.min.css
+@@ -1988,7 +1988,7 @@ table td[class*="span"],table th[class*="span"],.row-fluid table td[class*="span
+ }
+ 
+ .icon-user {
+-	background-position: -168px 0
++	background-position: -254px -6px
+ }
+ 
+ .icon-film {
+@@ -2392,7 +2392,7 @@ table td[class*="span"],table th[class*="span"],.row-fluid table td[class*="span
+ }
+ 
+ .icon-calendar {
+-	background-position: -192px -120px
++	background-position: -290px -185px
+ }
+ 
+ .icon-random {
+@@ -3998,7 +3998,7 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini {
+ }
+ 
+ .navbar-link {
+-	color: #777
++	color: #d1e4f2
+ }
+ 
+ .navbar-link:hover,.navbar-link:focus {
+@@ -4376,7 +4376,7 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini {
+ }
+ 
+ .navbar-inverse .navbar-link {
+-	color: #999
++	color: #d1e4f2
+ }
+ 
+ .navbar-inverse .navbar-link:hover,.navbar-inverse .navbar-link:focus {
+diff --git a/src/main/webapp/css/commom.css b/src/main/webapp/css/commom.css
+index ec6782f..5d546d0 100644
+--- a/src/main/webapp/css/commom.css
++++ b/src/main/webapp/css/commom.css
+@@ -65,4 +65,7 @@ input {
+ .tree-box {
+ 	border: 1px solid #ddd;
+ 	border-top: 0
++}
++.hid{
++	display:none;
+ }
+\ No newline at end of file
+diff --git a/src/main/webapp/js/portal.js b/src/main/webapp/js/portal.js
+index 7da6501..b401708 100644
+--- a/src/main/webapp/js/portal.js
++++ b/src/main/webapp/js/portal.js
+@@ -21,21 +21,28 @@ $(document).ready(function() {
+ 	$("#btnInsert").click(function() {
+ 		var item = $("#daily_item").clone();
+ 		item.removeAttr("id");
++		item.attr("lang", "daily_item_" + index);
+ 		item.find('.w-input').each(function(idx, ele) {
+ 			var newName = $(ele).attr('name').replace(/0/, index);
+ 			$(ele).attr('name', newName);
+ 			var nid = $(ele).attr('id').replace(/0/, index);
+ 			$(ele).attr('id', nid);
+ 		});
+-		item.find('a').each(function(idx, ele) {
++		item.find('a[data-toggle="modal"]').each(function(idx, ele) {
+ //			var newHref = $(ele).attr('href').replace(/0/, index);
+ 			var clik = $(ele).attr('onclick').replace(/0/, index);
+ //			$(ele).attr('href', newHref);
+ 			$(ele).attr('onclick', clik);
+ 		});
++		item.find('a.hid').each(function(idx, ele) {
++			$(ele).css("display","inline");
++			var clik = $(ele).attr('onclick').replace(/0/, index);
++			$(ele).attr('onclick', clik);
++		});
+ 		item.insertBefore("#function_box");
+ 		index++;
+ 	});
++
+ 	// delete
+ 	$("#btnDelete").click(function() {
+ 		var items = $(".div_with_divider");
+@@ -109,4 +116,8 @@ function refer(index, msg) {
+ 	var idd = "id_0".replace(/0/, index);
+ 	$("#"+summary).val(msg.name);
+ 	$("#"+idd).val(msg.id);
++}
++//删除单条记录
++function delDailyItem(divID){
++	$("div[lang=daily_item_" + divID +"]").remove();
+ }
+\ No newline at end of file

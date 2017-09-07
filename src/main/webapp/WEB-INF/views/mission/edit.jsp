@@ -99,18 +99,23 @@
 					<td>
 						<ui:select name="mission.module" path="${obj.module}" items="${modules}" css="required"></ui:select>
 					</td>
-					<td><label class="control-label col-xs-2">任务类别</label></td>
+<%-- 					<td><label class="control-label col-xs-2">任务类别</label></td>
 					<td>
 						<ui:select name="mission.taskClass" path="${obj.taskClass}" items="${classes}" css="required"></ui:select>
+					</td> --%>
+					<td><label class="control-label col-xs-2">当前状态</label></td>
+					<td>
+						<ui:select name="mission.status" path="${obj.status}" items="${status}"></ui:select>
 					</td>
+					
 				</tr>
-				<tr><td><label class="control-label col-xs-2">产品版本</label></td>
+<%-- 				<tr><td><label class="control-label col-xs-2">产品版本</label></td>
 					<td><input type="text" id="prj_version" name="mission.productVersion" value="${obj.productVersion}"></td>
 					<td><label class="control-label col-xs-2">当前状态</label></td>
 					<td>
 						<ui:select name="mission.status" path="${obj.status}" items="${status}"></ui:select>
 					</td>
-				</tr>
+				</tr> --%>
 				<tr>
 					<td><label class="control-label col-xs-2">上级任务</label></td>
 					<td><input type="text" id="mission_name" name="mission.parentID" value="${obj.parentID}"></td>
@@ -128,14 +133,14 @@
 					<td><input type="text" id="mission_name" name="mission.productSubType" value="${obj.productSubType}" class="required"></td>
 				</tr>
 				<tr>
-					<td><label class="control-label col-xs-2">已发布版本</label></td>
+					<td><label class="control-label col-xs-2">基线版本</label></td>
 					<td><input type="text" id="prj_version" name="mission.productBaseVersion" value="${obj.productBaseVersion}"></td>
 					<td><label class="control-label col-xs-2">负责团队</label></td>
 					<td><input type="text" id="mission_name" name="mission.teamID" value="${obj.teamID}" class="required"></td>
 				</tr>
 				<!-- publish version,industry -->
 				<tr>
-					<td><label class="control-label col-xs-2">实际发布版本</label></td>
+					<td><label class="control-label col-xs-2">计划发布版本</label></td>
 					<td><input type="text" id="p_version" name="mission.publishVersion"></td>
 					<td><label class="control-label col-xs-2">发起行业</label></td>
 					<td>

@@ -31,6 +31,10 @@ public class Daily {
 	@Column("mail_to")
 	private int mailTo;
 	
+	//日报状态，0：草稿，1：已提交
+	@Column("status")
+	private int status;
+	
 	@Many(target = DailyItem.class, field = "dailyID")
 	private List<DailyItem> items = new ArrayList<DailyItem>();
 	
@@ -91,6 +95,14 @@ public class Daily {
 
 	public void setItemLinks(String itemLinks) {
 		this.itemLinks = itemLinks;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
 	}
 
 }

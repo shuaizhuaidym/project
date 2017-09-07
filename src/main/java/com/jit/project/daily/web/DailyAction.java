@@ -1,7 +1,6 @@
 package com.jit.project.daily.web;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -71,7 +70,7 @@ public class DailyAction {
 	@At("/daily/save")
 	@Ok("redirect:/daily/search")
 	public String save(@Param("::daily.") Daily daily, HttpSession session) {
-		daily.setCreateDate(Calendar.getInstance().getTime());
+//		daily.setCreateDate(Calendar.getInstance().getTime());
 		daily.setOwnerName((String) session.getAttribute("me"));
 
 		this.dailyService.saveWith(daily);
@@ -123,6 +122,30 @@ public class DailyAction {
 		request.setAttribute("report_date", items.get(0).getReport_date());
 		request.setAttribute("reporter", items.get(0).getReporter());
 		return items;
+	}
+	
+	/**
+	 * 编辑日报草稿
+	 * @param id
+	 * @return
+	 */
+	@At("/daily/edit")
+	@Ok("jsp:views.daily.edit")
+	public Daily edit(@Param("daily_id") String id) {
+		Daily daily = dailyService.fetch(id);
+		//获取并设置集合
+		this.dailyService.fetchLinks(daily, "items");
+		return daily;
+	}
+	
+	/**
+	 * 更新日报
+	 * @param daily
+	 */
+	@At("/daily/update")
+	@Ok("redirect:/daily/search")
+	public void update(@Param("::daily.") Daily daily) {
+		this.dailyService.upateWith(daily);
 	}
 	
 	public IDailyService getDailyService() {

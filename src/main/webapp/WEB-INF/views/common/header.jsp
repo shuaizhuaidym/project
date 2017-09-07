@@ -52,7 +52,7 @@
 					</li>
 				</ul>
 				<p class="navbar-text pull-right">
-					<a class="navbar-link" href="#"><i class="icon-user"></i>${me}</a>
+					<a class="navbar-link" href="#"><i class="icon-user"></i><b>${me}</b></a>
 					<a href="<%=path%>/user/logout">注销</a>
 				</p>
 			</div>
