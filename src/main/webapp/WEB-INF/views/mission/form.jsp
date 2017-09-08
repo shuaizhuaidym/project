@@ -107,12 +107,12 @@
 						<ui:select name="mission.status" path="${obj.status}" items="${status}"></ui:select>
 					</td>
 				</tr> --%>
-				<tr>
+				<!-- <tr>
 					<td><label class="control-label col-xs-2">上级任务</label></td>
 					<td><input type="text" id="mission_name" name="mission.parentID"></td>
 					<td><label class="control-label col-xs-2">截止日期</label></td>
 					<td><input type="text" id="mission_name" name="mission.deadline" class="datetime"></td>
-				</tr>
+				</tr> -->
 				<tr>
 					<td><label class="control-label col-xs-2">指派给</label></td>
 					<td>

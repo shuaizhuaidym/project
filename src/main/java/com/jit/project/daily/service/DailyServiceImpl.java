@@ -1,5 +1,6 @@
 package com.jit.project.daily.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.nutz.dao.Cnd;
@@ -100,15 +101,27 @@ public class DailyServiceImpl extends IdNameEntityService<Daily> implements IDai
 	 */
 	@Override
 	public void upateWith(Daily daily) {
+		// 修改的item和新增的要区分开，否则新增的会导致insertWith操作，而新建一个Daily
+		List<DailyItem> modified = new ArrayList<DailyItem>();
+		List<DailyItem> created = new ArrayList<DailyItem>();
 		StringBuilder links = new StringBuilder();
+		int counter = 0;
 		for (DailyItem i : daily.getItems()) {
-			if (i.getDailyID() <= 0){//新建的条目
+			if (i.getDailyID() <= 0) {// 新建的条目
 				i.setDailyID(daily.getDailyID());
+				created.add(i);
+			} else {
+				modified.add(i);
 			}
+			links.append("【").append(++counter).append("】");
 			links.append(i.getDetail());
-			links.append("<br/>");
 		}
 		daily.setItemLinks(links.toString());
+		//更新日报和条目
+		daily.setItems(modified);
 		this.dao().updateWith(daily, "items");
+		//新增条目
+		daily.setItems(created);
+		this.dao().insertLinks(daily, "items");
 	}
 }
