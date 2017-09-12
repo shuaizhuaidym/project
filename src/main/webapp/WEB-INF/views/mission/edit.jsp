@@ -68,7 +68,7 @@
 				<tr>
 					<td><label class="control-label col-xs-2">任务内容</label></td>
 					<td colspan="3"><textarea id="mission_desc" name="mission.content"
-							style="width: 92%; height: 100px;">${obj.summary}</textarea></td>
+							style="width: 92%; height: 100px;">${obj.content}</textarea></td>
 				</tr>
 				<tr>
 					<td><label class="control-label col-xs-2">所属产品</label></td>
@@ -127,7 +127,7 @@
 				<!-- publish version,industry -->
 				<tr>
 					<td><label class="control-label col-xs-2">计划发布版本</label></td>
-					<td><input type="text" id="p_version" name="mission.publishVersion" class="required"></td>
+					<td><input type="text" id="p_version" name="mission.publishVersion" value="${obj.publishVersion}" class="required"></td>
 					<td><label class="control-label col-xs-2">发起行业</label></td>
 					<td>
 					<ui:select name="mission.industryName" path="${obj.industryName}" items="${industry}" css="required"></ui:select>

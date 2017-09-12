@@ -145,7 +145,7 @@
 				</tr>
 				<tr>
 					<td><label class="control-label col-xs-2">计划结束时间</label></td>
-					<td><input type="text" id="mission_name" name="mission.planEnd" class="datetimerequired"></td>
+					<td><input type="text" id="mission_name" name="mission.planEnd" class="datetime required"></td>
 					<td><label class="control-label col-xs-2">结束时间</label></td>
 					<td><input type="text" id="mission_name" name="mission.endDate" class="datetime"></td>
 				</tr>
