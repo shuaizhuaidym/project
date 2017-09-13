@@ -36,6 +36,7 @@ public class Query implements Condition {
 		StringBuilder buf = new StringBuilder("1=1");
 		if (StringUtils.isNoneEmpty(assignTo)) {
 			buf.append(" and assign_to ='").append(assignTo).append("'");
+			buf.append(" or assign_to ='IPC全体' ");
 		}
 		if(StringUtils.isNoneEmpty(missionName)){
 			buf.append(" and instr(mission_name, '").append(missionName).append("')>0");
