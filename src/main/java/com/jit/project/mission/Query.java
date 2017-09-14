@@ -21,6 +21,8 @@ public class Query implements Condition {
 	private String status;
 	
 	private String createTime;
+	//研发版本（计划发布版本）
+	private String devVersion;
 	
 	public Query() {
 		super();
@@ -35,21 +37,24 @@ public class Query implements Condition {
 	public String toSql(Entity<?> entity) {
 		StringBuilder buf = new StringBuilder("1=1");
 		if (StringUtils.isNoneEmpty(assignTo)) {
-			buf.append(" and assign_to ='").append(assignTo).append("'");
-			buf.append(" or assign_to ='IPC全体' ");
+			buf.append(" and (assign_to ='").append(assignTo).append("'");
+			buf.append(" or assign_to ='IPC全体') ");
 		}
 		if(StringUtils.isNoneEmpty(missionName)){
 			buf.append(" and instr(mission_name, '").append(missionName).append("')>0");
 		}
-		if(StringUtils.isNoneBlank(createTime)){
+		if(StringUtils.isNoneEmpty(createTime)){
 			buf.append(" and DATEDIFF(create_time,'").append(createTime).append("')>=0");
 		}
-		if(StringUtils.isNoneBlank(status)){
+		if(StringUtils.isNoneEmpty(status)){
 			buf.append(" and status = '").append(status).append("'");
 		}
 		if(StringUtils.isNoneEmpty(module)){
 			buf.append(" and (module ='").append(module).append("'");
 			buf.append(" or product_name='").append(module).append("')");
+		}
+		if(StringUtils.isNoneEmpty(devVersion)){
+			buf.append(" and publish_version ='").append(devVersion).append("'");
 		}
 		buf.append(" order by create_time desc");
 		return buf.toString();
@@ -109,5 +114,13 @@ public class Query implements Condition {
 
 	public void setCreateTime(String createTime) {
 		this.createTime = createTime;
+	}
+
+	public String getDevVersion() {
+		return devVersion;
+	}
+
+	public void setDevVersion(String devVersion) {
+		this.devVersion = devVersion;
 	}
 }

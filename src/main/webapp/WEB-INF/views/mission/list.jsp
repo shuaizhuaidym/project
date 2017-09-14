@@ -25,8 +25,8 @@
 <link href="<%=path%>/zTree/zTreeStyle.css" rel="stylesheet">
 
 <style type="text/css">
-#search_box input,#search_box select{
-	width:145px;
+#search_box input[type="text"],#search_box select{
+	width:125px;
 }
 
 .top0 {
@@ -105,9 +105,10 @@
 					<table id="search_box" class="table table-bordered table-striped">
 						<thead>
 							<tr>
-							<th>任务名称</th><td><input type="text" name="query.missionName"/></td>
+							<th>任务名称</th><td><input type="text" name="query.missionName" value="${query.missionName}"/></td>
 							<th>创建时间</th><td><input type="text" name="query.createTime" class="datetime"/></td>
-							<th>负责人</th><td><input type="text" name="query.assignTo"/></td>
+							<th>负责人</th><td><input type="text" name="query.assignTo" value="${query.assignTo}"/></td>
+							<th>计划发布版本</th><td><input type="text" name="query.devVersion"value="${query.devVersion}"/></td>
 							<th>任务状态</th><td>
 								<ui:select name="query.status" path="${query.status}" items="${status}"></ui:select>
 							</td>
