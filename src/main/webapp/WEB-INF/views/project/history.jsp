@@ -45,15 +45,15 @@
 	<div class="container-fluid">
 		<fieldset>
 			<legend>
-				<span>任务研发历史</span>
+				<span>项目支持历史</span>
 			</legend>
 		</fieldset>
 		<table class="item_summary">
 			<thead>
 				<tr>
-					<th>任务名称</th>
+					<th>项目名称</th>
 					<td>${mission.missionName}</td>
-					<th>任务状态</th>
+					<th>项目状态</th>
 					<td>${mission.status}</td>
 				</tr>
 				<tr>
@@ -67,7 +67,7 @@
 		<table class="table table-bordered table-striped">
 			<thead>
 				<tr>
-					<th colspan="4">研发过程</th>
+					<th colspan="4">项目处理过程</th>
 				</tr>
 				<tr>
 					<th class="w16px">序号</th>

@@ -117,7 +117,7 @@
 				<table class="table table-bordered table-striped">
 					<thead>
 						<tr>
-							<th class="w4">序号</th>
+							<th class="w3">序号</th>
 							<th class="w12">项目名称</th>
 							<th class="w8">问题类型</th>
 							<th class="w36">详细描述</th>
@@ -125,6 +125,7 @@
 							<th class="w8">更新日期</th>
 							<th class="w6">负责人</th>
 							<th class="w6">当前状态</th>
+							<th class="w3">操作</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -139,6 +140,10 @@
 								<td>${prj.localLastResponse}</td>
 								<td>${prj.engineer}</td>
 								<td>${prj.status}</td>
+								<td>
+									
+									<a href="<%=path %>/mission/history?mission_id=${prj.prjID}"><i class="icon-time" title="任务历史"></i></a>
+								</td>
 							</tr>
 						</c:forEach>
 					</tbody>

@@ -29,7 +29,7 @@ public class MvcSetup implements Setup {
 		auth.initFormPackage("com.jit.project");
 		auth.checkBasicRoles(dao.fetch(User.class, "admin"));
 		//启动QC同步定时任务
-//		new QcTask().executeFixedRate(); TODO
+		new QcTask().executeFixedRate();
 	}
 
 	public void destroy(NutConfig config) {

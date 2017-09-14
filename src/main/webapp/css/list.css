@@ -15,6 +15,15 @@ form td:nth-child(odd) {
 	width: 15%;
 	text-align: center;
 }
+.w16px{width:16px}
+.w32px{width:32px}
+.w48px{width:48px}
+.w64px{width:64px}
+.w72px{width:72px}
+.w96px{width:96px}
+.w108px{width:108px}
+.w128px{width:128px}
+.w3{width: 3%}
 .w4{width: 4%}
 .w6{width: 6%}
 .w8{width: 8%}
