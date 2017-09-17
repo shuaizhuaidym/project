@@ -2,6 +2,7 @@
 <%@ page import="com.jit.project.project.bean.Project"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="ui" uri="/WEB-INF/tags/select"%>
+<%@ taglib prefix="dic" uri="/WEB-INF/tags/dic"%>
 <%
 	String path = request.getContextPath();
 %>
@@ -47,13 +48,13 @@
 					<td><input type="text" name="project.prjName" class="required form-control" value="${prj.prjName}"></td>
 					<td><label class="control-label col-xs-2">所属行业</label></td>
 					<td>
-						<ui:select name="project.industry" path="${prj.industry}" items="${mpIndustry}" css="required"></ui:select>
+						<dic:dic items="${dicts}" type="所属行业" name="project.industry" path="${prj.industry}" css="required"></dic:dic>
 					</td>
 				</tr>
 				<tr>
 					<td><label class="control-label col-xs-2">项目类型</label></td>
 					<td>
-						<ui:select name="project.prjType" path="${prj.prjType}" items="${prjTypes}" css="required"></ui:select>
+						<dic:dic items="${dicts}" type="任务类型" name="project.prjType" path="${prj.prjType}"></dic:dic>
 					</td>
 					<td><label class="control-label col-xs-2">相关产品</label></td>
 					<td>
@@ -63,7 +64,7 @@
 				<tr>
 					<td><label class="control-label col-xs-2">问题类型</label></td>
 					<td>
-						<ui:select name="project.issueType" path="${prj.issueType}" items="${mpIssueType}" css="required"></ui:select>
+						<dic:dic items="${dicts}" type="问题类型" name="project.issueType" path="${prj.issueType}" css="required"></dic:dic>
 					</td>
 					<td><label class="control-label col-xs-2">产品版本</label></td>
 					<td><input type="text" name="project.prudectVersion" value="${prj.prudectVersion}" class="required"></td>
@@ -73,7 +74,7 @@
 					<td><input type="text" name="project.submitDate" value="${prj.localSubmitDate}" class="required datetime"></td>
 					<td><label class="control-label col-xs-2">当前状态</label></td>
 					<td>
-						<ui:select id="slt_state" name="project.status" path="${prj.status}" items="${mpStatus}" css="required"></ui:select>
+						<dic:dic id="slt_state" items="${dicts}" type="项目状态" name="project.status" path="${prj.status}" css="required"></dic:dic>
 					</td>
 				</tr>
 				<tr>

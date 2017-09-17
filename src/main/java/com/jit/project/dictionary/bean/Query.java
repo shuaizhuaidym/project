@@ -1,6 +1,5 @@
 package com.jit.project.dictionary.bean;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.nutz.dao.Condition;
@@ -9,7 +8,7 @@ import org.nutz.dao.entity.Entity;
 import com.mysql.jdbc.StringUtils;
 
 public class Query implements Condition {
-
+	private static final long serialVersionUID = -3973815914642536113L;
 	private int pageNumber = 1;
 	private int pageSize = 10;
 
@@ -31,6 +30,12 @@ public class Query implements Condition {
 		super();
 	}
 	
+	public Query(int pageNumber, int pageSize) {
+		super();
+		this.pageNumber = pageNumber;
+		this.pageSize = pageSize;
+	}
+
 	public Query(String dicType) {
 		super();
 		this.dicType = dicType;
@@ -48,7 +53,6 @@ public class Query implements Condition {
 	}
 
 	public String toSql(Entity<?> entity) {
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		StringBuilder sqlBuilder = new StringBuilder();
 		// TODO SQL injection
 		sqlBuilder.append(" 1=1 ");
@@ -70,34 +74,7 @@ public class Query implements Condition {
 		if (!StringUtils.isNullOrEmpty(describtion)) {
 			sqlBuilder.append(" and describtion like '%").append(describtion).append("%'");
 		}
-		if (!StringUtils.isNullOrEmpty(engineer)) {
-			sqlBuilder.append(" and engineer = '").append(engineer).append("'");
-		}
-		if(!StringUtils.isNullOrEmpty(reporter)){
-			sqlBuilder.append(" and reporter like '%").append(reporter).append("%'");
-		}
-		if (submitDate1 != null && submitDate2 != null) {
-			sqlBuilder.append(" and UNIX_TIMESTAMP(submit_date) between UNIX_TIMESTAMP('");
-			sqlBuilder.append(format.format(submitDate1)).append("')").append(" and UNIX_TIMESTAMP('");
-			sqlBuilder.append(format.format(submitDate2)).append("')");
-		}else if(submitDate1 != null){
-			sqlBuilder.append(" and UNIX_TIMESTAMP(submit_date) >= UNIX_TIMESTAMP('");
-			sqlBuilder.append(format.format(submitDate1)).append("')");
-		}else if(submitDate2 != null){
-			sqlBuilder.append(" and UNIX_TIMESTAMP(submit_date) <= UNIX_TIMESTAMP('");
-			sqlBuilder.append(format.format(submitDate2)).append("')");
-		}
-		if(lastRespDate1!=null&&lastRespDate2!=null){
-			sqlBuilder.append(" and UNIX_TIMESTAMP(last_response) between UNIX_TIMESTAMP('");
-			sqlBuilder.append(format.format(lastRespDate1)).append("')").append(" and UNIX_TIMESTAMP('");
-			sqlBuilder.append(format.format(lastRespDate2)).append("')");
-		}else if(lastRespDate1!=null){
-			sqlBuilder.append(" and UNIX_TIMESTAMP(last_response) >= UNIX_TIMESTAMP('");
-			sqlBuilder.append(format.format(lastRespDate1)).append("')");
-		}else if(lastRespDate2!=null){
-			sqlBuilder.append(" and UNIX_TIMESTAMP(last_response) <= UNIX_TIMESTAMP('");
-			sqlBuilder.append(format.format(lastRespDate2)).append("')");
-		}
+		
 		sqlBuilder.append(" order by display_number");
 		return sqlBuilder.toString();
 	}

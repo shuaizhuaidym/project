@@ -25,21 +25,23 @@
 <link href="<%=path%>/zTree/zTreeStyle.css" rel="stylesheet">
 
 <style type="text/css">
-#search_box input[type="text"],#search_box select{
-	width:125px;
+#search_box input[type="text"],#search_box select {
+	width: 125px;
 }
 
 .top0 {
 	margin-bottom: 0px;
 }
 
-.table td,th{padding:5px 5px 5px 5px}
+.table td,th {
+	padding: 5px 5px 5px 5px
+}
 </style>
 
 <script type="text/javascript" src="<%=path%>/js/jquery/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="<%=path%>/js/bootstrap-dropdown.js"></script>
 <script type="text/javascript" src="<%=path%>/zTree/jquery-ztree-core-min.js"></script>
-<script type="text/javascript" src="<%=path %>/js/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript" src="<%=path%>/js/bootstrap-datetimepicker.js"></script>
 
 <script type="text/javascript" src="<%=path%>/js/bootstrap-modal.js"></script>
 <script type="text/javascript" src="<%=path%>/js/bootstrap-tab.js"></script>
@@ -94,63 +96,59 @@
 			<div class="span10">
 				<fieldset>
 					<legend>
-						<span>
-							任务列表<a href="<%=path%>/mission/form" style="margin-left: 50px; color: white">+新建任务</a>
+						<span> 任务列表<a href="<%=path%>/mission/form" style="margin-left: 50px; color: white">+新建任务</a>
 						</span>
 					</legend>
 				</fieldset>
 				<!--Body content-->
 				<div class="table-responsive">
-				<form id="mission_query_form" action="<%=path%>/mission/query" method="post">
-					<table id="search_box" class="table table-bordered table-striped">
-						<thead>
-							<tr>
-							<th>任务名称</th><td><input type="text" name="query.missionName" value="${query.missionName}"/></td>
-							<th>创建时间</th><td><input type="text" name="query.createTime" class="datetime"/></td>
-							<th>负责人</th><td><input type="text" name="query.assignTo" value="${query.assignTo}"/></td>
-							<th>计划发布版本</th><td><input type="text" name="query.devVersion"value="${query.devVersion}"/></td>
-							<th>任务状态</th><td>
-								<ui:select name="query.status" path="${query.status}" items="${status}"></ui:select>
-							</td>
-							<td style="text-align: center">
-								<input type="submit" value="查&nbsp;询" class="btn btn-primary"/></td>
-							</tr>
-						</thead>
-					</table>
-					</form>
-					<table class="table table-bordered table-striped">
-						<thead>
-							<tr>
-								<th class="w32px">序号</th>
-								<th>任务名称</th>
-								<th class="w96px">任务类型</th>
-								<th>任务摘要</th>
-								<th class="w48px">负责人</th>
-								<th class="w128px">状态</th>
-								<th class="w72px">操作</th>
-							</tr>
-						</thead>
-						<c:forEach var="mission" items="${obj.list}" varStatus="index">
-							<tr>
-								<td>${index.count}</td>
-								<td><a href="<%=path %>/mission/edit?mission_id=${mission.missionID}">
-										${mission.missionName}
-									</a>
-								</td>
-								<td>${mission.type}</td>
-								<td>${mission.summary}</td>
-								<td>${mission.assignTo}</td>
-								<td>${mission.status}</td>
-								<td>
-									<a href="<%=path %>/mission/loadForAssignAsync?mission_id=${mission.missionID}" data-toggle="modal" data-target="#assignModal"><i class="icon-hand-right" title="指派"></i></a>
-									&nbsp;<a href="<%=path %>/mission/history?mission_id=${mission.missionID}"><i class="icon-time" title="任务历史"></i></a></td>
+					<form id="mission_query_form" action="<%=path%>/mission/query" method="post">
+						<table id="search_box" class="table table-bordered table-striped">
+							<thead>
+								<tr>
+									<th>任务名称</th>
+									<td><input type="text" name="query.missionName" value="${query.missionName}" /></td>
+									<th>创建时间</th>
+									<td><input type="text" name="query.createTime" class="datetime" /></td>
+									<th>负责人</th>
+									<td><input type="text" name="query.assignTo" value="${query.assignTo}" /></td>
+									<th>计划发布版本</th>
+									<td><input type="text" name="query.devVersion" value="${query.devVersion}" /></td>
+									<th>任务状态</th>
+									<td><ui:select name="query.status" path="${query.status}" items="${status}"></ui:select></td>
+									<td style="text-align: center"><input type="submit" value="查&nbsp;询" class="btn btn-primary" /></td>
+								</tr>
+							</thead>
+						</table>
+						<table class="table table-bordered table-striped">
+							<thead>
+								<tr>
+									<th class="w32px">序号</th>
+									<th>任务名称</th>
+									<th class="w96px">任务类型</th>
+									<th>任务摘要</th>
+									<th class="w48px">负责人</th>
+									<th class="w128px">状态</th>
+									<th class="w72px">操作</th>
+								</tr>
+							</thead>
+							<c:forEach var="mission" items="${obj.list}" varStatus="index">
+								<tr>
+									<td>${index.count}</td>
+									<td><a href="<%=path %>/mission/edit?mission_id=${mission.missionID}"> ${mission.missionName} </a></td>
+									<td>${mission.type}</td>
+									<td>${mission.summary}</td>
+									<td>${mission.assignTo}</td>
+									<td>${mission.status}</td>
+									<td><a href="<%=path %>/mission/loadForAssignAsync?mission_id=${mission.missionID}" data-toggle="modal"
+										data-target="#assignModal"><i class="icon-hand-right" title="指派"></i></a> &nbsp;<a
+										href="<%=path %>/mission/history?mission_id=${mission.missionID}"><i class="icon-time" title="任务历史"></i></a></td>
 
-							</tr>
-						</c:forEach>
-					</table>
-					<form id="queryForm" action="<%=path%>/mission/query" method="post">
-						<input type="hidden" id="module" name="query.module"/>
-						<pg:page id="queryForm" pageNo="${obj.pager.pageNumber}" currentClass="active" pageSize="${obj.pager.pageSize}"
+								</tr>
+							</c:forEach>
+						</table>
+						<input type="hidden" id="module" name="query.module" />
+						<pg:page id="mission_query_form" pageNo="${obj.pager.pageNumber}" currentClass="active" pageSize="${obj.pager.pageSize}"
 							totalCount="${obj.pager.recordCount}">
 						</pg:page>
 					</form>
@@ -174,10 +172,10 @@
 		</div>
 	</div>
 	<script type="text/javascript">
-		function assign(){
+		function assign() {
 			$("#assignForm").submit();
 		}
 	</script>
-	
+
 </body>
 </html>

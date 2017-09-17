@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="ui" uri="/WEB-INF/tags/select"%>
+<%@ taglib prefix="dic" uri="/WEB-INF/tags/dic"%>
 <%String path = request.getContextPath();%>
 <!DOCTYPE html>
 <html>
@@ -39,23 +40,23 @@
 					<td><input type="text" id="prj_name" name="project.prjName" class="required"></td>
 					<td><label class="control-label col-xs-2">所属行业</label></td>
 					<td>
-						<ui:select name="project.industry" path="${prj.industry}" items="${mpIndustry}" css="required"></ui:select>
+						<dic:dic items="${dicts}" type="所属行业" name="project.industry" css="required"></dic:dic>
 					</td>
 				</tr>
 				<tr>
 					<td><label class="control-label col-xs-2">项目类型</label></td>
 					<td>
-						<ui:select name="project.prjType" path="${obj.type}" items="${prjTypes}" css="required"></ui:select>
+						<dic:dic items="${dicts}" type="任务类型" name="project.prjType" ></dic:dic>
 					</td>
 					<td><label class="control-label col-xs-2">相关产品</label></td>
 					<td>
-						<ui:select name="mission.productName" path="${project.productName}" items="${products}" css="required"></ui:select>
+						<ui:select name="mission.productName" path="${prj.productName}" items="${products}" css="required"></ui:select>
 					</td>
 				</tr>
 				<tr>
-					<td><label class="control-label col-xs-2">产品模块</label></td>
+					<td><label class="control-label col-xs-2">问题类型</label></td>
 					<td>
-						<ui:select name="project.issueType" path="${prj.issueType}" items="${mpIssueType}" css="required"></ui:select>
+						<dic:dic items="${dicts}" type="问题类型" name="project.issueType" css="required"></dic:dic>
 					</td>
 					<td><label class="control-label col-xs-2">产品版本</label></td>
 					<td><input type="text" id="prj_version" name="project.prudectVersion" class="required"></td>
@@ -65,7 +66,7 @@
 					<td><input type="text" id="submitDate" name="project.submitDate" class="required datetime"></td>
 					<td><label class="control-label col-xs-2">当前状态</label></td>
 					<td>
-						<ui:select name="project.status" path="${prj.status}" items="${mpStatus}" css="required"></ui:select>
+						<dic:dic id="slt_state" items="${dicts}" type="项目状态" name="project.status" css="required"></dic:dic>
 					</td>
 				</tr>
 				<tr>

@@ -83,6 +83,10 @@
 			<taglib-uri>/WEB-INF/tags/select</taglib-uri>
 			<taglib-location>tags/select-tag.tld</taglib-location>
 		</taglib>
+		<taglib>
+			<taglib-uri>/WEB-INF/tags/dic</taglib-uri>
+			<taglib-location>tags/dic-tag.tld</taglib-location>
+		</taglib>
 	</jsp-config>
 	<error-page>
 		<error-code>500</error-code>

@@ -2,15 +2,15 @@
 <taglib>
 	<tlib-version>1.1.2</tlib-version>
 	<jsp-version>2.3</jsp-version>
-	<short-name>select</short-name>
+	<short-name>dic</short-name>
 	<uri>/WEB-INF/tags</uri>
-	<description>页面上的selection标签工具类</description>
+	<description>页面上的selection dictionary 标签工具类</description>
 
 	<tag>
-		<name>select</name>
-		<tag-class>com.jit.project.tags.SelectTag</tag-class>
+		<name>dic</name>
+		<tag-class>com.jit.project.tags.DicTag</tag-class>
 		<body-content>jsp</body-content>
-		<description>用于选择的标签</description>
+		<description>用于选择字典的标签</description>
 		<attribute>
 			<name>id</name>
 			<required>false</required>
@@ -25,9 +25,9 @@
 		</attribute>
 		<attribute>
 			<name>path</name>
-			<required>true</required>
+			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<description>总记录数</description>
+			<description>实体类字段</description>
 		</attribute>
 		<attribute>
 			<name>items</name>
@@ -39,7 +39,7 @@
 			<name>css</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<description>集合</description>
+			<description>html 标准 class</description>
 		</attribute>
 		<attribute>
 			<name>style</name>
@@ -51,7 +51,13 @@
 			<name>multiple</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<description>standard html attribute</description>			
+			<description>standard html attribute</description>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>dictionary type</description>
 		</attribute>
 	</tag>
 </taglib>

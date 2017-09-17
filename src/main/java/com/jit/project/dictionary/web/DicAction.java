@@ -34,12 +34,14 @@ public class DicAction {
 	static{
 		dicType.put("", "");
 		dicType.put("负责人", "负责人");
-		dicType.put("问题类型", "问题类型");
 		dicType.put("所属行业", "所属行业");
 		dicType.put("当前状态", "当前状态");
 		dicType.put("任务类型", "任务类型");
 		dicType.put("任务类别", "任务类别");
 		dicType.put("任务状态", "任务状态");
+		
+		dicType.put("问题类型", "问题类型");
+		dicType.put("项目状态", "项目状态");
 	}
 	
 	/**
