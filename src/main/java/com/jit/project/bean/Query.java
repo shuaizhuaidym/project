@@ -10,6 +10,7 @@ import com.mysql.jdbc.StringUtils;
 
 public class Query implements Condition {
 
+	private static final long serialVersionUID = 4596981297651684184L;
 	private int pageNumber = 1;
 	private int pageSize = 15;
 
@@ -22,6 +23,9 @@ public class Query implements Condition {
 	private Date submitDate2;
 	private Date lastRespDate1;
 	private Date lastRespDate2;
+	
+	private Date updateTime1;
+	private Date updateTime2;
 	
 	private String status;
 	private String engineer;
@@ -82,16 +86,16 @@ public class Query implements Condition {
 			sqlBuilder.append(" and UNIX_TIMESTAMP(submit_date) <= UNIX_TIMESTAMP('");
 			sqlBuilder.append(format.format(submitDate2)).append("')");
 		}
-		if(lastRespDate1!=null&&lastRespDate2!=null){
-			sqlBuilder.append(" and UNIX_TIMESTAMP(last_response) between UNIX_TIMESTAMP('");
-			sqlBuilder.append(format.format(lastRespDate1)).append("')").append(" and UNIX_TIMESTAMP('");
-			sqlBuilder.append(format.format(lastRespDate2)).append("')");
-		}else if(lastRespDate1!=null){
-			sqlBuilder.append(" and UNIX_TIMESTAMP(last_response) >= UNIX_TIMESTAMP('");
-			sqlBuilder.append(format.format(lastRespDate1)).append("')");
-		}else if(lastRespDate2!=null){
-			sqlBuilder.append(" and UNIX_TIMESTAMP(last_response) <= UNIX_TIMESTAMP('");
-			sqlBuilder.append(format.format(lastRespDate2)).append("')");
+		if(updateTime1!=null&&updateTime2!=null){
+			sqlBuilder.append(" and UNIX_TIMESTAMP(update_time) between UNIX_TIMESTAMP('");
+			sqlBuilder.append(format.format(updateTime1)).append("')").append(" and UNIX_TIMESTAMP('");
+			sqlBuilder.append(format.format(updateTime2)).append("')");
+		}else if(updateTime1!=null){
+			sqlBuilder.append(" and UNIX_TIMESTAMP(update_time) >= UNIX_TIMESTAMP('");
+			sqlBuilder.append(format.format(updateTime1)).append("')");
+		}else if(updateTime2!=null){
+			sqlBuilder.append(" and UNIX_TIMESTAMP(update_time) <= UNIX_TIMESTAMP('");
+			sqlBuilder.append(format.format(updateTime2)).append("')");
 		}
 		sqlBuilder.append(" order by update_time DESC,submit_date DESC");
 		return sqlBuilder.toString();
@@ -207,5 +211,21 @@ public class Query implements Condition {
 
 	public void setLastRespDate2(Date lastRespDate2) {
 		this.lastRespDate2 = lastRespDate2;
+	}
+
+	public Date getUpdateTime1() {
+		return updateTime1;
+	}
+
+	public void setUpdateTime1(Date updateTime1) {
+		this.updateTime1 = updateTime1;
+	}
+
+	public Date getUpdateTime2() {
+		return updateTime2;
+	}
+
+	public void setUpdateTime2(Date updateTime2) {
+		this.updateTime2 = updateTime2;
 	}
 }

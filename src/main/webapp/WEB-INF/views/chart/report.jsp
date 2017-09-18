@@ -46,15 +46,16 @@
 			<li><a href="#industry" data-toggle="tab">行业统计</a></li>
 		</ul>
 		<div id="myTabContent" class="tab-content">
-			<div id="condition">
 			<form action="<%=path%>/labor_count">
+			<div id="condition">
 				<input type="hidden" id="count_type" name="count_type" value="mission_type"/>
-				开始日期 <input id="dt_begin" type="text" name="begin" class="datetime"/>
+				开始日期 <input id="dt_begin" type="text" name="begin" class="datetime" readonly="readonly"/>
 				<span class="glyphicon glyphicon-search"></span>
-				结束日期 <input id="dt_end" type="text" name="end" class="datetime"/> 
+				结束日期 <input id="dt_end" type="text" name="end" class="datetime" readonly="readonly"/> 
 				<span class="glyphicon glyphicon-search"></span>
 				<button id="btnChart" type="submit" class="btn btn-danger">统计</button>
 			</div>
+			</form>
 			<%-- <form action="/report">
 				<table class="table table-bordered search-box">
 					<thead>

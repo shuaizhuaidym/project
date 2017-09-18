@@ -109,9 +109,9 @@
 						<td>反馈日期(止)</td>
 						<td><input type="text" id="sub_date2" name="query.submitDate2" class="datetime wp98" /></td>
 						<td>更新日期(起)</td>
-						<td><input type="text" id="resp_date1" name="query.lastRespDate1" class="datetime wp98" /></td>
+						<td><input type="text" id="resp_date1" name="query.updateTime1" class="datetime wp98" /></td>
 						<td>更新日期(止)</td>
-						<td><input type="text" id="resp_date2" name="query.lastRespDate2" class="datetime wp98" /></td>
+						<td><input type="text" id="resp_date2" name="query.updateTime2" class="datetime wp98" /></td>
 					</tr>
 				</table>
 				<table class="table table-bordered table-striped">

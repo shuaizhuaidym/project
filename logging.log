@@ -1,0 +1,7 @@
+2017-09-15 08:53:03 INFO  SQLServer:45 - 成功连接QC数据库！
+2017-09-15 08:53:08 INFO  SQLServer:82 - select * from td.BUG where BG_STATUS in('新建','打开','重新打开') and (DATEDIFF([SECOND], bg_last_modify,'2017-06-20 12:20:23')<0 )
+2017-09-15 08:59:56 INFO  DBUtil:46 - The last modify date is:2017-08-29 13:09:11.0
+2017-09-15 08:59:57 INFO  SQLServer:45 - 成功连接QC数据库！
+2017-09-15 08:59:57 INFO  SQLServer:82 - select * from td.BUG where BG_STATUS in('新建','打开','重新打开') and (DATEDIFF([SECOND], bg_last_modify,'2017-08-29 13:09:11.0')<0 )
+2017-09-15 08:59:57 INFO  DBUtil:49 - Total get bugs:14
+2017-09-15 08:59:58 INFO  DBUtil:104 - Tocal 14 bugs Imported
