@@ -47,6 +47,11 @@ public class User extends BasePojo {
 	
 	@Column("org_name")
 	private String orgName;
+	/**
+	 * 组别：研发_C|研发_Java|测试
+	 */
+	@Column("_group")
+	private String _group;
 	
 	@ManyMany(from = "user_id", relation = "t_user_role", target = Role.class, to = "role_id")
 	protected List<Role> roles;
@@ -143,6 +148,14 @@ public class User extends BasePojo {
 
 	public void setOrgName(String orgName) {
 		this.orgName = orgName;
+	}
+
+	public String get_group() {
+		return _group;
+	}
+
+	public void set_group(String _group) {
+		this._group = _group;
 	}
 
 }

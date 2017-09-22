@@ -235,6 +235,9 @@ var ioc = {
 			},
 			orgService : {
 				refer : 'orgService'
+			},
+			dicService : {
+				refer : 'dicService'
 			}
 		}
 	},

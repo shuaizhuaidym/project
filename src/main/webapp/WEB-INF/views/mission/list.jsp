@@ -146,7 +146,7 @@
 										<a href="<%=path %>/mission/loadForAssignAsync?mission_id=${mission.missionID}" data-toggle="modal"
 										data-target="#assignModal"><i class="icon-hand-right" title="指派"></i></a> &nbsp;
 										<a href="<%=path %>/mission/history?mission_id=${mission.missionID}"><i class="icon-time" title="任务历史"></i></a>
-										<a onclick="javascript:confirm();" href="<%=path %>/mission/remove?mission_id=${mission.missionID}"><i class="icon-remove" title="删除"></i></a>
+										<a href="javascript:confirme(${mission.missionID});"><i class="icon-remove" title="删除"></i></a>
 									</td>
 								</tr>
 							</c:forEach>
@@ -180,9 +180,9 @@
 			$("#assignForm").submit();
 		}
 		
-		function confirm(){
+		function confirme(mid){
 			if(window.confirm("请再次确认要删除任务！")){
-				return false;
+				window.location.href="<%=path %>/mission/remove?mission_id="+mid;
 			}
 		}
 	</script>

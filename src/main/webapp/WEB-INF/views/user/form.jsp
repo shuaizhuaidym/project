@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="ui" uri="/WEB-INF/tags/select"%>
+<%@ taglib prefix="dic" uri="/WEB-INF/tags/dic"%>
 <%
 	String path = request.getContextPath();
 %>
@@ -38,6 +39,12 @@
 							<option value="${org.orgID}">${org.orgName}</option>
 						</select>
 						<input type="hidden" name="user.orgName" value="${org.orgName}"/>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="org">组别</label>
+					<div class="controls">
+						<dic:dic items="${dicts}" type="组别" name="user._group" ></dic:dic>
 					</div>
 				</div>
 				<div class="control-group">

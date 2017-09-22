@@ -70,11 +70,11 @@
 					<th colspan="4">研发过程</th>
 				</tr>
 				<tr>
-					<th class="w16px">序号</th>
+					<th class="w32px">序号</th>
 					<th>工作内容</th>
 					<th class="w48px">负责人</th>
 					<th class="w108px">日期</th>
-					<th class="w16px">工时</th>
+					<th class="w32px">工时</th>
 					<th class="w108px">当前完成比例</th>
 					<th class="w5p">备注</th>
 				</tr>

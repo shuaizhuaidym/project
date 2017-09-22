@@ -116,6 +116,7 @@ ul,ol {
 								<th class="w72px">真实姓名</th>
 								<th>登录密码[已加密]</th>
 								<th class="w108px">部门</th>
+								<th class="w108px">组别</th>
 								<th class="w64px">是否锁定</th>
 							</tr>
 						</thead>
@@ -126,6 +127,7 @@ ul,ol {
 								<td>${user.realName}</td>
 								<td>${user.password}</td>
 								<td>${user.orgName}</td>
+								<td>${user._group}</td>
 								<td>${user.status}</td>
 							</tr>
 						</c:forEach>

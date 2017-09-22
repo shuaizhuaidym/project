@@ -42,6 +42,7 @@ public class DicAction {
 		
 		dicType.put("问题类型", "问题类型");
 		dicType.put("项目状态", "项目状态");
+		dicType.put("组别", "组别");
 	}
 	
 	/**

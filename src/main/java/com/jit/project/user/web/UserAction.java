@@ -1,6 +1,7 @@
 package com.jit.project.user.web;
 
 import java.sql.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -17,6 +18,7 @@ import org.nutz.dao.QueryResult;
 import org.nutz.dao.pager.Pager;
 import org.nutz.integration.shiro.SimpleShiroToken;
 import org.nutz.ioc.annotation.InjectName;
+import org.nutz.ioc.loader.annotation.Inject;
 import org.nutz.lang.Strings;
 import org.nutz.lang.util.NutMap;
 import org.nutz.mvc.annotation.At;
@@ -28,6 +30,8 @@ import org.nutz.mvc.annotation.POST;
 import org.nutz.mvc.annotation.Param;
 
 import com.jit.project.base.OperationResult;
+import com.jit.project.dictionary.bean.Dictionary;
+import com.jit.project.dictionary.service.IDicService;
 import com.jit.project.org.bean.Org;
 import com.jit.project.org.service.OrgServiceImple;
 import com.jit.project.user.bean.User;
@@ -42,6 +46,9 @@ public class UserAction {
 	UserService userService;
 	
 	OrgServiceImple orgService;
+	
+	@Inject("dicService")
+	private IDicService dicService;
 	
 	private String success = "SUCCESS";
 
@@ -96,6 +103,8 @@ public class UserAction {
 	public String form(@Param("orgID") Long orgID, HttpServletRequest request) {
 		Org org = orgService.fetch(orgID);
 		request.setAttribute("org", org);
+		List<Dictionary> dicts = this.dicService.query(new com.jit.project.dictionary.bean.Query(1,255)).getList(Dictionary.class);
+		request.setAttribute("dicts", dicts);
 		//TODO org tree 4 select
 		return success;
 	}
