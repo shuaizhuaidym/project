@@ -3,12 +3,12 @@ body {
 	padding-bottom: 40px;
 }
 
-form td:nth-child(even) {
+.frm td:nth-child(even) {
 	text-align: left;
 }
 
 form td:nth-child(odd) {
-	text-align: right;
+	/* text-align: right; */
 	/* width:12%; */
 }
 .frm th:nth-child(odd) {
@@ -68,4 +68,7 @@ input {
 }
 .hid{
 	display:none;
+}
+#profile{
+	width:64px;height:22px;padding:0;border:0;border-radius:1px;background:#f5f5f5
 }

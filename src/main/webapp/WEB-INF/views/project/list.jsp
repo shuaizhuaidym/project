@@ -27,6 +27,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>项目列表</title>
 
+<link href="<%=path %>/css/commom.css" rel="stylesheet">
 <link href="<%=path %>/css/list.css" rel="stylesheet" />
 <link href="<%=path %>/css/bootstrap.min.css" rel="stylesheet" />
 <link href="<%=path %>/css/bootstrap-responsive.min.css" rel="stylesheet" />
@@ -69,7 +70,7 @@
 						<td>
 							<div class="btn-group wp98">
 								<button id="btnm" class="wp100 dropdown-toggle btn btn-default compress" data-toggle="dropdown" type="button"
-									title="None selected" aria-expanded="true">
+									title="None selected">
 									<span class="multiselect-selected-text">当前状态</span> <b class="caret"></b>
 								</button>
 
@@ -142,7 +143,7 @@
 								<td>${prj.status}</td>
 								<td>
 									
-									<a href="<%=path %>/mission/history?mission_id=${prj.prjID}"><i class="icon-time" title="任务历史"></i></a>
+									<a href="<%=path %>/project/history?prj_id=${prj.prjID}"><i class="icon-time" title="任务历史"></i></a>
 								</td>
 							</tr>
 						</c:forEach>

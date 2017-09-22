@@ -15,7 +15,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <title>我的首页</title>
-
 <link href="<%=path%>/css/bootstrap.min.css" rel="stylesheet" />
 <link href="<%=path%>/css/portal.css" rel="stylesheet" />
 <link href="<%=path%>/css/list.css" rel="stylesheet" />

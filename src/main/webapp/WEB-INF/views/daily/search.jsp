@@ -41,7 +41,7 @@
 		</fieldset>
 		<div class="table-responsive">
 			<form id="queryForm" action="<%=path%>/daily/search" method="post">
-				<table class="table table-bordered table-condensed">
+				<table class="table table-bordered table-condensed" class="frm">
 					<tr>
 						<th>人员名称</th>
 						<th><ui:select name="query.ownerName" path="${query.ownerName}" items="${owners}"></ui:select></th>

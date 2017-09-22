@@ -5,12 +5,13 @@ import java.util.List;
 import org.nutz.dao.Dao;
 import org.nutz.dao.QueryResult;
 import org.nutz.dao.pager.Pager;
+import org.nutz.service.IdNameEntityService;
 import org.nutz.service.NameEntityService;
 
 import com.jit.project.bean.Query;
 import com.jit.project.project.bean.Project;
 
-public class PrjService extends NameEntityService<Project> implements IPrjService {
+public class PrjService extends IdNameEntityService<Project> implements IPrjService {
 
 	/**
 	 * 新建工程

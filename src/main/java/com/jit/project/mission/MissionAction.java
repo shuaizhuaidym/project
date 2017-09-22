@@ -126,9 +126,12 @@ public class MissionAction {
 		}
 		if (types.isEmpty()) {
 			status = this.dicService.service(IDicService.type_mission_status);
+			users=this.userService.asDic();
 		}
 		request.setAttribute("status", status);
 		request.setAttribute("query", query);
+		request.setAttribute("users", users);
+		
 		QueryResult result = this.missionService.query(query);
 		return result;
 	}
@@ -278,6 +281,19 @@ public class MissionAction {
 	public String countHours(@Param("mission_id") Integer mission_id){
 		Integer hrs = missionService.countHourse(mission_id);
 		return hrs.toString();
+	}
+	
+	/**
+	 * 删除任务，无外键约束需要谨慎
+	 * @param missionID
+	 */
+	@At("/mission/remove")
+	@Ok("redirect:/mission/query")
+	public void remove(@Param("mission_id") String missionID) {
+		Mission min = this.missionService.fetch(missionID);
+		if (min != null) {
+			this.missionService._delete(min);
+		}
 	}
 	
 	public MissionServiceImpl getMissionService() {

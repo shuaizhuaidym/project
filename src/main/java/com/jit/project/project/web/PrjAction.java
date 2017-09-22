@@ -18,8 +18,10 @@ import org.nutz.mvc.annotation.Param;
 
 import com.jit.project.base.web.BaseAction;
 import com.jit.project.bean.Query;
+import com.jit.project.daily.service.DailyItemServiceImpl;
 import com.jit.project.dictionary.bean.Dictionary;
 import com.jit.project.dictionary.service.IDicService;
+import com.jit.project.mission.History;
 import com.jit.project.product.service.ProductService;
 import com.jit.project.project.bean.Project;
 import com.jit.project.project.service.PrjService;
@@ -37,7 +39,11 @@ public class PrjAction extends BaseAction{
 	@Inject("prdtService")
 	private ProductService prdtService;
 
+	@Inject("dailyItemService")
+	private DailyItemServiceImpl dailyItemService;
+	
 	private Project project;
+	
 	Map<String, String> users = new LinkedHashMap<String, String>();
 	Map<String, String> products = new HashMap<String, String>();
 	Map<String, String> modules = new HashMap<String, String>();
@@ -104,7 +110,7 @@ public class PrjAction extends BaseAction{
 		return qResult;
 	}
 
-	// 加载
+	/** 加载*/
 	@At("/edit")
 	@Ok("jsp:views.project.edit")
 	public String edit(HttpServletRequest request, @Param("prjid") String prjID) {
@@ -132,7 +138,7 @@ public class PrjAction extends BaseAction{
 	
 	/**
 	 * 日报关联引用项目
-	 * @param query
+	 * @param query,项目可以多人支持，我可以支持别人的项目
 	 * @return
 	 */
 	@At("/project/refer")
@@ -141,9 +147,24 @@ public class PrjAction extends BaseAction{
 		if (query == null) {
 			query = new Query();
 		}
-		return this.prjService.query(query);//TODO 当前用户的项目
+		return this.prjService.query(query);
 	}
-
+	
+	/**
+	 * 项目支持历史
+	 * @param prjID
+	 */
+	@At("/project/history")
+	@Ok("jsp:views.project.history")
+	public List<History> history(@Param("prj_id") String prjID, HttpServletRequest request){
+		Project prj=this.prjService.fetch(Long.valueOf(prjID));
+		
+		//TODO 任务和项目ID有重复，需要关联名称或者保证ID唯一
+		List<History> history = this.dailyItemService.queryByMissionID(prjID);
+		request.setAttribute("prj", prj);
+		return history;
+	}
+	
 	protected PrjService getPrjService() {
 		return prjService;
 	}
@@ -167,4 +188,13 @@ public class PrjAction extends BaseAction{
 	public void setUserService(UserService userService) {
 		this.userService = userService;
 	}
+
+	public DailyItemServiceImpl getDailyItemService() {
+		return dailyItemService;
+	}
+
+	public void setDailyItemService(DailyItemServiceImpl dailyItemService) {
+		this.dailyItemService = dailyItemService;
+	}
+	
 }

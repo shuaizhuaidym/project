@@ -52,15 +52,21 @@
 			<thead>
 				<tr>
 					<th>项目名称</th>
-					<td>${mission.missionName}</td>
+					<td>${prj.prjName}</td>
 					<th>项目状态</th>
-					<td>${mission.status}</td>
+					<td>${prj.status}</td>
 				</tr>
 				<tr>
 					<th>开始时间</th>
-					<td><f:formatDate value="${mission.startDate}" pattern="yyyy-MM-dd" /></td>
+					<td><f:formatDate value="${prj.submitDate}" pattern="yyyy-MM-dd" /></td>
 					<th>计划结束时间</th>
-					<td><f:formatDate value="${mission.planEnd}" pattern="yyyy-MM-dd" /></td>
+					<td><f:formatDate value="${prj.finishDate}" pattern="yyyy-MM-dd" /></td>
+				</tr>
+				<tr>
+					<th>工作内容【历史数据】</th>
+					<td>${prj.process}</td>
+					<th>已投入工时</th>
+					<td class="w108px">${prj.laborCosts}</td>
 				</tr>
 			<thead>
 		</table>
@@ -70,11 +76,11 @@
 					<th colspan="4">项目处理过程</th>
 				</tr>
 				<tr>
-					<th class="w16px">序号</th>
+					<th class="w32px">序号</th>
 					<th>工作内容</th>
 					<th class="w48px">负责人</th>
 					<th class="w108px">日期</th>
-					<th class="w16px">工时</th>
+					<th class="w32px">工时</th>
 					<th class="w108px">当前完成比例</th>
 					<th class="w5p">备注</th>
 				</tr>

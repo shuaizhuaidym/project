@@ -36,6 +36,7 @@
 .table td,th {
 	padding: 5px 5px 5px 5px
 }
+.td_oper{text-align:center}
 </style>
 
 <script type="text/javascript" src="<%=path%>/js/jquery/jquery-1.11.1.js"></script>
@@ -111,7 +112,8 @@
 									<th>创建时间</th>
 									<td><input type="text" name="query.createTime" class="datetime" /></td>
 									<th>负责人</th>
-									<td><input type="text" name="query.assignTo" value="${query.assignTo}" /></td>
+									<td>
+										<ui:select name="query.assignTo" path="${query.assignTo}" items="${users}"></ui:select>
 									<th>计划发布版本</th>
 									<td><input type="text" name="query.devVersion" value="${query.devVersion}" /></td>
 									<th>任务状态</th>
@@ -126,10 +128,10 @@
 									<th class="w32px">序号</th>
 									<th>任务名称</th>
 									<th class="w96px">任务类型</th>
-									<th>任务摘要</th>
 									<th class="w48px">负责人</th>
+									<th class="w48px">版本</th>
 									<th class="w128px">状态</th>
-									<th class="w72px">操作</th>
+									<th class="w96px">操作</th>
 								</tr>
 							</thead>
 							<c:forEach var="mission" items="${obj.list}" varStatus="index">
@@ -137,13 +139,15 @@
 									<td>${index.count}</td>
 									<td><a href="<%=path %>/mission/edit?mission_id=${mission.missionID}"> ${mission.missionName} </a></td>
 									<td>${mission.type}</td>
-									<td>${mission.summary}</td>
 									<td>${mission.assignTo}</td>
+									<td>${mission.publishVersion}</td>
 									<td>${mission.status}</td>
-									<td><a href="<%=path %>/mission/loadForAssignAsync?mission_id=${mission.missionID}" data-toggle="modal"
-										data-target="#assignModal"><i class="icon-hand-right" title="指派"></i></a> &nbsp;<a
-										href="<%=path %>/mission/history?mission_id=${mission.missionID}"><i class="icon-time" title="任务历史"></i></a></td>
-
+									<td class="td_oper">
+										<a href="<%=path %>/mission/loadForAssignAsync?mission_id=${mission.missionID}" data-toggle="modal"
+										data-target="#assignModal"><i class="icon-hand-right" title="指派"></i></a> &nbsp;
+										<a href="<%=path %>/mission/history?mission_id=${mission.missionID}"><i class="icon-time" title="任务历史"></i></a>
+										<a onclick="javascript:confirm();" href="<%=path %>/mission/remove?mission_id=${mission.missionID}"><i class="icon-remove" title="删除"></i></a>
+									</td>
 								</tr>
 							</c:forEach>
 						</table>
@@ -174,6 +178,12 @@
 	<script type="text/javascript">
 		function assign() {
 			$("#assignForm").submit();
+		}
+		
+		function confirm(){
+			if(window.confirm("请再次确认要删除任务！")){
+				return false;
+			}
 		}
 	</script>
 

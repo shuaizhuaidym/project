@@ -38,6 +38,9 @@ var ioc = {
 			prdtService : {
 				refer : 'prdtService'
 			},
+			dailyItemService : {
+				refer : 'dailyItemService'
+			}
 		}
 	},
 	dao : {

@@ -65,3 +65,6 @@ body {
 .lcontrols {
 	margin-left: 100px;
 }
+#profile{
+	width:64px;height:22px;padding:0;border:0;border-radius:1px;background:#f5f5f5
+}
