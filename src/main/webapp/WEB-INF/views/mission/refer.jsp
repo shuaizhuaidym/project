@@ -67,22 +67,23 @@
 		<div class="tab-content">
 			<!-- 任务 -->
 			<div class="tab-pane active" id="mission">
-				<table class="table table-bordered table-striped">
-					<tr>
-						<th class="w32px">序号</th>
-						<th class="w32px">选择</th>
-						<th>任务名称</th>
-					</tr>
-					<c:forEach var="mission" items="${obj.list}" varStatus="index">
-						<tr>
-							<td>${index.count}</td>
-							<td><input type="checkbox" id="${mission.missionID}" name="${mission.missionName}" onclick="confirm(this)"
-								data-dismiss="modal" /></td>
-							<td>${mission.missionName}</td>
-						</tr>
-					</c:forEach>
-				</table>
 				<form action="<%=path%>/mission/refer" id="missionForm">
+					<input type="hidden" name="query.assignTo" value="${query.assignTo}">
+					<table class="table table-bordered table-striped">
+						<tr>
+							<th class="w32px">序号</th>
+							<th class="w32px">选择</th>
+							<th>任务名称</th>
+						</tr>
+						<c:forEach var="mission" items="${obj.list}" varStatus="index">
+							<tr>
+								<td>${index.count}</td>
+								<td><input type="checkbox" id="${mission.missionID}" name="${mission.missionName}" onclick="confirm(this)"
+									data-dismiss="modal" /></td>
+								<td>${mission.missionName}</td>
+							</tr>
+						</c:forEach>
+					</table>
 					<pg:page id="missionForm" async="true" pageNo="${obj.pager.pageNumber}" currentClass="active" pageSize="${obj.pager.pageSize}"
 						totalCount="${obj.pager.recordCount}">
 					</pg:page>

@@ -261,6 +261,7 @@ public class MissionAction {
 		if (query == null) {
 			query = new com.jit.project.mission.Query(user);
 		}
+		request.setAttribute("query", query);
 		QueryResult result = this.missionService.query(query);
 		// request.setAttribute("mission_index", request.getParameter("mission_index"));
 		QueryResult projects = this.prjService.query(new com.jit.project.bean.Query());
