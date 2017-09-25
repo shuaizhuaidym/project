@@ -13,6 +13,8 @@ public class Query extends AbstractQuery implements Condition {
 	private static final long serialVersionUID = 8887767994742296510L;
 
 	private String ownerName;
+	
+	private String _group;
 
 	private String createDate;
 	
@@ -26,6 +28,9 @@ public class Query extends AbstractQuery implements Condition {
 		Criteria cri = Cnd.cri();
 		if (StringUtils.isNoneBlank(ownerName)) {
 			cri.where().andEquals("owner_name", ownerName);
+		}
+		if(StringUtils.isNotBlank(_group)){
+			cri.where().and(Cnd.exp("_group", "=", _group));
 		}
 		if (StringUtils.isNoneBlank(createDate)) {
 			cri.where().and(Cnd.exp("DATEDIFF(create_date,'" + createDate + "')", ">=", 0));
@@ -74,5 +79,13 @@ public class Query extends AbstractQuery implements Condition {
 
 	public void setCreateDate2(String createDate2) {
 		this.createDate2 = createDate2;
+	}
+
+	public String get_group() {
+		return _group;
+	}
+
+	public void set_group(String _group) {
+		this._group = _group;
 	}
 }

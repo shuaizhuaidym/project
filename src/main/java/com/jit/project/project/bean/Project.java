@@ -5,8 +5,10 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import org.nutz.dao.entity.annotation.Column;
+import org.nutz.dao.entity.annotation.EL;
 import org.nutz.dao.entity.annotation.Id;
 import org.nutz.dao.entity.annotation.Name;
+import org.nutz.dao.entity.annotation.Prev;
 import org.nutz.dao.entity.annotation.Table;
 
 import com.jit.project.bean.BasePojo;
@@ -18,7 +20,8 @@ import com.jit.project.bean.BasePojo;
 @Table("t_project")
 public class Project extends BasePojo{
 
-	@Id
+	@Id(auto=false)
+	@Prev(els=@EL("seq()"))//call run？
 	@Column("prj_id")
 	private Integer prjID;
 	//项目或单位名称

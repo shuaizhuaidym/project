@@ -21,6 +21,7 @@ import com.jit.project.daily.bean.Query;
 import com.jit.project.daily.bean.VDailyItem;
 import com.jit.project.daily.service.IDailyItemService;
 import com.jit.project.daily.service.IDailyService;
+import com.jit.project.dictionary.bean.Dictionary;
 import com.jit.project.dictionary.service.DicService;
 import com.jit.project.user.service.UserService;
 
@@ -89,6 +90,8 @@ public class DailyAction {
 			query = new Query();
 		}
 		Map<String, String> owners = this.userService.asDic();
+		List<Dictionary> dicts = this.dicService.query(new com.jit.project.dictionary.bean.Query(1,255)).getList(Dictionary.class);
+		request.setAttribute("dicts", dicts);
 		request.setAttribute("owners", owners);
 		request.setAttribute("query", query);
 		QueryResult result = this.dailyService.search(query);

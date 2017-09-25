@@ -272,5 +272,9 @@ var ioc = {
 				refer : 'versionService'
 			}
 		}
+	},
+	sequence : {
+		type : "util.Sequence"
 	}
+	
 };

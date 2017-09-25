@@ -1,10 +1,11 @@
 package com.jit.project.web;
 
 import org.nutz.dao.Dao;
+import org.nutz.el.opt.custom.CustomMake;
 import org.nutz.mvc.NutConfig;
 import org.nutz.mvc.Setup;
 
-import task.QcTask;
+import util.Sequence;
 
 import com.jit.project.auth.service.AuthorityService;
 import com.jit.project.org.bean.Org;
@@ -25,6 +26,9 @@ public class MvcSetup implements Setup {
 		if(!dao.exists(UserProfile.class)){
 			dao.create(UserProfile.class, false);
 		}
+		//主键生成器
+		CustomMake.me().register("seq", config.getIoc().get(Sequence.class));
+		
 		AuthorityService auth = config.getIoc().get(AuthorityService.class);
 		auth.initFormPackage("com.jit.project");
 		auth.checkBasicRoles(dao.fetch(User.class, "admin"));

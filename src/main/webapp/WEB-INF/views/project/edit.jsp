@@ -100,7 +100,7 @@
 				<tr>
 					<td><label class="control-label col-xs-2">处理过程</label></td>
 					<td colspan="3">
-						<textarea id="ta_proc" name="project.process" class="x-text" rows="10">${prj.process}</textarea>
+						<textarea id="ta_proc" name="project.process" readonly="readonly" class="x-text" rows="10">${prj.process}</textarea>
 						<a id="dateX" class="pointer">当前日期</a>
 					</td>
 				</tr>
@@ -114,7 +114,7 @@
 				</tr>
 				<tr>
 					<td><label class="control-label col-xs-2">人力成本(人*周)</label></td>
-					<td colspan="3"><input type="text" id="txt_lc" name="project.laborCosts" value="${prj.laborCosts}" class="x-text number" /></td>
+					<td colspan="3"><input type="text" id="txt_lc" name="project.laborCosts" value="${prj.laborCosts}" readonly="readonly" class="x-text number" /></td>
 				</tr>
 			</table>
 			<div style="text-align: left; margin-right: 80px">

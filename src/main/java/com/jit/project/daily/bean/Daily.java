@@ -27,6 +27,9 @@ public class Daily {
 	
 	@Column("owner_name")
 	private String ownerName;
+	//用户组
+	@Column("_group")
+	private String _group;
 	
 	@Column("mail_to")
 	private int mailTo;
@@ -103,6 +106,14 @@ public class Daily {
 
 	public void setStatus(int status) {
 		this.status = status;
+	}
+
+	public String get_group() {
+		return _group;
+	}
+
+	public void set_group(String _group) {
+		this._group = _group;
 	}
 
 }

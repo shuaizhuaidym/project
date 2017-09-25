@@ -59,5 +59,11 @@
 			<rtexprvalue>true</rtexprvalue>
 			<description>dictionary type</description>
 		</attribute>
+		<attribute>
+			<name>withBlank</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>dictionary type</description>
+		</attribute>
 	</tag>
 </taglib>

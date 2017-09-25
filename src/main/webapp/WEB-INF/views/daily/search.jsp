@@ -3,6 +3,7 @@
 <%@taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@taglib prefix="pg" uri="/WEB-INF/tags"%>
 <%@taglib prefix="ui" uri="/WEB-INF/tags/select"%>
+<%@taglib prefix="dic" uri="/WEB-INF/tags/dic"%>
 <%
 	String path = request.getContextPath();
 %>
@@ -20,8 +21,11 @@
 <link href="<%=path%>/css/commom.css" rel="stylesheet">
 <link href="<%=path%>/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 <style type="text/css">
-.table td,th {
+.table-striped td,th {
 	padding: 2px 5px 8px;
+}
+.search-box input[type="text"]{
+	width:98%
 }
 </style>
 <script type="text/javascript" src="<%=path%>/js/jquery/jquery-1.11.1.js"></script>
@@ -42,13 +46,17 @@
 		<div class="table-responsive">
 			<form id="queryForm" action="<%=path%>/daily/search" method="post">
 				<table class="table table-bordered table-condensed" class="frm">
-					<tr>
+					<tr class="search-box">
 						<th>人员名称</th>
-						<th><ui:select name="query.ownerName" path="${query.ownerName}" items="${owners}"></ui:select></th>
+						<td><ui:select name="query.ownerName" path="${query.ownerName}" items="${owners}"></ui:select></td>
+						<th>人员分组</th>
+						<td>
+							<dic:dic items="${dicts}" type="组别" name="query._group" path="${query._group}" withBlank="true"></dic:dic>
+						</td>
 						<th>发送日期起</th>
-						<th><input type="text" name="query.createDate" value="${query.createDate}" class="datetime" /></th>
+						<td><input type="text" name="query.createDate" value="${query.createDate}" class="datetime" /></td>
 						<th>发送日期止</th>
-						<th><input type="text" name="query.createDate2" value="${query.createDate}" class="datetime" /></th>
+						<td><input type="text" name="query.createDate2" value="${query.createDate}" class="datetime" /></td>
 						<th style="text-align: center">
 							<button id="btnQuery" class="btn btn-primary">查询</button>
 						</th>
