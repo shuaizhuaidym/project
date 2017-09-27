@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	var index = 1;
+	var index = $(".div_with_divider").length-1;
 	// modal window
 	$('#btnAppend').click(function() {
 		var item = $("#daily_item").clone();

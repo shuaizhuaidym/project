@@ -58,7 +58,7 @@
 					</td>
 					<td><label class="control-label col-xs-2">相关产品</label></td>
 					<td>
-						<ui:select name="mission.productName" path="${prj.productName}" items="${products}" css="required"></ui:select>
+						<ui:select name="project.productName" path="${prj.productName}" items="${products}" css="required"></ui:select>
 					</td>
 				</tr>
 				<tr>

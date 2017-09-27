@@ -7,7 +7,7 @@ function validate(val1,val2) {
 	//}
 	//if(/Invalid|NaN/.test(new Date(val1)) || /Invalid|NaN/.test(new Date(val2))){
 		return 1;
-	}else if(new Date(val1) >=new Date(val2)){
+	}else if(new Date(val1) >new Date(val2)){
 		return 2;
 	}
 	return 0;
