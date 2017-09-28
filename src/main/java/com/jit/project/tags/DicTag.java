@@ -65,7 +65,6 @@ public class DicTag extends TagSupport {
 				builder.append("<option value=''></option>");
 			}
 			for (Dictionary nt : items) {
-				System.out.println(nt.getDicType()+":"+nt.getDicName()+"---"+path);
 				if (nt != null && type.equalsIgnoreCase(nt.getDicType())) {
 					if (nt.getDicName().equalsIgnoreCase(path)) {
 						builder.append("<option value=\"").append(nt.getDicName()).append("\"");

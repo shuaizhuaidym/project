@@ -1,5 +1,8 @@
 $(document).ready(function() {
-	var index = $(".div_with_divider").length-1;
+	var index = $(".div_with_divider").length;
+	if($("#daily_id").val()){
+		index--;//编辑页面多一个模板元素
+	}
 	// modal window
 	$('#btnAppend').click(function() {
 		var item = $("#daily_item").clone();
