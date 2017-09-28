@@ -21,9 +21,9 @@ import com.jit.project.bean.BasePojo;
 public class Project extends BasePojo{
 
 	@Id(auto=false)
-	@Prev(els=@EL("seq()"))//call run？
+	@Prev(els=@EL("seq()"))
 	@Column("prj_id")
-	private Integer prjID;
+	private Long prjID;
 	//项目或单位名称
 	@Name
 	@Column("prj_name")
@@ -110,11 +110,11 @@ public class Project extends BasePojo{
 	}
 
 
-	public Integer getPrjID() {
+	public Long getPrjID() {
 		return prjID;
 	}
 
-	public void setPrjID(Integer prjID) {
+	public void setPrjID(Long prjID) {
 		this.prjID = prjID;
 	}
 
