@@ -83,6 +83,11 @@ public class UserProfile extends BasePojo {
 	public void setLocation(String location) {
 		this.location = location;
 	}
+	@Override
+	public String toSql() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 }

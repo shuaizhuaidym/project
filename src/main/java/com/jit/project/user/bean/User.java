@@ -158,4 +158,10 @@ public class User extends BasePojo {
 		this._group = _group;
 	}
 
+	@Override
+	public String toSql() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

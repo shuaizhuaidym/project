@@ -6,7 +6,7 @@ import org.nutz.dao.entity.annotation.Column;
 import org.nutz.json.Json;
 import org.nutz.json.JsonFormat;
 
-public class BasePojo {
+public abstract class BasePojo {
 	@Column("create_time")
 	protected Date createTime;
 	@Column("update_time")
@@ -17,6 +17,7 @@ public class BasePojo {
 	public String toString() {
 		return String.format("/*%s*/%s", super.toString(), Json.toJson(this, JsonFormat.compact()));
 	}
+	public abstract String toSql();
 
 	public Date getCreateTime() {
 		return createTime;

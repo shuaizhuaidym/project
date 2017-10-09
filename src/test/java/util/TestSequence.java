@@ -10,14 +10,17 @@ public class TestSequence {
 	public void testNextId() {
 		Sequence instance = Sequence.getInstance();
 		List<Long> ids = new ArrayList<Long>();
-		for (int i = 0; i++ < 10;) {
+		for (int i = 0; i++ < 1000;) {
 			Long k = instance.nextId();
-			ids.add(k);
-			org.junit.Assert.assertTrue(ids.contains(k));
-			System.out.println(k);
+			Long t = k % 999999999;
+			System.out.println(k + ":" + t);
+			
+			org.junit.Assert.assertFalse(ids.contains(t));
+			ids.add(t);
+			org.junit.Assert.assertTrue(ids.contains(t));
 		}
 		Long id = instance.nextId();
 		org.junit.Assert.assertFalse(ids.contains(id));
-		System.out.println(Long.MAX_VALUE);
+		System.out.println(Long.MAX_VALUE % 999999999);
 	}
 }

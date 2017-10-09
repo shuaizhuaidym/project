@@ -13,7 +13,10 @@ import org.nutz.dao.entity.annotation.Id;
 import org.nutz.dao.entity.annotation.Prev;
 import org.nutz.dao.entity.annotation.Table;
 
+import util.Sequence;
+
 import com.jit.project.bean.BasePojo;
+import com.jit.project.project.service.Translater;
 @Table("t_mission")
 public class Mission extends BasePojo{
 	@Id(auto = false)
@@ -107,6 +110,67 @@ public class Mission extends BasePojo{
 		return super.toString();
 	}	
 
+	@Override
+	public String toSql() {
+		StringBuilder template = new StringBuilder("INSERT INTO `project`.`t_mission` (");
+		template.append("`mission_id`,		`mission_name`,			`type`,			`content`,		`summary`,");
+		template.append("`deadline`,  		`status`,				`progress`,		`task_class`,	`parent_id`,");
+		template.append("`product_version`,	`plan_start`,			`start_date`,	`plan_end`,		`end_date`,");
+		template.append("`product_sub_type`,`product_base_version`,	`publish_version`,`project_id`,	`project_name`,");
+		template.append("`project_manager`,	`product_id`,			`product_name`,	`module`,		`progress_detail`,");
+		template.append("`assign_to`,		`total_hours`,			`team_id`,		`comments`,		`create_time`,");
+		template.append("`update_time`,		`industry_id`,			`industry_name`,`version`)VALUES(");
+
+		Sequence seq = util.Sequence.getInstance();
+		SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
+		template.append("(");
+
+		Long lid = seq.nextId();
+		Translater.idmaps.put(this.missionID, lid);
+
+		template.append("`").append(lid).append("`,");
+		template.append("`").append(this.missionName).append("`,");
+		template.append("`").append(this.type).append("`,");
+		template.append("`").append(this.content).append("`,");
+		template.append("`").append(this.summary).append("`,");
+
+		template.append("`").append(this.deadline == null ? null : fmt.format(deadline)).append("`,");
+		template.append("`").append(this.status).append("`,");
+		template.append("`").append(this.progress).append("`,");
+		template.append("`").append(this.taskClass).append("`,");
+		template.append("`").append(this.parentID).append("`,");
+
+		template.append("`").append(this.productVersion).append("`,");
+		template.append("`").append(this.planStart == null ? null : fmt.format(planStart)).append("`,");
+		template.append("`").append(this.startDate == null ? null : fmt.format(startDate)).append("`,");
+		template.append("`").append(this.planEnd == null ? null : fmt.format(planEnd)).append("`,");
+		template.append("`").append(this.endDate == null ? null : fmt.format(endDate)).append("`,");
+
+		template.append("`").append(this.productSubType).append("`,");
+		template.append("`").append(this.productBaseVersion).append("`,");
+		template.append("`").append(this.publishVersion).append("`,");
+		template.append("`").append(this.projectID).append("`,");
+		template.append("`").append(this.projectName).append("`,");
+
+		template.append("`").append(this.projectManager).append("`,");
+		template.append("`").append(this.productID).append("`,");
+		template.append("`").append(this.productName).append("`,");
+		template.append("`").append(this.module).append("`,");
+		template.append("`").append(this.progressDetail).append("`,");
+
+		template.append("`").append(this.assignTo).append("`,");
+		template.append("`").append(this.totalHours).append("`,");
+		template.append("`").append(this.teamID).append("`,");
+		template.append("`").append(this.comments).append("`,");
+		template.append("`").append(this.createTime == null ? null : fmt.format(createTime)).append("`,");
+
+		template.append("`").append(this.updateTime == null ? null : fmt.format(updateTime)).append("`,");
+		template.append("`").append(this.industryID).append("`,");
+		template.append("`").append(this.industryName).append("`,");
+		template.append("`").append(this.version).append("`);");
+		
+		return template.toString();
+	}
 	public Long getMissionID() {
 		return missionID;
 	}

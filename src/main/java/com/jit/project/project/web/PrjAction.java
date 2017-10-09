@@ -18,6 +18,7 @@ import org.nutz.mvc.annotation.Param;
 
 import com.jit.project.base.web.BaseAction;
 import com.jit.project.bean.Query;
+import com.jit.project.daily.bean.DailyItem;
 import com.jit.project.daily.service.DailyItemServiceImpl;
 import com.jit.project.dictionary.bean.Dictionary;
 import com.jit.project.dictionary.service.IDicService;
@@ -25,6 +26,7 @@ import com.jit.project.mission.History;
 import com.jit.project.product.service.ProductService;
 import com.jit.project.project.bean.Project;
 import com.jit.project.project.service.PrjService;
+import com.jit.project.project.service.Translater;
 import com.jit.project.user.service.UserService;
 
 @InjectName("prjAction")
@@ -163,6 +165,34 @@ public class PrjAction extends BaseAction{
 		List<History> history = this.dailyItemService.queryByMissionID(prjID);
 		request.setAttribute("prj", prj);
 		return history;
+	}
+	
+	/**
+	 * 数据迁移，主键变换
+	 */
+	@At("/translate")
+	@Ok("json:full")
+	public Integer translate() {
+		List<Project> prjs = new ArrayList<Project>();
+		List<DailyItem>itms=new ArrayList<DailyItem>();
+		try {
+			prjs = this.prjService.query();
+			itms=this.dailyItemService.query();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		try {
+			Translater.translate(prjs);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		try {
+			Translater.translateDailyItem(itms);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return prjs.size();
 	}
 	
 	protected PrjService getPrjService() {

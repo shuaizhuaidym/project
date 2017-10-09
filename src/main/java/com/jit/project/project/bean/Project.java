@@ -4,6 +4,8 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import util.Sequence;
+
 import org.nutz.dao.entity.annotation.Column;
 import org.nutz.dao.entity.annotation.EL;
 import org.nutz.dao.entity.annotation.Id;
@@ -12,6 +14,7 @@ import org.nutz.dao.entity.annotation.Prev;
 import org.nutz.dao.entity.annotation.Table;
 
 import com.jit.project.bean.BasePojo;
+import com.jit.project.project.service.Translater;
 /**
  * 项目问题
  * @author yanming_dai
@@ -306,6 +309,54 @@ public class Project extends BasePojo{
 	public int diff(java.util.Date late, java.util.Date earler) {
 		int pass = (int) (late.getTime() - earler.getTime()) / 1000 / 3600 / 24;
 		return pass;
+	}
+	
+	public String toSql(){
+		StringBuilder template=new StringBuilder("INSERT INTO `project`.`t_project` (");
+				template.append("`prj_id`,`prj_name`,`industry`,`project_type`,`product_id`,");
+				template.append("`product_name`,`product_version`,`issue_type`,`describtion`,`submit_date`,");
+				template.append("`status`,`engineer`,`engineer_tel`,`finish_date`,`labor_costs`,");
+				template.append("`reporter`,`contact`,`process`,`improvement`,`comments`,");
+				template.append("`create_time`,`update_time`,`version`,`operator_ip`)VALUES");
+			
+				Sequence seq=util.Sequence.getInstance();
+				SimpleDateFormat fmt=new SimpleDateFormat("yyyy-MM-dd");
+				template.append("(");
+				
+				Long lid=seq.nextId();
+				Translater.idmaps.put(this.prjID, lid);
+				
+				template.append(lid).append(",");
+				template.append("'").append(this.prjName).append("',");
+				template.append("'").append(this.industry).append("',");
+				template.append("'").append(this.prjType).append("',");
+				template.append("'").append(this.productID).append("',");
+				
+				template.append("'").append(this.productName).append("',");
+				template.append("'").append(this.prudectVersion).append("',");
+				template.append("'").append(this.issueType).append("',");
+				template.append("'").append(this.describtion).append("',");
+				template.append("'").append(submitDate == null ? "NULL" : fmt.format(this.submitDate)).append("',");
+				
+				template.append("'").append(this.status).append("',");
+				template.append("'").append(this.engineer).append("',");
+				template.append("'").append(this.engineerTel).append("',");
+				template.append("'").append(finishDate == null ? "NULL" : fmt.format(this.finishDate)).append("',");
+				template.append("'").append(this.laborCosts).append("',");
+				
+				template.append("'").append(this.reporter).append("',");
+				template.append("'").append(this.contact).append("',");
+				template.append("'").append(this.process).append("',");
+				template.append("'").append(this.improvement).append("',");
+				template.append("'").append(this.comments).append("',");
+				
+				template.append("'").append(createTime == null ? "NULL" : fmt.format(this.createTime)).append("',");
+				template.append("'").append(updateTime == null ? "NULL" : fmt.format(this.updateTime)).append("',");
+				template.append("'").append(this.version).append("',");
+				template.append("'").append(this.operatorIP).append("');");
+
+				
+		return template.toString();
 	}
 
 	public int getProductID() {

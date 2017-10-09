@@ -66,4 +66,10 @@ public class Role extends BasePojo {
 	public void setPermissions(List<Permission> permissions) {
 		this.permissions = permissions;
 	}
+
+	@Override
+	public String toSql() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
