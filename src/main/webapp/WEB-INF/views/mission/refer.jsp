@@ -67,12 +67,16 @@
 		<div class="tab-content">
 			<!-- 任务 -->
 			<div class="tab-pane active" id="mission">
+				<div class="inner-search-box">
+					关键字<input/><button>搜索</button>
+				</div>
 				<form action="<%=path%>/mission/refer" id="missionForm">
 					<input type="hidden" name="query.assignTo" value="${query.assignTo}">
 					<table class="table table-bordered table-striped">
 						<tr>
 							<th class="w32px">序号</th>
 							<th class="w32px">选择</th>
+							<th class="w128px">编号</th>
 							<th>任务名称</th>
 						</tr>
 						<c:forEach var="mission" items="${obj.list}" varStatus="index">
@@ -80,6 +84,7 @@
 								<td>${index.count}</td>
 								<td><input type="checkbox" id="${mission.missionID}" name="${mission.missionName}" onclick="confirm(this)"
 									data-dismiss="modal" /></td>
+								<td>${mission.missionID}</td>
 								<td>${mission.missionName}</td>
 							</tr>
 						</c:forEach>
@@ -91,10 +96,14 @@
 			</div>
 			<!-- 项目 -->
 			<div class="tab-pane" id="project-box">
+				<div class="inner-search-box">
+					关键字<input/><button>搜索</button>
+				</div>
 				<table class="table table-bordered table-striped">
 					<tr>
 						<th class="w32px">序号</th>
 						<th class="w32px">选择</th>
+						<th class="w128px">项目编号</th>
 						<th>项目名称</th>
 					</tr>
 					<c:forEach var="project" items="${projects.list}" varStatus="index">
@@ -104,6 +113,7 @@
 								<input type="checkbox" id="${project.prjID}" name="${project.prjName}" onclick="confirm(this)"
 								data-dismiss="modal" />
 							</td>
+							<td>${project.prjID}</td>
 							<td>${project.prjName}</td>
 						</tr>
 					</c:forEach>

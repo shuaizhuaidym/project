@@ -8,6 +8,7 @@
 	<tr>
 		<th class="w32px">序号</th>
 		<th class="w32px">选择</th>
+		<th class="w128px">项目编号</th>
 		<th>项目名称</th>
 	</tr>
 	<c:forEach var="project" items="${obj.list}" varStatus="index">
@@ -17,6 +18,7 @@
 				<input type="checkbox" id="${project.prjID}" name="${project.prjName}" onclick="confirm(this)"
 				data-dismiss="modal" />
 			</td>
+			<td>${project.prjID}</td>
 			<td>${project.prjName}</td>
 		</tr>
 	</c:forEach>
