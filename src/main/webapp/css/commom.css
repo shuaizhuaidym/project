@@ -72,5 +72,6 @@ input {
 #profile{
 	width:64px;height:22px;padding:0;border:0;border-radius:1px;background:#f5f5f5
 }
-.inner-search-box{text-align:left}
-.inner-search-box input{width:80%}
+.inner-search-box{text-align:left;margin-bottom:8px}
+.inner-search-box input{width:80%;margin:0px 8px}
+.inner-search-box button{padding: 2px 8px;}
