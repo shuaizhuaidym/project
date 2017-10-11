@@ -73,5 +73,19 @@ input {
 	width:64px;height:22px;padding:0;border:0;border-radius:1px;background:#f5f5f5
 }
 .inner-search-box{text-align:left;margin-bottom:8px}
-.inner-search-box input{width:80%;margin:0px 8px}
+.inner-search-box input{width:80%;height:20px;margin:0px 8px}
 .inner-search-box button{padding: 2px 8px;}
+.product_flag {
+	color: #08c;
+	display: inline-block;
+	width: 14px;
+	height: 14px;
+	font-size: 12px;
+	line-height: 14px;
+	text-align: center;
+	vertical-align:middle;
+	-moz-border-radius: 50%;
+	-webkit-border-radius: 50%;
+	border-radius: 50%;
+	border: 1px solid #08c;
+}

@@ -36,7 +36,11 @@
 .table td,th {
 	padding: 5px 5px 5px 5px
 }
-.td_oper{text-align:center}
+
+.td_oper {
+	text-align: center
+}
+
 </style>
 
 <script type="text/javascript" src="<%=path%>/js/jquery/jquery-1.11.1.js"></script>
@@ -137,7 +141,9 @@
 							<c:forEach var="mission" items="${obj.list}" varStatus="index">
 								<tr>
 									<td>${index.count}</td>
-									<td><a href="<%=path %>/mission/edit?mission_id=${mission.missionID}"> ${mission.missionName} </a></td>
+									<td>
+										<span class="product_flag">网</span>
+										<a href="<%=path %>/mission/edit?mission_id=${mission.missionID}"> ${mission.missionName} </a></td>
 									<td>${mission.type}</td>
 									<td>${mission.assignTo}</td>
 									<td>${mission.publishVersion}</td>
