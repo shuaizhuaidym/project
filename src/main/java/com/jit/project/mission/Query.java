@@ -24,6 +24,8 @@ public class Query implements Condition {
 	//研发版本（计划发布版本）
 	private String devVersion;
 	
+	private String keyword;
+	
 	public Query() {
 		super();
 	}
@@ -122,5 +124,13 @@ public class Query implements Condition {
 
 	public void setDevVersion(String devVersion) {
 		this.devVersion = devVersion;
+	}
+
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
 	}
 }

@@ -145,10 +145,11 @@ public class PrjAction extends BaseAction{
 	 */
 	@At("/project/refer")
 	@Ok("jsp:views.project.refer-widget")
-	public QueryResult refer(@Param("::query.") Query query) {
+	public QueryResult refer(@Param("::query.") Query query,HttpServletRequest request) {
 		if (query == null) {
 			query = new Query();
 		}
+		request.setAttribute("query", query);
 		return this.prjService.query(query);
 	}
 	

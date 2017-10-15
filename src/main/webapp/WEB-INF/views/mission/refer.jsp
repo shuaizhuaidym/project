@@ -55,6 +55,13 @@
 			}
 		});
 	}
+	//搜索
+	
+	function inner_search(target){
+		
+			paging(target.form.id);
+	}
+
 </script>
 </head>
 <body>
@@ -69,7 +76,8 @@
 			<div class="tab-pane active" id="mission">
 				<form action="<%=path%>/mission/refer" id="missionForm">
 					<div class="inner-search-box">
-						<strong>关键字</strong><input name="keyword"/><button class="btn btn-success">搜索</button>
+						<strong>关键字</strong>
+						<input id="keyword" name="query.missionName" value="${query.missionName}"/><button type="button" onclick="inner_search(this);" class="btn btn-success">搜索</button>
 					</div>
 					<input type="hidden" name="query.assignTo" value="${query.assignTo}">
 					<table class="table table-bordered table-striped">
@@ -98,7 +106,7 @@
 			<div class="tab-pane" id="project-box">
 				<form action="<%=path%>/project/refer" id="projectForm">
 					<div class="inner-search-box">
-						<strong>关键字</strong><input name="keyword"/><button class="btn btn-success">搜索</button>
+						<strong>关键字</strong><input name="query.prjName" value=""/><button type="button" onclick="inner_search(this);" class="btn btn-success">搜索</button>
 					</div>
 					<table class="table table-bordered table-striped">
 						<tr>

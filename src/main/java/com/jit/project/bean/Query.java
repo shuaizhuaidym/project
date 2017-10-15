@@ -31,6 +31,8 @@ public class Query implements Condition {
 	private String engineer;
 	private String reporter;
 	
+	private String keyword;
+	
 	public Query() {
 		super();
 	}
@@ -227,5 +229,13 @@ public class Query implements Condition {
 
 	public void setUpdateTime2(Date updateTime2) {
 		this.updateTime2 = updateTime2;
+	}
+
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
 	}
 }
