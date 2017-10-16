@@ -48,6 +48,7 @@
 							<li><a href="<%=path %>/dic/list">角色设置</a></li>
 							<li class="divider"></li>
 							<li><a href="<%=path %>/dic/list">权限设置</a></li>
+							<li><a href="<%=path %>/about.jsp">关于</a></li>
 						</ul>
 					</li>
 				</ul>
