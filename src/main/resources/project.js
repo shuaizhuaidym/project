@@ -216,7 +216,10 @@ var ioc = {
 			},
 			bugService:{
 				refer:'bugService'
-			}
+			},
+			prjService : {
+				refer : 'prjService'
+			},
 		}
 	},
 	bugService:{

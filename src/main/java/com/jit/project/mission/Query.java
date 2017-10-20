@@ -30,6 +30,15 @@ public class Query implements Condition {
 		super();
 	}
 
+	public Query(Integer pageSize, String assignTo, String status) {
+		super();
+		this.pageSize = pageSize;
+		this.assignTo = assignTo;
+		this.status = status;
+	}
+
+
+
 	public Query(String assignTo) {
 		super();
 		this.assignTo = assignTo;
@@ -49,7 +58,8 @@ public class Query implements Condition {
 			buf.append(" and DATEDIFF(create_time,'").append(createTime).append("')>=0");
 		}
 		if(StringUtils.isNoneEmpty(status)){
-			buf.append(" and status = '").append(status).append("'");
+			buf.append(" and instr('").append(status).append("',status)>0");
+//			buf.append(" and status = '").append(status).append("'");
 		}
 		if(StringUtils.isNoneEmpty(module)){
 			buf.append(" and (module ='").append(module).append("'");

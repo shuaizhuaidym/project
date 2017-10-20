@@ -1,8 +1,9 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import="java.util.Date"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f"%>
 <%@taglib prefix="pg" uri="/WEB-INF/tags"%>
-<%@page import="java.util.Date"%>
 <%
 	String path = request.getContextPath();
 	Date today = new Date();
@@ -48,7 +49,7 @@
 	}
 </script>
 </head>
-<body>
+<body style="font-family: 宋体,Helvetica,Arial,sans-serif;">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 	<div class="container-narrow">
 		<div class="panel-heading">
@@ -72,34 +73,22 @@
 			<div class="span9">
 				<div class="panel-heading">
 					<span class="panel-title">我的任务&nbsp; 
-					<%-- <a data-toggle="modal" href="<%=path%>/daily/window" data-target="#dailyModal">
-							<i class=" icon-list-alt" title="写日报"></i>
-					</a> --%>
 					<a href="<%=path%>/daily/form"> <i class="icon-calendar" title="写日报"></i>写日报</a>
 					</span>
 				</div>
 				<div id="missionForm-box">
 					<!-- 任务列表 -->
 				</div>
+				<div class="panel-heading">
+					<span class="panel-title">我的项目</span>
+				</div>
+				<div id="projectForm-box">
+					<!-- 项目列表 -->
+				</div>
 			</div>
-
 		</div>
 
 		<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
-	</div>
-	<div id="dailyModal" class="modal hide fade" tabindex="-1">
-		<div class="modal-header form-title">
-			<button type="button" class="close" data-dismiss="modal">×</button>
-			<span id="myModalLabel">我的任务<f:formatDate value="<%=today%>" pattern="yyyy-MM-dd" /></span>
-		</div>
-		<div class="modal-body">
-			<!-- 加载远端日报页面 -->
-		</div>
-		<div class="modal-footer">
-			<button id="btnAppend" class="btn btn-warning">新增条目</button>
-			<button id="btnSave"data-dismiss="modal" class="btn btn-primary">保存</button>
-			<button id="btnDelete" class="btn btn-danger">删除</button>
-		</div>
 	</div>
 </body>
 </html>

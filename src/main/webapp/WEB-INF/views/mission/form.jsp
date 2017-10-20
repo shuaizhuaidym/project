@@ -118,8 +118,12 @@
 					<td>
 						<ui:select name="mission.assignTo" path="${obj.assignTo}" items="${users}" css="required"></ui:select>
 					</td>
-					<td><label class="control-label col-xs-2">产品子类</label></td>
-					<td><input type="text" id="mission_name" name="mission.productSubType"></td>
+					<!-- <td><label class="control-label col-xs-2">产品子类</label></td>
+					<td><input type="text" id="mission_name" name="mission.productSubType"></td> -->
+					<td><label class="control-label col-xs-2">任务类别</label></td>
+					<td>
+						<ui:select name="mission.taskClass" path="${obj.taskClass}" items="${classes}" css="required"></ui:select>
+					</td>
 				</tr>
 				<tr>
 					<td><label class="control-label col-xs-2">基线版本</label></td>

@@ -41,7 +41,13 @@ public class Query implements Condition {
 		super();
 		this.pageSize = pageSize;
 	}
-
+	
+	public Query(int pageSize, String status, String engineer) {
+		super();
+		this.pageSize = pageSize;
+		this.status = status;
+		this.engineer = engineer;
+	}
 
 	// 过滤SQL关键字
 	public String normalize(String sql) {
@@ -51,7 +57,7 @@ public class Query implements Condition {
 	public String toSql(Entity<?> entity) {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		StringBuilder sqlBuilder = new StringBuilder();
-		// TODO SQL injection
+		// FIXME SQL injection
 		sqlBuilder.append(" 1=1 ");
 		if (!StringUtils.isNullOrEmpty(prjName)) {
 			sqlBuilder.append(" and prj_name like '%").append(prjName).append("%'");

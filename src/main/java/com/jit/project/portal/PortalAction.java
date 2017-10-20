@@ -14,6 +14,7 @@ import org.nutz.mvc.annotation.Param;
 import com.jit.project.bug.service.BugServiceImpl;
 import com.jit.project.mission.MissionServiceImpl;
 import com.jit.project.mission.Query;
+import com.jit.project.project.service.PrjService;
 
 @InjectName("portalAction")
 public class PortalAction {
@@ -26,6 +27,10 @@ public class PortalAction {
 	// bug
 	@Inject("bugService")
 	BugServiceImpl bugService;
+	
+	// project
+	@Inject("prjService")
+	PrjService prjService;
 
 	/**
 	 * 我的首页
@@ -66,14 +71,35 @@ public class PortalAction {
 	@At("/portal/mission")
 	@Ok("jsp:views.portal.missionWidget")
 	public QueryResult mission(@Param("::query.") Query vo, HttpServletRequest request, HttpSession session) {
-		if (vo == null) {
-			vo = new Query();
-		}
 		String userName = (String) session.getAttribute("me");
-		vo.setAssignTo(userName);
+		if (vo == null) {
+			String processing = "未启动,进行中-需求分析中,进行中-设计中,进行中-开发中,进行中-测试中,延期-开发中,延期-测试中,进行中-设计评审中,进行中-等待测试";
+			vo = new Query(10, userName, processing);
+		}
 		request.setAttribute("query", vo);
 		QueryResult missions = this.missionService.query(vo);
+		System.out.println(vo.getPageSize());
+		System.out.println(missions.getPager().getPageSize());
 		return missions;
+	}
+	/**
+	 * 加载当前用户正在支持的项目
+	 * @param vo
+	 * @param request
+	 * @param session
+	 * @return
+	 */
+	@At("/portal/project")
+	@Ok("jsp:views.portal.projectWidget")
+	public QueryResult project(@Param("::query.") com.jit.project.bean.Query vo, HttpServletRequest request, HttpSession session){
+		String userName = (String) session.getAttribute("me");
+		if (vo == null) {
+			String processing = "未开始,进行中,等待反馈,暂停";
+			vo = new com.jit.project.bean.Query(10, processing,userName);
+		}
+		request.setAttribute("query", vo);
+		QueryResult projects = this.prjService.query(vo);
+		return projects;
 	}
 
 	/**
@@ -102,5 +128,13 @@ public class PortalAction {
 
 	public void setBugService(BugServiceImpl bugService) {
 		this.bugService = bugService;
+	}
+
+	public PrjService getPrjService() {
+		return prjService;
+	}
+
+	public void setPrjService(PrjService projecyService) {
+		this.prjService = projecyService;
 	}
 }

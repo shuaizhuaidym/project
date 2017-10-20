@@ -159,7 +159,7 @@ public class PagerTag extends TagSupport {
 		html.append("</input><span>页</span><input type=\"button\" onclick=\"goPage"+id+"()\" value=\"确定\" class=\"btn-jump\"></input>");
 		html.append("</ul>");
 		html.append("</div>");
-		html.append("<input type=\"hidden\" name=\"pageSize\" value=\"" + pageSize + "\"></input>");
+		html.append("<input type=\"hidden\" name=\"query.pageSize\" value=\"" + pageSize + "\"></input>");
 //		html.append("</form>");
 
 		// 创建JavaScript代码

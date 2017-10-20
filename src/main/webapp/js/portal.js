@@ -86,6 +86,20 @@ $(document).ready(function() {
 			alert('错误');
 		}
 	});
+	//load project support
+	$.ajax({
+		url : '/project/portal/project',
+		type : 'POST', // GET
+		async : true, // 或false,是否异步
+		timeout : 5000, // 超时时间
+		success : function(data, textStatus, jqXHR) {
+			$("#projectForm-box").html(data);
+		},
+		error : function(xhr, textStatus) {
+			alert('错误');
+		}
+	});
+	
 });
 //提交日报
 function sendDaily() {
