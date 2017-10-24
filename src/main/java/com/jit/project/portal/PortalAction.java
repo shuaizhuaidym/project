@@ -78,8 +78,6 @@ public class PortalAction {
 		}
 		request.setAttribute("query", vo);
 		QueryResult missions = this.missionService.query(vo);
-		System.out.println(vo.getPageSize());
-		System.out.println(missions.getPager().getPageSize());
 		return missions;
 	}
 	/**

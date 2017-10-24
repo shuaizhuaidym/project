@@ -15,14 +15,14 @@
 				<th class="w128px">项目名称</th>
 				<th>问题描述</th>
 				<th class="w108px">状态</th>
-				<th class="w64px">反馈时间</th>
+				<th class="w72px">反馈时间</th>
 			</tr>
 			<c:forEach var="project" items="${obj.list}" varStatus="index">
 				<tr>
 					<td>${project.prjName}</td>
-					<td>
-						${fn:substring(project.describtion, 0, 108)}
-						<c:if test="${fn:length(project.describtion)>108}">...</c:if>
+					<td title="${project.describtion}">
+						${fn:substring(project.describtion, 0, 64)}
+						<c:if test="${fn:length(project.describtion)>64}">...</c:if>
 					</td>
 					<td>${project.status}</td>
 					<td><f:formatDate value="${project.submitDate}" pattern="yyyy-MM-dd" /></td>
