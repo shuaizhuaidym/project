@@ -5,6 +5,7 @@ import org.nutz.el.opt.custom.CustomMake;
 import org.nutz.mvc.NutConfig;
 import org.nutz.mvc.Setup;
 
+import task.QcTask;
 import util.Sequence;
 
 import com.jit.project.auth.service.AuthorityService;
@@ -33,7 +34,7 @@ public class MvcSetup implements Setup {
 		auth.initFormPackage("com.jit.project");
 		auth.checkBasicRoles(dao.fetch(User.class, "admin"));
 		//启动QC同步定时任务
-//		new QcTask().executeFixedRate();
+		new QcTask().executeFixedRate();
 	}
 
 	public void destroy(NutConfig config) {

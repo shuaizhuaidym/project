@@ -32,24 +32,10 @@
 			
 		}
 	});
-	function paging(fid) {
-		$.ajax({
-			cache : false,
-			type : "POST",
-			url : $('#' + fid).attr('action'),
-			data : $('#' + fid).serialize(),
-			async : false,
-			error : function(request) {
-				alert("Connection error");
-			},
-			success : function(data) {
-				$("#" + fid + "-box").html(data);
-			}
-		});
-	}
+
 </script>
 </head>
-<body style="font-family: 宋体,Helvetica,Arial,sans-serif;">
+<body style="font-family: 宋体,Helvetica,sans-serif;">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 	<div class="container-narrow">
 		<div class="panel-heading">
@@ -61,30 +47,38 @@
 		</div>
 
 		<div class="row-fluid marketing">
-			<div class="span3">
+			<!-- <div class="span3">
 				<div class="panel-heading">
 					<span class="panel-title">我的缺陷</span>
 				</div>
-				<div id="bugForm-box">
-					<!-- BUG列表 -->
+				<div id="bugForm-box0">
+					BUG列表
 				</div>
-			</div>
+			</div> -->
 
-			<div class="span9">
+			<div class="span12">
 				<div class="panel-heading">
 					<span class="panel-title">我的任务&nbsp; 
 					<a href="<%=path%>/daily/form"> <i class="icon-calendar" title="写日报"></i>写日报</a>
 					</span>
 				</div>
 				<div id="missionForm-box">
-					<!-- 任务列表 -->
+					<!-- 任务列表：任务名称|任务状态|计划完成时间|已投入人力|带发布版本 -->
 				</div>
+				
 				<div class="panel-heading">
 					<span class="panel-title">我的项目</span>
 				</div>
 				<div id="projectForm-box">
-					<!-- 项目列表 -->
+					<!-- 项目列表：项目名称|问题内容|状态|开始时间 -->
 				</div>
+				<div class="panel-heading">
+					<span class="panel-title">我的BUG</span>
+				</div>
+				<div id="bugForm-box">
+					<!-- BUG列表：缺陷ID|缺陷摘要|状态|开始时间 -->
+				</div>
+				
 			</div>
 		</div>
 

@@ -159,10 +159,7 @@ public class ChartService extends NameEntityService<Project> implements IChartSe
 				+ "state,start_date,end_date,daily_date, SUM(hours) AS hours"
 				+" FROM	v_mission_detail_4_dept msn WHERE"
 				+" msn.daily_date BETWEEN @monday AND DATE_ADD(@sunday, INTERVAL 1 DAY)"
-				+" AND ("
-				+" instr(state, @state_run) > 0	"
-				+" OR (msn.state = '已完成' AND end_date BETWEEN @monday AND DATE_ADD(@sunday, INTERVAL 1 DAY))"
-				+") GROUP BY mission_name");
+				+" GROUP BY mission_name");
 		
 		sql.params().set("state_run", STATE_RUN);
 		sql.params().set("state_end", STATE_END);

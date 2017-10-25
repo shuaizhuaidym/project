@@ -139,3 +139,19 @@ function refer(index, msg) {
 function delDailyItem(divID){
 	$("div[lang=daily_item_" + divID +"]").remove();
 }
+//公用分页查询
+function paging(fid) {
+	$.ajax({
+		cache : false,
+		type : "POST",
+		url : $('#' + fid).attr('action'),
+		data : $('#' + fid).serialize(),
+		async : false,
+		error : function(request) {
+			alert("Connection error");
+		},
+		success : function(data) {
+			$("#" + fid + "-box").html(data);
+		}
+	});
+}

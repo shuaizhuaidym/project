@@ -37,7 +37,6 @@ public class DictionaryFilter implements Filter {
 		if(http.getContextPath().indexOf("mission")>=0){
 			//TODO
 		}
-		log.info("字典已设置");
 		chain.doFilter(request, response);
 	}
 
