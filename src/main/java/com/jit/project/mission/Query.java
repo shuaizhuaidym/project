@@ -68,7 +68,8 @@ public class Query implements Condition {
 		if(StringUtils.isNoneEmpty(devVersion)){
 			buf.append(" and publish_version ='").append(devVersion).append("'");
 		}
-		buf.append(" order by create_time desc");
+		//进行中的在前、最新创建的在前
+		buf.append(" ORDER BY m.`status` DESC,create_time DESC");
 		return buf.toString();
 	}
 

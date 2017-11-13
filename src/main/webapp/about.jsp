@@ -19,6 +19,7 @@
 
 .version_list tr td:nth-child(odd) {
 	text-align: right;
+	width:20%;
 	vertical-align:middle;
 }
 
@@ -66,6 +67,23 @@
 					<td colspan="3">
 						<pre>1、修复【写日报页面】中【任务选择】弹出窗口翻页后查询信息丢失BUG
 2、【写日报页面】中【任务选择】弹出窗口增加根据任务/项目名称查询功能</pre>
+					</td>
+				</tr>
+			</table>
+			<table class="table table-bordered table-striped">
+				<tr>
+					<td class="version_title">版本</td>
+					<td colspan="3">0.1.2GA</td>
+				</tr>
+				<tr>
+					<td>发布日期</td>
+					<td colspan="3">2017-10-31</td>
+				</tr>
+				<tr>
+					<td>发布说明</td>
+					<td colspan="3">
+						<pre>1、首页重构、改为一列三行自上而下为：任务、项目、BUG
+2、各个列表数据项做相应调整</pre>
 					</td>
 				</tr>
 			</table>

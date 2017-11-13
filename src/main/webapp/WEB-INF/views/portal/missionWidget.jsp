@@ -14,16 +14,16 @@
 				<th>任务名称</th>
 				<th>任务状态</th>
 				<th>计划完成时间</th>
-				<th>已投入人力</th>
+				<th>已投入人力(h)</th>
 				<th>计划发布版本</th>
 			</tr>
 			<c:forEach var="mission" items="${obj.list}" varStatus="index">
 				<tr>
 					<td>${mission.missionName}</td>
 					<td>${mission.status}</td>
-					<td><f:formatDate value="${mission.deadline}" pattern="yyyy-MM-dd" /></td>
+					<td><f:formatDate value="${mission.planEnd}" pattern="yyyy-MM-dd" /></td>
 					<td>${mission.totalHours}</td>
-					<td>${mission.productVersion}</td>
+					<td>${mission.publishVersion}</td>
 				</tr>
 			</c:forEach>
 		</tbody>
