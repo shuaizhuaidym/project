@@ -89,6 +89,7 @@ public class DailyAction {
 		if (query == null) {
 			query = new Query();
 		}
+		query.setScope((String)request.getSession().getAttribute("me"));
 		Map<String, String> owners = this.userService.asDic();
 		List<Dictionary> dicts = this.dicService.query(new com.jit.project.dictionary.bean.Query(1,255)).getList(Dictionary.class);
 		request.setAttribute("dicts", dicts);

@@ -69,7 +69,7 @@ public class Query implements Condition {
 			buf.append(" and publish_version ='").append(devVersion).append("'");
 		}
 		//进行中的在前、最新创建的在前
-		buf.append(" ORDER BY m.`status` DESC,create_time DESC");
+		buf.append(" ORDER BY `status` DESC,create_time DESC");
 		return buf.toString();
 	}
 

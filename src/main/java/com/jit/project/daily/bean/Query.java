@@ -13,6 +13,8 @@ public class Query extends AbstractQuery implements Condition {
 	private static final long serialVersionUID = 8887767994742296510L;
 
 	private String ownerName;
+	//默认只能查询当前用户自己的和他人已经提交的日报
+	private String scope;
 	
 	private String _group;
 
@@ -28,6 +30,8 @@ public class Query extends AbstractQuery implements Condition {
 		Criteria cri = Cnd.cri();
 		if (StringUtils.isNoneBlank(ownerName)) {
 			cri.where().andEquals("owner_name", ownerName);
+		}else{
+			cri.where().andEquals("owner_name", scope).orEquals("status", "1");
 		}
 		if(StringUtils.isNotBlank(_group)){
 			cri.where().and(Cnd.exp("_group", "=", _group));
@@ -87,5 +91,13 @@ public class Query extends AbstractQuery implements Condition {
 
 	public void set_group(String _group) {
 		this._group = _group;
+	}
+
+	public String getScope() {
+		return scope;
+	}
+
+	public void setScope(String scope) {
+		this.scope = scope;
 	}
 }
