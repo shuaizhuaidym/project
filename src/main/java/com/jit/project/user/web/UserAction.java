@@ -79,7 +79,7 @@ public class UserAction {
 		OperationResult map = new OperationResult();
 		User user = userService.fetch(username);
 		if (user == null) {
-			throw new LockedAccountException("Account [" + username + "] 不存在.");
+			throw new LockedAccountException("账号 [" + username + "] 不存在.");
 		} else {
 			String _pass = new Sha256Hash(password, user.getSalt()).toHex();
 			if (_pass.equalsIgnoreCase(user.getPassword())) {
@@ -89,7 +89,7 @@ public class UserAction {
 				SecurityUtils.getSubject().login(new SimpleShiroToken(user));
 				return map.setStatus(200);
 			} else {// 提示错误信息
-				throw new LockedAccountException("Account [" + username + "] 密码错误.");
+				throw new LockedAccountException("账号 [" + username + "] 密码错误.");
 			}
 		}
 	}

@@ -11,16 +11,19 @@
 <link href="<%=path%>/css/bootstrap.min.css" rel="stylesheet">
 <link href="<%=path%>/css/commom.css" rel="stylesheet">
 <style type="text/css">
-body{
+body {
 	background: #FFFFFF url(<%=path%>/images/skey-lake.jpg) no-repeat;
+	font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue,
+		PingFang SC, Microsoft YaHei, Source Han Sans SC, Noto Sans CJK SC,
+		WenQuanYi Micro Hei, sans-serif;
 }
+
 .form-signin {
-	background: rgba(255, 255, 255, 0.5) none repeat scroll 0 0;
-	/* border: 1px solid #e5e5e5; */
-	box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.5);
+	background: rgba(255, 255, 255, 0.6) none repeat scroll 0 0;
+	box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.6);
 	border-radius: 5px;
 	margin: 0 auto 20px;
-	max-width: 480px;
+	max-width: 320px;
 	padding: 19px 29px 29px;
 }
 
@@ -37,7 +40,15 @@ body{
 	font-weight: bold
 }
 
-.last1 {
+.control-group {
+	margin-bottom: 32px;
+}
+
+.slogon {
+	margin-top: 15px;
+	color: #4a90e2;
+	font-size: 32px;
+	text-align:center;
 	
 }
 </style>
@@ -45,18 +56,19 @@ body{
 <body>
 
 	<form action="<%=path%>/user/authenticate" class="form-horizontal form-signin" method="post">
+		<div class="control-group slogon">
+			技术改变世界
+		</div>
 		<div class="control-group">
 			<h3 style="color:red">${obj.message}</h3>
 		</div>
 		<div class="control-group">
-			<label class="control-label" for="inputEmail">账号</label>
-			<div class="controls">
+			<div class="">
 				<input type="text" name="account" placeholder="Account" class="text-full">
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label" for="inputPassword">密码</label>
-			<div class="controls">
+			<div class="">
 				<input type="password" name="password" placeholder="Password" class="text-full">
 			</div>
 		</div>
@@ -68,7 +80,7 @@ body{
 		</div> -->
 		<div class="control-group">
 			<label class="control-label" for="inputPassword"></label>
-			<div class="controls">
+			<div class="">
 				<button type="submit" class="btn btn-large btn-full btn-primary">登录</button>
 			</div>
 		</div>
