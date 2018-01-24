@@ -46,7 +46,7 @@ body {
 
 .slogon {
 	margin-top: 15px;
-	color: #4a90e2;
+	color: #ffff00;
 	font-size: 32px;
 	text-align:center;
 	
@@ -64,12 +64,12 @@ body {
 		</div>
 		<div class="control-group">
 			<div class="">
-				<input type="text" name="account" placeholder="Account" class="text-full">
+				<input type="text" name="account" placeholder="账号" class="text-full">
 			</div>
 		</div>
 		<div class="control-group">
 			<div class="">
-				<input type="password" name="password" placeholder="Password" class="text-full">
+				<input type="password" name="password" placeholder="口令" class="text-full">
 			</div>
 		</div>
 		<!-- <div class="control-group" style="margin-bottom: 6px;">
