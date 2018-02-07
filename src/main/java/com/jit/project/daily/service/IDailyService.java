@@ -50,4 +50,12 @@ public interface IDailyService {
 	 */
 	public void upateWith(Daily daily);
 	
+	/**
+	 * 查询指定（暂存）状态的日报
+	 * @param ownerName
+	 * @param status
+	 * @return
+	 */
+	public List<Daily> getStagedDaily(String ownerName,Integer status);
+	
 }

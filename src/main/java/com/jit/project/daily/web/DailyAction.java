@@ -58,7 +58,12 @@ public class DailyAction {
 	@At("/daily/form")
 	@Ok("jsp:views.daily.form")
 	@RequiresUser
-	public String form() {
+	public String form(HttpSession session) {
+		String who = (String) session.getAttribute("me");
+		List<Daily> staged = this.dailyService.getStagedDaily(who, 0);
+		if (staged != null && !staged.isEmpty()) {//有暂存的日报，先处理暂存
+			//TODO
+		}
 		String today = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 		return today;
 	}

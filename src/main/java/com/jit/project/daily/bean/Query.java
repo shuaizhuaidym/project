@@ -23,6 +23,18 @@ public class Query extends AbstractQuery implements Condition {
 	private String createDate2;
 
 	private String missionName;
+	
+	private Integer status;
+	
+	public Query() {
+		super();
+	}
+
+	public Query(String ownerName, Integer status) {
+		super();
+		this.ownerName = ownerName;
+		this.status = status;
+	}
 
 	@Override
 	public String toSql(Entity<?> entity) {
@@ -47,6 +59,9 @@ public class Query extends AbstractQuery implements Condition {
 		// TODO precision
 		if (StringUtils.isNoneBlank(missionName)) {
 //			buf.append(SQLUtil.varchar("mission_name", missionName));
+		}
+		if (null != status) {
+			cri.where().andEquals("status", status);
 		}
 		cri.getOrderBy().desc("create_date");
 //		buf.append(" order by  create_date desc ");
@@ -99,5 +114,13 @@ public class Query extends AbstractQuery implements Condition {
 
 	public void setScope(String scope) {
 		this.scope = scope;
+	}
+
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
 	}
 }

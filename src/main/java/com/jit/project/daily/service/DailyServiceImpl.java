@@ -124,4 +124,14 @@ public class DailyServiceImpl extends IdNameEntityService<Daily> implements IDai
 		daily.setItems(created);
 		this.dao().insertLinks(daily, "items");
 	}
+	
+	/**
+	 * 查询某人名下 指定状态的日报
+	 * @return
+	 */
+	public List<Daily> getStagedDaily(String ownerName,Integer status){
+		Query query = new Query(ownerName, status);
+		List<Daily> staged = this.dao().query(Daily.class, query);
+		return staged;
+	}
 }
