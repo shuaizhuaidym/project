@@ -45,11 +45,12 @@ body {
 }
 
 .slogon {
+	font-weight: bold;
 	margin-top: 15px;
 	color: #4a90e2;
-	font-size: 32px;
-	text-align:center;
-	
+	font-size: 48px;
+	text-align: center;
+	font-family: STCaiyun
 }
 </style>
 </head>
@@ -87,4 +88,43 @@ body {
 
 	</form>
 </body>
+<script type="text/javascript">
+	function dim(idd) {
+		return document.getElementById(idd);
+	}
+
+	function support() {
+		var input = document.createElement('input');
+		if ("placeholder" in input) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	var node = dim('query_prjName');
+	function placeholder(node, pcolor) {
+
+		if (node && !support()) {
+
+			placeholder = node.getAttribute('placeholder') || '';
+			node.onfocus = function() {
+				if (node.value == placeholder) {
+					node.value = '';
+					node.style.color = "";
+				}
+			}
+			node.onblur = function() {
+				if (node.value == '') {
+					node.value = placeholder;
+					node.style.color = pcolor;
+				}
+			}
+			node.value = placeholder;
+			node.style.color = pcolor;
+
+		}
+	}
+	placeholder(node, "#AAA");
+</script>
 </html>
