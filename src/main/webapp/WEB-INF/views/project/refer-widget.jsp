@@ -6,7 +6,7 @@
 %>
 <form action="<%=path%>/project/refer" id="projectForm">
 	<div class="inner-search-box">
-		<strong>关键字</strong><input name="query.prjName" value="${query.prjName}" />
+		<strong>关键字</strong><input id="query_prjName" name="query.prjName" value="${query.prjName}" />
 		<button type="button" onclick="inner_search(this);" class="btn btn-success">搜索</button>
 	</div>
 	<table class="table table-bordered table-striped">
