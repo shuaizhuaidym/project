@@ -12,19 +12,22 @@
 <link href="<%=path%>/css/commom.css" rel="stylesheet">
 <style type="text/css">
 body {
-	background: #FFFFFF url(<%=path%>/images/skey-lake.jpg) no-repeat;
+	background: #FFFFFF url(<%=path%>/images/skey-lake.png) no-repeat;
 	font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue,
 		PingFang SC, Microsoft YaHei, Source Han Sans SC, Noto Sans CJK SC,
 		WenQuanYi Micro Hei, sans-serif;
+		background-size:cover;
 }
 
 .form-signin {
-	background: rgba(255, 255, 255, 0.6) none repeat scroll 0 0;
+	backgroundColor:#FFF;
+	background: rgba(255, 255, 255, 0.8) none repeat scroll 0 0;
 	box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.6);
-	border-radius: 5px;
+	border-radius: 1px;
 	margin: 0 auto 20px;
 	max-width: 320px;
 	padding: 19px 29px 29px;
+	border-top: 5px #ff8140 solid;
 }
 
 .btn-full {
@@ -46,18 +49,21 @@ body {
 
 .slogon {
 	font-weight: bold;
-	margin-top: 15px;
-	color: #4a90e2;
+	padding:0;
+	color: #FF9933;
 	font-size: 48px;
+	line-height:48px;
 	text-align: center;
-	font-family: STCaiyun
+	letter-spacing:4px;
+	font-family: STCaiyun;
+	display: block!important;
 }
 </style>
 </head>
 <body>
 
 	<form action="<%=path%>/user/authenticate" class="form-horizontal form-signin" method="post">
-		<div class="control-group slogon">
+		<div class="slogon">
 			技术改变世界
 		</div>
 		<div class="control-group">
