@@ -38,6 +38,19 @@
 .compress {
 	overflow: hidden
 }
+
+.search-table {
+	width: 100%;
+	background-color: #F9F9F9;
+	border: 1px #DDDDDD solid;
+	margin-bottom: 20px;
+}
+
+.search-table td:nth-child(2n+1) {
+	text-align: right;
+	padding-right:8px;
+}
+.ccenter{text-align:center!important}
 </style>
 
 <script type="text/javascript">
@@ -56,13 +69,12 @@
 	<div class="container-fluid">
 		<fieldset>
 			<legend>
-				<span> 项目列表<a href="<%=path%>/form" style="margin-left: 50px; color: white">+新建项目</a>
-				</span>
+				<span> 项目列表<a href="<%=path%>/form" style="margin-left: 50px; color: white">+新建项目</a></span>
 			</legend>
 		</fieldset>
 		<form id="queryForm" action="<%=path%>/query" method="post">
 			<div class="table-responsive">
-				<table class="table table-bordered table-striped">
+				<table class="search-table">
 					<tr>
 						<td>项目名称</td>
 						<td class="w12"><input type="text" name="query.prjName" class="qt" value="<%=query.getPrjName()%>" /></td>
@@ -106,7 +118,7 @@
 					</tr>
 					<tr>
 						<td>反馈日期(起)</td>
-						<td><input type="text" id="sub_date1" name="query.submitDate1" class="datetime wp98" /></td>
+						<td><input type="text" id="sub_date1" name="query.submitDate1" class="datetime qt" /></td>
 						<td>反馈日期(止)</td>
 						<td><input type="text" id="sub_date2" name="query.submitDate2" class="datetime wp98" /></td>
 						<td>更新日期(起)</td>
@@ -118,7 +130,7 @@
 				<table class="table table-bordered table-striped">
 					<thead>
 						<tr>
-							<th class="w3">序号</th>
+							<th class="w3 t_center">序号</th>
 							<th class="w12">项目名称</th>
 							<th class="w8">问题类型</th>
 							<th class="w36">详细描述</th>
@@ -133,7 +145,7 @@
 						<c:forEach var="prj" items="<%=rst.getList()%>" varStatus="index">
 							<tr>
 								<!--  style="background-color:${prj.color}" -->
-								<td>${(pageNo-1)*pageSize + index.count}</td>
+								<td class="ccenter">${(pageNo-1)*pageSize + index.count}</td>
 								<td><a href="/project/edit?prjid=${prj.prjID}">${prj.prjName}</a></td>
 								<td>${prj.issueType}</td>
 								<td>${prj.shortDesc}</td>

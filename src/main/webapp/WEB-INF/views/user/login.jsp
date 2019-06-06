@@ -9,22 +9,21 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>登录</title>
 <link href="<%=path%>/css/bootstrap.min.css" rel="stylesheet">
-<link href="<%=path%>/css/commom.css" rel="stylesheet">
 <style type="text/css">
 body {
 	background: #FFFFFF url(<%=path%>/images/skey-lake.png) no-repeat;
 	font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue,
 		PingFang SC, Microsoft YaHei, Source Han Sans SC, Noto Sans CJK SC,
 		WenQuanYi Micro Hei, sans-serif;
-		background-size:cover;
+	background-size: cover;
 }
 
-.form-signin {
-	backgroundColor:#FFF;
+.form-login {
+	backgroundColor: #FFF;
 	background: rgba(255, 255, 255, 0.8) none repeat scroll 0 0;
 	box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.6);
 	border-radius: 1px;
-	margin: 0 auto 20px;
+	margin: 64px auto 20px;
 	max-width: 320px;
 	padding: 19px 29px 29px;
 	border-top: 5px #ff8140 solid;
@@ -47,22 +46,46 @@ body {
 	margin-bottom: 32px;
 }
 
+.header {
+	padding: 0 40px;
+	height: 70px;
+	position: relative;
+	z-index: 2;
+	background:RGB(230,239,250);
+	overflow: hidden;
+}
+
+.headerLogo {
+	top: 16px;
+	left: 40px;
+	display: inline-block;
+	width: 192px;
+	height: 43px;
+	position: absolute;
+	background:url("../img/logo-light.png") no-repeat scroll;
+	background-size: 100% 100%;
+	background-position: 0 0;
+	z-index: 3;
+}
+
 .slogon {
 	font-weight: bold;
-	padding:0;
+	padding: 0;
 	color: #FF9933;
 	font-size: 48px;
-	line-height:48px;
+	line-height: 48px;
 	text-align: center;
-	letter-spacing:4px;
+	letter-spacing: 4px;
 	font-family: STCaiyun;
-	display: block!important;
+	display: block !important;
 }
 </style>
 </head>
 <body>
-
-	<form action="<%=path%>/user/authenticate" class="form-horizontal form-signin" method="post">
+	<div class="header">
+	<div class="headerLogo"></div>
+	</div>
+	<form action="<%=path%>/user/authenticate" class="form-horizontal form-login" method="post">
 		<div class="slogon">
 			技术改变世界
 		</div>

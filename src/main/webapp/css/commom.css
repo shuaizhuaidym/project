@@ -7,6 +7,10 @@ body {
 	padding-bottom: 40px;
 	height:100%
 }
+body {
+	padding-top: 60px;
+	padding-bottom: 40px;
+}
 
 .frm td:nth-child(even) {
 	text-align: left;
@@ -36,6 +40,9 @@ input {
 .footer{
 	margin:0 auto;
 	text-align: center;
+	padding-bottom:10px;
+	background-color:#055db5;
+	color:#FFF
 }
 .w-input {
 	width: 92%
