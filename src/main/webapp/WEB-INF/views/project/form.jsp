@@ -28,7 +28,7 @@
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 
-	<div class="container container_frm">
+	<div class="container-fluid">
 		<form id="frm_project" action="<%=path %>/create" method="post" class="form">
 			<fieldset>
 				<legend><span>新建项目</span></legend>

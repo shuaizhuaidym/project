@@ -138,7 +138,7 @@
 							<th class="w8">更新日期</th>
 							<th class="w6">负责人</th>
 							<th class="w6">当前状态</th>
-							<th class="w3">操作</th>
+							<th class="w3 t_center">操作</th>
 						</tr>
 					</thead>
 					<tbody>
