@@ -34,75 +34,75 @@
 				<legend><span>新建项目</span></legend>
 			</fieldset>
 
-			<table class="table table-bordered table-striped">
+			<table class="table-frm">
 				<tr>
-					<td><label class="control-label col-xs-2">项目名称</label></td>
+					<th>项目名称</th>
 					<td><input type="text" id="prj_name" name="project.prjName" class="required"></td>
-					<td><label class="control-label col-xs-2">所属行业</label></td>
+					<th>所属行业</th>
 					<td>
 						<dic:dic items="${dicts}" type="所属行业" name="project.industry" css="required"></dic:dic>
 					</td>
 				</tr>
 				<tr>
-					<td><label class="control-label col-xs-2">项目类型</label></td>
+					<th>项目类型</th>
 					<td>
 						<dic:dic items="${dicts}" type="任务类型" name="project.prjType" ></dic:dic>
 					</td>
-					<td><label class="control-label col-xs-2">相关产品</label></td>
+					<th>相关产品</th>
 					<td>
 						<ui:select name="project.productName" path="${prj.productName}" items="${products}" css="required"></ui:select>
 					</td>
 				</tr>
 				<tr>
-					<td><label class="control-label col-xs-2">问题类型</label></td>
+					<th>问题类型</th>
 					<td>
 						<dic:dic items="${dicts}" type="问题类型" name="project.issueType" css="required"></dic:dic>
 					</td>
-					<td><label class="control-label col-xs-2">产品版本</label></td>
+					<th>产品版本</th>
 					<td><input type="text" id="prj_version" name="project.prudectVersion" class="required"></td>
 				</tr>
 				<tr>
-					<td><label class="control-label col-xs-2">反馈日期</label></td>
+					<th>反馈日期</th>
 					<td><input type="text" id="submitDate" name="project.submitDate" class="required datetime"></td>
-					<td><label class="control-label col-xs-2">当前状态</label></td>
+					<th>当前状态</th>
 					<td>
 						<dic:dic id="slt_state" items="${dicts}" type="项目状态" name="project.status" css="required"></dic:dic>
 					</td>
 				</tr>
 				<tr>
-					<td><label class="control-label col-xs-2">详细描述</label></td>
+					<th>详细描述</th>
 					<td colspan="3"><textarea id="prj_desc" name="project.describtion" class="x-text required" rows="3"></textarea></td>
 				</tr>
 				<tr>
-					<td><label class="control-label col-xs-2">报告人</label></td>
+					<th>报告人</th>
 					<td>
 						<input type="text" name="project.reporter" class="required"/>
 					</td>
-					<td><label class="control-label col-xs-2">联系方式</label></td>
+					<th>联系方式</th>
 					<td><input type="text" name="project.contact" class="required"></td>
 				</tr>
 				<tr>
-					<td><label class="control-label col-xs-2">负责人</label></td>
+					<th>负责人</th>
 					<td>
 						<ui:select name="project.engineer" path="${prj.engineer}" items="${mpEngineer}" css="required"></ui:select>
 					</td>
-					<td><label class="control-label col-xs-2">结束日期</label></td>
+					<th>结束日期</th>
 					<td><input type="text" name="project.finishDate" class="datetime"></td>
 				</tr>
 				<tr>
-					<td><label class="control-label col-xs-2">处理过程</label></td>
+					<th>处理过程</th>
 					<td colspan="3"><textarea name="project.process" class="x-text" rows="8"></textarea></td>
 				</tr>
 				<tr>
-					<td><label class="control-label col-xs-2">改进措施</label></td>
+					<th>改进措施</th>
 					<td colspan="3"><input type="text" id="prj_impr" name="project.improvement" class="x-text" /></td>
 				</tr>
 				<tr>
-					<td><label class="control-label col-xs-2">备注</label></td>
+					<th>备注</th>
 					<td colspan="3"><input type="text" id="prj_comm" name="project.comments" class="x-text" /></td>
 				</tr>
 				<tr>
-					<td><label class="control-label col-xs-2">人力成本(人*周)</label></td>
+					<th>人力成本(人*周)</th>
 					<td colspan="3"><input type="text" name="project.laborCosts" class="x-text number" /></td>
 				</tr>
 			</table>
