@@ -36,7 +36,7 @@ input {
 .full-row {
 	width: 100%
 }
-.x-text{width:90%}
+.x-text{width:100%}
 .footer{
 	margin:0 auto;
 	text-align: center;
@@ -102,9 +102,22 @@ input {
 	border: 1px solid #08c;
 }
 .table-frm{
-	border-top: 1px solid #ddd;
+	width:100%;
+	border: 1px solid #ddd;
 }
-.table-frm > tr >th{
+.table-frm > tbody > tr > th{
+	width:120px;
 	text-align:right;
 	font-weight: 700;
+	padding:6px 32px 6px 0;
+}
+.table-frm > tbody > tr > td{
+	padding:6px 32px 6px 0;
+	padding-top:12px;
+}
+.table-frm > tbody > tr > td > input{
+	width:100%;
+}
+.table-frm > tbody > tr >td>select{
+	width:100%;
 }

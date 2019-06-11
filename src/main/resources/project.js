@@ -13,7 +13,7 @@ var ioc = {
 		},
 		fields : {
 			driverClassName : "com.mysql.jdbc.Driver",
-			url : "jdbc:mysql://127.0.0.1:3306/project?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false",
+			url : "jdbc:mysql://192.168.9.118:3306/project?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false",
 			username : "root",
 			password : "admin",
 			initialSize : 10,
