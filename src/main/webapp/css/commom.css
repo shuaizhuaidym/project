@@ -109,7 +109,7 @@ input {
 	width:120px;
 	text-align:right;
 	font-weight: 700;
-	padding:6px 32px 6px 0;
+	padding:6px 8px 2px 0;
 }
 .table-frm > tbody > tr > td{
 	padding:6px 32px 6px 0;
@@ -120,4 +120,16 @@ input {
 }
 .table-frm > tbody > tr >td>select{
 	width:100%;
+}
+td.required:after{
+	box-sizing: border-box;
+	color: #ff5d5d;
+	content: "*";
+	display: inline-block;
+	font-size: 14px;
+	position: absolute;
+	margin:3px 0 0 5px;
+}
+.btn-wide{
+	min-width: 120px;
 }

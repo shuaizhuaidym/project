@@ -47,7 +47,7 @@
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
-	<div class="container">
+	<div class="container-fluid">
 		<form id="frm_mission" action="update" method="post">
 			<input type="hidden" name="mission.missionID" value="${obj.missionID}"/>
 			<fieldset>
@@ -56,118 +56,117 @@
 				</legend>
 			</fieldset>
 
-			<table class="table table-bordered table-striped">
+			<table class="table-frm">
 				<tr>
-					<td><label class="control-label col-xs-2">任务名称</label></td>
-					<td colspan="3"><input type="text" id="mission_name" name="mission.missionName" value="${obj.missionName}" class="required w-input"></td>
+					<th>任务名称</th>
+					<td colspan="3" class="required"><input type="text" id="mission_name" name="mission.missionName" value="${obj.missionName}" class="required w-input"></td>
 				</tr>
 				<tr>
-					<td><label class="control-label col-xs-2">任务摘要</label></td>
+					<th>任务摘要</th>
 					<td colspan="3"><input type="text" id="mission_name" name="mission.summary" value="${obj.summary}" class="required w-input"></td>
 				</tr>
 				<tr>
-					<td><label class="control-label col-xs-2">任务内容</label></td>
-					<td colspan="3"><textarea id="mission_desc" name="mission.content"
-							style="width: 92%; height: 100px;">${obj.content}</textarea></td>
+					<th>任务内容</th>
+					<td colspan="3" class="required"><textarea id="mission_desc" name="mission.content" class="x-text">${obj.content}</textarea></td>
 				</tr>
 				<tr>
-					<td><label class="control-label col-xs-2">所属产品</label></td>
+					<th>所属产品</th>
 					<td>
 						<ui:select name="mission.productName" path="${obj.productName}" items="${products}" css="required"></ui:select>
 					</td>
-					<td><label class="control-label col-xs-2">任务类型</label></td>
+					<th>任务类型</th>
 					<td>
 						<ui:select name="mission.type" path="${obj.type}" items="${types}" css="required"></ui:select>
 					</td>
 				</tr>
 				<tr>
-					<td><label class="control-label col-xs-2">所属模块</label></td>
+					<th>所属模块</th>
 					<td>
 						<ui:select name="mission.module" path="${obj.module}" items="${modules}" css="required"></ui:select>
 					</td>
-<%-- 					<td><label class="control-label col-xs-2">任务类别</label></td>
+<%-- 					<th>任务类别</th>
 					<td>
 						<ui:select name="mission.taskClass" path="${obj.taskClass}" items="${classes}" css="required"></ui:select>
 					</td> --%>
-					<td><label class="control-label col-xs-2">当前状态</label></td>
+					<th>当前状态</th>
 					<td>
 						<ui:select name="mission.status" path="${obj.status}" items="${status}" css="required"></ui:select>
 					</td>
 					
 				</tr>
-<%-- 				<tr><td><label class="control-label col-xs-2">产品版本</label></td>
+<%-- 				<tr><th>产品版本</th>
 					<td><input type="text" id="prj_version" name="mission.productVersion" value="${obj.productVersion}"></td>
-					<td><label class="control-label col-xs-2">当前状态</label></td>
+					<th>当前状态</th>
 					<td>
 						<ui:select name="mission.status" path="${obj.status}" items="${status}"></ui:select>
 					</td>
 				</tr> --%>
 				<%-- <tr>
-					<td><label class="control-label col-xs-2">上级任务</label></td>
+					<th>上级任务</th>
 					<td><input type="text" id="mission_name" name="mission.parentID" value="${obj.parentID}"></td>
-					<td><label class="control-label col-xs-2">截止日期</label></td>
+					<th>截止日期</th>
 					<td><input type="text" id="mission_name" name="mission.deadline" 
 					value="<f:formatDate value="${obj.deadline}" pattern="yyyy-MM-dd" />" class="datetime"></td>
 				</tr> --%>
 				<tr>
-				<td><label class="control-label col-xs-2">指派给</label></td>
+				<th>指派给</th>
 					<td>
 						<ui:select name="mission.assignTo" path="${obj.assignTo}" items="${users}"></ui:select>
 					</td>
 					
-					<td><label class="control-label col-xs-2">产品子类</label></td>
+					<th>产品子类</th>
 					<td><input type="text" id="mission_name" name="mission.productSubType" value="${obj.productSubType}" class="required"></td>
 				</tr>
 				<tr>
-					<td><label class="control-label col-xs-2">基线版本</label></td>
+					<th>基线版本</th>
 					<td><input type="text" id="prj_version" name="mission.productBaseVersion" value="${obj.productBaseVersion}" class="required"></td>
-					<td><label class="control-label col-xs-2">负责团队</label></td>
+					<th>负责团队</th>
 					<td><input type="text" id="mission_name" name="mission.teamID" value="${obj.teamID}" class="required"></td>
 				</tr>
 				<!-- publish version,industry -->
 				<tr>
-					<td><label class="control-label col-xs-2">计划发布版本</label></td>
+					<th>计划发布版本</th>
 					<td><input type="text" id="p_version" name="mission.publishVersion" value="${obj.publishVersion}" class="required"></td>
-					<td><label class="control-label col-xs-2">发起行业</label></td>
+					<th>发起行业</th>
 					<td>
 					<ui:select name="mission.industryName" path="${obj.industryName}" items="${industry}" css="required"></ui:select>
 					<input type="hidden" id="industryID" name="industryID" value="${obj.industryName}"/>
 					</td>
 				</tr>				
 				<tr>
-					<td><label class="control-label col-xs-2">计划开始时间</label></td>
+					<th>计划开始时间</th>
 					<td><input type="text" id="mission_name" name="mission.planStart"
 					value="<f:formatDate value="${obj.planStart}" pattern="yyyy-MM-dd" />" class="datetime required"></td>
-					<td><label class="control-label col-xs-2">开始时间</label></td>
+					<th>开始时间</th>
 					<td><input type="text" id="mission_name" name="mission.startDate" 
 					value="<f:formatDate value="${obj.startDate}" pattern="yyyy-MM-dd" />" class="datetime"></td>
 				</tr>
 				<tr>
-					<td><label class="control-label col-xs-2">计划结束时间</label></td>
+					<th>计划结束时间</th>
 					<td><input type="text" id="mission_name" name="mission.planEnd" 
 					value="<f:formatDate value="${obj.planEnd}" pattern="yyyy-MM-dd" />" class="datetime required"></td>
-					<td><label class="control-label col-xs-2">结束时间</label></td>
+					<th>结束时间</th>
 					<td><input type="text" id="mission_name" name="mission.endDate" 
 					value="<f:formatDate value="${obj.endDate}" pattern="yyyy-MM-dd" />" class="datetime"></td>
 				</tr>
 				<%-- <tr>
-					<td><label class="control-label col-xs-2">进展说明</label></td>
+					<th>进展说明</th>
 					<td colspan="3"><textarea name="mission.progressDetail" class="w-input" rows="8">${obj.progressDetail}</textarea></td>
 				</tr> --%>
 				<tr>
-					<td><label class="control-label col-xs-2">备注</label></td>
+					<th>备注</th>
 					<td colspan="3"><input type="text" id="prj_comm" name="mission.comments" value="${obj.comments}" class="w-input" /></td>
 				</tr>
 				<tr>
-					<td><label class="control-label col-xs-2">完成百分比</label></td>
+					<th>完成百分比</th>
 					<td><input type="text" id="prj_name" name="mission.progress" value="${obj.progress}" class="number">%</td>
-					<td><label class="control-label col-xs-2">已投入人力(小时)</label></td>
+					<th>已投入人力(小时)</th>
 					<td><input type="text" id="mission_totalHours" value="${obj.totalHours}" class="number" readonly="readonly"/></td>
 				</tr>
 			</table>
 			<div style="text-align: left; margin-right: 80px">
-				<button type="submit" class="btn btn-primary">提交</button>
-				<a class="btn" href="<%=path %>/mission/query" style="margin-left: 10px">返回列表</a>
+				<button type="submit" class="btn btn-primary btn-wide">提交</button>
+				<a class="btn" href="<%=path %>/mission/query" class="btn-wide">返回列表</a>
 			</div>
 		</form>
 

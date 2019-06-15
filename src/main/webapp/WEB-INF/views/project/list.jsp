@@ -45,7 +45,11 @@
 	border: 1px #DDDDDD solid;
 	margin-bottom: 20px;
 }
-
+.search-table > tbody > tr > th{
+	text-align:right;
+	font-weight: 700;
+	padding:6px 8px 2px 0;
+}
 .search-table td:nth-child(2n+1) {
 	text-align: right;
 	padding-right:8px;
@@ -76,9 +80,9 @@
 			<div class="table-responsive">
 				<table class="search-table">
 					<tr>
-						<td>项目名称</td>
+						<th>项目名称</th>
 						<td class="w12"><input type="text" name="query.prjName" class="qt" value="<%=query.getPrjName()%>" /></td>
-						<td class="w12">状态</td>
+						<th>状态</th>
 						<td>
 							<div class="btn-group wp98">
 								<button id="btnm" class="wp100 dropdown-toggle btn btn-default compress" data-toggle="dropdown" type="button"
@@ -105,10 +109,10 @@
 								</ul>
 							</div>
 						</td>
-						<td>负责人</td>
+						<th>负责人</th>
 						<td class="w12"><ui:select name="query.engineer" path="${query.engineer}" items="${mpEngineer}" style="width:98%"></ui:select>
 						</td>
-						<td>报告人</td>
+						<th>报告人</th>
 						<td class="w12"><input type="text" name="query.reporter" value="${query.reporter}" style="width: 98%" /></td>
 						<td style="text-align: center" rowspan="2">
 							<button type="button" id="btnQuery" value="查询" class="btn btn-primary" style="width: 98%; margin-bottom: 16px">查询</button>
@@ -117,13 +121,13 @@
 						</td>
 					</tr>
 					<tr>
-						<td>反馈日期(起)</td>
+						<th>反馈日期</th>
 						<td><input type="text" id="sub_date1" name="query.submitDate1" class="datetime qt" /></td>
-						<td>反馈日期(止)</td>
+						<th>~反馈日期</th>
 						<td><input type="text" id="sub_date2" name="query.submitDate2" class="datetime wp98" /></td>
-						<td>更新日期(起)</td>
+						<th>更新日期</th>
 						<td><input type="text" id="resp_date1" name="query.updateTime1" class="datetime wp98" /></td>
-						<td>更新日期(止)</td>
+						<th>~更新日期</th>
 						<td><input type="text" id="resp_date2" name="query.updateTime2" class="datetime wp98" /></td>
 					</tr>
 				</table>

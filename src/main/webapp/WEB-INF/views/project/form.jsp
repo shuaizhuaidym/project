@@ -15,8 +15,6 @@
 <link href="<%=path %>/css/bootstrap.min.css" rel="stylesheet">
 <link href="<%=path %>/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 <style type="text/css">
-	<!-- 表单外层容器，统一尺寸 字体等 -->
-	.container_frm{width: 65%; margin: 0 auto}
 </style>
 <script type="text/javascript" src="<%=path %>/js/jquery/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="<%=path %>/js/jquery-validation-1.9.0/jquery.validate-1.17.0.js"></script>
@@ -37,7 +35,7 @@
 			<table class="table-frm">
 				<tr>
 					<th>项目名称</th>
-					<td><input type="text" id="prj_name" name="project.prjName" class="required"></td>
+					<td class="required"><input type="text" id="prj_name" name="project.prjName" class="required"></td>
 					<th>所属行业</th>
 					<td>
 						<dic:dic items="${dicts}" type="所属行业" name="project.industry" css="required"></dic:dic>
@@ -59,11 +57,11 @@
 						<dic:dic items="${dicts}" type="问题类型" name="project.issueType" css="required"></dic:dic>
 					</td>
 					<th>产品版本</th>
-					<td><input type="text" id="prj_version" name="project.prudectVersion" class="required"></td>
+					<td class="required"><input type="text" id="prj_version" name="project.prudectVersion" class="required"></td>
 				</tr>
 				<tr>
 					<th>反馈日期</th>
-					<td><input type="text" id="submitDate" name="project.submitDate" class="required datetime"></td>
+					<td class="required"><input type="text" id="submitDate" name="project.submitDate" class="required datetime"></td>
 					<th>当前状态</th>
 					<td>
 						<dic:dic id="slt_state" items="${dicts}" type="项目状态" name="project.status" css="required"></dic:dic>
@@ -71,7 +69,7 @@
 				</tr>
 				<tr>
 					<th>详细描述</th>
-					<td colspan="3"><textarea id="prj_desc" name="project.describtion" class="x-text required" rows="3"></textarea></td>
+					<td colspan="3" class="required"><textarea id="prj_desc" name="project.describtion" class="x-text required" rows="3"></textarea></td>
 				</tr>
 				<tr>
 					<th>报告人</th>
@@ -83,7 +81,7 @@
 				</tr>
 				<tr>
 					<th>负责人</th>
-					<td>
+					<td class="required">
 						<ui:select name="project.engineer" path="${prj.engineer}" items="${mpEngineer}" css="required"></ui:select>
 					</td>
 					<th>结束日期</th>
@@ -107,7 +105,7 @@
 				</tr>
 			</table>
 			<div style="text-align: left; margin-right: 80px">
-				<button type="submit" class="btn btn-primary">提交</button>
+				<button type="submit" class="btn btn-primary btn-wide">提交</button>
 				<button type="reset" class="btn" style="margin-left: 10px">重置</button>
 			</div>
 		</form>
