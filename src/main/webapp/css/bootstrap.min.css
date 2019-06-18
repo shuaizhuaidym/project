@@ -1941,7 +1941,7 @@ table td[class*="span"],table th[class*="span"],.row-fluid table td[class*="span
 	background-color: #c4e3f3
 }
 
-[class^="icon-"],[class*=" icon-"] {
+/* [class^="icon-"],[class*=" icon-"] {
 	display: inline-block;
 	width: 21px;
 	height: 21px;
@@ -1953,7 +1953,7 @@ table td[class*="span"],table th[class*="span"],.row-fluid table td[class*="span
 	background-position: 14px 14px;
 	background-repeat: no-repeat
 }
-
+ */
 .icon-white,.nav-pills>.active>a>[class^="icon-"],.nav-pills>.active>a>[class*=" icon-"],.nav-list>.active>a>[class^="icon-"],.nav-list>.active>a>[class*=" icon-"],.navbar-inverse .nav>.active>a>[class^="icon-"],.navbar-inverse .nav>.active>a>[class*=" icon-"],.dropdown-menu>li>a:hover>[class^="icon-"],.dropdown-menu>li>a:focus>[class^="icon-"],.dropdown-menu>li>a:hover>[class*=" icon-"],.dropdown-menu>li>a:focus>[class*=" icon-"],.dropdown-menu>.active>a>[class^="icon-"],.dropdown-menu>.active>a>[class*=" icon-"],.dropdown-submenu:hover>a>[class^="icon-"],.dropdown-submenu:focus>a>[class^="icon-"],.dropdown-submenu:hover>a>[class*=" icon-"],.dropdown-submenu:focus>a>[class*=" icon-"]
 	{
 	background-image: url("../img/glyphicons-halflings-white.png")
@@ -2466,9 +2466,9 @@ table td[class*="span"],table th[class*="span"],.row-fluid table td[class*="span
 	background-position: -120px -144px
 }
 
-.icon-hand-right {
+/* .icon-hand-right {
 	background-position: -216px -216px
-}
+} */
 
 .icon-hand-left {
 	background-position: -168px -144px

@@ -39,22 +39,6 @@
 	overflow: hidden
 }
 
-.search-table {
-	width: 100%;
-	background-color: #F9F9F9;
-	border: 1px #DDDDDD solid;
-	margin-bottom: 20px;
-}
-.search-table > tbody > tr > th{
-	text-align:right;
-	font-weight: 700;
-	padding:6px 8px 2px 0;
-}
-.search-table td:nth-child(2n+1) {
-	text-align: right;
-	padding-right:8px;
-}
-.ccenter{text-align:center!important}
 </style>
 
 <script type="text/javascript">
@@ -115,9 +99,9 @@
 						<th>报告人</th>
 						<td class="w12"><input type="text" name="query.reporter" value="${query.reporter}" style="width: 98%" /></td>
 						<td style="text-align: center" rowspan="2">
-							<button type="button" id="btnQuery" value="查询" class="btn btn-primary" style="width: 98%; margin-bottom: 16px">查询</button>
+							<button type="button" id="btnQuery" value="查询" class="btn btn-primary btn-wide">查询</button>
 							<br />
-							<button type="button" id="btnExport" name="_export" value="true" class="btn btn-success" style="width: 98%">导出EXCEL</button>
+							<button type="button" id="btnExport" name="_export" value="true" class="btn btn-success btn-wide">导出EXCEL</button>
 						</td>
 					</tr>
 					<tr>
@@ -134,7 +118,7 @@
 				<table class="table table-bordered table-striped">
 					<thead>
 						<tr>
-							<th class="w3 t_center">序号</th>
+							<th class="w3 t_center narrow-th">序号</th>
 							<th class="w12">项目名称</th>
 							<th class="w8">问题类型</th>
 							<th class="w36">详细描述</th>
@@ -142,7 +126,7 @@
 							<th class="w8">更新日期</th>
 							<th class="w6">负责人</th>
 							<th class="w6">当前状态</th>
-							<th class="w3 t_center">操作</th>
+							<th class="w3 t_center narrow-th">操作</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -158,8 +142,9 @@
 								<td>${prj.engineer}</td>
 								<td>${prj.status}</td>
 								<td>
-									
-									<a href="<%=path %>/project/history?prj_id=${prj.prjID}"><i class="icon-time" title="任务历史"></i></a>
+									<a href="<%=path %>/project/history?prj_id=${prj.prjID}">
+										<i class="icon-hand-right" title="任务历史"></i>
+									</a>
 								</td>
 							</tr>
 						</c:forEach>

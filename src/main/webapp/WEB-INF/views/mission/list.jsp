@@ -25,18 +25,10 @@
 <link href="<%=path%>/zTree/zTreeStyle.css" rel="stylesheet">
 
 <style type="text/css">
-#search_box input[type="text"],#search_box select {
-	width: 125px;
-}
 
 .top0 {
 	margin-bottom: 0px;
 }
-
-.table td,th {
-	padding: 5px 5px 5px 5px
-}
-
 .td_oper {
 	text-align: center
 }
@@ -108,23 +100,26 @@
 				<!--Body content-->
 				<div class="table-responsive">
 					<form id="mission_query_form" action="<%=path%>/mission/query" method="post">
-						<table id="search_box" class="table table-bordered table-striped">
-							<thead>
+						<table class="search-table">
+							<tbody>
 								<tr>
 									<th>任务名称</th>
-									<td><input type="text" name="query.missionName" value="${query.missionName}" /></td>
+									<td><input type="text" name="query.missionName" class="qt" value="${query.missionName}" /></td>
 									<th>创建时间</th>
-									<td><input type="text" name="query.createTime" class="datetime" /></td>
+									<td><input type="text" name="query.createTime" class="datetime qt" /></td>
 									<th>负责人</th>
 									<td>
-										<ui:select name="query.assignTo" path="${query.assignTo}" items="${users}"></ui:select>
+										<ui:select name="query.assignTo" path="${query.assignTo}" items="${users}" css="qt"></ui:select>
+									</td>
 									<th>计划发布版本</th>
-									<td><input type="text" name="query.devVersion" value="${query.devVersion}" /></td>
-									<th>任务状态</th>
-									<td><ui:select name="query.status" path="${query.status}" items="${status}"></ui:select></td>
-									<td style="text-align: center"><input type="submit" value="查&nbsp;询" class="btn btn-primary" /></td>
+									<td><input type="text" name="query.devVersion" class="qt" value="${query.devVersion}" /></td>
+									<td><input type="submit" value="查&nbsp;询" class="btn btn-primary btn-wide" /></td>
 								</tr>
-							</thead>
+								<tr>
+									<th>任务状态</th>
+									<td><ui:select name="query.status" path="${query.status}" items="${status}" css="qt"></ui:select></td>
+								</tr>
+							</tbody>
 						</table>
 						<table class="table table-bordered table-striped">
 							<thead>
@@ -140,7 +135,7 @@
 							</thead>
 							<c:forEach var="mission" items="${obj.list}" varStatus="index">
 								<tr>
-									<td>${index.count}</td>
+									<td class="ccenter">${index.count}</td>
 									<td>
 										<span class="product_flag">网</span>
 										<a href="<%=path %>/mission/edit?mission_id=${mission.missionID}"> ${mission.missionName} </a></td>
