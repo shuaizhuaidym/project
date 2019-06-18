@@ -141,9 +141,9 @@
 								<td>${prj.localLastResponse}</td>
 								<td>${prj.engineer}</td>
 								<td>${prj.status}</td>
-								<td>
-									<a href="<%=path %>/project/history?prj_id=${prj.prjID}">
-										<i class="icon-hand-right" title="任务历史"></i>
+								<td class="td_operation">
+									<a href="<%=path %>/project/history?prj_id=${prj.prjID}" class="a-icon">
+										<i class="icon-time" title="任务历史"></i>
 									</a>
 								</td>
 							</tr>

@@ -17,17 +17,21 @@ body {
 }
 [class^="icon-"], [class*=" icon-"] {
 	font-family: FontAwesome;
-	font-weight: 400;
 	font-size:18px;
 	font-style: normal;
 	text-decoration: inherit;
 	-webkit-font-smoothing: antialiased;
 	*margin-right: .3em;
 }
+.a-icon:hover{text-decoration:none}
+.td_operation{text-align:center !important;vertical-align: middle}
+[class^="icon-"]:hover, [class*=" icon-"]:hover{text-decoration:none}
 .icon-hand-right:before {
 	content: "\f0a4";
 }
-
+.icon-time:before {
+  content: "\f017";
+}
 .frm td:nth-child(even) {
 	text-align: left;
 }
@@ -168,3 +172,6 @@ td.required:after{
 	padding-right:8px;
 }
 .ccenter{text-align:center!important}
+.icon-list-ol:before {
+	content: "\f0cb";
+}

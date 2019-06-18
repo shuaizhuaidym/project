@@ -21,12 +21,7 @@
 <link href="<%=path%>/css/commom.css" rel="stylesheet">
 <link href="<%=path%>/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 <style type="text/css">
-.table-striped td,th {
-	padding: 2px 5px 8px;
-}
-.search-box input[type="text"]{
-	width:98%
-}
+
 </style>
 <script type="text/javascript" src="<%=path%>/js/jquery/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="<%=path%>/js/jquery-validation-1.9.0/jquery.validate-1.17.0.js"></script>
@@ -45,7 +40,7 @@
 		</fieldset>
 		<div class="table-responsive">
 			<form id="queryForm" action="<%=path%>/daily/search" method="post">
-				<table class="table table-bordered table-condensed" class="frm">
+				<table class="search-table" class="frm">
 					<tr class="search-box">
 						<th>人员名称</th>
 						<td><ui:select name="query.ownerName" path="${query.ownerName}" items="${owners}"></ui:select></td>
@@ -58,7 +53,7 @@
 						<th>发送日期止</th>
 						<td><input type="text" name="query.createDate2" value="${query.createDate}" class="datetime" /></td>
 						<th style="text-align: center">
-							<button id="btnQuery" class="btn btn-primary">查询</button>
+							<button id="btnQuery" class="btn btn-primary btn-wide">查询</button>
 						</th>
 					</tr>
 				</table>
@@ -78,7 +73,7 @@
 							<td>${index.count}</td>
 							<td>${daily.ownerName}</td>
 							<td><f:formatDate value="${daily.createDate}" pattern="yyyy-MM-dd" /></td>
-							<td><a href="<%=path%>/daily/items?daily_id=${daily.dailyID}"><i class="icon-list" title="日报预览"></i></a></td>
+							<td><a href="<%=path%>/daily/items?daily_id=${daily.dailyID}"><i class="icon-list-ol" title="日报预览"></i></a></td>
 							<td>
 								<c:choose>
 									<%-- <c:when test="${sessionScope.USERTYPE == 'inner'}"> --%>

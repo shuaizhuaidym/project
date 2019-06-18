@@ -29,9 +29,6 @@
 .top0 {
 	margin-bottom: 0px;
 }
-.td_oper {
-	text-align: center
-}
 
 </style>
 
@@ -143,11 +140,11 @@
 									<td>${mission.assignTo}</td>
 									<td>${mission.publishVersion}</td>
 									<td>${mission.status}</td>
-									<td class="td_oper">
+									<td class="td_operation">
 										<a href="<%=path %>/mission/loadForAssignAsync?mission_id=${mission.missionID}" data-toggle="modal"
-										data-target="#assignModal"><i class="icon-hand-right" title="指派"></i></a> &nbsp;
-										<a href="<%=path %>/mission/history?mission_id=${mission.missionID}"><i class="icon-time" title="任务历史"></i></a>
-										<a href="javascript:confirme(${mission.missionID});"><i class="icon-remove" title="删除"></i></a>
+										data-target="#assignModal" class="a-icon"><i class="icon-hand-right" title="指派"></i></a> &nbsp;
+										<a href="<%=path %>/mission/history?mission_id=${mission.missionID}" class="a-icon"><i class="icon-time" title="任务历史"></i></a>
+										<a href="javascript:confirme(${mission.missionID});" class="a-icon"><i class="icon-remove" title="删除"></i></a>
 									</td>
 								</tr>
 							</c:forEach>

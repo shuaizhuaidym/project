@@ -33,8 +33,8 @@
 
 .item_summary th {
 	text-align: right;
-	padding-right: 32px;
-	width: 20%;
+	padding-right: 8px;
+	width: 15%;
 }
 </style>
 <script type="text/javascript" src="<%=path%>/js/jquery/jquery-1.11.1.js"></script>
