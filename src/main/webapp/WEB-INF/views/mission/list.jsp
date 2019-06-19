@@ -127,7 +127,7 @@
 									<th class="w48px">负责人</th>
 									<th class="w48px">版本</th>
 									<th class="w128px">状态</th>
-									<th class="w96px">操作</th>
+									<th class="w48px">操作</th>
 								</tr>
 							</thead>
 							<c:forEach var="mission" items="${obj.list}" varStatus="index">
@@ -142,7 +142,7 @@
 									<td>${mission.status}</td>
 									<td class="td_operation">
 										<a href="<%=path %>/mission/loadForAssignAsync?mission_id=${mission.missionID}" data-toggle="modal"
-										data-target="#assignModal" class="a-icon"><i class="icon-hand-right" title="指派"></i></a> &nbsp;
+										data-target="#assignModal"><i class="icon-hand-right" title="指派"></i></a>
 										<a href="<%=path %>/mission/history?mission_id=${mission.missionID}" class="a-icon"><i class="icon-time" title="任务历史"></i></a>
 										<a href="javascript:confirme(${mission.missionID});" class="a-icon"><i class="icon-remove" title="删除"></i></a>
 									</td>
