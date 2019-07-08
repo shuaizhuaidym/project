@@ -2309,6 +2309,12 @@ CREATE TABLE `t_version` (
 -- ----------------------------
 
 -- ----------------------------
+-- View structure for v_mission
+-- ----------------------------
+DROP VIEW IF EXISTS `v_mission`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER  VIEW `v_mission` AS select `p`.`prj_id` AS `mission_id`,`p`.`prj_name` AS `mission_name`,`p`.`create_time` AS `plan_start`,`p`.`create_time` AS `start_date`,'' AS `plan_end`,`p`.`finish_date` AS `end_date`,`p`.`status` AS `state`,`p`.`industry` AS `industry`,`p`.`project_type` AS `mission_type` from `t_project` `p` union select `m`.`mission_id` AS `mission_id`,`m`.`mission_name` AS `mission_name`,`m`.`plan_start` AS `plan_start`,`m`.`start_date` AS `start_date`,`m`.`plan_end` AS `plan_end`,`m`.`end_date` AS `end_date`,`m`.`status` AS `state`,`m`.`industry_name` AS `industry`,`m`.`type` AS `mission_type` from `t_mission` `m` union select `bg`.`BG_BUG_ID` AS `mission_id`,`bg`.`BG_SUMMARY` AS `mission_name`,`bg`.`BG_DETECTION_DATE` AS `plan_start`,`bg`.`BG_DETECTION_DATE` AS `start_date`,'' AS `plan_end`,'' AS `end_date`,'' AS `industry`,'进行中' AS `state`,'持续改进' AS `mission_type` from `t_bug` `bg` ;
+
+-- ----------------------------
 -- View structure for labor_statistics
 -- ----------------------------
 DROP VIEW IF EXISTS `labor_statistics`;
@@ -2355,12 +2361,6 @@ FROM
 -- ----------------------------
 DROP VIEW IF EXISTS `v_labor_count`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER  VIEW `v_labor_count` AS select `p`.`prj_name` AS `work_name`,`p`.`industry` AS `industry`,`p`.`issue_type` AS `module`,`p`.`project_type` AS `work_type`,`p`.`describtion` AS `work_content`,`p`.`reporter` AS `manager`,`p`.`engineer` AS `engineer`,`p`.`status` AS `state`,`p`.`process` AS `process`,`p`.`labor_costs` AS `hours`,`p`.`finish_date` AS `finish_date`,`p`.`update_time` AS `update_time`,`p`.`product_name` AS `product`,'-' AS `baseVersion`,'-' AS `publishVersion`,'-' AS `function`,'-' AS `planStartDate`,`p`.`submit_date` AS `startDate`,'-' AS `planEndDate`,`p`.`finish_date` AS `endDate`,'-' AS `arrangedInvestment`,`p`.`labor_costs` AS `labor_costs`,sum(`itm`.`hours`) AS `investment` from (`t_project` `p` left join `t_daily_item` `itm` on(((`p`.`prj_id` = `itm`.`mission_id`) and (`p`.`prj_name` = `itm`.`mission_name`)))) group by `p`.`prj_name` union select `m`.`mission_name` AS `work_name`,`m`.`industry_name` AS `industry`,`m`.`module` AS `module`,`m`.`type` AS `work_type`,`m`.`content` AS `work_content`,`m`.`project_manager` AS `manager`,`m`.`assign_to` AS `engineer`,`m`.`status` AS `state`,`m`.`progress_detail` AS `process`,`m`.`total_hours` AS `hours`,`m`.`end_date` AS `finish_date`,`m`.`update_time` AS `update_time`,`m`.`product_name` AS `product`,'-' AS `baseVersion`,'-' AS `publishVersion`,'-' AS `function`,'-' AS `planStartDate`,`m`.`start_date` AS `startDate`,'-' AS `planEndDate`,`m`.`end_date` AS `endDate`,'-' AS `arrangedInvestment`,`m`.`total_hours` AS `total_hours`,sum(`itm`.`hours`) AS `investment` from (`t_mission` `m` left join `t_daily_item` `itm` on(((`m`.`mission_id` = `itm`.`mission_id`) and (`m`.`mission_name` = `itm`.`mission_name`)))) group by `m`.`mission_name` ;
-
--- ----------------------------
--- View structure for v_mission
--- ----------------------------
-DROP VIEW IF EXISTS `v_mission`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER  VIEW `v_mission` AS select `p`.`prj_id` AS `mission_id`,`p`.`prj_name` AS `mission_name`,`p`.`create_time` AS `plan_start`,`p`.`create_time` AS `start_date`,'' AS `plan_end`,`p`.`finish_date` AS `end_date`,`p`.`status` AS `state`,`p`.`industry` AS `industry`,`p`.`project_type` AS `mission_type` from `t_project` `p` union select `m`.`mission_id` AS `mission_id`,`m`.`mission_name` AS `mission_name`,`m`.`plan_start` AS `plan_start`,`m`.`start_date` AS `start_date`,`m`.`plan_end` AS `plan_end`,`m`.`end_date` AS `end_date`,`m`.`status` AS `state`,`m`.`industry_name` AS `industry`,`m`.`type` AS `mission_type` from `t_mission` `m` union select `bg`.`BG_BUG_ID` AS `mission_id`,`bg`.`BG_SUMMARY` AS `mission_name`,`bg`.`BG_DETECTION_DATE` AS `plan_start`,`bg`.`BG_DETECTION_DATE` AS `start_date`,'' AS `plan_end`,'' AS `end_date`,'' AS `industry`,'进行中' AS `state`,'持续改进' AS `mission_type` from `t_bug` `bg` ;
 
 -- ----------------------------
 -- View structure for v_mission_4_dept

@@ -175,3 +175,18 @@ td.required:after{
 .icon-list-ol:before {
 	content: "\f0cb";
 }
+.icon-plus-sign-alt::before {
+	content: "\f0fe";
+}
+.icon-edit::before {
+	content: "\f044";
+}
+.icon-minus-sign::before {
+	content: "\f056";
+}
+.icon-sitemap::before {
+	content: "\f0e8";
+}
+.icon-bar-chart::before {
+	content: "\f080";
+}
