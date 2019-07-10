@@ -91,7 +91,7 @@ ul.ztree {
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
-	<div class="container-fluid">
+	<div class="container-fluid" style="height:100%">
 		<div class="row-fluid">
 			<div class="span2">
 				<!--Sidebar content-->
@@ -146,7 +146,7 @@ ul.ztree {
 								<td>${prd.releaseVersion}</td>
 								<td><f:formatDate value="${prd.releaseDate}" pattern="yyyy-MM-dd" /></td>
 								<td><a href="<%=path%>/product/edit?product_id=${prd.productID}"><i class="icon-pencil" title="编辑"></i></a> 
-								<a href="#" onclick="delProduct(${prd.productID});"><i class="icon-remove" title="删除"></i></a>
+								<a href="#" onclick="delProduct('${prd.productID}');"><i class="icon-remove" title="删除"></i></a>
 								</td>
 							</tr>
 						</c:forEach>

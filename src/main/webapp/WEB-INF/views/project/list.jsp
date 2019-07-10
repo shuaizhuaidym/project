@@ -68,7 +68,7 @@
 						<td class="w12"><input type="text" name="query.prjName" class="qt" value="<%=query.getPrjName()%>" /></td>
 						<th>状态</th>
 						<td>
-							<div class="btn-group wp98">
+							<div class="btn-group qt">
 								<button id="btnm" class="wp100 dropdown-toggle btn btn-default compress" data-toggle="dropdown" type="button"
 									title="None selected">
 									<span class="multiselect-selected-text">当前状态</span> <b class="caret"></b>
@@ -94,10 +94,10 @@
 							</div>
 						</td>
 						<th>负责人</th>
-						<td class="w12"><ui:select name="query.engineer" path="${query.engineer}" items="${mpEngineer}" style="width:98%"></ui:select>
+						<td class="w12"><ui:select name="query.engineer" path="${query.engineer}" items="${mpEngineer}" css="qt"></ui:select>
 						</td>
 						<th>报告人</th>
-						<td class="w12"><input type="text" name="query.reporter" value="${query.reporter}" style="width: 98%" /></td>
+						<td class="w12"><input type="text" name="query.reporter" value="${query.reporter}" class="qt"/></td>
 						<td style="text-align: center" rowspan="2">
 							<button type="button" id="btnQuery" value="查询" class="btn btn-primary btn-wide">查询</button>
 							<br />
@@ -108,11 +108,11 @@
 						<th>反馈日期</th>
 						<td><input type="text" id="sub_date1" name="query.submitDate1" class="datetime qt" /></td>
 						<th>~反馈日期</th>
-						<td><input type="text" id="sub_date2" name="query.submitDate2" class="datetime wp98" /></td>
+						<td><input type="text" id="sub_date2" name="query.submitDate2" class="datetime qt" /></td>
 						<th>更新日期</th>
-						<td><input type="text" id="resp_date1" name="query.updateTime1" class="datetime wp98" /></td>
+						<td><input type="text" id="resp_date1" name="query.updateTime1" class="datetime qt" /></td>
 						<th>~更新日期</th>
-						<td><input type="text" id="resp_date2" name="query.updateTime2" class="datetime wp98" /></td>
+						<td><input type="text" id="resp_date2" name="query.updateTime2" class="datetime qt" /></td>
 					</tr>
 				</table>
 				<table class="table table-bordered table-striped">
