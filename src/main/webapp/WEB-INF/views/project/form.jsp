@@ -96,7 +96,7 @@
 					<td colspan="3"><input type="text" id="prj_impr" name="project.improvement" class="x-text" /></td>
 				</tr>
 				<tr>
-					<th>备注</th>
+					<th>项目编号&合同编号</th>
 					<td colspan="3"><input type="text" id="prj_comm" name="project.comments" class="x-text" /></td>
 				</tr>
 				<tr>

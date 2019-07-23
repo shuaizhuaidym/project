@@ -104,7 +104,7 @@
 					<td colspan="3"><input type="text" name="project.improvement" value="${prj.improvement}" class="x-text" /></td>
 				</tr>
 				<tr>
-					<th>备注</th>
+					<th>项目编号&合同编号</th>
 					<td colspan="3"><input type="text" name="project.comments" value="${prj.comments}" class="x-text" /></td>
 				</tr>
 				<tr>
