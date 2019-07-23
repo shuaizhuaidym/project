@@ -1053,9 +1053,11 @@ input[type="file"],input[type="image"],input[type="submit"],input[type="reset"],
 }
 
 select,input[type="file"] {
-	height: 30px;
+	/*height: 30px;
 	*margin-top: 4px;
-	line-height: 30px
+	line-height: 30px*/
+	/*resolve text and select width diff*/
+	box-sizing:content-box;
 }
 
 select {
